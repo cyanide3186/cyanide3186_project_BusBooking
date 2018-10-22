@@ -5,7 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
    
+   <!-- component 설정 -->
+   <context:component-scan base-package="booking.*"/>
+   <context:component-scan base-package="board.*"/>
+   <context:component-scan base-package="qboard.*"/> 
    
+   <!-- 오라클 접속 -->
    <context:property-placeholder location="classpath:spring/db.properties"/>
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    		<property name="driverClassName" value="${jdbc.driverClassName}"/>

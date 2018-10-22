@@ -1,0 +1,120 @@
+/* Reset */
+body, ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.clearfix::after {
+	content: ' ';
+	display: block;
+	clear: both;
+}
+
+body {
+	background-color: #222;
+}
+
+.wrapper {
+	width: 1200px;
+	margin: 150px auto;
+}
+
+.sq {
+	color: white;
+	background-color: #111;
+	padding: 1rem;
+}
+
+.sq-item {
+	float: left;
+	width: 25%;
+	padding-top: 25%;
+	position: relative;
+	/*부모의 기준이 상대적  */
+}
+
+.sq-item-large {
+	width: 50%;
+	padding-top: 50%;
+}
+
+.sq-item-long {
+	padding-top: 75%;
+}
+
+.sq-item-float-right {
+	float: right;
+}
+
+.sq-item-wide {
+	width: 50%;
+}
+
+.sq-item-anchor {
+	background-color: orange;
+	/*그 부모안에서 절대 좌표형식 */
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: 1rem;
+	padding: 2rem;
+	font-size:2rem;
+	overflow: hidden;
+	opacity: 0.5;
+	font-family: 'Roboto Slab', serif;
+	transition: all 0.3s;
+	border-radius:10px;
+	border: 0px solid white;
+}
+
+.sq-item-anchor::after {
+	content: ' ';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.8+0,0+100 */
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%,
+		rgba(0, 0, 0, 0) 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000',
+		endColorstr='#00000000', GradientType=0); /* IE6-9 */
+	z-index: 10;
+}
+
+.sq-item-anchor:hover {
+	margin: -1.5rem;
+	z-index: 30;
+	border-width: 10px;
+	opacity: 1;
+	font-size: 3rem;
+	box-shadow: 0 0 30px 50px rgba(0,0,0,0.5);
+}
+
+.sq-item-anchor-cover {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 10;
+}
+
+.sq-item-anchor-title {
+	position: relative;
+	z-index: 20;
+}

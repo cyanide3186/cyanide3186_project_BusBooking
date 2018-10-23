@@ -13,6 +13,7 @@
 
     <mvc:annotation-driven />
 	<mvc:resources location="/resources/" mapping="resources/**"/>
+	<mvc:resources mapping="/script/**" location="/script/"/>
 	
 	<context:component-scan base-package="booking.controller"/>
 	<context:component-scan base-package="board.controller"/>

@@ -3,23 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+
 	<typeAliases>
 	<!-- 각VO에 대한 약칭 -->
-		<!-- 버스 예매관련 VO -->
-		<typeAlias type="booking.bus.bean.BusVO" alias="BusVO"/>
-		<typeAlias type="booking.bus.bean.SeatVO" alias="SeatVO"/>
-		<typeAlias type="booking.ticket.bean.TicketVO" alias="TicketVO"/>
-		
 		<!-- 게시판 관련 VO -->
-		<typeAlias type="board.bean.BoardVO" alias="BoardVO"/>
 		<typeAlias type="qboard.bean.QboardVO" alias="QboardVO"/>
 	</typeAliases>
+	
+	
 	<!-- DAO 매퍼를 등록 -->
 	<mappers>
-		<!-- BookingController 부분 매핑 -->
-		<mapper resource="mybatis/booking-mapping.xml"/>
-		<!-- BoardController 부분 매핑 -->
-		<mapper resource="mybatis/board-mapping.xml"/>
 		<!-- QboardController 부분 매핑 -->
 		<mapper resource="mybatis/qboard-mapping.xml"/>
 	</mappers>

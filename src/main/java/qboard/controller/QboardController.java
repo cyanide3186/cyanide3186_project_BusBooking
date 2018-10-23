@@ -12,11 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import qboard.bean.QboardVO;
 
-@Controller
+/*@Controller*/
 public class QboardController {
 
-	@Autowired
-	private QboardService qboardService;
+	/*@Autowired
+	private QboardService qboardService;*/
 	
 	@RequestMapping(value="/main/index.do")
 	public ModelAndView index(HttpServletRequest request) {
@@ -53,9 +53,9 @@ public class QboardController {
 		qboardVO.setContent(content);
 		
 		//DB
-		int su = qboardService.qboardWrite(qboardVO);
+		//int su = qboardService.qboardWrite(qboardVO);
 		
-		modelAndView.addObject("su", su);
+		//modelAndView.addObject("su", su);
 		modelAndView.addObject("main", "../qboard/qboardWrite.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;

@@ -6,13 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import qboard.bean.QboardVO;
 
-@Repository
+//@Repository
 public class QboardDAO {
 
-	@Autowired
+/*	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	public int qboardWrite(QboardVO qboardVO) {
 		return sqlSession.insert("mybatis.board-Mapper.qboardWrite", qboardVO);
-	}
+	}*/
 }

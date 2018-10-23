@@ -3,29 +3,22 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- BoardDAO 매퍼 -->
 <mapper namespace="mybatis.board-Mapper">
-	<!-- 공지문 입력 (사용 X) -->
 	<insert id="insertBoard" parameterType="BoardVO">
 		insert into board values(board_seq.nextval,#{subject},#{content},sysdate)
 	</insert>
-	<!-- 공지문 삭제 (사용 X) -->
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where board_no=#{board_no}
 	</delete>
-	<!-- 공지문 선택 -->
 	<select id="selectBoard" parameterType="int" resultType="BoardVo">
 		select *from board where board_no=#{board_no}
 	</select>
-	<!-- 공지문 갯수 확인 -->
 	<select id="countBoard">
 		select count(*)from board
 	</select>
-	<!-- 공지문 페이징 -->
 	<select id="pagingBoard" parameterType="map" resultType="BoardVO">
 	<![CDATA[
-		select board_no, subject, to_char(writeday, 'YYYY.MM.DD') as writeday 
-		from(select rownum rn, tt.* from (select * from board order by board_no desc) tt)where rn>=#{startNum} and rn<=#{endNum}
+		select board_no, subject, to_char(writeday, 'YYYY.MM.DD') as writeday from(select rownum rn, tt.* from (select * from board order by board_no desc) tt)where rn>=#{startNum} and rn<=#{endNum}
 	]]>
 	</select>
 </mapper>

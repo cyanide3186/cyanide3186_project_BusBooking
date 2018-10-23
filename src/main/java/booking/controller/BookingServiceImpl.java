@@ -14,7 +14,6 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public int bookingCancel(int ticket_no) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -26,25 +25,21 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public int seatCheck(int ticket_no) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public TicketVO bookingCheck(int ticket_no) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int modify(int ticket_no) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int payment(int ticket_no) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

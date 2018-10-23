@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 import booking.bus.bean.BusVO;
 import booking.controller.BookingService;
 
-@Controller
+/*@Controller*/
 public class BoardController {
-	@Autowired
+/*	@Autowired
 	BookingService bookingService;
 	
 	@RequestMapping(value="/booking/booking_input.do")
@@ -20,5 +20,5 @@ public class BoardController {
 		return null;
 		
 	}
-
+*/
 }

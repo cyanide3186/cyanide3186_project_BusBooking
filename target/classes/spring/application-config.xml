@@ -10,10 +10,10 @@
    <context:component-scan base-package="board.*"/>
    <context:component-scan base-package="qboard.*"/> 
    
-<!-- 
-   오라클 접속
 
+   <!-- 오라클 접속 -->
    <context:property-placeholder location="classpath:spring/db.properties"/>
+
 
    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    		<property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -21,5 +21,13 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
    </bean>
- -->
+   
+   <!--  Spring과 Mybatis 연동 설정 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sessionFactory"/>
+	</bean>
 </beans>

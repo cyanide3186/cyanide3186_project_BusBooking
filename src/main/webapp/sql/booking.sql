@@ -1,33 +1,31 @@
---¹ö½º ¹èÂ÷Á¤º¸(1´ë´ç)Å×ÀÌºí
+--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(1ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½Ìºï¿½
 create table bus(
-    bus_no varchar2(30),        --¹ö½º¹øÈ£ (±âÁ¡-Á¾Á¡ ,Ãâ¹ß½Ã°¢º° °³º°µ¥ÀÌÅÍ)
-    start_tr varchar2(20),      --±âÁ¡Á¤º¸--
-    end_tr varchar2(20),        --Á¾Á¡Á¤º¸--
-    company varchar2(30),       --¿î¼öÈ¸»ç--
-    arrive_time varchar2(36),   --¹ö½º Ãâ¹ß½Ã°¢  
-    bus_seats number,           --ÇöÀç ÁÂ¼®
-    time varchar2(40),          --¼Ò¿ä½Ã°£--
-    payment number              --Æ¼ÄÏ 1Àå ¿ä±Ý--
+    bus_no varchar2(30),        --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ (ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ ,ï¿½ï¿½ß½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    start_tr varchar2(20),      --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--
+    end_tr varchar2(20),        --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--
+    company varchar2(30),       --ï¿½ï¿½ï¿½È¸ï¿½ï¿½--
+    arrive_time varchar2(36),   --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ß½Ã°ï¿½  
+    bus_seats number,           --ï¿½ï¿½ï¿½ï¿½ ï¿½Â¼ï¿½
+    time varchar2(40),          --ï¿½Ò¿ï¿½Ã°ï¿½--
+    payment number              --Æ¼ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½--
 );
 
---¹ö½º ÁÂ¼®Á¤º¸    
+--ï¿½ï¿½ï¿½ï¿½ ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½    
 create table seat (
-    bus_no varchar2(30),    --¹ö½º¹øÈ£(1~50)
-    bus_seat number,        --ÁÂ¼®¹øÈ£(1~40)
-    ticket_no number      --¿¹¾à¹øÈ£
+    bus_no varchar2(30),    --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£(1~50)
+    bus_seat number,        --ï¿½Â¼ï¿½ï¿½ï¿½È£(1~40)
+    ticket_no number      --ï¿½ï¿½ï¿½ï¿½ï¿½È£
 );
 
---Æ¼ÄÏ ¿¹¸ÅÁ¤º¸    
+--Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    
 create table ticket (
-    ticket_no number,                    --¿¹¾à¹øÈ£
-    bus_no  varchar2(30),                --¹ö½º¹øÈ£
-    --bus_seat number,                     --ÁÂ¼®¹øÈ£
-    hp1 number,                          --ÇÚµåÆù¹øÈ£
-    hp2 number,                          --ÇÚµåÆù¹øÈ£
-    hp3 number,                          --ÇÚµåÆù¹øÈ£  
-    payday date default sysdate,         --°áÁ¦³¯Â¥
-    totalpay    number,                  --ÃÑ °áÁ¦±Ý¾×
-    kid number,                          --¾Æµ¿¿ë¿¹¸Å¼ö
-    teen number,                         --Ã»¼Ò³â¿¹¸Å¼ö
-    adult number                         --¼ºÀÎ¿ë¿¹¸Å¼ö
+    ticket_no number,                    --ï¿½ï¿½ï¿½ï¿½ï¿½È£
+    hp1 number,                          --ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£
+    hp2 number,                          --ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£
+    hp3 number,                          --ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£  
+    payday date default sysdate,         --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥
+    totalpay    number,                  --ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½
+    kid number,                          --ï¿½Æµï¿½ï¿½ë¿¹ï¿½Å¼ï¿½
+    teen number,                         --Ã»ï¿½Ò³â¿¹ï¿½Å¼ï¿½
+    adult number                         --ï¿½ï¿½ï¿½Î¿ë¿¹ï¿½Å¼ï¿½
 );

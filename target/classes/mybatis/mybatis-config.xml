@@ -16,11 +16,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</typeAliases>
 	<!-- DAO 매퍼를 등록 -->
 	<mappers>
-		<!-- BookingController 부분 매핑 -->
-		<mapper resource="mybatis/booking-mapping.xml"/>
-		<!-- BoardController 부분 매핑 -->
+		<mapper resource="mybatis/booking-bus-mapping.xml"/>
+		<mapper resource="mybatis/booking-seat-mapping.xml"/>
+		<mapper resource="mybatis/booking-ticket-mapping.xml"/>
 		<mapper resource="mybatis/board-mapping.xml"/>
-		<!-- QboardController 부분 매핑 -->
 		<mapper resource="mybatis/qboard-mapping.xml"/>
 	</mappers>
 </configuration>

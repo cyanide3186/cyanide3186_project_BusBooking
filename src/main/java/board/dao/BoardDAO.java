@@ -12,7 +12,7 @@ import board.bean.BoardVO;
 
 @Repository
 public class BoardDAO {
-	@Autowired
+	/*@Autowired
 	SqlSession sqlSession;
 	
 	//공지문 입력 (사용 X) 
@@ -41,5 +41,5 @@ public class BoardDAO {
 	//공지문 확인
 	public BoardVO selectBoard(int board_no) {
 		return sqlSession.selectOne("mybatis.board-Mapper.selectBoard", board_no);
-	}
+	}*/
 }

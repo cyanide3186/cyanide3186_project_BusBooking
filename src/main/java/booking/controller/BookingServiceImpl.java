@@ -43,4 +43,9 @@ public class BookingServiceImpl implements BookingService {
       return 0;
    }
 
+   @Override
+   public int seatModify(int ticket_no) {
+		
+	  return 0;
+   }
 }

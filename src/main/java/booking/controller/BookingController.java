@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class BookingController {
 	
-	
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(ModelAndView modelAndView) {
 		modelAndView.addObject("main","../booking/booking_bus.jsp");

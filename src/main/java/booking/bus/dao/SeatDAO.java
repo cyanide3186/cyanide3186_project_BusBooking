@@ -13,6 +13,10 @@ public class SeatDAO {
 		return sqlSession.selectOne("mybatis.seat-Mapper.seatCheck", ticket_no);
 	}
 	
+	public int seatModify(int ticket_no) {
+		 return sqlSession.update("mybatis.seat-Mapper.seatModify", ticket_no);
+	}
+	
 	public int payment(int ticket_no) {
 		 return sqlSession.insert("mybatis.seat-Mapper.booking", ticket_no);
 	}

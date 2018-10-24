@@ -49,9 +49,9 @@
    2.
    3.
   * 김주현
-   1.
-   2.
-   3.    
+   1.index 파일 분할 
+   2.base.css 제작 
+   3.booking_input 작업 
   * 윤인수
    1. Board 부분 로직구현 (test완료)
    2. ReadMe.md 를 작업일지로 구축

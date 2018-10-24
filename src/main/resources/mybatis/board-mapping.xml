@@ -11,14 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from board where board_no=#{board_no}
 	</delete>
 	<select id="selectBoard" parameterType="int" resultType="BoardVo">
-		select *from board where board_no=#{board_no}
+		select board_no, subject, content, to_char(writeday, 'YYYY.MM.DD') as writeday from board where board_no=#{board_no}
 	</select>
-	<select id="countBoard">
+	<select id="countBoard" resultType="int">
 		select count(*)from board
 	</select>
-	<select id="pagingBoard" parameterType="map" resultType="BoardVO">
+	<select id="pagingBoard" parameterType="java.util.Map" resultType="BoardVO">
 	<![CDATA[
-		select board_no, subject, to_char(writeday, 'YYYY.MM.DD') as writeday from(select rownum rn, tt.* from (select * from board order by board_no desc) tt)where rn>=#{startNum} and rn<=#{endNum}
+		select board_no, subject, to_char(writeday, 'YYYY.MM.DD') as writeday from(select rownum rn, tt.* from (select * from board order by board_no desc) tt) where rn>=#{startNum} and rn<=#{endNum}
 	]]>
 	</select>
 </mapper>

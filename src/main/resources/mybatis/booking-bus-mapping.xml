@@ -4,4 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.bus-Mapper">
 	
+	<select id="busCheck" parameterType="BusVO" resultType="BusVO">
+		select * from bus where start_tr=#{start_tr} and end_tr=#{end_tr} and arrive_time=#{arrive_time}
+	</select>
+	
 </mapper>

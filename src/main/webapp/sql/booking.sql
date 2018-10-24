@@ -23,9 +23,9 @@ create table ticket (
     hp1 number,                          --�ڵ�����ȣ
     hp2 number,                          --�ڵ�����ȣ
     hp3 number,                          --�ڵ�����ȣ  
-    payday date default sysdate,         --������¥
-    totalpay    number,                  --�� �����ݾ�
     kid number,                          --�Ƶ��뿹�ż�
     teen number,                         --û�ҳ⿹�ż�
-    adult number                         --���ο뿹�ż�
+    adult number,                         --���ο뿹�ż�
+    totalpay    number,                  --�� �����ݾ�
+    payday date default sysdate         --������¥
 );

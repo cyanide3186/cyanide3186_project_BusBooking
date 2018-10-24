@@ -4,5 +4,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mybatis.ticket-Mapper">
+	<insert id="booking" parameterType="TicketVO">
+		insert into ticket values(#{ticket_no},#{hp1},#{hp2},#{hp3},#{totalpay},#{kid},#{teen},#{adult},sysdate)
+	</insert>
+	
+	<delete id="bookingCancel" parameterType="int">
+		delete ticket where ticket_no=#{ticket_no}
+	</delete>
+	
+	<select id="bookingCheck" parameterType="int" resultType="TicketVO">
+		select * from ticket where ticket_no=#{ticket_no}
+	</select>
+	
+	<update id="bookingModify" parameterType="int" >
+		update ticket where hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, kid=#{kid}, 
+		teen=#{teen}, adult=#{adult}, totalpay=#{totalpay}, where ticket_no=#{ticket_no}
+	</update>
+	
 	
 </mapper>

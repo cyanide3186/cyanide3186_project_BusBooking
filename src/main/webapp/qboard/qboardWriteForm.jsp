@@ -12,10 +12,29 @@
 	font-size: 30px;
 }
 .table {
+	border-color: #a0a0a0;
+ 	border-radius: 10px;
 	margin-top: 100px;
 	margin-left: 600px;
 }
+#img {
+	border-right : 1px solid black;	
+	border-right-style: dashed;
+	border-right-color: #a0a0a0;
+}
 #info {margin-left: 600px;}
+#notice_font li{
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#text {
+	border-bottom: 1px solid;
+	border-radius: 3px;
+	border-color: #a0a0a0;
+}
+
+
 </style>
 <script type="text/javascript" 
   src="../script/qboardScript.js?v=1"></script>
@@ -28,16 +47,20 @@
 
 
 <div id="section">
+
+
 <p id="voc" >고객의 소리</p>
 
 <form action="../qboard/qboardWrite.do" name="qboardWriteForm" method="post">
-<table class="table" border="1" >
+<table class="table" border="1">
 	<tr id="notice">
-		<td width="250">이미지</td>
+		<td width="250" id="img">이미지</td>
 		<td width="630">
-		<ui>
+		<ui id="notice_font">
 			<li>시외버스 예매 홈페이지는 언제나 고객님의 편리한 이용을 위해 최선을 다하고 있습니다.</li>
+			<br>
 			<li>시외버스를 이용하시는 고객님들께서는, 시외버스 이용에 대한 서비스 개선이나 좋은 아이디어 등이 있으시다면, 아래의 "고객의 소리"에 작성하실 수 있습니다.</li>
+			<br>
 			<li>고객님의 의견을 적극 수렴하여 사용자 중심의 서비스를 제공할 수 있도록 언제나 노력하겠습니다.</li>
 		</ui>
 		</td>
@@ -48,11 +71,11 @@
 
 <table class="table" border="1">
 	<tr>
-		<td width="200" height="20" align="center">제목</td>
-		<td><input type="text" size="79" name="subject"></textarea></td>
+		<td width="200" height="40" align="center" id="subject">제목</td>
+		<td><input type="text" size="78" name="subject" id="text"></td>
 	</tr>
 	<tr>
-		<td width="300" height="100" align="center">내용</td>
+		<td width="300" height="100" align="center" id="content">내용</td>
 		<td><textarea type="text" name="content" rows="10" cols="80"></textarea></td>
 	</tr>
 	<tr>

@@ -15,16 +15,16 @@ public class TicketDAO {
 	    return sqlSession.insert("mybatis.ticket-Mapper.booking", ticketVO);
 	}
 	
-	public int bookingCancel(int ticket_no) {
-		return sqlSession.delete("mybatis.ticket-Mapper.bookingCancel", ticket_no);
+	public int bookingCancel(String ticket_no) {
+		return sqlSession.update("mybatis.ticket-Mapper.bookingCancel", ticket_no);
 	}
 
-	public TicketVO bookingCheck(int ticket_no) {
+	public TicketVO bookingCheck(String ticket_no) {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingCheck", ticket_no);
 	}
 	
-	public int bookingModify(int ticket_no) {
-		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingModify", ticket_no);
+	public int bookingModify(String ticket_no) {
+		return sqlSession.update("mybatis.ticket-Mapper.bookingModify", ticket_no);
 	}
 	
 }

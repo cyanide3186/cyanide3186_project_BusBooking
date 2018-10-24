@@ -10,7 +10,7 @@ public class TicketVO {
 	private int kid;               // 어린이 예약 수
 	private int teen;              // 청소년 예약 수
 	private int adult;             // 성인 예약 수
-	private String cancle_check;   // 취소 여부 
+	private String cancle_check;   // 취소 여부확인.  취소되면 y  
 	
 	public String getTicket_no() {
 		return ticket_no;

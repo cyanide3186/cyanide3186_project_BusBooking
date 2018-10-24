@@ -23,17 +23,7 @@ public class TicketDAO {
 	public int bookingCancel(int ticket_no) {
 		return sqlSession.delete("mybatis.ticket-Mapper.bookingCancel", ticket_no);
 	}
-	
-	public List<BusVO> busCheck(BusVO vo) {
-		Map<String, BusVO> map=  new HashMap<>();
-		map.put("vo", vo);
-		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", "map");
-	}
-	
-	public int seatCheck(int ticket_no) {
-		return sqlSession.selectOne("mybatis.seat-Mapper.seatCheck", ticket_no);
-	}
-	
+
 	public TicketVO bookingCheck(int ticket_no) {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingCheck", ticket_no);
 	}
@@ -42,7 +32,4 @@ public class TicketDAO {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingModify", ticket_no);
 	}
 	
-	public int payment(int ticket_no) {
-		 return sqlSession.insert("mybatis.seat-Mapper.booking", ticket_no);
-	}
 }

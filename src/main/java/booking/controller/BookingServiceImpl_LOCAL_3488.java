@@ -34,7 +34,7 @@ public class BookingServiceImpl implements BookingService {
    }
 
    @Override
-   public int bookingModify(int ticket_no) {
+   public int modify(int ticket_no) {
       return 0;
    }
 

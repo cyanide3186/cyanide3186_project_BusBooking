@@ -34,7 +34,11 @@ public class BookingServiceImpl implements BookingService {
    }
 
    @Override
+<<<<<<< .merge_file_a02516
+   public int modify(int ticket_no) {
+=======
    public int bookingModify(int ticket_no) {
+>>>>>>> .merge_file_a14520
       return 0;
    }
 

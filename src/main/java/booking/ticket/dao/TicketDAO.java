@@ -20,5 +20,5 @@ public class TicketDAO {
 		return sqlsession.delete("mybatis.ticket-Mapper.bookingCancel", ticket_no);
 	}
 	
-	public 
+	
 }

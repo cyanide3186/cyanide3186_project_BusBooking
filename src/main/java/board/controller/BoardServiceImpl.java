@@ -32,4 +32,5 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectBoard(board_no);
 	}
 
+
 }

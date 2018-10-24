@@ -12,6 +12,7 @@ import board.bean.BoardVO;
 
 @Repository
 public class BoardDAO {
+	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
@@ -30,7 +31,7 @@ public class BoardDAO {
 		Map<String, Integer> map=  new HashMap<>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		return sqlSessionTemplate.selectList("mybatis.board-Mapper.pagingBoard", "map");
+		return sqlSessionTemplate.selectList("mybatis.board-Mapper.pagingBoard", map);
 	}
 	
 	//공지문 갯수 확인

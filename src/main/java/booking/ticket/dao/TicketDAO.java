@@ -1,25 +1,13 @@
 package booking.ticket.dao;
 
-<<<<<<< HEAD
-=======
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
->>>>>>> 4eda590d9ade86d9e3a9218926c44dce7ffb88dc
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-@Repository
-public class TicketDAO {
-	
-	@Autowired
-	SqlSessionTemplate sqlsession;
-	
-	
-=======
 import booking.bus.bean.BusVO;
 import booking.ticket.bean.TicketVO;
 
@@ -35,17 +23,7 @@ public class TicketDAO {
 	public int bookingCancel(int ticket_no) {
 		return sqlSession.delete("mybatis.ticket-Mapper.bookingCancel", ticket_no);
 	}
-	
-	public List<BusVO> busCheck(BusVO vo) {
-		Map<String, BusVO> map=  new HashMap<>();
-		map.put("vo", vo);
-		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", "map");
-	}
-	
-	public int seatCheck(int ticket_no) {
-		return sqlSession.selectOne("mybatis.seat-Mapper.seatCheck", ticket_no);
-	}
-	
+
 	public TicketVO bookingCheck(int ticket_no) {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingCheck", ticket_no);
 	}
@@ -54,8 +32,4 @@ public class TicketDAO {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingModify", ticket_no);
 	}
 	
-	public int payment(int ticket_no) {
-		 return sqlSession.insert("mybatis.seat-Mapper.booking", ticket_no);
-	}
->>>>>>> 4eda590d9ade86d9e3a9218926c44dce7ffb88dc
 }

@@ -92,7 +92,7 @@ body {
 							<div class="ui dropdown">
 								<div class="text">인원</div>
 								<i class="dropdown icon"></i>
-								<div class="menu">
+								<div class="menu" name="">
 									<div data-value="0" class="item">0</div>
 									<div class="item">1</div>
 									<div class="item">2</div>

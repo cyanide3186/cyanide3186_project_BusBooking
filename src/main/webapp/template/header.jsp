@@ -17,37 +17,36 @@
 <title>Fixed Menu Example - Semantic</title>
 
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/reset.css">
+	href="../semantic/components/reset.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/site.css">
+	href="../semantic/components/site.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/container.css">
+	href="../semantic/components/container.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/grid.css">
+	href="../semantic/components/grid.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/header.css">
+	href="../semantic/components/header.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/image.css">
+	href="../semantic/components/image.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/menu.css">
+	href="../semantic/components/menu.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/divider.css">
+	href="../semantic/components/divider.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/list.css">
+	href="../semantic/components/list.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/segment.css">
+	href="../semantic/components/segment.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/dropdown.css">
+	href="../semantic/components/dropdown.css">
 <link rel="stylesheet" type="text/css"
-	href="semantic/components/icon.css">
+	href="../semantic/components/icon.css">
 
-<link rel="stylesheet" type="text/css" href="semantic/semantic.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
-<script src="semantic/semantic.js"></script>
+<script src="../semantic/semantic.js"></script>
 <style type="text/css">
 body {
 	background-color: #FFFFFF;
@@ -82,7 +81,7 @@ span {
 	<div class="ui fixed inverted menu" style="height: 100px;">
 		<div class="ui container">
 			<a href="#" class="header item" width="300px"> <img class="logo"
-				src="assets/logo.png" width="100px" height="50px">
+				src="../assets/logo.png" width="100px" height="50px">
 
 			</a> <a href="#" class="item">Home</a>
 
@@ -143,7 +142,7 @@ span {
 			<div class="ui simple dropdown item">
 				<span>고객지원</span> <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="#">Link Item</a> <a class="item" href="#">Link
+					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a> <a class="item" href="#">Link
 						Item</a>
 					<div class="divider"></div>
 					<div class="header">Header Item</div>
@@ -164,48 +163,6 @@ span {
 
 	
 
-	<div class="ui inverted vertical footer segment">
-		<div class="ui center aligned container">
-			<div class="ui stackable inverted divided grid">
-				<div class="three wide column">
-					<h4 class="ui inverted header">Group 1</h4>
-					<div class="ui inverted link list">
-						<a href="#" class="item">Link One</a> <a href="#" class="item">Link
-							Two</a> <a href="#" class="item">Link Three</a> <a href="#"
-							class="item">Link Four</a>
-					</div>
-				</div>
-				<div class="three wide column">
-					<h4 class="ui inverted header">Group 2</h4>
-					<div class="ui inverted link list">
-						<a href="#" class="item">Link One</a> <a href="#" class="item">Link
-							Two</a> <a href="#" class="item">Link Three</a> <a href="#"
-							class="item">Link Four</a>
-					</div>
-				</div>
-				<div class="three wide column">
-					<h4 class="ui inverted header">Group 3</h4>
-					<div class="ui inverted link list">
-						<a href="#" class="item">Link One</a> <a href="#" class="item">Link
-							Two</a> <a href="#" class="item">Link Three</a> <a href="#"
-							class="item">Link Four</a>
-					</div>
-				</div>
-				<div class="seven wide column">
-					<h4 class="ui inverted header">Footer Header</h4>
-					<p>Extra space for a call to action inside the footer that
-						could help re-engage users.</p>
-				</div>
-			</div>
-			<div class="ui inverted section divider"></div>
-			<img src="assets/images/logo.png" class="ui centered mini image">
-			<div class="ui horizontal inverted small divided link list">
-				<a class="item" href="#">Site Map</a> <a class="item" href="#">Contact
-					Us</a> <a class="item" href="#">Terms and Conditions</a> <a
-					class="item" href="#">Privacy Policy</a>
-			</div>
-		</div>
-	</div>
 </body>
 
 </html>

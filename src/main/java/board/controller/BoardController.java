@@ -45,11 +45,11 @@ public class BoardController {
         modelAndView.addObject("totalP", totalP);
         
         //테스트용 페이징
-        modelAndView.setViewName("../test_jsp/test_list.jsp");
+        //modelAndView.setViewName("../test_jsp/test_list.jsp");
         
         //추후에 페이지 지정시 변경할 항목
-        /*modelAndView.addObject("display", "../board/boardList.jsp");
-        modelAndView.setViewName("../main/main.jsp");*/
+        modelAndView.addObject("main", "../board/boardList.jsp");
+        modelAndView.setViewName("../main/index.jsp");
         return modelAndView;
         
     }

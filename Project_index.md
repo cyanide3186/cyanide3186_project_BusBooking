@@ -60,8 +60,8 @@
    2.
    3.    
   * 최진우
-   1.
-   2.
+   1. ticket 테이블에 취소 확인용 변수 추가
+   2. seat, ticket mapping.xml dao 수정
    3.
     
 

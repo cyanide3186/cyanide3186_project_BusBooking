@@ -10,7 +10,8 @@
 <body>
 
 <div id=header>
-	<a href="../qboard/qboardWriteForm.do">고객의 소리</a>
+	<!-- //<a href="../qboard/qboardWriteForm.do">고객의 소리</a> -->
+	<jsp:include page="../template/header.jsp"/>
 </div>
 
 <div id="section">
@@ -22,7 +23,9 @@
 		<jsp:include page="${main}"/>
 	</c:if>
 </div>
-
+<div id=footer>
+	<jsp:include page="../template/footer.jsp"/>
+</div>
 
 </body>
 </html>

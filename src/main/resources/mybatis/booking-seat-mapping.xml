@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into seat values(#{bus_no},#{bus_seat},#{ticket_no})
 	</insert>
 	
-	<select id="seatCheck" parameterType="int">
+	<select id="seatCheck" parameterType="String">
 		select * from seat where ticket_no=#{ticket_no}
 	</select>
 	

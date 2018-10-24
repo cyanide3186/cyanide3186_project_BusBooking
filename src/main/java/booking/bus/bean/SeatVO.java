@@ -1,6 +1,6 @@
 package booking.bus.bean;
 
-public class SeatVO {	//좌석정보 DTO - tabel seat와 대응
+public class SeatVO {		//좌석정보 DTO - tabel seat와 대응
 	private String bus_no;	//버스번호-BusVO, ticketVO와 호응
     private int bus_seat;	//(1~40)
     private int ticket_no;	//예약번호

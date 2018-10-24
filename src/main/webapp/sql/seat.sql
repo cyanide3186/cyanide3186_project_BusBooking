@@ -1,6 +1,5 @@
 create table seat (
-    seq number,             --ÃÑÁÂ¼®¹øÈ£(1~2000)
-    bus_no varchar2(30),    --¹ö½º¹øÈ£(1~50)
-    bus_seat number,        --ÁÂ¼®¹øÈ£(1~40)
-    state varchar2(10)      --ºóÀÚ¸®¿©ºÎÈ®ÀÎ
+    bus_no varchar2(30),    --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£(1~50)
+    bus_seat number,        --ï¿½Â¼ï¿½ï¿½ï¿½È£(1~40)
+    ticket_no varchar2(100)      --ï¿½ï¿½ï¿½ï¿½ï¿½È£ 
 );

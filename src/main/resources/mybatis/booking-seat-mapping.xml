@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="seatModify" parameterType="int" >
-		update seat where bus_no=#{bus_no}, bus_seat=#{bus_seat}
+		update seat where bus_no=#{bus_no}, bus_seat=#{bus_seat}, state
 	</update>
 	
 </mapper>

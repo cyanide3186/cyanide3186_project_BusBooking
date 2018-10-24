@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.ticket-Mapper">
 	<insert id="booking" parameterType="TicketVO">
-		insert into ticket values(#{ticket_no},#{hp1},#{hp2},#{hp3},#{totalpay},#{kid},#{teen},#{adult},sysdate)
+		insert into ticket values(#{ticket_no},#{hp1},#{hp2},#{hp3},#{totalpay},#{kid},#{teen},#{adult},#{cancle_check},sysdate)
 	</insert>
 	
 	<delete id="bookingCancel" parameterType="String">
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="bookingModify" parameterType="int" >
 		update ticket where hp1=#{hp1}, hp2=#{hp2}, hp3=#{hp3}, kid=#{kid}, 
-		teen=#{teen}, adult=#{adult}, totalpay=#{totalpay}, where ticket_no=#{ticket_no}
+		teen=#{teen}, adult=#{adult}, totalpay=#{totalpay}, cancle_check=#{cancle_check} where ticket_no=#{ticket_no}
 	</update>
 	
 	

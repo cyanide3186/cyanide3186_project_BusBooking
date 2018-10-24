@@ -1,14 +1,12 @@
 create table ticket (
-    ticket_no varchar2(100) primary key,        --¿¹¾à¹øÈ£            
-    bus_no  varchar2(30),                	--¹ö½º¹øÈ£
-    bus_seat number,                     	--ÁÂ¼®¹øÈ£
-    hp1 number,                          	--ÇÚµåÆù¹øÈ£
-    hp2 number,                         	--ÇÚµåÆù¹øÈ£
-    hp3 number,                         	--ÇÚµåÆù¹øÈ£  
-    payday date default sysdate,        	--°áÁ¦³¯Â¥
-    totalpay    number,                  	--ÃÑ °áÁ¦±Ý¾×
-    kid number,                          	--¾Æµ¿¿ë¿¹¸Å¼ö
-    teen number,                        	--Ã»¼Ò³â¿¹¸Å¼ö
-    adult number                        	--¼ºÀÎ¿ë¿¹¸Å¼ö    
-    cancle_check varchar2(2)			--¿¹¾à Ãë¼Ò ¿©ºÎ
+    ticket_no varchar2(100) primary key,        --ï¿½ï¿½ï¿½ï¿½ï¿½È£            
+    hp1 number,                          	--ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£
+    hp2 number,                         	--ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£
+    hp3 number,                         	--ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½È£  
+    kid number,                          	--ï¿½Æµï¿½ï¿½ë¿¹ï¿½Å¼ï¿½
+    teen number,                        	--Ã»ï¿½Ò³â¿¹ï¿½Å¼ï¿½
+    adult number,                       	--ï¿½ï¿½ï¿½Î¿ë¿¹ï¿½Å¼ï¿½  
+    totalpay    number,                  	--ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾ï¿½
+    cancle_check varchar2(2),			--ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    payday date default sysdate        	--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥
 );

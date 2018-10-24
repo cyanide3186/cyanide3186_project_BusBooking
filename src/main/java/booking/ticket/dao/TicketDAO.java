@@ -13,6 +13,12 @@ public class TicketDAO {
 	SqlSessionTemplate sqlsession;
 	
 	public int insertTicket(TicketVO vo) {
-		return sqlsession.insert("", vo);
+		return sqlsession.insert("mybatis.ticket-Mapper.booking", vo);
 	}
+	
+	public int deleteTicket(String ticket_no) {
+		return sqlsession.delete("mybatis.ticket-Mapper.bookingCancel", ticket_no);
+	}
+	
+	public 
 }

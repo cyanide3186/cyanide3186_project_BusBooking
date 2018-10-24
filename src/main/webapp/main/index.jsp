@@ -10,7 +10,6 @@
 <body>
 
 <div id=header>
-	<a href="../board/boardList.do">공지사항</a>
 	<a href="../qboard/qboardWriteForm.do">고객의 소리</a>
 </div>
 

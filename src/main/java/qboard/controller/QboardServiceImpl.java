@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 import qboard.bean.QboardVO;
 import qboard.dao.QboardDAO;
 
-//@Service
+@Service
 public class QboardServiceImpl implements QboardService {
 
-
+	@Autowired
 	private QboardDAO qboardDAO;
-
+	
 	@Override
 	public int qboardWrite(QboardVO qboardVO) {
-		return 1;
+		return qboardDAO.qboardWrite(qboardVO);
 	}
 
 }

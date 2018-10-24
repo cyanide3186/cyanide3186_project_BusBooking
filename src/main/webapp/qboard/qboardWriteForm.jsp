@@ -12,7 +12,6 @@
 	font-size: 30px;
 }
 .table {
-	border: 2px solid #ccc;
 	margin-top: 100px;
 	margin-left: 600px;
 }
@@ -32,7 +31,7 @@
 <p id="voc" >고객의 소리</p>
 
 <form action="../qboard/qboardWrite.do" name="qboardWriteForm" method="post">
-<table class="table">
+<table class="table" border="1" >
 	<tr id="notice">
 		<td width="250">이미지</td>
 		<td width="630">
@@ -47,7 +46,7 @@
 	<p id="info" style="color:red;">[작성 시 유의사항]</p>
 	<p id="info">고객의 소리는 보안 정책 상 개인정보를 수집하고 있지 않습니다.</p>
 
-<table class="table" >
+<table class="table" border="1">
 	<tr>
 		<td width="200" height="20" align="center">제목</td>
 		<td><input type="text" size="79" name="subject"></textarea></td>

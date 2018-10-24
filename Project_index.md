@@ -41,9 +41,9 @@
 
 
   * 구정록
-   1.
-   2.
-   3.
+   1.sql구문 수정
+   2.booking DAO파트 작성
+   3.booking MAPPER파트 작성
   * 김용재
    1.
    2.

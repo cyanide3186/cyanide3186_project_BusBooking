@@ -88,8 +88,8 @@ span {
 			<div class="ui simple dropdown item">
 				<span> 예매</span><i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="#">Link Item</a> <a class="item" href="#">Link
-						Item</a>
+					<a class="item" href="../booking/booking_bus.do">예매</a> 
+					<a class="item" href="#">LinkItem</a>
 					<div class="divider"></div>
 					<div class="header">Header Item</div>
 					<div class="item">

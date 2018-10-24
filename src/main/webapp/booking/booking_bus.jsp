@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>승차권 예매</title>
-
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 <link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -22,39 +22,7 @@
 
 	});
 </script>
-<style type="text/css">
-body, ul {
-	margin: 0;
-	padding: 0;
-}
-
-li {
-	list-style-type: none;
-}
-
-body {
-	background-color: #222;
-}
-
-.wrapper {
-	background-color: white;
-	width: 960px;
-	margin: 50px auto;
-	text-align: center;
-	border-radius: 20px;
-	border-bottom: 5px solid #999;
-}
-
-.wrapper h1 {
-	color: orange;
-	border-bottom: 10px solid orange;
-	width: 250px;
-	margin: 40px auto;
-}
-.wrapper p{
-	padding: 3rem;
-	text-align:left; 
-}
+<style  type="text/css">
 </style>
 </head>
 <body>

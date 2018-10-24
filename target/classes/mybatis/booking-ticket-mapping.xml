@@ -3,7 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- QboardDAO 매퍼 -->
-<mapper namespace="mybatis.board-Mapper">
-
+<mapper namespace="mybatis.ticket-Mapper">
+	
 </mapper>

@@ -6,8 +6,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- QboardDAO 매퍼 -->
 <mapper namespace="mybatis.board-Mapper">
 
-	<insert parameterType="QboardVO" id="qboardWrite"> 
-	insert into questionboard values(seq_num.nextval, #{subject}, #{content}, sysdate)
-	</insert>
-
 </mapper>

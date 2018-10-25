@@ -63,9 +63,9 @@
    </tr>
    <tr height="40" >
      <td width="220" class="line" style="font-weight: 800;">NO.</td>
-    <td width="220" class="line"> ${boardDTO.board_no}</td>
+    <td width="220" class="line"> ${boardVO.board_no}</td>
      <td width="220" class="line" style="font-weight: 800;">등록일 </td>
-     <td width="220" style="border-bottom: 1px solid #ccc;"> ${boardDTO.name}</td>
+     <td width="220" style="border-bottom: 1px solid #ccc;"> ${boardVO.writeday}</td>
    </tr>
    <tr>
    	 <td colspan="4" width="850" height="400" id="content" >${boardVO.content}</td>

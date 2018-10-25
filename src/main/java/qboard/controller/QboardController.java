@@ -29,6 +29,8 @@ public class QboardController {
 	@RequestMapping(value="/qboard/qboardWriteForm.do")	 // 고객의 소리 작성 폼
 	public ModelAndView qboardWriteForm() {
 		ModelAndView modelAndView = new ModelAndView();
+		
+		//추후에 페이지 지정시 변경할 항목
 		modelAndView.addObject("main", "../qboard/qboardWriteForm.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;
@@ -56,6 +58,8 @@ public class QboardController {
 		int su = qboardService.qboardWrite(qboardVO);
 		
 		modelAndView.addObject("su", su);
+		
+		//추후에 페이지 지정시 변경할 항목
 		modelAndView.addObject("main", "../qboard/qboardWrite.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;

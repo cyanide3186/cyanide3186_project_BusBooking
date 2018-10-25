@@ -142,8 +142,8 @@ span {
 			<div class="ui simple dropdown item">
 				<span>고객지원</span> <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a> <a class="item" href="#">Link
-						Item</a>
+					<a class="item" href="../board/boardList.do">공지사항</a> 
+					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a>
 					<div class="divider"></div>
 					<div class="header">Header Item</div>
 					<div class="item">
@@ -160,8 +160,6 @@ span {
 		</div>
 	</div>
 
-
-	
 
 </body>
 

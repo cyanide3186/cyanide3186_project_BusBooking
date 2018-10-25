@@ -67,12 +67,12 @@ public class BoardController {
         modelAndView.addObject("board_no", boardVO.getBoard_no());
         
         //테스트용 페이징
-            modelAndView.setViewName("../test_/jsp/test_view.jsp");
+        //modelAndView.setViewName("../test_/jsp/test_view.jsp");
+        
         //추후에 페이지 지정시 변경할 항목
-        /*
-        modelAndView.addObject("display", "../guestbook/guestBookView.jsp");
+        modelAndView.addObject("main", "../board/boardView.jsp");
         modelAndView.setViewName("../main/main.jsp");
-        */
+       
         return modelAndView;
     }
 }

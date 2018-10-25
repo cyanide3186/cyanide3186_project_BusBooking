@@ -8,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/base.css">
 
 <style type="text/css">
+.form {
+	margin-top: 90px;
+	margin-bottom: 90px;
+}
 #voc {
 	text-align: center;
 	font-size: 35px;
@@ -38,13 +42,17 @@
 	border-color: #a0a0a0;
 }
 #qboardWriteForm {margin-left: 140px;}
-#subject, #content {
-font-size: 17px; 
-border-bottom: 1px solid;
-border-right: 1px solid;
-border-color: #a0a0a0;
+
+.wrap2 {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 }
-#line {
+#line1 {
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #a0a0a0;
+}
+#line2 {
 	border-bottom: 1px solid;
 	border-color: #a0a0a0;
 }
@@ -55,11 +63,12 @@ border-color: #a0a0a0;
 </head>
 <body>
 	<div class="wrapper">
+
 		<p id="voc">고객의 소리</p>
 			<hr>
 			<form action="../qboard/qboardWrite.do" name="qboardWriteForm"
 				method="post" id="qboardWriteForm">
-				
+			<div class="form">
 				<table class="table" >
 					<tr id="notice">
 						<td width="250" id="img"><img src="../images/request.png" id="request"></td>
@@ -77,22 +86,24 @@ border-color: #a0a0a0;
 				<p style="color: red;" >[작성 시 유의사항]</p>
 				<p >고객의 소리는 보안 정책 상 개인정보(주민번호, 이메일 등)를 수집하고 있지 않습니다.</p>
 				<br>
-				<table class="table" >
+				<table class="wrap2">
 					<tr>
-						<td width="200" height="40" align="center" id="subject">제목</td>
-						<td id="line"><input type="text" size="78" name="subject" id="text"></td>
+						<td width="200" height="45" align="center" id="line1">제목</td>
+						<td id="line2"><input type="text" size="78" name="subject" id="text"></td>
 					</tr>
 					<tr>
-						<td width="300" height="100" align="center" id="content" >내용</td>
-						<td id="line"><textarea type="text" name="content" rows="10" cols="80"></textarea></td>
+						<td width="300" height="100" align="center" id="line1" >내용</td>
+						<td id="line2"><textarea type="text" name="content" rows="10" cols="80"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="right"><input type="button" value="확인"
+						<td colspan="2" align="right" height="40"><input type="button" value="확인"
 							onclick="checkqboardWrite()"></td>
 					</tr>
 				</table>
+						</div>
 			</form>
 		<hr>
 		</div>
+
 </body>
 </html>

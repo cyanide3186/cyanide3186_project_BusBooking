@@ -47,8 +47,7 @@
 <c:forEach var="boardVO" items="${list}">
 	<tr align="center">
 		<td>${boardVO.board_no}</td>
-		<td><a id="subjectA" href="#" 
-			onclick="isLogin(${boardVO.board_no})">${boardVO.subject}</a></td>
+		<td><a id="subjectA" href="../board/boardView.do">${boardVO.subject}</a></td>
 		<td>${boardVO.writeday}</td>
 	</tr>
 </c:forEach>	

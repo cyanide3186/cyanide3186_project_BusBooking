@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import booking.bus.bean.BusVO;
+import booking.bus.bean.SeatVO;
 import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
@@ -39,7 +40,7 @@ public class BookingServiceImpl implements BookingService {
    }
 
    @Override
-   public int seatCheck(String ticket_no) {
+   public SeatVO seatCheck(String ticket_no) {
       return seatDAO.seatCheck(ticket_no);
    }
 
@@ -49,8 +50,8 @@ public class BookingServiceImpl implements BookingService {
    }
 
    @Override
-   public int bookingModify(String ticket_no) {
-      return ticketDAO.bookingModify(ticket_no);
+   public int bookingModify(TicketVO ticketVO) {
+      return ticketDAO.bookingModify(ticketVO);
    }
 
    @Override

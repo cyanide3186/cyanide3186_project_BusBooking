@@ -24,7 +24,7 @@ public class BookingController {
 	}
 	
 	// 예약 취소 폼
-	@RequestMapping(value="/booking/bookinCancleForm.do")
+	@RequestMapping(value="/booking/bookingCancleForm.do")
 	public ModelAndView bookingCancleForm(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -34,7 +34,7 @@ public class BookingController {
 	}
 	
 	// 예약 취소 기능
-	@RequestMapping(value="/booking/bookinCancle.do")
+	@RequestMapping(value="/booking/bookingCancle.do")
 	public ModelAndView bookingCancle(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketDAO dao = new TicketDAO();
@@ -44,7 +44,8 @@ public class BookingController {
 		
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
-		modelAndView.setViewName("");
+		modelAndView.addObject("main","");
+		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
@@ -65,8 +66,9 @@ public class BookingController {
 		
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
+		modelAndView.addObject("main","");
 		
-		modelAndView.setViewName("");
+		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
@@ -82,6 +84,7 @@ public class BookingController {
 		ticketVO = dao.bookingCheck(ticket_no);
 		
 		modelAndView.addObject("ticketVO", ticketVO);
+		
 		modelAndView.setViewName("");
 		
 		return modelAndView;
@@ -111,7 +114,9 @@ public class BookingController {
 		int count = dao.bookingModify(vo);
 		
 		modelAndView.addObject("count", count);
-		modelAndView.setViewName("");
+		modelAndView.addObject("main","");
+		
+		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}

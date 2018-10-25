@@ -23,8 +23,8 @@ public class TicketDAO {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingCheck", ticket_no);
 	}
 	
-	public int bookingModify(String ticket_no) {
-		return sqlSession.update("mybatis.ticket-Mapper.bookingModify", ticket_no);
+	public int bookingModify(TicketVO ticketVO) {
+		return sqlSession.update("mybatis.ticket-Mapper.bookingModify", ticketVO);
 	}
 	
 }

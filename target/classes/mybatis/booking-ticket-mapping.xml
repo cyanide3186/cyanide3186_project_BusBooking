@@ -4,5 +4,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mybatis.ticket-Mapper">
+	<!-- 예약 등록 -->
+	<insert id="booking" parameterType="ticketVO">
+		insert into ticket values (
+									#{ticket_no}
+									,#{hp1}
+									,#{hp2}
+									,#{hp3}
+									,#{kid}
+									,#{teen}
+									,#{adult}
+									,#{totalpay}
+									,#{cancle_check}
+									,sysdate
+								  )
+	</insert>
+	
+	<!--  
+	<delete id="bookingCancel" parameterType="String">
+		delete ticket where ticket_no=#{ticket_no}
+	</delete>
+	-->
+	
+	<!-- 예약 취소 -->
+	<update id="bookingCancel" parameterType="String">
+		update ticket set cancle_check = 'y' where ticket_no = #{ticket_no}
+	</update>
+	
+	<!-- 예약 개별 조회 -->
+	<select id="bookingCheck" parameterType="String" resultType="ticketVO">
+		select * from ticket where ticket_no=#{ticket_no}
+	</select>
+	
+	<!-- 예약 수정 -->
+	<update id="bookingModify" parameterType="ticketVO" >
+		update ticket set
+						  hp1 = #{hp1}
+						, hp2 = #{hp2}
+						, hp3 = #{hp3}
+						, kid = #{kid}
+						, teen = #{teen}
+						, adult = #{adult}
+						, totalpay = #{totalpay} 
+		where ticket_no = #{ticket_no}
+	</update>
+	
 	
 </mapper>

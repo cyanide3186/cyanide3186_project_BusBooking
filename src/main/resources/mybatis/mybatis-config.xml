@@ -6,13 +6,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 	<!-- 각VO에 대한 약칭 -->
 		<!-- 버스 예매관련 VO -->
-		<typeAlias type="booking.bus.bean.BusVO" alias="BusVO"/>
-		<typeAlias type="booking.bus.bean.SeatVO" alias="SeatVO"/>
-		<typeAlias type="booking.ticket.bean.TicketVO" alias="TicketVO"/>
+		<typeAlias type="booking.bus.bean.BusVO" alias="busVO"/>
+		<typeAlias type="booking.bus.bean.SeatVO" alias="seatVO"/>
+		<typeAlias type="booking.ticket.bean.TicketVO" alias="ticketVO"/>
 		
 		<!-- 게시판 관련 VO -->
-		<typeAlias type="board.bean.BoardVO" alias="BoardVO"/>
-		<typeAlias type="qboard.bean.QboardVO" alias="QboardVO"/>
+		<typeAlias type="board.bean.BoardVO" alias="boardVO"/>
+		<typeAlias type="qboard.bean.QboardVO" alias="qboardVO"/>
 	</typeAliases>
 	<!-- DAO 매퍼를 등록 -->
 	<mappers>

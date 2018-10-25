@@ -2,8 +2,10 @@ package booking.bus.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,11 +13,14 @@ import booking.bus.bean.BusVO;
 
 @Repository
 public class BusDAO {
+	@Autowired
+	SqlSessionTemplate sqlSession;
 	
-	@Autowired 
-	private SqlSessionFactory sessionFactory;
-	public List<BusVO> busCheck(int bus_no) {
-		System.out.println("===> Mybatis로 guestList() 기능 처리");
-		return null;
+	public List<BusVO> busCheck(BusVO vo) {
+		Map<String, BusVO> map=  new HashMap<>();
+		map.put("vo", vo);
+		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", "map");
 	}
+	
+	
 }

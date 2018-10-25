@@ -72,7 +72,7 @@
 	<tr align="center" height="50" >
 		<td width="120" class="line">${boardVO.board_no}</td>
 		<td width="620" class="linecenter">
-		<a id="subjectA" href="../board/boardView.do?pg=${pg}&board_no=${boardVO.board_no}">
+		<a id="subjectA" href="../board/boardView.do?pg=${pg}&board_no=${boardBO.board_no}">
 		${boardVO.subject}</a></td>
 		<td width="220" class="line">${boardVO.writeday}</td>
 	</tr>

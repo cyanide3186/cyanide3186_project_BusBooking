@@ -7,16 +7,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>승차권 예매</title>
 
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
-<link rel="stylesheet" type="text/css" href="../css/base.css">
-<link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/base.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
-<script src="../semantic/semantic.js"></script>
-<script type="text/javascript" src="../js/moment.js"></script>
-<script type="text/javascript" src="../js/daterangepicker.js"></script>
+<script src="/Project_BusBooking/semantic/semantic.js"></script>
+<script src="/Project_BusBooking/js/calendar.js"></script>
+
+</head>
+
+
 <script type="text/javascript">
 	$(function() {
 		var dt = new Date();
@@ -24,15 +33,29 @@
 		var day = dt.getDate();
 		var year = dt.getFullYear();
 		var today = year + '-' + month + '-' + day;
-		$('input[name="arrive_day"]').daterangepicker({
-			format : 'YYYY-MM-DD',
-			minDate : today,
-			startDate : today,
-			singleDatePicker : true
-		}, function(start, end, label) {
-			alert('선택한 출발 날짜: ' + start.format('YYYY-MM-DD'));
+		$('#example1').calendar({
+			type: 'date',
+			today: true,
+			onChange: function (date, text, mode) {
+				var month=date.getMonth() + 1;
+				var day = date.getDate();
+				var year = date.getFullYear();
+				var today = year + '-' + month + '-' + day;
+				alert(today);
+				$("#example1").attr({
+					value : today
+				});
+		    },
+			text: {
+				
+			      days: ['일', '월', '화', '수', '목', '금', '토'],
+			      months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			      monthsShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			      today: '오늘'
+			     
+			    }
+			
 		});
-
 		$('#start_tr').click(function() {
 			//출발지 버튼 클릭시 일어나는 기능
 			$(".start_bus").fadeIn(300);
@@ -125,7 +148,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert("출발시간은"+value+"입니다");
+				alert("출발시간은" + value + "입니다");
 			}
 		});
 
@@ -180,6 +203,7 @@ p {
 </style>
 </head>
 <body>
+
 	<div id="glayLayer"></div>
 
 	<div class="start_bus">
@@ -288,14 +312,14 @@ p {
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" name="arrive_day">
+											placeholder="Date/Time">
 									</div>
-								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown" id="arrive_time">
+							<td><select name="arrive_time" class="ui dropdown"
+								id="arrive_time">
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>
@@ -401,5 +425,6 @@ p {
 		</div>
 
 	</div>
+	
 </body>
 </html>

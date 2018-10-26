@@ -101,7 +101,7 @@
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pg == i}">
-				<a id="currentPaging" href="../board/boardList.do?pg=${i}">${i}</a>
+				<a id="currentPaging" href="../board/boardList.do?pg=${i}"><img src=>${i}</a>
 			</c:if>
 			<c:if test="${pg != i}">
 				<a id="paging" href="../board/boardList.do?pg=${i}">${i}</a>

@@ -4,17 +4,126 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>승차권 예매</title>
-<link rel="stylesheet" type="text/css" href="../css/base.css">
-<link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
+
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/base.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
-<script src="../semantic/semantic.js"></script>
+<script src="/Project_BusBooking/semantic/semantic.js"></script>
+<script src="/Project_BusBooking/js/calendar.js"></script>
+
+</head>
+
+
 <script type="text/javascript">
 	$(function() {
+		var dt = new Date();
+		var month = dt.getMonth() + 1;
+		var day = dt.getDate();
+		var year = dt.getFullYear();
+		var today = year + '-' + month + '-' + day;
+		$('#example1').calendar({
+			type: 'date',
+			today: true,
+			onChange: function (date, text, mode) {
+				var month=date.getMonth() + 1;
+				var day = date.getDate();
+				var year = date.getFullYear();
+				var today = year + '-' + month + '-' + day;
+				alert(today);
+				$("#example1").attr({
+					value : today
+				});
+		    },
+			text: {
+				
+			      days: ['일', '월', '화', '수', '목', '금', '토'],
+			      months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			      monthsShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+			      today: '오늘'
+			     
+			    }
+			
+		});
+		$('#start_tr').click(function() {
+			//출발지 버튼 클릭시 일어나는 기능
+			$(".start_bus").fadeIn(300);
 
-		$('#adult').dropdown({
+			$("#glayLayer").fadeIn(300);
+			return false;
+		});
+
+		$('#end_tr').click(function() {
+			//출발지 버튼 클릭시 일어나는 기능
+			$(".end_bus").fadeIn(300);
+			$("#glayLayer").fadeIn(300);
+			return false;
+		});
+		$('#start').dropdown({
+			//출발지선택 드롭다운 의 기능
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value + "을 출발지로 선택하셨습니다.");
+				var start = value;
+				$("#start_tr").attr({
+					placeholder : start,
+					value : start,
+					readonly : "true"
+				});
+				$(".start_bus").fadeOut(200);
+				$("#glayLayer").fadeOut(300);
+			}
+		});
+
+		$('#end_tr').click(function() {
+			//도착지 버튼 클릭시 일어나는 기능
+			$(".end_bus").fadeIn(300);
+			$("#glayLayer").fadeIn(300);
+			return false;
+		});
+		$('#end').dropdown({
+			//도착지선택 드롭다운 의 기능
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value + "을 도착지로 선택하셨습니다.");
+				var end = value;
+				$("#end_tr").attr({
+					placeholder : end,
+					value : end,
+					readonly : "true"
+				});
+				$(".end_bus").fadeOut(200);
+				$("#glayLayer").fadeOut(300);
+			}
+		});
+
+		$("#glayLayer").click(function() {
+			//배경 레이어의 숨김
+			$(this).fadeOut(300);
+			$(".start_bus").fadeOut(200);
+			$(".end_bus").fadeOut(200);
+
+		});
+		$(function() {
+			$("#startDate").datepicker({
+				minDate : 0,
+				maxDate : "+12M +10D"
+			});
+		});
+		$('#adult').dropdown({//어른 인원 드롭다운
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
@@ -35,13 +144,14 @@
 				alert(value);
 			}
 		});
-		$('#start_tr').dropdown({
+		$('#arrive_time').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value);
+				alert("출발시간은" + value + "입니다");
 			}
 		});
+
 	});
 </script>
 <style type="text/css">
@@ -49,9 +159,112 @@ p {
 	padding: 3rem;
 	text-align: left;
 }
+
+.start_bus {
+	display: none;
+	background-color: orange;
+	width: 1000x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+.end_bus {
+	display: none;
+	background-color: orange;
+	width: 800x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+#glayLayer {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: black;
+	filter: alpha(opacity = 60);
+	opacity: 0.60;
+	z-index: 1;
+}
 </style>
 </head>
 <body>
+
+	<div id="glayLayer"></div>
+
+	<div class="start_bus">
+		<h3>출발 터미널 선택</h3>
+		<table>
+			<tr>
+				<td colspan="2"><select name="start" class="ui dropdown"
+					id="start">
+						<option value="">주요 터미널</option>
+						<option value="동서울">동서울</option>
+						<option value="인천공항1터미널">인천공항1터미널</option>
+						<option value="성남">성남</option>
+						<option value="수원">수원</option>
+				</select></td>
+
+			</tr>
+			<tr>
+				<td>터미널 검색</td>
+				<td><input type="text"></td>
+			</tr>
+		</table>
+		<div>
+			<table>
+				<tr>
+					<!-- 검색전 (전체 터미널 목록) -->
+					<!-- 검색후 (검색된 터미널 목록) -->
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+	<div class="end_bus">
+		<h3>도착 터미널 선택</h3>
+		<table>
+			<tr>
+				<td colspan="2"><select name="end" class="ui dropdown" id="end">
+						<option value="">주요 터미널</option>
+						<option value="동서울">동서울</option>
+						<option value="인천공항1터미널">인천공항1터미널</option>
+						<option value="성남">성남</option>
+						<option value="수원">수원</option>
+				</select></td>
+
+			</tr>
+			<tr>
+				<td>터미널 검색</td>
+				<td><input type="text"></td>
+			</tr>
+		</table>
+		<div>
+			<table>
+				<tr>
+					<!-- 검색전 (전체 터미널 목록) -->
+					<!-- 검색후 (검색된 터미널 목록) -->
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
 
 	<div class="wrapper">
 
@@ -67,51 +280,72 @@ p {
 
 		</div>
 		<div>
-			<form action="../booking/booking_bus.do" method="post">
-				<div class="start_bus">
-					<h3>터미널 선택</h3>
-					<table>
-						<tr>
-							<td colspan="2"><select name="start_tr" class="ui dropdown"
-								id="start_tr">
-									<option value="">주요 터미널</option>
-									<option value="동서울">동서울</option>
-									<option value="인천공항1터미널">인천공항1터미널</option>
-									<option value="성남">성남</option>
-									<option value="수원">수원</option>
-							</select></td>
-						
-						</tr>
-						<tr>
-							<td>터미널 검색</td>
-							<td><input type="text"></td>
-						</tr>
-					</table>
-					<div>
-						<table>
-							<tr>
-								<!-- 검색전 (전체 터미널 목록) -->
-								<!-- 검색후 (검색된 터미널 목록) -->
-							</tr>>
-						</table>
-					</div>
 
 
-				</div>
-				<div class=""></div>
+
+
+
+			<form action="../booking/booking_bus.do" method="post"
+				name="bus_input">
 				<div class="column">
-					<table border="1px solid">
+					<table border="1px solid" align="center">
 						<tr>
 							<td>출발지</td>
-							<td><input type="button" value="선택"></td>
+							<td>
+								<div class="ui input">
+									<input type="text" placeholder="출발지선택" id="start_tr"
+										name="start_tr">
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<td>도착지</td>
-							<td><input type="button" value="선택"></td>
+							<td><div class="ui input">
+									<input type="text" placeholder="도착지선택" id="end_tr"
+										name="end_tr">
+								</div></td>
 						</tr>
 						<tr>
 							<td>가는 일시</td>
-							<td><input type="button" value="선택"></td>
+							<td>
+
+								<div class="ui calendar" id="example1">
+									<div class="ui input left icon">
+										<i class="calendar icon"></i> <input type="text"
+											placeholder="Date/Time">
+									</div>
+							</td>
+						</tr>
+						<tr>
+							<td>출발 시각</td>
+							<td><select name="arrive_time" class="ui dropdown"
+								id="arrive_time">
+									<option value="">출발시각</option>
+									<option value="00:00">00:00</option>
+									<option value="01:00">01:00</option>
+									<option value="02:00">02:00</option>
+									<option value="03:00">03:00</option>
+									<option value="04:00">04:00</option>
+									<option value="05:00">05:00</option>
+									<option value="06:00">06:00</option>
+									<option value="07:00">07:00</option>
+									<option value="08:00">08:00</option>
+									<option value="09:00">09:00</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+									<option value="13:00">13:00</option>
+									<option value="14:00">14:00</option>
+									<option value="15:00">15:00</option>
+									<option value="16:00">16:00</option>
+									<option value="17:00">17:00</option>
+									<option value="18:00">18:00</option>
+									<option value="19:00">19:00</option>
+									<option value="20:00">20:00</option>
+									<option value="21:00">21:00</option>
+									<option value="22:00">22:00</option>
+									<option value="23:00">23:00</option>
+							</select></td>
 						</tr>
 						<tr>
 							<td>어른</td>
@@ -191,5 +425,6 @@ p {
 		</div>
 
 	</div>
+	
 </body>
 </html>

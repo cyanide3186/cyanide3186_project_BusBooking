@@ -40,28 +40,25 @@
 ### **10/24(수)**
 
 
-  * 구정록
-   1.sql구문 수정
-   2.booking DAO파트 작성
-   3.booking MAPPER파트 작성
-  * 김용재
-   1.
-   2.
-   3.
-  * 김주현
-   1.index 파일 분할 
-   2.base.css 제작 
-   3.booking_input 작업 
-  * 윤인수
-   1. Board 부분 로직구현 (test완료)
-   2. ReadMe.md 를 작업일지로 구축
-  * 차다빈
-   1.
-   2.
-   3.    
-  * 최진우
-   1. ticket 테이블에 취소 확인용 변수 추가
-   2. seat, ticket mapping.xml dao 수정
+  * 구정록  
+   1.sql구문 수정  
+   2.booking DAO파트 작성  
+   3.booking MAPPER파트 작성  
+  * 김용재  
+   1.sql문 작성(토탈 711)  
+  * 김주현  
+   1.index 파일 분할   
+   2.base.css 제작   
+   3.booking_input 작업   
+  * 윤인수  
+   1.Board 부분 로직구현 (test완료)  
+   2.ReadMe.md 를 작업일지로 구축  
+  * 차다빈  
+   1.공지사항, 상세보기 폼 구현, 폼 디자인
+   2.고객의 소리 로직 구현, 폼 디자인 
+  * 최진우  
+   1. ticket 테이블에 취소 확인용 변수 추가  
+   2. seat, ticket mapping.xml dao 수정  
    3.
     
     
@@ -69,13 +66,13 @@
 
 
   * 구정록  
-   1.  
-   2.  
+   1.변수 재설정
+   2.Booking 기능 수정
    3.  
   * 김용재  
    1.sql문 작성(토탈 857  
   * 김주현  
-   1.  
+   1..booking_input 작업  
    2.  
    3.  
   * 윤인수  
@@ -96,22 +93,21 @@
    1.  
    2.  
    3.  
-  * 김용재  
+ * 김용재  
    1. 작업내역 없음
   * 김주현  
-   1.  
+   1.booking_input의 index로 할시에 기능이 구현되지 않던 오류 해결  
    2.  
    3.  
-  * 윤인수  
+ * 윤인수  
    1. 승차권 예매 안내페이지 제작  
    2. 인포 페이징 처리(controller 설정)
   * 차다빈  
-   1.  
-   2.  
+   1.  base.css 바디 폼 수정
+   2.  승차권 예매 취소 폼 디자인 (미완성)
    3.      
   * 최진우  
    1.  
    2. 
    3.
-    
     

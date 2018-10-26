@@ -14,6 +14,14 @@ import booking.ticket.dao.TicketDAO;
 @Controller
 public class BookingController {
 	
+	// 버스 예약페이지 이동 
+	@RequestMapping(value="/booking/booking_input.do")
+	public ModelAndView booking_input(ModelAndView modelAndView) {
+		modelAndView.addObject("main","../booking/booking_input.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
 	// 버스 예약기능
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(ModelAndView modelAndView) {

@@ -30,6 +30,7 @@ td{
 	width:400px;
 	height: 100%;
 	align-content: center;
+	margin-left: 320px;
 }
 #info_image{
 	align-content: center;

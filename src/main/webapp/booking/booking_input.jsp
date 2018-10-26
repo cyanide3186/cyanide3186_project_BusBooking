@@ -126,7 +126,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert("출발시간은"+value+"입니다");
+				alert("출발시간은" + value + "입니다");
 			}
 		});
 
@@ -296,7 +296,8 @@ p {
 						</tr>
 						<tr>
 							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown" id="arrive_time">
+							<td><select name="arrive_time" class="ui dropdown"
+								id="arrive_time">
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>

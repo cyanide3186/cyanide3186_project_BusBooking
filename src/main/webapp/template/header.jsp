@@ -124,7 +124,7 @@ span {
 			<div class="ui simple dropdown item">
 				<span>이용안내 </span><i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="../info/bus_booking_info.jsp">승차권 예매 안내</a>
+					<a class="item" href="../main/index.jsp?main='../info/bus_booking_info.jsp'">승차권 예매 안내</a>
 					<a class="item" href="../info/modify_and_cancelation_info.jsp">예매변경 및 취소 안내</a>
 					<a class="item" href="../info/tr_and_company_info.jsp">터미널 및 운수사 안내</a>
 					<a class="item" href="../info/tax_info.jsp">현금영수증 안내</a>

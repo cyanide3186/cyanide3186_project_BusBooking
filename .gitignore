@@ -101,3 +101,6 @@ hs_err_pid*
 
 
 # End of https://www.gitignore.io/api/java,eclipse
+src/main/java/booking/controller/BookingServiceImpl.java.rej
+target/classes/booking/controller/BookingServiceImpl.java.rej
+src/main/webapp/info/booking_info.jsp

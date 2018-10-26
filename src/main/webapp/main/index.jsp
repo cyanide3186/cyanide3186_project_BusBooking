@@ -9,10 +9,13 @@
 <style type="text/css">
 
 </style>
+
+
 </head>
+
 <body>
 	<div id=header>
-		<jsp:include page="../template/header.jsp" />
+		<jsp:include page="/template/header.jsp" />
 	</div>
 
 	<div id="section">
@@ -25,7 +28,7 @@
 		</c:if>
 	</div>
 	<div id=footer>
-		<jsp:include page="../template/footer.jsp" />
+		<jsp:include page="/template/footer.jsp" />
 	</div>
 
 </body>

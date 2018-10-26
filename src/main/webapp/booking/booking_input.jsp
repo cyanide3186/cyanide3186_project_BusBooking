@@ -7,16 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>승차권 예매</title>
 
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../css/daterangepicker.css" />
-<link rel="stylesheet" type="text/css" href="../css/base.css">
-<link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/daterangepicker.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/base.css">
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
-<script src="../semantic/semantic.js"></script>
-<script type="text/javascript" src="../js/moment.js"></script>
-<script type="text/javascript" src="../js/daterangepicker.js"></script>
+<script src="/Project_BusBooking/semantic/semantic.js"></script>
+<script type="text/javascript" src="/Project_BusBooking/js/moment.js"></script>
+<script type="text/javascript" src="/Project_BusBooking/js/daterangepicker.js"></script>
 
 <script type="text/javascript">
 	$(function() {

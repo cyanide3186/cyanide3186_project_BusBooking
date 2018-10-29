@@ -20,7 +20,6 @@
 .table {
 	border: 1px solid;
 	margin-top: 10px;
-	margin-bottom: 30px;
 	border-color: #a0a0a0;
  	border-radius: 10px;
 }
@@ -45,7 +44,6 @@
 #qboardWriteForm {margin-left: 140px;}
 
 .wrap2 {
-	margin-top: 20px;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 }

@@ -14,18 +14,22 @@ import booking.ticket.dao.TicketDAO;
 @Controller
 public class BookingController {
 	
-	// 버스 예약페이지 이동 
-	@RequestMapping(value="/booking/booking_input.do")
-	public ModelAndView booking_input(ModelAndView modelAndView) {
-		modelAndView.addObject("main","../booking/booking_input.jsp");
+	// 버스 배차조회
+	@RequestMapping(value="/booking/booking_bus.do")
+	public ModelAndView booking_bus(ModelAndView modelAndView) {
+		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
-	// 버스 예약기능
-	@RequestMapping(value="/booking/booking_bus.do")
-	public ModelAndView booking_bus(ModelAndView modelAndView) {
-		modelAndView.addObject("main","../booking/booking_bus.jsp");
+	
+	// 버스 예약화면
+	@RequestMapping(value="/booking/booking_input.do")
+	public ModelAndView booking_input(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main","../booking/booking_input.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
@@ -124,6 +128,29 @@ public class BookingController {
 		modelAndView.addObject("count", count);
 		modelAndView.addObject("main","");
 		
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/booking/booking_result.do")
+	public ModelAndView booking_result(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("main", "");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+	
+	
+	
+	@RequestMapping(value="/booking/booking_seatCheck.do")
+	public ModelAndView booking_seatCheck(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		
+		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;

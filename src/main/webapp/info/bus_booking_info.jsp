@@ -6,21 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>승차권 예매 안내</title>
-<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
+
+#wrapper_info{
+	margin-top: 100px;
+}
 .form {
 	margin-top: 30px;
 	margin-bottom: 40px;
 	align-content: center;
 }
 #notice_txt {
+	margin-top :50px;
 	text-align: center;
 	font-size: 35px;
 	font-weight: bold;
 }
 table{
 	width: 800px;
-	margin-left: 120px;
+	margin-left: 220px;
 	border-spacing: 0 15px;
 }
 td{
@@ -30,7 +35,7 @@ td{
 	width:400px;
 	height: 100%;
 	align-content: center;
-	margin-left: 320px;
+	margin-left: 420px;
 }
 #info_image{
 	align-content: center;
@@ -51,9 +56,14 @@ td{
 </style>
 </head>
 <body>
-<div class="wrapper">
+<!-- 
+<div id=header>
+	<jsp:include page="../template/header.jsp" />
+</div>
+ -->
+<div class="wrapper" id="wrapper_info">
 	<p id="notice_txt">승차권 예약 안내</p>
-	<hr>
+	<hr id="headline">
 	<form id="bus_booking_info">
 		<div class="form">
 			<p>

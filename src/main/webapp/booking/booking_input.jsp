@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,7 @@
 		var today = year + '-' + month + '-' + day;
 		$('#example1').calendar(
 				{
-					type : 'year month date',
+					type : 'date',
 					today : true,
 					minDate : dt,
 					monthFirst : false,

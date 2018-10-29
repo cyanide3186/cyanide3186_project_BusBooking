@@ -35,7 +35,7 @@
 		var today = year + '-' + month + '-' + day;
 		$('#example1').calendar(
 				{
-					type : 'date',
+					type : 'year month date',
 					today : true,
 					minDate : dt,
 					monthFirst : false,

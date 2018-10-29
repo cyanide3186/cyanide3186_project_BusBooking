@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>승차권 예매 안내</title>
-<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
 .form {
 	margin-top: 30px;
@@ -29,6 +29,9 @@ table{
 </style>
 </head>
 <body>
+<div id=header>
+	<jsp:include page="../template/header.jsp" />
+</div>
 <div class="wrapper">
 	<p id="notice_txt">승차권 예약 안내</p>
 	<hr>
@@ -90,5 +93,10 @@ table{
 		</div>
 	</form>
 </div>
+
+<div id=footer>
+	<jsp:include page="../template/footer.jsp" />
+</div>
+
 </body>
 </html>

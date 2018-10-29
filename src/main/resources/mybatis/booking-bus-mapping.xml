@@ -8,4 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bus where start_tr=#{start_tr} and end_tr=#{end_tr} and arrive_time=#{arrive_time}
 	</select>
 	
+	<!-- 배차 및 잔여 좌석 수 조회 -->
+	<select id="" parameterType="String" resultType="int">
+		<![CDATA[
+			select bus_no, start_tr, end_tr, company, arrive_time, bus_seats, time, payment, 
+    			   (select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as seat_count from bus
+			where arrive_time < 2400 and arrive_time >= 1700;
+		]]>
+	</select>
+	
+	
 </mapper>

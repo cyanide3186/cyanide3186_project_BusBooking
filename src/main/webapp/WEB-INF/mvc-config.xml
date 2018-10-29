@@ -22,5 +22,6 @@
 	<context:component-scan base-package="booking.controller"/>
 	<context:component-scan base-package="board.controller"/>
 	<context:component-scan base-package="qboard.controller"/>
+	<context:component-scan base-package="info.controller"/>
 
 </beans>

@@ -28,11 +28,12 @@
 
 <script type="text/javascript">
 	$(function() {
+		
 		var dt = new Date();
 		var month = dt.getMonth() + 1;
 		var day = dt.getDate();
 		var year = dt.getFullYear();
-		var today = year + '-' + month + '-' + day;
+		var today;
 		$('#example1').calendar(
 				{
 					type : 'date',
@@ -43,12 +44,7 @@
 						var month = date.getMonth() + 1;
 						var day = date.getDate();
 						var year = date.getFullYear();
-						var today = year + '-' + month + '-' + day;
-						alert(today);
-						$(".arrivetime").attr({
-							value : today
-						});
-
+						today = year + '-' + month + '-' + day;
 					},
 					text : {
 
@@ -67,13 +63,16 @@
 			$(".start_bus").fadeIn(300);
 
 			$("#glayLayer").fadeIn(300);
+			 $('#start_text').focus();
+			
 			return false;
 		});
 
 		$('#end_tr').click(function() {
-			//출발지 버튼 클릭시 일어나는 기능
+			//도착지 버튼 클릭시 일어나는 기능
 			$(".end_bus").fadeIn(300);
 			$("#glayLayer").fadeIn(300);
+			$('#end_text').focus();
 			return false;
 		});
 		$('#start').dropdown({
@@ -168,7 +167,7 @@ p {
 
 .start_bus {
 	display: none;
-	background-color: orange;
+	background-color: #01A9DB;
 	width: 1000x;
 	height: 300px;
 	position: fixed;
@@ -262,7 +261,7 @@ h1 {
 			</tr>
 			<tr>
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><input type="text" id="start_text"></td>
 			</tr>
 		</table>
 		<div>
@@ -292,7 +291,7 @@ h1 {
 			</tr>
 			<tr>
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><input type="text" id="end_text"></td>
 			</tr>
 		</table>
 		<div>
@@ -361,8 +360,8 @@ h1 {
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input class="arrivetime"
-											type="text" placeholder="Date/Time">
+										<i class="calendar icon"></i> <input 
+											type="text" placeholder="Date/Time" name="arrivedate">
 									</div>
 							</td>
 						</tr>
@@ -446,6 +445,7 @@ h1 {
 							</select>
 						</tr>
 						<tr>
+						
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>

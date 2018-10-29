@@ -20,7 +20,7 @@ a {
 }
 
 body {
-	background-color: #222;
+	background-color: white;
 }
 
 .wrapper {
@@ -30,7 +30,7 @@ body {
 
 .sq {
 	color: white;
-	background-color: #111;
+	background-color: rgba(34, 36, 38, 1);
 	padding: 1rem;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
 .sq-item-anchor {
-	background-color: orange;
+	background-color: #a0c1ff;
 	/*그 부모안에서 절대 좌표형식 */
 	position: absolute;
 	left: 0;

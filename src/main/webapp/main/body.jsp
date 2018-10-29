@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css?s">
+<link rel="stylesheet" type="text/css" href="../css/style.css?c">
 </head>
 <body>
 <!-- <h1 style="text-align: center;">메인 화면</h1>

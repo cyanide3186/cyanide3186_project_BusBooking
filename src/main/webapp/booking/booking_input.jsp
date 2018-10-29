@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,11 +28,12 @@
 
 <script type="text/javascript">
 	$(function() {
+
 		var dt = new Date();
 		var month = dt.getMonth() + 1;
 		var day = dt.getDate();
 		var year = dt.getFullYear();
-		var today = year + '-' + month + '-' + day;
+		var today;
 		$('#example1').calendar(
 				{
 					type : 'date',
@@ -43,12 +44,7 @@
 						var month = date.getMonth() + 1;
 						var day = date.getDate();
 						var year = date.getFullYear();
-						var today = year + '-' + month + '-' + day;
-						alert(today);
-						$(".arrivetime").attr({
-							value : today
-						});
-
+						today = year + '-' + month + '-' + day;
 					},
 					text : {
 
@@ -67,13 +63,16 @@
 			$(".start_bus").fadeIn(300);
 
 			$("#glayLayer").fadeIn(300);
+			$('#start_text').focus();
+
 			return false;
 		});
 
 		$('#end_tr').click(function() {
-			//출발지 버튼 클릭시 일어나는 기능
+			//도착지 버튼 클릭시 일어나는 기능
 			$(".end_bus").fadeIn(300);
 			$("#glayLayer").fadeIn(300);
+			$('#end_text').focus();
 			return false;
 		});
 		$('#start').dropdown({
@@ -168,30 +167,28 @@ p {
 
 .start_bus {
 	display: none;
-	background-color: orange;
+	background-color: #01A9DB;
 	width: 1000x;
 	height: 300px;
 	position: fixed;
 	top: 20%;
-	left: 45%;
+	left: 40%;
 	z-index: 2;
 	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
+	border: 5px solid white;
 }
 
 .end_bus {
 	display: none;
-	background-color: orange;
-	width: 800x;
+	background-color: #01A9DB;
+	width: 1000x;
 	height: 300px;
 	position: fixed;
 	top: 20%;
-	left: 45%;
+	left: 40%;
 	z-index: 2;
 	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
+	border: 5px solid white;
 }
 
 #glayLayer {
@@ -208,7 +205,6 @@ p {
 }
 
 header {
-	overflow: hidden;
 	height: 100px;
 	text-align: center;
 }
@@ -230,6 +226,19 @@ li {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
+	background-color: #0489B1;
+}
+
+#mainli {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 3px solid yellow;
+	border-radius: 20px;
+	background-color: #0489B1;
 }
 
 table {
@@ -246,25 +255,30 @@ h1 {
 
 	<div id="glayLayer"></div>
 
-	<div class="start_bus">
-		<h3>출발 터미널 선택</h3>
+	<div class="start_bus" style="color: white;">
+		<h3 align="center" style="color: white">출발 터미널 선택</h3>
 		<table>
 			<tr>
-				<td colspan="2"><select name="start" class="ui dropdown"
-					id="start">
-						<option value="">주요 터미널</option>
-						<option value="동서울">동서울</option>
-						<option value="인천공항1터미널">인천공항1터미널</option>
-						<option value="성남">성남</option>
-						<option value="수원">수원</option>
-				</select></td>
-
+				<select name="start" class="ui
+			 fluid selection dropdown">
+					<option value="">주요 터미널</option>
+					<option value="동서울">동서울</option>
+					<option value="인천공항1터미널">인천공항1터미널</option>
+					<option value="성남">성남</option>
+					<option value="수원">수원</option>
+				</select>
+				</td>
 			</tr>
-			<tr>
+			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><div class="ui input focus">
+						<input type="text" placeholder="Search..." id="start_text"
+							size="70%">
+					</div></td>
 			</tr>
+
 		</table>
+
 		<div>
 			<table>
 				<tr>
@@ -277,34 +291,32 @@ h1 {
 	</div>
 
 	<div class="end_bus">
-		<h3>도착 터미널 선택</h3>
+		<h3 align="center" style="color: white">도착 터미널 선택</h3>
 		<table>
 			<tr>
-
-				<td colspan="2"><select name="end" class="ui dropdown" id="end">
-						<option value="">주요 터미널</option>
-						<option value="동서울">동서울</option>
-						<option value="인천공항1터미널">인천공항1터미널</option>
-						<option value="성남">성남</option>
-						<option value="수원">수원</option>
-				</select></td>
-
+				<select name="end" class="ui fluid selection dropdown">
+					<option value="">주요 터미널</option>
+					<option value="동서울">동서울</option>
+					<option value="인천공항1터미널">인천공항1터미널</option>
+					<option value="성남">성남</option>
+					<option value="수원">수원</option>
+				</select>
+				</td>
 			</tr>
-			<tr>
+			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><div class="ui input focus">
+						<input type="text" placeholder="Search..." id="start_text"
+							size="70%">
+					</div></td>
 			</tr>
 		</table>
-		<div>
-			<table>
-				<tr>
-					<!-- 검색전 (전체 터미널 목록) -->
-					<!-- 검색후 (검색된 터미널 목록) -->
-				</tr>
 
-			</table>
-		</div>
+
+
 	</div>
+	
+			</div>
 
 
 	<div class="wrapper">
@@ -314,10 +326,10 @@ h1 {
 				<header>
 					<h1>승차권 예매</h1>
 					<ul class="level">
-						<li style="background-color: #01A9DB;">1.기초 정보 입력</li>
-						<li style="background-color: #0489B1;">2.배차 조회</li>
-						<li style="background-color: #0489B1;">3.매수 및 좌석 선택</li>
-						<li style="background-color: #0489B1;">4.카드 정보 입력</li>
+						<li id="mainli">1.기초정보 입력</li>
+						<li>2.배차 조회</li>
+						<li>3.매수 및 좌석 선택</li>
+						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
 				</header>
@@ -361,9 +373,10 @@ h1 {
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input class="arrivetime"
-											type="text" placeholder="Date/Time">
+										<i class="calendar icon"></i> <input type="text"
+											placeholder="Date/Time" name="arrivedate">
 									</div>
+							
 							</td>
 						</tr>
 						<tr>
@@ -428,6 +441,7 @@ h1 {
 									<option value="9">9</option>
 									<option value="10">10</option>
 							</select>
+						
 						</tr>
 						<tr>
 							<td>어린이</td>
@@ -444,8 +458,10 @@ h1 {
 									<option value="9">9</option>
 									<option value="10">10</option>
 							</select>
+						
 						</tr>
 						<tr>
+
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>

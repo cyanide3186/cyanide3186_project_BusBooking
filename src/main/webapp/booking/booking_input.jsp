@@ -107,7 +107,6 @@ li {
 	border: 3px solid yellow;
 	border-radius: 20px;
 	padding: 1px 2px;
-	background-color: #0489B1;
 	color: yellow;
 	background-color: #01A9DB;
 }

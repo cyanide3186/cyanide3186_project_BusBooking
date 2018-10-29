@@ -24,109 +24,16 @@
 <script src="/Project_BusBooking/js/calendar.js"></script>
 
 </head>
-<style type="text/css">
-p {
-	padding: 3rem;
-	text-align: left;
-}
 
-.start_bus {
-	display: none;
-	background-color: orange;
-	width: 1000x;
-	height: 300px;
-	position: fixed;
-	top: 20%;
-	left: 45%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
-}
-
-.end_bus {
-	display: none;
-	background-color: orange;
-	width: 800x;
-	height: 300px;
-	position: fixed;
-	top: 20%;
-	left: 45%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
-}
-
-#glayLayer {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: black;
-	filter: alpha(opacity = 60);
-	opacity: 0.60;
-	z-index: 1;
-}
-
-header {
-	overflow: hidden;
-	height: 100px;
-	text-align: center;
-}
-
-.level {
-	display: inline-block;
-	height: 100px;
-	vertical-align: middle;
-}
-
-li {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-	background-color: #0489B1;
-}
-
-#mainli {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 3px solid yellow;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: yellow;
-	background-color: #01A9DB;
-}
-
-table {
-	margin-top: 50px;
-}
-
-h1 {
-	border-bottom: 2px solid #01A9DB;
-}
-</style>
 
 <script type="text/javascript">
 	$(function() {
+
 		var dt = new Date();
 		var month = dt.getMonth() + 1;
 		var day = dt.getDate();
 		var year = dt.getFullYear();
-		var today = year + '-' + month + '-' + day;
+		var today;
 		$('#example1').calendar(
 				{
 					type : 'date',
@@ -137,12 +44,7 @@ h1 {
 						var month = date.getMonth() + 1;
 						var day = date.getDate();
 						var year = date.getFullYear();
-						var today = year + '-' + month + '-' + day;
-						alert(today);
-						$(".arrivetime").attr({
-							value : today
-						});
-
+						today = year + '-' + month + '-' + day;
 					},
 					text : {
 
@@ -161,13 +63,16 @@ h1 {
 			$(".start_bus").fadeIn(300);
 
 			$("#glayLayer").fadeIn(300);
+			$('#start_text').focus();
+
 			return false;
 		});
 
 		$('#end_tr').click(function() {
-			//출발지 버튼 클릭시 일어나는 기능
+			//도착지 버튼 클릭시 일어나는 기능
 			$(".end_bus").fadeIn(300);
 			$("#glayLayer").fadeIn(300);
+			$('#end_text').focus();
 			return false;
 		});
 		$('#start').dropdown({
@@ -254,7 +159,99 @@ h1 {
 
 	});
 </script>
+<style type="text/css">
+p {
+	padding: 3rem;
+	text-align: left;
+}
 
+.start_bus {
+	display: none;
+	background-color: #01A9DB;
+	width: 1000x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+.end_bus {
+	display: none;
+	background-color: orange;
+	width: 800x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+#glayLayer {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: black;
+	filter: alpha(opacity = 60);
+	opacity: 0.60;
+	z-index: 1;
+}
+
+header {
+	height: 100px;
+	text-align: center;
+}
+
+.level {
+	display: inline-block;
+	height: 100px;
+	vertical-align: middle;
+}
+
+li {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: #0489B1;
+}
+
+#mainli {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 3px solid yellow;
+	border-radius: 20px;
+	background-color: #0489B1;
+}
+
+table {
+	margin-top: 40px;
+	background-color:
+}
+
+h1 {
+	border-bottom: 2px solid #01A9DB;
+}
+</style>
 </head>
 <body>
 
@@ -276,7 +273,7 @@ h1 {
 			</tr>
 			<tr>
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><input type="text" id="start_text"></td>
 			</tr>
 		</table>
 		<div>
@@ -294,6 +291,7 @@ h1 {
 		<h3>도착 터미널 선택</h3>
 		<table>
 			<tr>
+
 				<td colspan="2"><select name="end" class="ui dropdown" id="end">
 						<option value="">주요 터미널</option>
 						<option value="동서울">동서울</option>
@@ -305,7 +303,7 @@ h1 {
 			</tr>
 			<tr>
 				<td>터미널 검색</td>
-				<td><input type="text"></td>
+				<td><input type="text" id="end_text"></td>
 			</tr>
 		</table>
 		<div>
@@ -339,6 +337,10 @@ h1 {
 		</div>
 		<div>
 
+
+
+
+
 			<form action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<div class="column">
@@ -370,8 +372,8 @@ h1 {
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input class="arrivetime"
-											type="text" placeholder="Date/Time">
+										<i class="calendar icon"></i> <input type="text"
+											placeholder="Date/Time" name="arrivedate">
 									</div>
 							</td>
 						</tr>
@@ -455,6 +457,7 @@ h1 {
 							</select>
 						</tr>
 						<tr>
+
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>

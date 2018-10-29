@@ -8,12 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="booking" parameterType="ticketVO">
 		insert into ticket values (
 									#{ticket_no}
-									,#{hp1}
-									,#{hp2}
-									,#{hp3}
-									,#{kid}
-									,#{teen}
-									,#{adult}
+									,#{hp}
+									,#{age_group}
 									,#{totalpay}
 									,'n'
 									,sysdate
@@ -46,13 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 예약 수정 -->
 	<update id="bookingModify" parameterType="ticketVO" >
 		update ticket set
-						  hp1 = #{hp1}
-						, hp2 = #{hp2}
-						, hp3 = #{hp3}
-						, kid = #{kid}
-						, teen = #{teen}
-						, adult = #{adult}
-						, totalpay = #{totalpay} 
+						  hp = #{hp}
+						, age_group = #{age_group}
+						, totalpay = #{totalpay}
+						, arrive_day = #{arrive_day} 
 		where ticket_no = #{ticket_no}
 	</update>
 	

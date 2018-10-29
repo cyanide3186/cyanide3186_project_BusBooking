@@ -28,7 +28,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		
+
 		var dt = new Date();
 		var month = dt.getMonth() + 1;
 		var day = dt.getDate();
@@ -63,8 +63,8 @@
 			$(".start_bus").fadeIn(300);
 
 			$("#glayLayer").fadeIn(300);
-			 $('#start_text').focus();
-			
+			$('#start_text').focus();
+
 			return false;
 		});
 
@@ -207,7 +207,6 @@ p {
 }
 
 header {
-	overflow: hidden;
 	height: 100px;
 	text-align: center;
 }
@@ -229,6 +228,19 @@ li {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
+	background-color: #0489B1;
+}
+
+#mainli {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 3px solid yellow;
+	border-radius: 20px;
+	background-color: #0489B1;
 }
 
 table {
@@ -313,10 +325,10 @@ h1 {
 				<header>
 					<h1>승차권 예매</h1>
 					<ul class="level">
-						<li style="background-color: #01A9DB;">1.기초 정보 입력</li>
-						<li style="background-color: #0489B1;">2.배차 조회</li>
-						<li style="background-color: #0489B1;">3.매수 및 좌석 선택</li>
-						<li style="background-color: #0489B1;">4.카드 정보 입력</li>
+						<li id="mainli">1.기초정보 입력</li>
+						<li>2.배차 조회</li>
+						<li>3.매수 및 좌석 선택</li>
+						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
 				</header>
@@ -360,8 +372,8 @@ h1 {
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input 
-											type="text" placeholder="Date/Time" name="arrivedate">
+										<i class="calendar icon"></i> <input type="text"
+											placeholder="Date/Time" name="arrivedate">
 									</div>
 							</td>
 						</tr>
@@ -445,7 +457,7 @@ h1 {
 							</select>
 						</tr>
 						<tr>
-						
+
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>

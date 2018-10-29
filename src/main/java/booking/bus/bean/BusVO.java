@@ -7,7 +7,7 @@ public class BusVO { //버스정보 DTO - table bus와 대응
     private String end_tr;  	//종점정보
     private String company; 	//운수회사
     private String arrive_time;	//버스 출발시각  
-    private int bus_seats; 		//현재 좌석
+    private int bus_seats; 		//잔여 좌석 (최대 40)
     private String time; 		//소요시간
     private int payment; 		//티켓 1장 요금
 

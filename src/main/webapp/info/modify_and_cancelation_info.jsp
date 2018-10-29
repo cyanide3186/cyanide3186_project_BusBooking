@@ -32,10 +32,17 @@
 	border-radius: 10px;
 }
 #step {
-	margin: 50px;
+	margin-left: 50px;
+	width: 100px;
 	height: 40px;
 	text-align: center;
 	border-radius: 10px;
+}
+#steptable {
+	margin-left: 250px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+
 }
 #content {
 	border-bottom: 1px solid;
@@ -103,19 +110,29 @@
 		예매 변경 및 취소가 필요한 경우에는 "시외버스 예매 > 예매조회/취소/변경" 에서 처리가 가능합니다.</td>
 		</tr>
 	</table>
-	
-	<table class="table">
-	<tr><td id="step" style="background-color: #FFB6C1;">1단계</td>
-	<td id="step" style="background-color: #FF7A85;">2단계</td>
-	<td id="step" style="background-color: #FF5675;" >3단계</td></tr>
-	
+
+	<table id="steptable">
 	<tr>
-	<td id="content" width="255" height="30">"시외버스 예매 > 예매조회/취소/변경" 페이지에서 예매한 승차권 조회를 합니다.</td>
-	<td  id="content" width="255" height="30">예매내역을 확인한 후, "상세" 버튼을 클릭하여 예매 상세페이지로 이동합니다.</td>
-	<td id="content" width="255" height="30">
-	예매내역 상세 페이지에서 예매한 승차권을 확인한 후에 하단의 "예매취소" 혹은 "변경(매수변경 / 시간변경)"을 클릭하여, 예매변경이나 취소를 할 수 있습니다.</td></tr>
+	<td id="step" style="background-color: #FFB6C1;">1단계</td>
+	<td id="content" width="500" height="30">"시외버스 예매 > 예매조회/취소/변경" 페이지에서 예매한 승차권 조회를 합니다.</td>
+	</tr>
+	</table>
+	<table  id="steptable">
+	<tr>
+	<td id="step" style="background-color: #FF7A85;">2단계</td>
+	<td  id="content" width="500" height="30">예매내역을 확인한 후, "상세" 버튼을 클릭하여 예매 상세페이지로 이동합니다.</td>
+	</tr>
+	</table>
+	<table  id="steptable" >
+	<tr>
+	<td id="step" style="background-color: #FF5675;" >3단계</td>
+	<td id="content" width="500" height="30">예매내역 상세 페이지에서 예매한 승차권을 확인한 후에 하단의 "예매취소" 혹은 "변경(매수변경 / 시간변경)"을 클릭하여, 예매변경이나 취소를 할 수 있습니다.</td>
+	</tr>
 	</table>
 	
+	<br>
+	<hr style="color: #ccc; border-style: dotted">
+	<br>
 	<p id="refer" style="color: red; margin-top: 20px;">※ 예매 변경 및 취소를 하게 될 경우 취소 수수료가 발생하거나 기존 할인 금액이 변경될 수 있습니다.</p>
 	<p id="refer" style="margin-left: 800px;">상세한 규정은 아래의 내용에서 확인할 수 있습니다.</p>
 	
@@ -238,29 +255,29 @@
 		<td><ui><li>차량 출발일 2일(48시간) 전까지 취소 시</li>
 			<li>(당일 포함) 구매(예매)시점 기준 1시간 이내이면서 출발 1시간 이전까지 취소 시</li></ui>
 		</td>
-		<td>수수료 없음</td>
+		<td style="text-align: center;">수수료 없음</td>
 	</tr>
 	<tr>
 		<td><ui><li>차량 출발일 2일(48시간) 이내이며 구매시점 기준 1시간 경과 후<br>
 		 차량 출발 1시간 이전까지 취소 시</li></ui></td>
-		<td>승차권 요금의 10%</td>
+		<td style="text-align: center;">승차권 요금의 10%</td>
 	</tr>
 	<tr>
 		<td><ui><li>차량 출발 1시간 이내부터 차량 출발 15분 이전까지 취소 시</li></ui></td>
-		<td>승차권 요금의 20%</td>
+		<td style="text-align: center;">승차권 요금의 20%</td>
 	</tr>
 	<tr>
 		<td><ui><li>차량 출발 15분 이내부터 차량 출발 전까지 취소 시</li></ui></td>
-		<td>승차권 요금의 30%</td>
+		<td style="text-align: center;">승차권 요금의 30%</td>
 	</tr>
 	<tr style="color: red;">
 		<td><ui><li>차량 출발 후 3시간 이전 취소 시</li></ui></td>
-		<td>승차권 요금의 50%</td>
+		<td style="text-align: center;">승차권 요금의 50%</td>
 	</tr>
 	<tr style="color: red;">
 		<td><ui><li>차량 출발 후 3시간 이후 (취소 불가)</li></ui>
 			<ui><li>차량 출발 후 3시간 이후에는 예매한 승차권을 자동취소(부도처리)</li></ui></td>
-		<td>승차권 요금의 100%</td>
+		<td style="text-align: center;">승차권 요금의 100%</td>
 	</tr>
 	</table>
 	<p>
@@ -308,6 +325,9 @@
 	
 	<hr id="footline">
 </form>
+</div>
+<div id=footer>
+	<jsp:include page="../template/footer.jsp" />
 </div>
 
 

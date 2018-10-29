@@ -93,7 +93,7 @@
 					</tr>
 					<tr>
 						<td width="300" height="100" align="center" id="line1" >내용</td>
-						<td id="line2"><textarea type="text" name="content" rows="10" cols="80"></textarea></td>
+						<td id="line2"><textarea name="content" rows="10" cols="80"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right" height="40"><input type="button" value="확인"

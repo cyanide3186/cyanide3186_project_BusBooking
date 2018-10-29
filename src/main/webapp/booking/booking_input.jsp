@@ -24,7 +24,102 @@
 <script src="/Project_BusBooking/js/calendar.js"></script>
 
 </head>
+<style type="text/css">
+p {
+	padding: 3rem;
+	text-align: left;
+}
 
+.start_bus {
+	display: none;
+	background-color: orange;
+	width: 1000x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+.end_bus {
+	display: none;
+	background-color: orange;
+	width: 800x;
+	height: 300px;
+	position: fixed;
+	top: 20%;
+	left: 45%;
+	z-index: 2;
+	border-radius: 20px;
+	border: 5px solid #999;
+	background-color: orange;
+}
+
+#glayLayer {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: black;
+	filter: alpha(opacity = 60);
+	opacity: 0.60;
+	z-index: 1;
+}
+
+header {
+	overflow: hidden;
+	height: 100px;
+	text-align: center;
+}
+
+.level {
+	display: inline-block;
+	height: 100px;
+	vertical-align: middle;
+}
+
+li {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: #0489B1;
+}
+
+#mainli {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 3px solid yellow;
+	border-radius: 20px;
+	padding: 1px 2px;
+	background-color: #0489B1;
+	color: yellow;
+	background-color: #01A9DB;
+}
+
+table {
+	margin-top: 50px;
+}
+
+h1 {
+	border-bottom: 2px solid #01A9DB;
+}
+</style>
 
 <script type="text/javascript">
 	$(function() {
@@ -160,87 +255,7 @@
 
 	});
 </script>
-<style type="text/css">
-p {
-	padding: 3rem;
-	text-align: left;
-}
 
-.start_bus {
-	display: none;
-	background-color: orange;
-	width: 1000x;
-	height: 300px;
-	position: fixed;
-	top: 20%;
-	left: 45%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
-}
-
-.end_bus {
-	display: none;
-	background-color: orange;
-	width: 800x;
-	height: 300px;
-	position: fixed;
-	top: 20%;
-	left: 45%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid #999;
-	background-color: orange;
-}
-
-#glayLayer {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: black;
-	filter: alpha(opacity = 60);
-	opacity: 0.60;
-	z-index: 1;
-}
-
-header {
-	overflow: hidden;
-	height: 100px;
-	text-align: center;
-}
-
-.level {
-	display: inline-block;
-	height: 100px;
-	vertical-align: middle;
-}
-
-li {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-}
-
-table {
-	margin-top: 40px;
-	background-color:
-}
-
-h1 {
-	border-bottom: 2px solid #01A9DB;
-}
-</style>
 </head>
 <body>
 
@@ -280,7 +295,6 @@ h1 {
 		<h3>도착 터미널 선택</h3>
 		<table>
 			<tr>
-
 				<td colspan="2"><select name="end" class="ui dropdown" id="end">
 						<option value="">주요 터미널</option>
 						<option value="동서울">동서울</option>
@@ -314,10 +328,10 @@ h1 {
 				<header>
 					<h1>승차권 예매</h1>
 					<ul class="level">
-						<li style="background-color: #01A9DB;">1.기초 정보 입력</li>
-						<li style="background-color: #0489B1;">2.배차 조회</li>
-						<li style="background-color: #0489B1;">3.매수 및 좌석 선택</li>
-						<li style="background-color: #0489B1;">4.카드 정보 입력</li>
+						<li id="mainli">1.기초정보 입력</li>
+						<li>2.배차 조회</li>
+						<li>3.매수 및 좌석 선택</li>
+						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
 				</header>
@@ -325,10 +339,6 @@ h1 {
 
 		</div>
 		<div>
-
-
-
-
 
 			<form action="../booking/booking_bus.do" method="post"
 				name="bus_input">

@@ -26,7 +26,7 @@
 	<div class="ui fixed inverted menu" style="height: 100px;">
 		<div class="ui container">
 			<a href="#" class="header item" width="300px"> <img class="logo"
-				src="../assets/logo.png" width="100px" height="50px">
+				src="../assets/logo.png" width="100px" height="40px">
 
 			</a> <a href="#" class="item">Home</a>
 

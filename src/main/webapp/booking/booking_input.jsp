@@ -33,29 +33,35 @@
 		var day = dt.getDate();
 		var year = dt.getFullYear();
 		var today = year + '-' + month + '-' + day;
-		$('#example1').calendar({
-			type: 'date',
-			today: true,
-			onChange: function (date, text, mode) {
-				var month=date.getMonth() + 1;
-				var day = date.getDate();
-				var year = date.getFullYear();
-				var today = year + '-' + month + '-' + day;
-				alert(today);
-				$("#example1").attr({
-					value : today
+		$('#example1').calendar(
+				{
+					type : 'date',
+					today : true,
+					minDate : dt,
+					monthFirst : false,
+					onChange : function(date, text, mode) {
+						var month = date.getMonth() + 1;
+						var day = date.getDate();
+						var year = date.getFullYear();
+						var today = year + '-' + month + '-' + day;
+						alert(today);
+						$(".arrivetime").attr({
+							value : today
+						});
+
+					},
+					text : {
+
+						days : [ '일', '월', '화', '수', '목', '금', '토' ],
+						months : [ '1', '2', '3', '4', '5', '6', '7', '8', '9',
+								'10', '11', '12' ],
+						monthsShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
+								'9', '10', '11', '12' ],
+						today : '오늘'
+
+					}
+
 				});
-		    },
-			text: {
-				
-			      days: ['일', '월', '화', '수', '목', '금', '토'],
-			      months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-			      monthsShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-			      today: '오늘'
-			     
-			    }
-			
-		});
 		$('#start_tr').click(function() {
 			//출발지 버튼 클릭시 일어나는 기능
 			$(".start_bus").fadeIn(300);
@@ -200,6 +206,40 @@ p {
 	opacity: 0.60;
 	z-index: 1;
 }
+
+header {
+	overflow: hidden;
+	height: 100px;
+	text-align: center;
+}
+
+.level {
+	display: inline-block;
+	height: 100px;
+	vertical-align: middle;
+}
+
+li {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+}
+
+table {
+	margin-top: 40px;
+	background-color:
+}
+
+h1 {
+	border-bottom: 2px solid #01A9DB;
+}
 </style>
 </head>
 <body>
@@ -240,6 +280,7 @@ p {
 		<h3>도착 터미널 선택</h3>
 		<table>
 			<tr>
+
 				<td colspan="2"><select name="end" class="ui dropdown" id="end">
 						<option value="">주요 터미널</option>
 						<option value="동서울">동서울</option>
@@ -273,8 +314,12 @@ p {
 				<header>
 					<h1>승차권 예매</h1>
 					<ul class="level">
-						<li>1.기초 정보 입력 2.배차 조회 3.매수 및 좌석 선택 4.카드 정보 입력</li>
+						<li style="background-color: #01A9DB;">1.기초 정보 입력</li>
+						<li style="background-color: #0489B1;">2.배차 조회</li>
+						<li style="background-color: #0489B1;">3.매수 및 좌석 선택</li>
+						<li style="background-color: #0489B1;">4.카드 정보 입력</li>
 					</ul>
+					<hr>
 				</header>
 			</div>
 
@@ -290,6 +335,11 @@ p {
 				<div class="column">
 					<table border="1px solid" align="center">
 						<tr>
+							<td rowspan="8" style="background-color: #A9E2F3"><img
+								alt="" src="/Project_BusBooking/assets/logo.png"
+								style="width: 50px; height: 50px; margin-left: 40%;">
+								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
+								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
 							<td>출발지</td>
 							<td>
 								<div class="ui input">
@@ -311,8 +361,8 @@ p {
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time">
+										<i class="calendar icon"></i> <input class="arrivetime"
+											type="text" placeholder="Date/Time">
 									</div>
 							</td>
 						</tr>
@@ -396,7 +446,9 @@ p {
 							</select>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="submit" value="조회"></td>
+							<td colspan="2" align="right"><button
+									class="ui teal basic button" type="submit">조회</button>
+								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 					</table>
 
@@ -425,6 +477,6 @@ p {
 		</div>
 
 	</div>
-	
+
 </body>
 </html>

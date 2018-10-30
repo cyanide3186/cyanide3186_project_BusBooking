@@ -8,11 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="booking" parameterType="ticketVO">
 		insert into ticket values (
 									#{ticket_no}
+									,#{bus_no}
+									,#{seat_no}
 									,#{hp}
 									,#{age_group}
 									,#{totalpay}
 									,'n'
 									,sysdate
+									,#{arrive_day}
 								  )
 	</insert>
 	
@@ -28,15 +31,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 예약 내역 목록 조회 -->
-	<select id="" parameterType="String" resultType="ticketVO">
+	<select id="bookingListCheck" parameterType="String" resultType="ticketVO">
 		select * from ticket t, seat s	
-		where t.ticket_no = s.ticket_no	and t.hp = #{hp};
+		where t.ticket_no = s.ticket_no	and t.hp = #{hp}
 	</select>
 	
 	<!-- 예약 개별 조회 -->
 	<select id="bookingCheck" parameterType="String" resultType="ticketVO">
 		select t.ticket_no as tn from ticket t, seat s 
- 		where t.ticket_no = s.ticket_no and t.ticket_no = #{ticket_no};
+ 		where t.ticket_no = s.ticket_no and t.ticket_no = #{ticket_no}
 	</select>
 	
 	<!-- 예약 수정 -->

@@ -1,12 +1,17 @@
 package booking.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
+import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
@@ -14,9 +19,19 @@ import booking.ticket.dao.TicketDAO;
 @Controller
 public class BookingController {
 	
+	@Autowired
+	BookingService bookingService;
+	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")
-	public ModelAndView booking_bus(ModelAndView modelAndView) {
+	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
+		
+		String arrive_time = request.getParameter("arrive_time");
+		
+		BusDAO busDAO = new BusDAO();
+		List<BusVO> list = busDAO.busCheck(arrive_time);	// 배차 목록 조회 결과
+		
+		modelAndView.addObject("list", list);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
@@ -24,8 +39,8 @@ public class BookingController {
 	}
 	
 	// 버스 예약화면
-	@RequestMapping(value="/booking/booking_input.do")
-	public ModelAndView booking_input(HttpServletRequest request) {
+	@RequestMapping(value="/booking/booking_inputForm.do")
+	public ModelAndView booking_inputForm(HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -34,6 +49,78 @@ public class BookingController {
 		
 		return modelAndView;
 	}
+	
+	// 버스 예약기능
+	@RequestMapping(value="/booking/booking_input.do")
+	public ModelAndView booking_input(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int adult = Integer.parseInt(request.getParameter("adult"));
+		int teen = Integer.parseInt(request.getParameter("teen"));
+		int kid = Integer.parseInt(request.getParameter("kid"));
+		
+		// 쿼리문 수행 후 예약 된 매수
+		int adultResult = 0;	
+		int teenResult = 0;
+		int kidResult = 0;
+		
+		if(adult > 0) {
+			for(int i = 0; adult <= i; i++) {
+				TicketVO ticketVO = new TicketVO();
+				
+				int age_group = 0;
+				int totalpay = Integer.parseInt(request.getParameter("totalpay"));
+
+				ticketVO.setAge_group(age_group);
+				ticketVO.setTotalpay(totalpay);
+				
+				adultResult += bookingFunction(request, ticketVO);
+			}
+			
+		}
+		if(kid > 0) {
+			for(int i = 0; kid <= i; i++) {
+				TicketVO ticketVO = new TicketVO();
+				
+				int age_group = 1;
+				int totalpay = Integer.parseInt(request.getParameter("totalpay"));
+				
+				totalpay = (int) (totalpay * 0.5); // 어린이 요금 적용
+				
+				ticketVO.setAge_group(age_group);
+				ticketVO.setTotalpay(totalpay);
+				
+				teenResult += bookingFunction(request, ticketVO);
+			}
+			
+		}
+		if(teen > 0) {
+			for(int i = 0; teen <= i; i++) {
+				TicketVO ticketVO = new TicketVO();
+			
+				int age_group = 2;
+				int totalpay = Integer.parseInt(request.getParameter("totalpay"));
+				
+				totalpay = (int) (totalpay * 0.3); // 청소년 요금 적용
+				
+				ticketVO.setAge_group(age_group);
+				ticketVO.setTotalpay(totalpay);;
+				
+				kidResult += bookingFunction(request, ticketVO);
+			}
+			
+		}
+		
+		modelAndView.addObject("adultResult", adultResult);
+		modelAndView.addObject("teenResult", teenResult);
+		modelAndView.addObject("kidResult", kidResult);
+		modelAndView.addObject("main", "../booking/booking_result.do");
+		
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+	
 	
 	// 예약 취소 폼
 	@RequestMapping(value="/booking/bookingCancleForm.do")
@@ -143,8 +230,6 @@ public class BookingController {
 		return modelAndView;
 	}
 	
-	
-	
 	@RequestMapping(value="/booking/booking_seatCheck.do")
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -154,5 +239,30 @@ public class BookingController {
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
+	}
+	
+	// 버스 예약기능 함수
+	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
+		
+		String ticket_no = null;
+		String bus_no = request.getParameter("bus_no");
+		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
+		int hp = Integer.parseInt(request.getParameter("hp"));
+		String arrive_day = request.getParameter("arrive_day");
+		
+		// 예약번호 생성 기능
+		/*
+			추가 예정
+			ticket_no = arrive_day + bus_no + seat_no;
+		*/
+		ticketVO.setTicket_no(ticket_no);
+		ticketVO.setBus_no(bus_no);
+		ticketVO.setSeat_no(seat_no);
+		ticketVO.setHp(hp);
+		ticketVO.setArrive_day(arrive_day);
+		
+		int count = bookingService.booking(ticketVO);
+		
+		return count;
 	}
 }

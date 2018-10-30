@@ -25,3 +25,4 @@ create table ticket (
     
     foreign key (bus_no) references bus (bus_no)
 );
+

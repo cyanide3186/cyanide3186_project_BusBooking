@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
-import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
@@ -61,19 +60,29 @@ public class BookingController {
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 		
+		BusVO busVO = new BusVO();
+		
+		String start_tr = request.getParameter("start_tr");
+		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
-		List<BusVO> list = bookingService.busCheck(arrive_time);	// 배차 목록 조회 결과
+		busVO.setStart_tr(start_tr);
+		busVO.setEnd_tr(end_tr);
+		busVO.setArrive_time(arrive_time);
+		
+		List<BusVO> list = bookingService.busCheck(busVO);		// 배차조회 결과 목록
+		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("adult", adult);
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);
+		modelAndView.addObject("busListCount", busListCount);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
@@ -262,6 +271,7 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	// 예약하기 - 결과 화면
 	@RequestMapping(value="/booking/booking_result.do")
 	public ModelAndView booking_result(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -272,11 +282,16 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	// 예약하기 - 좌석 선택 화면
 	@RequestMapping(value="/booking/booking_seatCheck.do")
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
+		String bus_no = request.getParameter("bus_no");
 		
+		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
+		
+		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		

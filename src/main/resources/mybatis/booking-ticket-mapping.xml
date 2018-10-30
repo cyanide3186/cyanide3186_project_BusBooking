@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 예약 개별 조회 -->
 	<select id="bookingCheck" parameterType="String" resultType="ticketVO">
-		select t.ticket_no as tn from ticket t, seat s 
+		select * from ticket t, seat s 
  		where t.ticket_no = s.ticket_no and t.ticket_no = #{ticket_no}
 	</select>
 	

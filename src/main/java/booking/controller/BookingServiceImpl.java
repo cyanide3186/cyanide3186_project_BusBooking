@@ -24,10 +24,15 @@ public class BookingServiceImpl implements BookingService {
 	private TicketDAO ticketDAO;
 
 	@Override
-	public List<BusVO> busCheck(String arrive_time) {
-		return busDAO.busCheck(arrive_time);
+	public List<BusVO> busCheck(BusVO busVO) {
+		return busDAO.busCheck(busVO);
 	}
 
+	@Override
+	public int busListCount(BusVO busVO) {
+		return busDAO.busListCount(busVO);
+	}
+	
 	@Override
 	public int booking(TicketVO ticketVO) {
 		return ticketDAO.booking(ticketVO);
@@ -48,6 +53,11 @@ public class BookingServiceImpl implements BookingService {
 		return ticketDAO.bookingCheck(ticket_no);
 	}
 
+	@Override
+	public List<SeatVO> getSeatList(String bus_no) {
+		return seatDAO.getSeatList(bus_no);
+	}
+	
 	@Override
 	public int bookingModify(TicketVO ticketVO) {
 		return ticketDAO.bookingModify(ticketVO);

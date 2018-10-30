@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
 .table {
 	border-bottom: 1px solid black;
@@ -58,8 +58,8 @@
 <p id="notice_txt" >공지사항</p>
 <hr>
 <div class="form">
-<p id="p" ><img src="../images/new.png" width="70" id="new">&nbsp;&nbsp;&nbsp;[새 소식 알림]</p>
-<p id="text" >&nbsp;&nbsp;&nbsp;승차권 예매 및 터미널 관련 새 소식을 전해드립니다.</p>
+<p id="p" ><img src="../images/new.png" width="70" id="new">[새 소식 알림]</p>
+<p id="text" >승차권 예매 및 터미널 관련 새 소식을 전해드립니다.</p>
 </div>
 <table class="table" cellpadding="5" >
    <tr>

@@ -76,5 +76,15 @@ public class BoardController {
         return modelAndView;
     }
     
+    //FAQ 안내 
+    @RequestMapping(value="/board/boardFAQ.do")
+    public ModelAndView boardFAQ() {
+    	ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("main","../board/boardFAQ.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		return modelAndView;
+    	
+    }
+    
 
 }

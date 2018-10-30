@@ -92,7 +92,7 @@
 				<span>고객지원</span> <i class="dropdown icon"></i>
 				<div class="menu">
 					<a class="item" href="../board/boardList.do">공지사항</a> 
-					<a class="item" href="../board/boardFAQ.jsp">FAQ</a>
+					<a class="item" href="../board/boardFAQ.do">FAQ</a>
 					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a>
 					<div class="divider"></div>
 					<div class="header">Header Item</div>

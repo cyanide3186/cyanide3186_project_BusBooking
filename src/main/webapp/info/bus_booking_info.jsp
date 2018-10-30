@@ -33,7 +33,7 @@ table{
 	<jsp:include page="../template/header.jsp" />
 </div>
 <div class="wrapper">
-	<p id="notice_txt">승차권 예약 안내</p>
+	<p id="notice_txt">승차권 예매 안내</p>
 	<hr>
 	<form id="bus_booking_info">
 		<div class="form">
@@ -89,13 +89,12 @@ table{
 					</td>
 				</tr>
 			</table>
+			
+				<hr id="footline">
 		</div>
 	</form>
 </div>
 
-<div id=footer>
-	<jsp:include page="../template/footer.jsp" />
-</div>
 
 </body>
 </html>

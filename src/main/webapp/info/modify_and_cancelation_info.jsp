@@ -326,10 +326,6 @@
 	<hr id="footline">
 </form>
 </div>
-<div id=footer>
-	<jsp:include page="../template/footer.jsp" />
-</div>
-
 
 <!-- 짤림방지용 텍스트 -->
 

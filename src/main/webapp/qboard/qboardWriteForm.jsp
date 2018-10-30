@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 
 <style type="text/css">
 .form {
@@ -35,6 +35,7 @@
 	margin-left: 20px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	list-style: none;
 }
 #text {
 	border-bottom: 1px solid;
@@ -93,7 +94,7 @@
 					</tr>
 					<tr>
 						<td width="300" height="100" align="center" id="line1" >내용</td>
-						<td id="line2"><textarea type="text" name="content" rows="10" cols="80"></textarea></td>
+						<td id="line2"><textarea name="content" rows="10" cols="80"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right" height="40"><input type="button" value="확인"

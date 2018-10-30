@@ -26,17 +26,17 @@ public class BoardController {
             pg=Integer.parseInt(str_pg);
         }
         
-        int endNum= pg*5;
-        int startNum= endNum-4;
+        int endNum= pg*10;
+        int startNum= endNum-9;
         List<BoardVO> list = boardService.pagingBoard(startNum, endNum);
         int totalC=boardService.countBoard();
-        int totalP=(totalC+4)/5;
+        int totalP=(totalC+9)/10;
         
-        int startPage=(pg-1)/3*3+1;    
-        int endPage=startPage+2;
+        int startPage=(pg-1)/10*10+1;    
+        int endPage=startPage+9;
         if(endPage>totalP) {
             endPage=totalP;
-        }
+        } 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pg", pg);
         modelAndView.addObject("list", list);

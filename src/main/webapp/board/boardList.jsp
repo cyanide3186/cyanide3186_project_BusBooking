@@ -90,7 +90,7 @@
 
     <tr>
        <td colspan="5" align="center" height="70px;">
-       <c:if test="${startPage > 3 }">
+       <c:if test="${startPage > 10 }">
        <a class="Paging" href="../board/boardList.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
       </c:if>
          

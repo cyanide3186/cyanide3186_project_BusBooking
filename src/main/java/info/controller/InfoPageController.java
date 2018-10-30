@@ -31,7 +31,7 @@ public class InfoPageController {
 	@RequestMapping(value="/info/infoTrAndCompany.do")
 	public ModelAndView infoTrAndCompany(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("main","../info/tr_and_company_info.jsp");
+		modelAndView.addObject("main","../info/terminal_company_info.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;
 	}

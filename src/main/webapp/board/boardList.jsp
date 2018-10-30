@@ -13,11 +13,6 @@
 	margin-top: 30px;
 	margin-bottom: 40px;
 }
-#notice_txt {
-	text-align: center;
-	font-size: 35px;
-	font-weight: bold;
-}
 .table {margin-left: 100px; margin-bottom: 100px;}
 .tableline {
 	margin-left: 100px;

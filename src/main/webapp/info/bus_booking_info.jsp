@@ -9,16 +9,13 @@
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
 
-#wrapper_info{
-	margin-top: 100px;
-}
+
 .form {
 	margin-top: 30px;
 	margin-bottom: 40px;
 	align-content: center;
 }
 #notice_txt {
-	margin-top :50px;
 	text-align: center;
 	font-size: 35px;
 	font-weight: bold;
@@ -61,7 +58,7 @@ td{
 	<jsp:include page="../template/header.jsp" />
 </div>
  -->
-<div class="wrapper" id="wrapper_info">
+<div class="wrapper" >
 	<p id="notice_txt">승차권 예약 안내</p>
 	<hr id="headline">
 	<form id="bus_booking_info">

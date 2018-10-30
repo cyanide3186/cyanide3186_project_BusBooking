@@ -15,8 +15,10 @@
 #info_tax{
 	width: 1000px;
 	margin-left: 120px;
+	margin-top: -55px;
 	border: 1px solid gray;
 	border-radius: 15px;
+	display: table;
 }
 
 #info_image{
@@ -40,26 +42,28 @@
 #info_taxUpper{
 	vertical-align: middle;
 	padding: 10px;
+	border-bottom: 1px solid gray;
 }
 #info_taxBody{
-	border-top: 1px solid gray;
 	padding: 20px;
+	
+}
+#taxText{
+	text-align: left;
+	padding-left: 30px;
 }
 .taxImage{
+	align : center;
 	padding: 3px;
 	border: 0.3px solid gray;
+	display:table-cell; 
 }
 #next{
-	position: relative;
 	font-size : 50px;
-	text-align: center;
-	padding: 40px;
-	height: 40px;
-	line-height: 40px;
+	display:table-cell; 
+	vertical-align: middle;
 }
-#tax_link{
-	text-decoration: none;
-}
+
 #tax_link:link { color: black; text-decoration: none;}
 #tax_link:visited { color: black; text-decoration: none;}
 #tax_link:hover { color: black; text-decoration: underline;}
@@ -68,7 +72,7 @@
 </style>
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" >
 	<p id="notice_txt">현금영수증 안내</p>
 	<hr id="headline">
 	<form id="taxInfo">
@@ -107,28 +111,71 @@
 					<b >현금영수증 등록방법</b>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="3" id="info_taxBody">
-				<b>1.</b>&nbsp;<a id="tax_link" href="https://www.hometax.go.kr/" target="blank">https://www.hometax.go.kr/</a>&nbsp;접속 (홈페이지 주소를 클릭하면 해당 페이지로 연결됩니다.)
+			<tbody id="info_taxBody" align="center">
+				<tr>
+					<td colspan="3" id="taxText">
+					<br><br>
+					<b>1.</b>&nbsp;<a id="tax_link" href="https://www.hometax.go.kr/" target="blank">https://www.hometax.go.kr/</a>&nbsp;접속 (홈페이지 주소를 클릭하면 해당 페이지로 연결됩니다.)
 					<br><br><br>
-				<b>2.</b>&nbsp;먼저 로그인합니다.<br><br>
-					<img class="taxImage" alt="taxinfo01" src="../images/taxInfo01.jpg">
-					<b id="next">></b>
-					<img class="taxImage" alt="taxinfo02" src="../images/taxInfo02.jpg">
-					<br><br><br>
-				<b>3.</b>&nbsp;[조회/발급] > [현금영수증] > [현금영수증 수정] > [자진발급분 소비자 등록]을 클릭합니다.<br><br>
-					<img class="taxImage" alt="taxinfo03" src="../images/taxInfo03.jpg">
-					<b id="next">></b>
-					<img class="taxImage" alt="taxinfo04" src="../images/taxInfo04.jpg">
-					<br><br><br>
-				<b>4.</b>&nbsp;등록 전 자료 조회 : 승차권을 보고 필요정보를 입력 후 [조회하기] 버튼을 클릭합니다.<br><br>
-					<img class="taxImage" alt="taxinfo05" src="../images/taxInfo05.jpg">
-					<b id="next">></b>
-					<img class="taxImage" alt="taxinfo06" src="../images/taxInfo06.jpg">
-					<br><br><br>
-				<b>5.</b>&nbsp;소비자 등록 : 조회된 내역을 확인하고 [등록하기] 버튼을 클릭합니다	
-				</td>
-			</tr>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" id="taxText">
+					<b>2.</b>&nbsp;먼저 로그인합니다.<br><br>
+				</tr>
+				<tr>
+					<td>	
+						<img class="taxImage" alt="taxinfo01" src="../images/taxInfo01.jpg">
+					</td>
+					<td>	
+						<b id="next">></b>
+					</td>
+					<td>	
+						<img class="taxImage" alt="taxinfo02" src="../images/taxInfo02.jpg">
+					</td>
+				</tr>
+				<br><br><br>
+				<tr>
+					<td colspan="3" id="taxText">
+						<br><br><br>						
+						<b>3.</b>&nbsp;[조회/발급] > [현금영수증] > [현금영수증 수정] > [자진발급분 소비자 등록]을 클릭합니다.<br><br>
+					</td>
+				</tr>
+				<tr>
+					<td>		
+						<img class="taxImage" alt="taxinfo03" src="../images/taxInfo03.jpg">
+					</td>
+					<td>	
+						<b id="next">></b>
+					</td>
+					<td>	
+						<img class="taxImage" alt="taxinfo04" src="../images/taxInfo04.jpg">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" id="taxText">
+						<br><br><br>
+						<b>4.</b>&nbsp;등록 전 자료 조회 : 승차권을 보고 필요정보를 입력 후 [조회하기] 버튼을 클릭합니다.<br><br>
+					</td>
+				</tr>
+				<tr>
+					<td>		
+						<img class="taxImage" alt="taxinfo05" src="../images/taxInfo05.jpg">
+					</td>
+					<td>	
+						<b id="next">></b>
+					</td>
+					<td>
+						<img class="taxImage" alt="taxinfo06" src="../images/taxInfo06.jpg">
+					</td>
+				<tr>
+					<td colspan="3" id="taxText">
+						<br><br><br>	
+						<b>5.</b>&nbsp;소비자 등록 : 조회된 내역을 확인하고 [등록하기] 버튼을 클릭합니다	
+						<br><br>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</form>
 </div>

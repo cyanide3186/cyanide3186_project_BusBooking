@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchListTerminal" parameterType="map" resultType="terminalVO">
 	<![CDATA[
 		select * from(select rownum rn, tt.* from (select * from terminal order by name asc) tt)
-		 where (region = #{region} and (name like '%#{}%' or subtext like '%#{}%')) and (rn>=#{startNum} and rn<=#{endNum});
+		 where (region = #{region} and (name like '%#{word}%' or subtext like '%#{word}%')) and (rn>=#{startNum} and rn<=#{endNum});
 	]]>
 	</select>
 

@@ -55,6 +55,17 @@ public class BookingController {
 		return null;
 	}
 	
+	// 버스 예약화면
+	@RequestMapping(value="/booking/booking_inputForm.do")
+	public ModelAndView booking_inputForm(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main","../booking/booking_input.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
 	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")
@@ -89,13 +100,17 @@ public class BookingController {
 		return modelAndView;
 	}
 	
-	// 버스 예약화면
-	@RequestMapping(value="/booking/booking_inputForm.do")
-	public ModelAndView booking_inputForm(HttpServletRequest request) {
-		
+	// 예약하기 - 좌석 선택 화면
+	@RequestMapping(value="/booking/booking_seatCheck.do")
+	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.addObject("main","../booking/booking_input.jsp");
+		
+		String bus_no = request.getParameter("bus_no");
+		
+		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
+		
+		modelAndView.addObject("seatList", seatList);
+		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
@@ -172,13 +187,41 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	// 예약 조회 기능
+		@RequestMapping(value="/booking/bookingCheck.do")
+		public ModelAndView bookingCheck(HttpServletRequest request) {
+			ModelAndView modelAndView = new ModelAndView();
+			TicketDAO ticketDAO = new TicketDAO();
+			TicketVO ticketVO = new TicketVO();
+			SeatVO seatVO = new SeatVO();
+			SeatDAO seatDAO = new SeatDAO();
+			
+			String ticket_no = request.getParameter("ticket_no");
+			
+			ticketVO = ticketDAO.bookingCheck(ticket_no);
+			seatVO = seatDAO.seatCheck(ticket_no);
+			
+			modelAndView.addObject("ticketVO", ticketVO);
+			modelAndView.addObject("seatVO", seatVO);
+			modelAndView.addObject("main", "");
+			
+			modelAndView.setViewName("../main/index.jsp");
+			
+			return modelAndView;
+		}
 	
 	// 예약 취소 폼
 	@RequestMapping(value="/booking/bookingCancleForm.do")
 	public ModelAndView bookingCancleForm(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		TicketVO ticketVO = new TicketVO();
 		
-		modelAndView.setViewName("");
+		String ticket_no = request.getParameter("ticket_no");
+		ticketVO = bookingService.bookingCheck(ticket_no);
+		
+		modelAndView.addObject("ticketVO", ticketVO);
+		modelAndView.addObject("main", "");
+		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
@@ -194,44 +237,21 @@ public class BookingController {
 		
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
-		modelAndView.addObject("main","");
+		modelAndView.addObject("main", "");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
 	
-	// 예약 조회 기능
-	@RequestMapping(value="/booking/bookingCheck.do")
-	public ModelAndView bookingCheck(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO ticketDAO = new TicketDAO();
-		TicketVO ticketVO = new TicketVO();
-		SeatVO seatVO = new SeatVO();
-		SeatDAO seatDAO = new SeatDAO();
-		
-		String ticket_no = request.getParameter("ticket_no");
-		
-		ticketVO = ticketDAO.bookingCheck(ticket_no);
-		seatVO = seatDAO.seatCheck(ticket_no);
-		
-		modelAndView.addObject("ticketVO", ticketVO);
-		modelAndView.addObject("seatVO", seatVO);
-		modelAndView.addObject("main","");
-		
-		modelAndView.setViewName("../main/index.jsp");
-		
-		return modelAndView;
-	}
 	
 	// 예약 수정 폼
 	@RequestMapping(value="/booking/bookingModifyForm.do")
 	public ModelAndView bookingModifyForm(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO dao = new TicketDAO();
 		TicketVO ticketVO = new TicketVO();
 		
 		String ticket_no = request.getParameter("ticket_no"); 
-		ticketVO = dao.bookingCheck(ticket_no);
+		ticketVO = bookingService.bookingCheck(ticket_no);
 		
 		modelAndView.addObject("ticketVO", ticketVO);
 		
@@ -282,21 +302,6 @@ public class BookingController {
 		return modelAndView;
 	}
 	
-	// 예약하기 - 좌석 선택 화면
-	@RequestMapping(value="/booking/booking_seatCheck.do")
-	public ModelAndView booking_seatCheck(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		String bus_no = request.getParameter("bus_no");
-		
-		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
-		
-		modelAndView.addObject("seatList", seatList);
-		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
-		modelAndView.setViewName("../main/index.jsp");
-		
-		return modelAndView;
-	}
 	
 	// 버스 예약기능 함수
 	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
@@ -304,7 +309,8 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer.parseInt(request.getParameter("hp"));
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
 		String arrive_day = request.getParameter("arrive_day");
 		
 		// 예약번호 생성 기능

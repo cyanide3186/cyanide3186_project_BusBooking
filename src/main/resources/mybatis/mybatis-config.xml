@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/booking-ticket-mapping.xml"/>
 		<mapper resource="mybatis/board-mapping.xml"/>
 		<mapper resource="mybatis/qboard-mapping.xml"/>
-		<mapper resource="mybatis/info-company-mapping"/>
-		<mapper resource="mybatis/info-terminal-mapping"/>
+		<mapper resource="mybatis/info-company-mapping.xml"/>
+		<mapper resource="mybatis/info-terminal-mapping.xml"/>
 	</mappers>
 </configuration>

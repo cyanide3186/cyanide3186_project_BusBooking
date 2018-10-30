@@ -1,4 +1,4 @@
-package info.compamy.bean;
+package info.company.bean;
 
 public class CompanyVO {
 

@@ -22,6 +22,14 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	
+	//출발터미널 목록 json 
+	@RequestMapping(value="/bookin/booking_inputJson_start.do")
+	public ModelAndView booking_inputJson () {
+		return null;
+	}
+	
+	
+	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {

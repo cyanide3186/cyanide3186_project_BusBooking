@@ -25,4 +25,5 @@ public interface BookingService {
 	int bookingModify(TicketVO ticketVO); // 티켓번호로 티켓정보 변경
 
 	int payment(String ticket_no); // 티켓 결제
+	
 }

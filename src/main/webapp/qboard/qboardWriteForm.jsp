@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/base.css">
 
 <style type="text/css">
 .form {
@@ -35,6 +35,7 @@
 	margin-left: 20px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	list-style: none;
 }
 #text {
 	border-bottom: 1px solid;

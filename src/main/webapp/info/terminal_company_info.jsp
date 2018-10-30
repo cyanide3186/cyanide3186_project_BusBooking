@@ -89,7 +89,7 @@ table#tab1 {
 	<table id="tab" >
 		<tr>
 			<td id="logo1" width="400" height="80"><a>터미널 안내</a></td>
-			<td id="logo2" width="400"><a>운수사 안내</a></td>
+			<td id="logo2" width="400"><a href="../info/company_do">운수사 안내</a></td>
 		</tr>
 	</table>
 		
@@ -176,20 +176,20 @@ table#tab1 {
     <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 10 }">
-       <a class="Paging" href="../board/boardList.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
+       <a class="Paging" href="../info/terminal_company_info.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
       </c:if>
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pg == i}">
-				<a id="currentPaging" href="../board/boardList.do?pg=${i}"><img src=>${i}</a>
+				<a id="currentPaging" href="../info/terminal_company_info.do?pg=${i}"><img src=>${i}</a>
 			</c:if>
 			<c:if test="${pg != i}">
-				<a id="paging" href="../board/boardList.do?pg=${i}">${i}</a>
+				<a id="paging" href="../info/terminal_company_info.do?pg=${i}">${i}</a>
 			</c:if>		
 		</c:forEach>
 		
 		<c:if test="${endPage < totalP}">
-			<a id="paging" href="../board/boardList.do?pg=${endPage + 1}" style="font-size: 25px;">다음</a>		
+			<a id="paging" href="../info/terminal_company_info.do?pg=${endPage + 1}" style="font-size: 25px;">다음</a>		
 		</c:if>
 		</td>
 	</tr>

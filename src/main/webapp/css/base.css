@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&subset=korean');
-/* body{
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&subset=korean');
+ body{
 	font-family: 'Noto Sans KR', sans-serif;
-} */
+}  
 #headline{
 	margin-top: 30px;
 }

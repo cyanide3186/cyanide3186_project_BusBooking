@@ -12,11 +12,6 @@
 	margin-bottom: 40px;
 	align-content: center;
 }
-#notice_txt {
-	text-align: center;
-	font-size: 35px;
-	font-weight: bold;
-}
 #info_image{
 	align-content: center;
 	border-right: 1px dotted gray;

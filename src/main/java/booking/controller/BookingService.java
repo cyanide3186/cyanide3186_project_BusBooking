@@ -12,10 +12,14 @@ public interface BookingService {
 
 	int bookingCancel(String ticket_no); // 티켓 취소
 
-	List<BusVO> busCheck(String arrive_time); // 배차 조회
+	List<BusVO> busCheck(BusVO busVO); // 배차 조회
+	
+	int busListCount(BusVO busVO); // 배차 조회 목록 수
 
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 
+	List<SeatVO> getSeatList(String bus_no); // 버스 좌석 목록 조회
+	
 	int seatModify(String ticket_no);  // 좌석 수정
 	
 	List<TicketVO> bookingListCheck(String hp);	// 예매내역 목록 조회

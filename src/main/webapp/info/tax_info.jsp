@@ -130,6 +130,7 @@
 				</td>
 			</tr>
 		</table>
+		<hr id="footline">
 	</form>
 </div>
 </body>

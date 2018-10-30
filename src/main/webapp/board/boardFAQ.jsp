@@ -10,7 +10,7 @@
 <script type="text/javascript">
 
 $(function() {
-	$("input:eq(0)").click(function() {
+	$("#logo1").click(function() {
 		$("#tab2,#tab3,#tab4,#tab5").hide();
 		$("div#tab1").fadeIn();
       	$("#tab1 > a:eq(0)").click(function() {
@@ -43,19 +43,20 @@ $(function() {
 });
 });
 $(function() {
-	$("input:eq(1)").click(function() {
+	$("#logo2").click(function() {
 		$("#tab1,#tab3,#tab4,#tab5").hide();
 		$("div#tab2").fadeIn();
+		
 		$("#tab2 > a:eq(0)").click(function() {
 		$("#tab2 > div:eq(0)").slideToggle();
-		});   
+	});   
 	    $("#tab2 > a:eq(1)").click(function() {
 	    $("#tab2 > div:eq(1)").slideToggle();
-	    });  
+	});  
 	});
 });
 $(function() {
-	$("input:eq(2)").click(function() {
+	$("#logo3").click(function() {
 		$("#tab1,#tab2,#tab4,#tab5").hide();
 		$("div#tab3").fadeIn();
 		$("#tab3 > a:eq(0)").click(function() {
@@ -67,7 +68,7 @@ $(function() {
 	});
 });
 $(function() {
-	$("input:eq(3)").click(function() {
+	$("#logo4").click(function() {
 		$("#tab1,#tab2,#tab3,#tab5").hide();
 		$("div#tab4").fadeIn();
 		$("#tab4 > a:eq(0)").click(function() {
@@ -79,15 +80,17 @@ $(function() {
 	});
 });
 $(function() {
-	$("input:eq(4)").click(function() {
+	$("#logo5").click(function() {
 		$("#tab1,#tab2,#tab3,#tab4").hide();
 		$("div#tab5").fadeIn();
+		
 		$("#tab5 > a:eq(0)").click(function() {
 		$("#tab5 > div:eq(0)").slideToggle();
-		});   
+		//$(this).children("div#answer").slideToggle();
+	});   
 	    $("#tab5 > a:eq(1)").click(function() {
 	    $("#tab5 > div:eq(1)").slideToggle();
-	    });  
+	});  
 	});
 });
 
@@ -103,7 +106,6 @@ a {text-decoration: none; cursor: pointer;}
 }
 #tab2,#tab3,#tab4,#tab5 {display: none; margin: 20px;}
 input {
-	background-color: #008080;
 	width: 120px;
 	height: 50px;
 	margin-left: 43px;
@@ -112,6 +114,22 @@ input {
 .clicked {
 	background-color: white;
 }
+table {
+	margin-top: 40px;
+	margin-bottom: 30px;
+	cursor: pointer;
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	margin-left: 140px;
+	text-align: center;
+}
+
+#logo1:hover {background-color:#20B2AA; text-decoration: none;}
+#logo2:hover {background-color:#20B2AA; text-decoration: none;}
+#logo3:hover {background-color:#20B2AA; text-decoration: none;}
+#logo4:hover {background-color:#20B2AA; text-decoration: none;}
+#logo5:hover {background-color:#20B2AA; text-decoration: none;}
+
 </style>
 </head>
 <body>
@@ -124,14 +142,16 @@ input {
 	<p id="notice_txt" >FAQ</p>
 	<hr id="headline">
 		<form id="form">
+  	<table>
+		<tr>
+			<td id="logo1" width="180" height="70"><a>승차권 예약</a></td>
+			<td id="logo2" width="180"><a>홈티켓</a></td>
+			<td id="logo3" width="180"><a>대금결제</a></td>
+			<td id="logo4" width="180"><a>홈페이지 예약</a></td>
+			<td id="logo5" width="180"><a>기타</a></td>
+		</tr>
+	</table>  
 
-<div class="slide">
-		<input type="button" name="button1" value="승차권 예약" style="color:white;">
-		<input type="button" name="button2" value="홈티켓" style="color:white;">
-		<input type="button" name="button3" value="대금결제" style="color:white;">
-		<input type="button" name="button4" value="홈페이지 예약" style="color:white;">
-		<input type="button" name="button5" value="기타" style="color:white;">
-		<hr>
 		
 		<div id="tab1">
 			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권 예약은 언제까지 가능한가요? </a><br><hr>
@@ -227,8 +247,6 @@ input {
 		<hr id="footline">
 		</form>
 	</div>
-<div id=footer>
-	<jsp:include page="../template/footer.jsp" />
-</div>
+
 </body>
 </html>

@@ -54,9 +54,7 @@
 						monthsShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
 								'9', '10', '11', '12' ],
 						today : '오늘'
-
 					}
-
 				});
 		$('#start_tr').click(function() {
 			//출발지 버튼 클릭시 일어나는 기능
@@ -240,6 +238,7 @@ li {
 	line-height: 50px;
 	border: 3px solid yellow;
 	border-radius: 20px;
+	color: yellow;
 	background-color: #0489B1;
 }
 
@@ -317,9 +316,7 @@ h1 {
 		</div>
 	</div>
 
-
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
@@ -330,17 +327,11 @@ h1 {
 						<li>3.매수 및 좌석 선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
-					<hr>
 				</header>
 			</div>
 
 		</div>
 		<div>
-
-
-
-
-
 			<form action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<div class="column">
@@ -369,12 +360,12 @@ h1 {
 						<tr>
 							<td>가는 일시</td>
 							<td>
-
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
 											placeholder="Date/Time" name="arrivedate">
 									</div>
+								</div>	
 							</td>
 						</tr>
 						<tr>

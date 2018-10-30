@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
-import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
@@ -21,32 +22,67 @@ public class BookingController {
 	
 	@Autowired
 	BookingService bookingService;
+
 	
-	//출발터미널 목록 json 
-	@RequestMapping(value="/bookin/booking_inputJson_start.do")
-	public ModelAndView booking_inputJson () {
+	//터미널 목록 json 수정 예정  
+	@RequestMapping(value="/bookin/booking_inputJson.do")
+	public ModelAndView booking_Json (ModelAndView modelAndView) {
+		List<BusVO> list=bookingService.busList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		JSONArray items = new JSONArray();
+		if(total > 0 ) {
+			for(int i = 0 ; i<list.size(); i++) {
+				BusVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("start_tr", vo.getStart_tr());
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.addObject("main","../booking/booking_input.jsp");
+		modelAndView.setViewName("../main/index.jsp");
 		return null;
 	}
-	
 	
 	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 		
+		BusVO busVO = new BusVO();
+		
+		String start_tr = request.getParameter("start_tr");
+		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
-		List<BusVO> list = bookingService.busCheck(arrive_time);	// 배차 목록 조회 결과
+		busVO.setStart_tr(start_tr);
+		busVO.setEnd_tr(end_tr);
+		busVO.setArrive_time(arrive_time);
+		
+		List<BusVO> list = bookingService.busCheck(busVO);		// 배차조회 결과 목록
+		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("adult", adult);
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);
+		modelAndView.addObject("busListCount", busListCount);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
@@ -235,6 +271,7 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	// 예약하기 - 결과 화면
 	@RequestMapping(value="/booking/booking_result.do")
 	public ModelAndView booking_result(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -245,11 +282,16 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	// 예약하기 - 좌석 선택 화면
 	@RequestMapping(value="/booking/booking_seatCheck.do")
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
+		String bus_no = request.getParameter("bus_no");
 		
+		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
+		
+		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		

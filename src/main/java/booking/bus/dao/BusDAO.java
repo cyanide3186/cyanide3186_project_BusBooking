@@ -13,10 +13,23 @@ public class BusDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<BusVO> busCheck(String arrive_time) {
+	public List<BusVO> busCheck(BusVO busVO) {
 		
-		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", arrive_time);
+		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", busVO);
+	}
+	
+
+	public List<BusVO> busList() {
+		
+		return sqlSession.selectList("mybatis.bus-Mapper.busList");
 	}
 	
 	
+	
+	
+
+	public int busListCount(BusVO busVO) {
+		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", busVO);
+	}
+
 }

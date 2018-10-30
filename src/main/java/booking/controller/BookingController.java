@@ -309,7 +309,8 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer.parseInt(request.getParameter("hp"));
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
 		String arrive_day = request.getParameter("arrive_day");
 		
 		// 예약번호 생성 기능

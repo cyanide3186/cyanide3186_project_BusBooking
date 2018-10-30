@@ -1,5 +1,6 @@
 package booking.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+
 
 @Controller
 public class BookingController {
@@ -265,4 +267,17 @@ public class BookingController {
 		
 		return count;
 	}
+	
+	// 좌석 초기화
+	@RequestMapping(value="clear.do")
+	public void clear() {
+		Calendar now = Calendar.getInstance();
+		int getTime = (((now.get(11)*100)+now.get(12))-100);
+		String arrive_time = String.valueOf(getTime);
+		List<String> bus_no = bookingService.timeCheck(arrive_time);
+		for(int i=0; i<=bus_no.size(); i++) {
+			bookingService.clearSeat(bus_no.get(i));
+		}
+	}
+
 }

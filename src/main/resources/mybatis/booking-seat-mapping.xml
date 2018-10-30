@@ -16,5 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update seat where bus_no=#{bus_no}, bus_seat=#{bus_seat}, state
 	</update>
 	
+	<update id="clearseat" parameterType="String">
+		update seat set ticket_no = null where bus_no=#{bus_no};
+	</update>
 	
 </mapper>

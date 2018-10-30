@@ -17,6 +17,12 @@ public class BusDAO {
 		
 		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", arrive_time);
 	}
-	
+
+	public List<String> timeCheck(String arrive_time) {
+		
+		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
+		
+	}
+
 	
 }

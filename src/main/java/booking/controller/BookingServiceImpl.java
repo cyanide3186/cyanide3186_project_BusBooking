@@ -67,4 +67,14 @@ public class BookingServiceImpl implements BookingService {
 	public int seatModify(String ticket_no) {
 		return seatDAO.seatModify(ticket_no);
 	}
+
+	@Override
+	public void clearSeat(String bus_no) {
+		seatDAO.clearSeat(bus_no);
+	}
+
+	@Override
+	public List<String> timeCheck(String arrive_time) {
+		return busDAO.timeCheck(arrive_time);
+	}
 }

@@ -20,7 +20,11 @@ public class SeatDAO {
 	}
 	
 	public int payment(String ticket_no) {
-		 return sqlSession.insert("mybatis.seat-Mapper.booking", ticket_no);
+		 return sqlSession.insert("mybatis.seat-Mapper.payment", ticket_no);
+	}
+
+	public void clearSeat(String bus_no) {
+		sqlSession.delete("mybatis.seat-Mapper.clearSeat", bus_no);
 	}
 	
 }

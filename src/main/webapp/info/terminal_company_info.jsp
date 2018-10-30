@@ -42,32 +42,37 @@ table#tab1 {
 	display: none;
 }
 .table {margin-left: 100px; margin-bottom: 100px;}
-.tableline {
+.company_table {
+	display: none;
 	margin-left: 100px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
+.terminal_table{
+	display: none;
+}
 </style>
 
 <script type="text/javascript">
 	$(function() {
-		$("#logo1").click(function() {
-			$("#tab2").hide();
-			$("#tab1").fadeIn();
+		$("#logo1").click(function() { //터미널안내 클릭
+			$("#tab2").hide(); 		//운수사안내 테이블
+			$("#tab1").fadeIn(); 	//터미널안내 테이블
 		});
 		
 		$("#tabA").click(function() {
-			$(".seoul").fadeIn();
+			$(".terminal_table").fadeIn();
 		});
 	});
 	
 	$(function() {
-		$("#logo2").click(function() {
-			$("#tab1").hide();
-			$("#tab2").fadeIn();
-			
+		$("#logo2").click(function() {	//운수사안내 클릭
+			$("#tab1").hide();		//터미널안내 테이블
+			$("#tab2").fadeIn();	//운수사안내 테이블
+			$(".terminal_table").hide();
+			$(".company_table").fadeIn();
 			
 		});
 		
@@ -86,7 +91,7 @@ table#tab1 {
 			<td id="logo1" width="400" height="80"><a>터미널 안내</a></td>
 			<td id="logo2" width="400"><a>운수사 안내</a></td>
 		</tr>
-		</table>
+	</table>
 		
 		<table id="tab1" >
 		<tr style="border-bottom: 1px solid black;">
@@ -115,19 +120,20 @@ table#tab1 {
 		</tr>
 	</table>
 	
-	<table class="seoul">
+	<table class="terminal_table" border="1">
 	<tr height="50">
-		<th width="120">구/군</th>
-		<th width="620">명칭(전화번호),주소</th>
-		<th width="150">홈페이지</th>
+		<th width="200">구/군</th>
+		<th width="480">명칭(전화번호),주소</th>
+		<th width="210">홈페이지</th>
+		<th width="50">약도</th>
 	</tr>
-	<c:forEach var="boardVO" items="${list}">
+	<c:forEach var="terminalVO" items="${list}">
 	<tr align="center" height="50" >
-		<td width="120" class="line">${boardVO.board_no}</td>
-		<td width="620" class="linecenter">
-		<a id="subjectA" href="../board/boardView.do?board_no=${boardVO.board_no}&pg=${pg}">
-		${boardVO.subject}</a></td>
-		<td width="220" class="line">${boardVO.writeday}</td>
+		<td width="120" class="line">${terminalVO.city}</td>
+		<td width="620" class="linecenter">${terminalVO.name}<br>
+		${terminalVO.addr}</td>
+		<td>${terminalVO.homepage }</td>
+		<td width="220" class="line">${terminalVO.map}</td>
 	</tr>
 	</c:forEach>	
 
@@ -154,25 +160,19 @@ table#tab1 {
 	</table>
 	
 		<div id="tab2">
-
-		<table class="tableline">
+		<table class="company_table" border="1">
 		<tr height="50">
 			<th width="300">구/회사명</th>
-			<th width="170">전화번호</th>
-			<th width="620">주소</th>
+			<th width="200">전화번호</th>
+			<th width="590">주소</th>
 		</tr>
-		</table>
-		<table class="table" style="border-bottom: 1px solid black;">
-	<c:forEach var="boardVO" items="${list}">
+	<c:forEach var="companyVO" items="${list}">
 		<tr align="center" height="50" >
-			<td width="120" class="line">${boardVO.board_no}</td>
-			<td width="620" class="linecenter">
-			<a id="subjectA" href="../board/boardView.do?board_no=${boardVO.board_no}&pg=${pg}">
-			${boardVO.subject}</a></td>
-			<td width="220" class="line">${boardVO.writeday}</td>
+			<td width="300" class="line">${companyVO.name}</td>
+			<td width="200" class="linecenter">${companyVO.tel}</td>
+			<td width="590" class="line">${companyVO.addr}</td>
 		</tr>
 	</c:forEach>	
-
     <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 10 }">
@@ -194,8 +194,7 @@ table#tab1 {
 		</td>
 	</tr>
 	</table>
-		
-		</table>
+
 		</div>
 
 	

@@ -19,15 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and arrive_time >= #{arrive_time}
 		]]>
 	</select>
-	<select id="busStart" resultType="busVO">
+	<select id="busList" resultType="busVO">
 		<![CDATA[
-			select DISTINCT start_tr from bus;
+			select DISTINCT start_tr end_tr from bus;
 		]]>
 	</select>
-	<select id="busEnd" resultType="busVO">
-		<![CDATA[
-			select DISTINCT start_tr from bus;
-		]]>
-	</select>
+
 
 </mapper>

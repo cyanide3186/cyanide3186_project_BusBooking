@@ -67,4 +67,10 @@ public class BookingServiceImpl implements BookingService {
 	public int seatModify(String ticket_no) {
 		return seatDAO.seatModify(ticket_no);
 	}
+
+	@Override
+	public List<BusVO> busList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

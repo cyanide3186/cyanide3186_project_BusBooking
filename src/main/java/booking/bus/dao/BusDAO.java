@@ -18,5 +18,12 @@ public class BusDAO {
 		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", arrive_time);
 	}
 	
+	public List<BusVO> busList() {
+		
+		return sqlSession.selectList("mybatis.bus-Mapper.busList");
+	}
+	
+	
+	
 	
 }

@@ -14,6 +14,9 @@ public interface BookingService {
 
 	List<BusVO> busCheck(String arrive_time); // 배차 조회
 
+	List<BusVO> busList(); //터미널 목록 조회
+	
+
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 
 	int seatModify(String ticket_no);  // 좌석 수정

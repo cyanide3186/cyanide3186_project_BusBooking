@@ -16,13 +16,25 @@ public class InfoServiceImpl implements InfoService {
 	TerminalDAO terminalDAO;
 	
 	/*메소드*/
+	//터미널 정보 목록 구현
 	@Override
 	public ModelAndView ListTerminal() {
 		return null;
 	}
-
+	
+	@Override
+	public ModelAndView CountTerminal() {
+		return null;
+	}
+	
+	//운수회사 정보 목록 구현
 	@Override
 	public ModelAndView ListCompany() {
+		return null;
+	}
+
+	@Override
+	public ModelAndView CountCompany() {
 		return null;
 	}
 

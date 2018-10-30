@@ -19,7 +19,7 @@ table#tab {
 	margin-left: 300px;
 	margin-top: 40px;
 	text-align: center;
-	font-size: 28px;
+	font-size: 20px;
 	font-weight: 900;
 	cursor: pointer;
 }
@@ -41,6 +41,14 @@ table#tab1 {
 	margin-top: 20px;
 	display: none;
 }
+.table {margin-left: 100px; margin-bottom: 100px;}
+.tableline {
+	margin-left: 100px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	text-align: center;
+	margin-top: 20px;
+}
 </style>
 
 <script type="text/javascript">
@@ -59,6 +67,8 @@ table#tab1 {
 		$("#logo2").click(function() {
 			$("#tab1").hide();
 			$("#tab2").fadeIn();
+			
+			
 		});
 		
 	});
@@ -78,8 +88,8 @@ table#tab1 {
 		</tr>
 		</table>
 		
-		<table id="tab1" border="1">
-		<tr>
+		<table id="tab1" >
+		<tr style="border-bottom: 1px solid black;">
 			<td width="200" height="60" id="tabA"><a>서울특별시</a></td>
 			<td width="200"><a>경기도</a></td>
 			<td width="200"><a>인천광역시</a></td>
@@ -106,13 +116,21 @@ table#tab1 {
 	</table>
 	
 	<table class="seoul">
-	<c:forEach var="boardVO" items="${list}">
 	<tr height="50">
 		<th width="120">구/군</th>
 		<th width="620">명칭(전화번호),주소</th>
 		<th width="150">홈페이지</th>
 	</tr>
-	</c:forEach>
+	<c:forEach var="boardVO" items="${list}">
+	<tr align="center" height="50" >
+		<td width="120" class="line">${boardVO.board_no}</td>
+		<td width="620" class="linecenter">
+		<a id="subjectA" href="../board/boardView.do?board_no=${boardVO.board_no}&pg=${pg}">
+		${boardVO.subject}</a></td>
+		<td width="220" class="line">${boardVO.writeday}</td>
+	</tr>
+	</c:forEach>	
+
 	    <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 3 }">
@@ -136,7 +154,48 @@ table#tab1 {
 	</table>
 	
 		<div id="tab2">
+
+		<table class="tableline">
+		<tr height="50">
+			<th width="300">구/회사명</th>
+			<th width="170">전화번호</th>
+			<th width="620">주소</th>
+		</tr>
+		</table>
+		<table class="table" style="border-bottom: 1px solid black;">
+	<c:forEach var="boardVO" items="${list}">
+		<tr align="center" height="50" >
+			<td width="120" class="line">${boardVO.board_no}</td>
+			<td width="620" class="linecenter">
+			<a id="subjectA" href="../board/boardView.do?board_no=${boardVO.board_no}&pg=${pg}">
+			${boardVO.subject}</a></td>
+			<td width="220" class="line">${boardVO.writeday}</td>
+		</tr>
+	</c:forEach>	
+
+    <tr>
+       <td colspan="5" align="center" height="70px;">
+       <c:if test="${startPage > 10 }">
+       <a class="Paging" href="../board/boardList.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
+      </c:if>
+         
+		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+			<c:if test="${pg == i}">
+				<a id="currentPaging" href="../board/boardList.do?pg=${i}"><img src=>${i}</a>
+			</c:if>
+			<c:if test="${pg != i}">
+				<a id="paging" href="../board/boardList.do?pg=${i}">${i}</a>
+			</c:if>		
+		</c:forEach>
 		
+		<c:if test="${endPage < totalP}">
+			<a id="paging" href="../board/boardList.do?pg=${endPage + 1}" style="font-size: 25px;">다음</a>		
+		</c:if>
+		</td>
+	</tr>
+	</table>
+		
+		</table>
 		</div>
 
 	

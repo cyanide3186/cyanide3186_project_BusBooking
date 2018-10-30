@@ -18,7 +18,7 @@ public class BusDAO {
 		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", busVO);
 	}
 
-	// 버스 목록 조회
+	// 터미널 목록 조회
 	public List<BusVO> busList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.busList");
 	}

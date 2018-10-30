@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import info.compamy.bean.CompanyVO;
+import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
 import info.terminal.bean.TerminalVO;
 import info.terminal.dao.TerminalDAO;

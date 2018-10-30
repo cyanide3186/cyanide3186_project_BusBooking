@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import info.compamy.bean.CompanyVO;
+import info.company.bean.CompanyVO;
 import info.terminal.bean.TerminalVO;
 
 public interface InfoService {

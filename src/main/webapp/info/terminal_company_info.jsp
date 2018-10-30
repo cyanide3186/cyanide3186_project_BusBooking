@@ -89,7 +89,7 @@ table#tab1 {
 	<table id="tab" >
 		<tr>
 			<td id="logo1" width="400" height="80"><a>터미널 안내</a></td>
-			<td id="logo2" width="400"><a href="../info/company_do">운수사 안내</a></td>
+			<td id="logo2" width="400"><a href="#">운수사 안내</a></td>
 		</tr>
 	</table>
 		

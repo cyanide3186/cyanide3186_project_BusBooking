@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.company-mapper">
 
-<!-- 	<select id="CountCompany" resultType="int">
+	<select id="CountCompany" resultType="int">
 		select count(*) from company
-	</select> -->
+	</select> 
 	
 <!-- 	<selct id="pagingCompanyBoard" >
 	<![CDATA[

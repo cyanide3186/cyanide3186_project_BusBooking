@@ -1,7 +1,15 @@
 package info.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import info.company.bean.CompanyVO;
 
 
 @Component
@@ -11,7 +19,7 @@ public class TerminalAndCompanyController {
 	InfoService infoService;
 	
 	//운수사 리스트 목록
-	/*	@RequestMapping(value="/info/company_do")
+	@RequestMapping(value="/info/company_do")
 	public ModelAndView ListCompany(HttpServletRequest request) {
         String str_pg=request.getParameter("pg");
         int pg=1;
@@ -41,5 +49,5 @@ public class TerminalAndCompanyController {
         modelAndView.setViewName("../main/index.jsp");
         return modelAndView;
 		
-	}*/
+	}
 }

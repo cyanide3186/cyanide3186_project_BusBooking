@@ -115,23 +115,20 @@ div#page_button button {
 		</div>
 		<div>
 
-
-
-
-
 			<form action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">Tab</div>
-					
+
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
-							<table border="1px">
+						<table border="1px solid black">
 							<tr>
-								<td width="500px" height="100px">가는편</td><td width="500px">가는날짜</td>
+								<td width="500px" height="100px">가는편</td>
+								<td width="500px">가는날짜</td>
 							</tr>
-							
+						</table>
 					</div>
 					<table class="ui teal table" style="margin-top: 5%">
 						<thead>
@@ -157,24 +154,25 @@ div#page_button button {
 
 				</div>
 			</form>
-		</div>
-		<div>
-			<div class="ui text container" id="page_button">
-				<table>
-					<tr>
-						<td width="200px" align="center";><button
-								class="ui teal basic button">이전시간</button></td>
-						<td width="200px" align="center";><button
-								class="ui teal basic button">다음시간</button></td>
-					</tr>
-				</table>
 
+
+			<div>
+				<div class="ui text container" id="page_button">
+					<table>
+						<tr>
+							<td width="200px" align="center"><button
+									class="ui teal basic button">이전시간</button></td>
+							<td width="200px" align="center"><button
+									class="ui teal basic button">다음시간</button></td>
+						</tr>
+					</table>
+
+
+				</div>
 
 			</div>
-
-		</div>
-
+		</div>	
+		
 	</div>
-
 </body>
 </html>

@@ -15,7 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
     			   (select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as bus_seats from bus
-			where arrive_time < 2400 and arrive_time >= #{arrive_time}
+			where start_tr = #{start_tr} 
+			and end_tr = #{end_tr} 
+			and arrive_time < 2400 
+			and arrive_time >= #{arrive_time}
 		]]>
 	</select>
 	

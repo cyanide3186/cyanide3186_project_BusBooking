@@ -3,21 +3,31 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.bus-Mapper">
-	
-	<!--  
-	<select id="busCheck" parameterType="BusVO" resultType="busVO">
-		select * from bus where start_tr=#{start_tr} and end_tr=#{end_tr} and arrive_time=#{arrive_time}
-	</select>
-	-->
-	
+
+	<!-- <select id="busCheck" parameterType="BusVO" resultType="busVO"> select 
+		* from bus where start_tr=#{start_tr} and end_tr=#{end_tr} and arrive_time=#{arrive_time} 
+		</select> -->
+
 	<!-- 배차 및 잔여 좌석 수 조회 -->
 	<select id="busCheck" parameterType="String" resultType="busVO">
 		<![CDATA[
 			select bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
     			   (select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as bus_seats from bus
-			where arrive_time < 2400 and arrive_time >= #{arrive_time}
+			where start_tr = #{start_tr} 
+			and end_tr = #{end_tr} 
+			and arrive_time < 2400 
+			and arrive_time >= #{arrive_time}
 		]]>
 	</select>
-	
-	
+	<select id="busStart" resultType="busVO">
+		<![CDATA[
+			select DISTINCT start_tr from bus;
+		]]>
+	</select>
+	<select id="busEnd" resultType="busVO">
+		<![CDATA[
+			select DISTINCT start_tr from bus;
+		]]>
+	</select>
+
 </mapper>

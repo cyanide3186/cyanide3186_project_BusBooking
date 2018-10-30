@@ -262,10 +262,7 @@ h1 {
 				<select name="start" class="ui
 			 fluid selection dropdown">
 					<option value="">주요 터미널</option>
-					<option value="동서울">동서울</option>
-					<option value="인천공항1터미널">인천공항1터미널</option>
-					<option value="성남">성남</option>
-					<option value="수원">수원</option>
+					
 				</select>
 				</td>
 			</tr>

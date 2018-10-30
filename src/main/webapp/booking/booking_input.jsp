@@ -259,11 +259,14 @@ h1 {
 		<h3 align="center" style="color: white">출발 터미널 선택</h3>
 		<table>
 			<tr>
-				<select name="start" class="ui
-			 fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					
-				</select>
+				<td>
+					<select name="start" class="ui fluid selection dropdown">
+						<option value="">주요 터미널</option>
+						<option value="동서울">동서울</option>
+						<option value="인천공항1터미널">인천공항1터미널</option>
+						<option value="성남">성남</option>
+						<option value="수원">수원</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
@@ -291,33 +294,27 @@ h1 {
 		<h3 align="center" style="color: white">도착 터미널 선택</h3>
 		<table>
 			<tr>
-				<select name="end" class="ui fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					<option value="동서울">동서울</option>
-					<option value="인천공항1터미널">인천공항1터미널</option>
-					<option value="성남">성남</option>
-					<option value="수원">수원</option>
-				</select>
+				<td>
+					<select name="end" class="ui fluid selection dropdown">
+						<option value="">주요 터미널</option>
+						<option value="동서울">동서울</option>
+						<option value="인천공항1터미널">인천공항1터미널</option>
+						<option value="성남">성남</option>
+						<option value="수원">수원</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
-				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="start_text"
-							size="70%">
-					</div></td>
+				<td>
+					<div class="ui input focus">
+						<input type="text" placeholder="Search..." id="start_text" size="70%">
+					</div>
+				</td>
 			</tr>
 		</table>
-
-
-
 	</div>
-	
-			</div>
-
-
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
@@ -331,14 +328,8 @@ h1 {
 					<hr>
 				</header>
 			</div>
-
 		</div>
 		<div>
-
-
-
-
-
 			<form action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<div class="column">
@@ -352,34 +343,33 @@ h1 {
 							<td>출발지</td>
 							<td>
 								<div class="ui input">
-									<input type="text" placeholder="출발지선택" id="start_tr"
-										name="start_tr">
+									<input type="text" placeholder="출발지선택" id="start_tr" name="start_tr">
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>도착지</td>
-							<td><div class="ui input">
-									<input type="text" placeholder="도착지선택" id="end_tr"
-										name="end_tr">
-								</div></td>
+							<td>
+								<div class="ui input">
+									<input type="text" placeholder="도착지선택" id="end_tr"	name="end_tr">
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<td>가는 일시</td>
 							<td>
-
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" name="arrivedate">
+										<i class="calendar icon"></i> 
+										<input type="text" placeholder="Date/Time" name="arrivedate">
 									</div>
-							
+								</div>
 							</td>
 						</tr>
 						<tr>
 							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
+							<td>	
+								<select name="arrive_time" class="ui dropdown" id="arrive_time">
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>
@@ -405,7 +395,8 @@ h1 {
 									<option value="21:00">21:00</option>
 									<option value="22:00">22:00</option>
 									<option value="23:00">23:00</option>
-							</select></td>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td>어른</td>
@@ -442,7 +433,8 @@ h1 {
 						</tr>
 						<tr>
 							<td>어린이</td>
-							<td><select name="kid" class="ui dropdown" id="kid">
+							<td>
+								<select name="kid" class="ui dropdown" id="kid">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -454,17 +446,16 @@ h1 {
 									<option value="8">8</option>
 									<option value="9">9</option>
 									<option value="10">10</option>
-							</select>
-						
+								</select>
+							</td>
 						</tr>
 						<tr>
-
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
+							<td colspan="2" align="right">
+								<button	class="ui teal basic button" type="submit">조회</button>
+								<button class="ui teal basic button" type="reset">취소</button>
+							</td>
 						</tr>
 					</table>
-
 				</div>
 			</form>
 		</div>
@@ -486,9 +477,7 @@ h1 {
 					</span> <br>
 				</p>
 			</div>
-
 		</div>
-
 	</div>
 
 </body>

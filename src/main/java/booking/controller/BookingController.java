@@ -35,11 +35,18 @@ public class BookingController {
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 		
 		String arrive_time = request.getParameter("arrive_time");
+		String arrive_day = request.getParameter("arrive_day");
+		String adult = request.getParameter("adult");
+		String teen = request.getParameter("teen");
+		String kid = request.getParameter("kid");
 		
-		BusDAO busDAO = new BusDAO();
-		List<BusVO> list = busDAO.busCheck(arrive_time);	// 배차 목록 조회 결과
+		List<BusVO> list = bookingService.busCheck(arrive_time);	// 배차 목록 조회 결과
 		
 		modelAndView.addObject("list", list);
+		modelAndView.addObject("arrive_day", arrive_day);
+		modelAndView.addObject("adult", adult);
+		modelAndView.addObject("teen", teen);
+		modelAndView.addObject("kid", kid);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		

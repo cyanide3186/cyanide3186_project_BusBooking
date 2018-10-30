@@ -21,4 +21,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSeatList" parameterType="String" resultType="seatVO">
 		select * from seat where bus_no = #{bus_no}
 	</select>
+	
+	<!-- 좌석 예약 상태로 변경 -->
+	<update id="seatBooking" parameterType="seatVO">
+		update seat set ticket_no = #{ticket_no}
+		where bus_no = #{bus_no} and bus_seat = #{bus_seat}
+	</update>
+	
+	<!-- 좌석 예약 취소 -->
+	<update id="seatCancle" parameterType="seatVO">
+		update seat set ticket_no = null 
+		where bus_no = #{bus_no} and bus_seat = #{bus_seat}
+	</update>
+	
+	<!-- 좌석 초기화 -->
+	<update id="seatReset" parameterType="String">
+		update seat set ticket_no = null 
+		where bus_no = #{bus_no}
+	</update>
+	
 </mapper>

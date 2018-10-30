@@ -48,17 +48,24 @@ header {
 }
 
 li {
+	margin: 0 0;
 	list-style: none;
+}
+
+.level>li {
 	margin: 0 0;
 	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
-	line-height: 50px;
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
+	vertical-align: middle;
 	background-color: #0489B1;
+	line-height: 1.2;
+	list-style: none;
+	line-height: 1.2;
 }
 
 #mainli {
@@ -92,6 +99,59 @@ div#page_button button {
 	width: 50%;
 	height: 100%;
 }
+
+#menu1 {
+	float: left;
+	width: 340px;
+}
+
+#menu2 {
+	margin-left: 49px;
+	float: left;
+	width: 340px;
+}
+
+}
+#menu3 {
+	margin-top: 670px;
+	float: left;
+	width: 340px;
+}
+
+.seat {
+	display: block;
+	width: 500px;
+}
+
+.seat li {
+	position: relative;
+	float: left;
+}
+
+.buy_area>ul>li {
+	float: left;
+	vertical-align: middle;
+	width: 340px;
+}
+
+.buy_area>ul {
+	
+}
+.seat ul span {
+	position:relative;
+	right: 40px;
+	top: -10px;
+}
+.seat .line1 {
+	position: absolute;
+	left: 820px;
+	top: 800px;
+}
+.seat>ul {
+	position: absolute;
+	left: 820px;
+	top: 900px;
+}
 </style>
 </head>
 <body>
@@ -104,7 +164,7 @@ div#page_button button {
 					<h1>승차권 예매</h1>
 					<ul class="level">
 						<li>1.기초정보 입력</li>
-						<li >2.배차 조회</li>
+						<li>2.배차 조회</li>
 						<li id="mainli">3.매수 및 좌석 선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
@@ -130,49 +190,224 @@ div#page_button button {
 							</tr>
 						</table>
 					</div>
-					<table class="ui teal table" style="margin-top: 5%">
-						<thead>
-							<tr>
-								<th>Food</th>
-								<th>Calories</th>
-								<th>Protein</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>200</td>
-								<td>0g</td>
-							</tr>
-							<tr>
-								<td>Orange</td>
-								<td>310</td>
-								<td>0g</td>
-							</tr>
-						</tbody>
-					</table>
+					<div id="buy_area">
+						<ul>
+							<li id="menu1">
+								<span>매수 선택</span>
+								<div>
+									<table class="ui basic table">
+										<thead>
+											<tr>
+												<td>어른</td>
+												<td><select name="adult" class="ui dropdown" id="adult">
+														<option value="0">0</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+												</select></td>
+											</tr>
+											<tr>
+												<td>청소년</td>
+												<td><select name="teen" class="ui dropdown" id="teen">
+														<option value="0">0</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+												</select></td>
+											</tr>
+											<tr>
+												<td>어린이</td>
+												<td><select name="kid" class="ui dropdown" id="kid">
+														<option value="0">0</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+												</select></td>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</li>
+							<li id="menu2"><span>좌석 선택</span>
+								<div class="seat">
+									<img src="../images/bg_seat.gif">
+									<ul class="line1">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>1</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>2</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>3</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>4</span>
+										</a></li>
+									</ul>
+									<ul class="line2">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line3">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line4">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line5">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line6">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line7">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line8">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line9">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+									<ul class="line10">
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>5</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>6</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>7</span>
+										</a></li>
+										<li><a href="#"> <img src="../images/seat_off.png">
+												<span>8</span>
+										</a></li>
+									</ul>
+								</div></li>
+							<li id="menu3"></li>
+						</ul>
+
+					</div>
 
 				</div>
+
 			</form>
 
 
-			<div>
-				<div class="ui text container" id="page_button">
-					<table>
-						<tr>
-							<td width="200px" align="center"><button
-									class="ui teal basic button">이전시간</button></td>
-							<td width="200px" align="center"><button
-									class="ui teal basic button">다음시간</button></td>
-						</tr>
-					</table>
 
 
-				</div>
+		</div>
+	</div>
 
-			</div>
-		</div>	
-		
 	</div>
 
 </body>

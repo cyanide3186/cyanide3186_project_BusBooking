@@ -291,6 +291,7 @@ h1 {
 		<h3 align="center" style="color: white">도착 터미널 선택</h3>
 		<table>
 			<tr>
+				<td>
 				<select name="end" class="ui fluid selection dropdown">
 					<option value="">주요 터미널</option>
 					<option value="동서울">동서울</option>
@@ -438,7 +439,7 @@ h1 {
 									<option value="9">9</option>
 									<option value="10">10</option>
 							</select>
-						
+							</td>
 						</tr>
 						<tr>
 							<td>어린이</td>
@@ -455,7 +456,7 @@ h1 {
 									<option value="9">9</option>
 									<option value="10">10</option>
 							</select>
-						
+						</td>
 						</tr>
 						<tr>
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
@@ -43,37 +44,20 @@ public class InfoServiceImpl implements InfoService {
 		return terminalDAO.countTerminal();
 	}	
 	
-	@Override
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int CountCompany() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
+
 	//운수회사 정보 목록 구현
-/*	@Override
-	public ModelAndView ListCompany() {
-		return companyDAO.ListCompany();
-	}*/
-
-/*	@Override
+	@Override
 	public int CountCompany() {
-		return null;
-		//return companyDAO.CountCompany();
+		return companyDAO.CountCompany();
 	}
 
 
 	@Override
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		return null;
-		//return companyDAO.pagingCompanyBoard(startNum, endNum);
+		return companyDAO.pagingCompanyBoard(startNum, endNum);
 	}
-*/
+
 	
 
 }

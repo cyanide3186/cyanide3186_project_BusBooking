@@ -139,21 +139,62 @@ div#page_button button {
 
 .seat ul span {
 	position: relative;
-	right: 40px;
+	right: 45px;
 	top: -10px;
 }
 
 .seat .line1 {
 	position: absolute;
-	left: 973px;
+	left: 960px;
 	top: 650px;
 }
-
-.seat>ul {
+.seat .line2 {
 	position: absolute;
-	left: 820px;
-	top: 900px;
+	left: 960px;
+	top: 720px;
 }
+.seat .line3 {
+	position: absolute;
+	left: 960px;
+	top: 790px;
+}
+.seat .line4 {
+	position: absolute;
+	left: 960px;
+	top: 860px;
+}
+.seat .line5 {
+	position: absolute;
+	left: 960px;
+	top: 930px;
+}
+.seat .line6 {
+	position: absolute;
+	left: 960px;
+	top: 1000px;
+}
+.seat .line7 {
+	position: absolute;
+	left: 960px;
+	top: 1070px;
+}
+.seat .line8 {
+	position: absolute;
+	left: 960px;
+	top: 1140px;
+}
+.seat .line9 {
+	position: absolute;
+	left: 960px;
+	top: 1210px;
+}
+.seat .line10 {
+	position: absolute;
+	left: 960px;
+	top: 1280px;
+}
+
+
 </style>
 </head>
 <body>
@@ -254,35 +295,35 @@ div#page_button button {
 									<img src="../images/bg_seat.gif">
 									<ul class="line1">
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>1</span>
+												<span>01</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>2</span>
+												<span>02</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>3</span>
+												<span>03</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>4</span>
+												<span>04</span>
 										</a></li>
 									</ul>
 									<ul class="line2">
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>5</span>
+												<span>05</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>6</span>
+												<span>06</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>7</span>
+												<span>07</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>8</span>
+												<span>08</span>
 										</a></li>
 									</ul>
 									<ul class="line3">
 										<li><a href="#"> <img src="../images/seat_off.png">
-												<span>9</span>
+												<span>09</span>
 										</a></li>
 										<li><a href="#"> <img src="../images/seat_off.png">
 												<span>10</span>

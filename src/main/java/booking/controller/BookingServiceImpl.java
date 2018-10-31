@@ -85,8 +85,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	public List<BusVO> busList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return busDAO.busList();
 	}
 
 	@Override

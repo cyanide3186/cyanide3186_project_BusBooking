@@ -26,10 +26,11 @@ public class BookingController {
 	BookingService bookingService;
 
 	
-	//터미널 목록 json 수정 예정  
-	@RequestMapping(value="/bookin/booking_inputJson.do")
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_inputJson.do")
 	public ModelAndView booking_Json (ModelAndView modelAndView) {
 		List<BusVO> list=bookingService.busList();
+		
 		String rt = null;
 		int total=	list.size();
 		if(total>0) {
@@ -40,21 +41,20 @@ public class BookingController {
 		JSONObject json = new JSONObject(); //첫번째 중괄호 
 		json.put("rt", rt);
 		json.put("total",total);
-		JSONArray items = new JSONArray();
 		if(total > 0 ) {
+			JSONArray items = new JSONArray();
 			for(int i = 0 ; i<list.size(); i++) {
 				BusVO vo = list.get(i);
 				JSONObject temp = new JSONObject();
-				temp.put("start_tr", vo.getStart_tr());
+				temp.put("end_tr", vo.getEnd_tr());
 				items.put(i,temp);
 			}
 			json.put("items",items);
 		}
 		System.out.println(json);
 		modelAndView.addObject("json",json);
-		modelAndView.addObject("main","../booking/booking_input.jsp");
-		modelAndView.setViewName("../main/index.jsp");
-		return null;
+		modelAndView.setViewName("../booking/booking_inputJson_end.jsp");
+		return modelAndView;
 	}
 	
 	// 버스 예약화면

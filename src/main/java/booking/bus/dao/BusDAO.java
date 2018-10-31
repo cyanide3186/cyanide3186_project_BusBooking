@@ -32,4 +32,8 @@ public class BusDAO {
 	public int busUpdate(BusVO busVO) {
 		return sqlSession.update("mybatis.bus-Mapper.busUpdate", busVO);
 	}
+
+	public List<String> timeCheck(String arrive_time) {
+		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
+	}
 }

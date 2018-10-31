@@ -25,6 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="timeCheck" parameterType="String" resultType="String">
 		<![CDATA[
 			select bus_no from bus where arrive_time < #{arrive_time}
+		]]>
+	</select>
+	
 	<select id="busListCount" parameterType="busVO" resultType="int">
 		<![CDATA[
 			select count(*) as buscount from bus 

@@ -11,6 +11,7 @@ import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+import info.terminal.bean.TerminalVO;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -92,5 +93,11 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public void seatReset(String bus_no) {
 		seatDAO.seatReset(bus_no);
+	}
+
+	@Override
+	public List<TerminalVO> regionList() {
+	
+		return busDAO.regionList();
 	}
 }

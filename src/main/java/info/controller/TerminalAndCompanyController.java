@@ -27,6 +27,11 @@ public class TerminalAndCompanyController {
 		String web_region = request.getParameter("region");
 		String web_word =request.getParameter("word");
 		
+		/*파라미터값 확인용*/
+		System.out.println("str_pg : "+str_pg);
+		System.out.println("web_region : "+web_region);
+		System.out.println("web_region : "+web_region);
+		
 		 //초기값 설정
 		int pg=1; 
         String region = "서울특별시";
@@ -63,6 +68,7 @@ public class TerminalAndCompanyController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pg", pg);
         modelAndView.addObject("region", region);
+        modelAndView.addObject("word", word);
         modelAndView.addObject("list_terminal", list);
         modelAndView.addObject("startPage", startPage);
         modelAndView.addObject("endPage", endPage);

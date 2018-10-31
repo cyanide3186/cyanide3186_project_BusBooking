@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		 where region=#{region} and (rn>=#{startNum} and rn<=#{endNum})
 	]]>	
 	</select>
-	<!--검색창에 단어 입력시 검색 (지역선택을 강제한 상태에서 명칭 및 부기명-숫자로는 검색x-으로 검색-->
+	<!--검색창에 단어 입력시 검색 (지역선택을 강제한 상태에서 명칭-부기명X-으로 검색-->
 	<select id="searchTerminal" parameterType="java.util.Map" resultType="terminalVO">
 	<![CDATA[
 		select * from(select rownum rn, tt.* from (select * from terminal order by name asc) tt)
-		 where (region = #{region} and (name like '%${word}%' or subtext like '%#{word}%')) and (rn>=#{startNum} and rn<=#{endNum})
+		 where (region = #{region} and name like '%${word, jdbcType=VARCHAR}') and (rn>=#{startNum} and rn<=#{endNum})
 	]]>
 	</select>
 	<!-- 목록 수 호출 -->

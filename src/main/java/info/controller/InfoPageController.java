@@ -33,12 +33,18 @@ public class InfoPageController {
 	}
 	//터미널 및 운수회사 안내
 	@RequestMapping(value="/info/infoTrAndCompany.do")
+	public String infoTrAndCompany() {
+		return "../info/terminal.do";
+	}
+	/* 구버전 매핑
 	public ModelAndView infoTrAndCompany(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("main","../info/terminal_company_info.jsp");
 		modelAndView.setViewName("../main/index.jsp");
+		
 		return modelAndView;
 	}
+	*/
 	//현금영수증 안내
 	@RequestMapping(value="/info/infoTax.do")
 	public ModelAndView infoTax(HttpServletRequest request) {

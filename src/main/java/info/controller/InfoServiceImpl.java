@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
@@ -22,32 +21,59 @@ public class InfoServiceImpl implements InfoService {
 	/*메소드*/
 	//터미널 정보 목록 구현
 	@Override
-	public ModelAndView ListTerminal() {
-		return null;
+	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
+		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
+		System.out.println("On InfoService");
+		System.out.println("---------------------------");
+		System.out.println("region : "+region);
+		System.out.println("word : "+word);
+		System.out.println("startNum : "+startNum);
+		System.out.println("endNum : "+endNum);
+		System.out.println("===========================");
+		System.out.println();
+		if(word.equals("dummyString")) {
+			return terminalDAO.listTerminal(region, startNum, endNum);
+		} else {
+			return terminalDAO.searchTerminal(region, word, startNum, endNum);
+		}
 	}
+
+	@Override
+	public int CountTerminal() {
+		return terminalDAO.countTerminal();
+	}	
 	
 	@Override
-	public ModelAndView CountTerminal() {
-		return null;
-	}
-	
-	@Override
-	public List<TerminalVO> pagingTerminalBoard(int startNum, int endNum) {
+	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	//운수회사 정보 목록 구현
 	@Override
 	public int CountCompany() {
-		return companyDAO.CountCompany();
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	//운수회사 정보 목록 구현
+/*	@Override
+	public ModelAndView ListCompany() {
+		return companyDAO.ListCompany();
+	}*/
+
+/*	@Override
+	public int CountCompany() {
+		return null;
+		//return companyDAO.CountCompany();
 	}
 
 
 	@Override
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		return companyDAO.pagingCompanyBoard(startNum, endNum);
+		return null;
+		//return companyDAO.pagingCompanyBoard(startNum, endNum);
 	}
-
+*/
 	
 
 }

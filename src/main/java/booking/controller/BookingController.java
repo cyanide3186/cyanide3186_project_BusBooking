@@ -1,5 +1,6 @@
 package booking.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import booking.bus.bean.SeatVO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+
 
 @Controller
 public class BookingController {
@@ -309,7 +311,8 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer.parseInt(request.getParameter("hp"));
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
 		String arrive_day = request.getParameter("arrive_day");
 		
 		// 예약번호 생성 기능
@@ -327,4 +330,17 @@ public class BookingController {
 		
 		return count;
 	}
+	
+	// 좌석 초기화
+	@RequestMapping(value="clear.do")
+	public void clear() {
+		Calendar now = Calendar.getInstance();
+		int getTime = (((now.get(11)*100)+now.get(12))-100);
+		String arrive_time = String.valueOf(getTime);
+		List<String> bus_no = bookingService.timeCheck(arrive_time);
+		for(int i=0; i<=bus_no.size(); i++) {
+			bookingService.seatReset(bus_no.get(i));
+		}
+	}
+
 }

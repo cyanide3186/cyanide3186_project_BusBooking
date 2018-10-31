@@ -22,20 +22,20 @@ public class InfoServiceImpl implements InfoService {
 	/*메소드*/
 	//터미널 정보 목록 구현
 	@Override
-	public ModelAndView ListTerminal() {
-		return null;
-	}
-	
-	@Override
-	public ModelAndView CountTerminal() {
-		return null;
-	}
-	
-	@Override
-	public List<TerminalVO> pagingTerminalBoard(int startNum, int endNum) {
-		return null;
+	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
+		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
+		if(word==null) {
+			return terminalDAO.listTerminal(region, startNum, endNum);
+		} else {
+			return terminalDAO.searchTerminal(region, word, startNum, endNum);
+		}
 	}
 
+	@Override
+	public int CountTerminal() {
+		return terminalDAO.countTerminal();
+	}	
+	
 	@Override
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
 		// TODO Auto-generated method stub

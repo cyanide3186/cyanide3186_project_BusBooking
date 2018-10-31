@@ -11,11 +11,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>	
 	</select>
 	<!--검색창에 단어 입력시 검색 (지역선택을 강제한 상태에서 명칭 및 부기명-숫자로는 검색x-으로 검색-->
-	<select id="" parameterType="" resultType="">
+	<select id="searchTerminal" parameterType="map" resultType="terminalVO">
 	<![CDATA[
 		select * from(select rownum rn, tt.* from (select * from terminal order by name asc) tt)
-		 where (region = #{region} and (name like '%%' or subtext like '%평%')) and (rn>=#{startNum} and rn<=#{endNum});
+		 where (region = #{region} and (name like '%#{word}%' or subtext like '%#{word}%')) and (rn>=#{startNum} and rn<=#{endNum});
 	]]>
 	</select>
-
+	<!-- 목록 수 호출 -->
+	<select id="countTerminal" resultType="int">
+	<![CDATA[
+		select count(*)from terminal;	
+	]]>
+	</select>
 </mapper>

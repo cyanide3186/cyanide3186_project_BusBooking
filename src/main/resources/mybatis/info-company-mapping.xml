@@ -5,13 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.company-mapper">
 
-<!-- 	<select id="CountCompany" resultType="int">
+	<select id="CountCompany" resultType="int">
 		select count(*) from company
-	</select> -->
+	</select> 
 	
-<!-- 	<selct id="pagingCompanyBoard" >
+	<select id="pagingCompanyBoard" resultType="companyVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from company where rn>=#{startNum} and rn<=#{endNum}
-	]]>
-	</selct> -->
+		select name, tel, addr from 
+		(select rownum rn, tt.* from
+		(select * from company order by name asc) tt)
+		where rn>=#{startNum} and rn<=#{endNum}]]>
+	</select>  
+	
 </mapper>

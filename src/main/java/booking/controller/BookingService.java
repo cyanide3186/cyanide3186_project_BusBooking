@@ -5,6 +5,7 @@ import java.util.List;
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
 import booking.ticket.bean.TicketVO;
+import info.terminal.bean.TerminalVO;
 
 public interface BookingService {
 
@@ -17,6 +18,8 @@ public interface BookingService {
 	int busListCount(BusVO busVO); // 배차 조회 목록 수
 
 	List<BusVO> busList(); //터미널 목록 조회
+	
+	List<TerminalVO> regionList(); //지역 목록 조회
 
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 

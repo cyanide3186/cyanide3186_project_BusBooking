@@ -91,6 +91,22 @@
 				$("#glayLayer").fadeOut(300);
 			}
 		});
+		$('#local').dropdown({
+			//출발지선택 드롭다운 의 기능
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value + "을 출발지로 선택하셨습니다.");
+				var start = value;
+				$("#start_tr").attr({
+					placeholder : start,
+					value : start,
+					readonly : "true"
+				});
+				$(".start_bus").fadeOut(200);
+				$("#glayLayer").fadeOut(300);
+			}
+		});
 
 		$('#end_tr').click(function() {
 			//도착지 버튼 클릭시 일어나는 기능
@@ -155,6 +171,30 @@
 			onChange : function(value, text, $choice) {
 				alert("출발시간은" + value + "입니다");
 			}
+		});
+		$.ajax({
+			url:"booking_inputJson.do",
+			type: "post",
+			data:{},
+			dataType: "json",
+			success: function (data) {
+				$.each(data.items,function(index,item){
+					var option = $("<option>",{
+						value:item.end_tr,
+						text:item.end_tr
+					});
+					
+				
+					$("#all_tr").append(option);
+				});
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				$("div").html(
+						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
+								+ errorThrown + ")</div>");
+
+			}
+
 		});
 
 	});
@@ -259,12 +299,20 @@ h1 {
 		<h3 align="center" style="color: white">출발 터미널 선택</h3>
 		<table>
 			<tr>
-				<select name="start" class="ui
+				<td><select name="start"
+					class="ui
+			 fluid selection dropdown" id="all_tr">
+						<option value="">전체 터미널 목록</option>
+						<!-- json으로 추가됨  -->
+				</select></td>
+			</tr>
+			<tr>
+				<td><select name="local"
+					class="ui
 			 fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					
-				</select>
-				</td>
+						<option value="">지역별 목록</option>
+								<!-- document.on 함수 참조 -->
+				</select></td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
@@ -291,15 +339,13 @@ h1 {
 		<h3 align="center" style="color: white">도착 터미널 선택</h3>
 		<table>
 			<tr>
-				<td>
-				<select name="end" class="ui fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					<option value="동서울">동서울</option>
-					<option value="인천공항1터미널">인천공항1터미널</option>
-					<option value="성남">성남</option>
-					<option value="수원">수원</option>
-				</select>
-				</td>
+				<td><select name="end" class="ui fluid selection dropdown">
+						<option value="">주요 터미널</option>
+						<option value="동서울">동서울</option>
+						<option value="인천공항1터미널">인천공항1터미널</option>
+						<option value="성남">성남</option>
+						<option value="수원">수원</option>
+				</select></td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
@@ -313,8 +359,8 @@ h1 {
 
 
 	</div>
-	
-			</div>
+
+	</div>
 
 
 	<div class="wrapper">
@@ -374,7 +420,6 @@ h1 {
 										<i class="calendar icon"></i> <input type="text"
 											placeholder="Date/Time" name="arrivedate">
 									</div>
-							
 							</td>
 						</tr>
 						<tr>
@@ -438,8 +483,7 @@ h1 {
 									<option value="8">8</option>
 									<option value="9">9</option>
 									<option value="10">10</option>
-							</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<td>어린이</td>
@@ -455,8 +499,7 @@ h1 {
 									<option value="8">8</option>
 									<option value="9">9</option>
 									<option value="10">10</option>
-							</select>
-						</td>
+							</select></td>
 						</tr>
 						<tr>
 

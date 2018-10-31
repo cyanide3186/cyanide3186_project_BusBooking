@@ -27,6 +27,19 @@ public class CompanyDAO {
 	public int CountCompany() {
 		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountCompany");
 	}
-	
-	
+
+	//운수사 검색 리스트
+	public List<CompanyVO> searching(String word, int startNum, int endNum) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("word", word);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
+		System.out.println("---------------------------");
+		System.out.println("word : "+word);
+		System.out.println("startNum : "+startNum);
+		System.out.println("endNum : "+endNum);
+		System.out.println("===========================");
+	return sqlSessionTemplate.selectList("mybatis.company-mapper.searching", map);
+	}
 }

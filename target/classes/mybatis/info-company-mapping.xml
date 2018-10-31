@@ -9,9 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from company
 	</select> 
 	
-<!-- 	<selct id="pagingCompanyBoard" >
+	<select id="pagingCompanyBoard" resultType="companyVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from company where rn>=#{startNum} and rn<=#{endNum}
-	]]>
-	</selct> -->
+		select name, tel, addr from 
+		(select rownum rn, tt.* from
+		(select * from company order by name asc) tt)
+		where rn>=#{startNum} and rn<=#{endNum}]]>
+	</select>  
+	
 </mapper>

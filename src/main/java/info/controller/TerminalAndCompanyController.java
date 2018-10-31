@@ -23,22 +23,24 @@ public class TerminalAndCompanyController {
 	//터미널 리스트 목록
 	@RequestMapping(value="/info/terminal.do")
 	public ModelAndView ListTerminal(HttpServletRequest request) {
-		 String str_pg=request.getParameter("pg");
-        int pg=1;
-        if(str_pg!=null){
-            pg=Integer.parseInt(str_pg);
-        }
-        
-        //초기값 설정
+		String str_pg=request.getParameter("pg");
+		String web_region = request.getParameter("region");
+		String web_word =request.getParameter("word");
+		
+		 //초기값 설정
+		int pg=1; 
         String region = "서울특별시";
         String word ="dummyString";
        
         //파라미터 값이 있을시 값을 받아옴
-        if(region!="서울특별시") {
-        	region=request.getParameter("region");
+        if(str_pg!=null){
+            pg=Integer.parseInt(str_pg);
         }
-        if(word!="dummyString") {
-        	word=request.getParameter("word");   
+        if(web_region!=null) {
+    	region=web_region;
+        }
+        if(web_word!=null) {
+        	word=web_word;   
 	    	 //정규표현식(특수문자 제외)에 맞지않는 검색어는 공백으로 처리
 	        String pattern="^[A-Za-z가-힣0-9]*$";
 	        if(!Pattern.matches(pattern, word)) {

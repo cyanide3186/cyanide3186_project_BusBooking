@@ -17,13 +17,7 @@ public class TerminalDAO {
 	
 	//리스트 출력
 	public List<TerminalVO> listTerminal(String region, int startNum, int endNum){
-		System.out.println("On TerminalDAO");
-		System.out.println("---------------------------");
-		System.out.println("region : "+region);
-		System.out.println("startNum : "+startNum);
-		System.out.println("endNum : "+endNum);
-		System.out.println("===========================");
-		System.out.println();
+	
 		Map<String, Object> map = new HashMap<>();
 			map.put("region", region);
 			map.put("startNum", startNum);
@@ -33,11 +27,13 @@ public class TerminalDAO {
 	
 	//검색기능 사용하는 리스트 출력
 	public List<TerminalVO> searchTerminal(String region, String word, int startNum, int endNum){
-		Map<String, Object> map = new HashMap<String, Object>();
-			map.put("region", region);
-			map.put("word", word);
-			map.put("startNum", startNum);
-			map.put("endNum", endNum);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("region", region);
+		map.put("word", word);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		
 		return sqlSessionTemplate.selectList("mybatis.terminal-mapper.searchTerminal", map);	
 	}
 	//목록수 호출

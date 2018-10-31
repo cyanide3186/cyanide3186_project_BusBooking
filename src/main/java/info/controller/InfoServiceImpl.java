@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
@@ -24,6 +23,14 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
+		System.out.println("On InfoService");
+		System.out.println("---------------------------");
+		System.out.println("region : "+region);
+		System.out.println("word : "+word);
+		System.out.println("startNum : "+startNum);
+		System.out.println("endNum : "+endNum);
+		System.out.println("===========================");
+		System.out.println();
 		if(word.equals("dummyString")) {
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {

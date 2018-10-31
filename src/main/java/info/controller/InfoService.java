@@ -2,7 +2,6 @@ package info.controller;
 
 import java.util.List;
 
-import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.terminal.bean.TerminalVO;

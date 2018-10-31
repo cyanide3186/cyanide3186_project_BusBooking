@@ -22,19 +22,26 @@ public class TerminalAndCompanyController {
 	@RequestMapping(value="/info/terminal.do")
 	public ModelAndView ListTerminal(HttpServletRequest request) {
 		 String str_pg=request.getParameter("pg");
-		 String region=request.getParameter("region");
-		 String word =request.getParameter("word");
         int pg=1;
         if(str_pg!=null){
             pg=Integer.parseInt(str_pg);
         }
+        
+        //초기값 설정
+        String region = "서울특별시";
+        String word ="dummyString";
        
-        if(!word.equals("dummyString")) {
-        	 //정규표현식(특수문자 제외)에 맞지않는 검색어는 공백으로 처리
-            String pattern="^[A-Za-z가-힣0-9]*$";
-            if(!Pattern.matches(pattern, word)) {
-            	word="dummyString";
-            }
+        //파라미터 값이 있을시 값을 받아옴
+        if(region!="서울특별시") {
+        	region=request.getParameter("region");
+        }
+        if(word!="dummyString") {
+        	word=request.getParameter("word");   
+	    	 //정규표현식(특수문자 제외)에 맞지않는 검색어는 공백으로 처리
+	        String pattern="^[A-Za-z가-힣0-9]*$";
+	        if(!Pattern.matches(pattern, word)) {
+	        	word="dummyString";
+	        }
         }
        
         int endNum= pg*10;
@@ -51,7 +58,8 @@ public class TerminalAndCompanyController {
         } 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pg", pg);
-        modelAndView.addObject("list", list);
+        modelAndView.addObject("region", region);
+        modelAndView.addObject("list_terminal", list);
         modelAndView.addObject("startPage", startPage);
         modelAndView.addObject("endPage", endPage);
         modelAndView.addObject("totalP", totalP);

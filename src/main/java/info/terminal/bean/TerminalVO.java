@@ -6,6 +6,7 @@ public class TerminalVO {
 	 	private String region;	 //권역(지역)
 	    private String city; 	 //시군구
 	    private String name; 	 //명칭(-전화번호는 괄호로 병기)
+	    private String subtext; //전화번호/부기정보
 	    private String addr; 	 //주소
 	    private String homepage; //홈페이지
 	    private String map; 	 //약도
@@ -62,6 +63,14 @@ public class TerminalVO {
 
 		public void setMap(String map) {
 			this.map = map;
+		}
+
+		public String getSubtext() {
+			return subtext;
+		}
+
+		public void setSubtext(String subtext) {
+			this.subtext = subtext;
 		}
 	    
 	    /*Getters&Setters*/

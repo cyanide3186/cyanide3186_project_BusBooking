@@ -92,7 +92,7 @@ table#tab1 {
 			<td id="logo2" width="400"><a href="../info/company_do">운수사 안내</a></td>
 		</tr>
 	</table>
-		
+		<!-- 터미널 인포 -->
 		<table id="tab1" >
 		<tr style="border-bottom: 1px solid black;">
 			<td width="200" height="60" id="tabA"><a>서울특별시</a></td>
@@ -127,10 +127,10 @@ table#tab1 {
 		<th width="210">홈페이지</th>
 		<th width="50">약도</th>
 	</tr>
-	<c:forEach var="terminalVO" items="${list}">
+	<c:forEach var="terminalVO" items="${list_terminal}">
 	<tr align="center" height="50" >
 		<td width="120" class="line">${terminalVO.city}</td>
-		<td width="620" class="linecenter">${terminalVO.name}<br>
+		<td width="620" class="linecenter">${terminalVO.name}(${terminalVO.subtext})<br>
 		${terminalVO.addr}</td>
 		<td>${terminalVO.homepage }</td>
 		<td width="220" class="line">${terminalVO.map}</td>
@@ -158,7 +158,8 @@ table#tab1 {
 		</td>
 	</tr>
 	</table>
-	
+		<!-- 운수회사 인포 -->
+<!-- 		
 		<div id="tab2">
 		<table class="company_table" border="1">
 		<tr height="50">
@@ -196,7 +197,7 @@ table#tab1 {
 	</table>
 
 		</div>
-
+ -->
 	
 </div>
 <hr>

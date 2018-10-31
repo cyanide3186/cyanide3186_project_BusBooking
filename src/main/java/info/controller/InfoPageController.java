@@ -29,18 +29,18 @@ public class InfoPageController {
 	}
 	//터미널 및 운수회사 안내
 	@RequestMapping(value="/info/infoTrAndCompany.do")
+	public String infoTrAndCompany() {
+		return "../info/terminal.do";
+	}
+	/* 구버전 매핑
 	public ModelAndView infoTrAndCompany(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		/*
-		 * modelAndView.addObject("main","../info/terminal_company_info.jsp");
+		modelAndView.addObject("main","../info/terminal_company_info.jsp");
 		modelAndView.setViewName("../main/index.jsp");
-		*/
-		//창을 처음 열었을때 초기값 설정
-		modelAndView.addObject("region", "서울특별시");
-		modelAndView.addObject("word", "dummyString");
-		modelAndView.setViewName("../info/terminal.do");
+		
 		return modelAndView;
 	}
+	*/
 	//현금영수증 안내
 	@RequestMapping(value="/info/infoTax.do")
 	public ModelAndView infoTax(HttpServletRequest request) {

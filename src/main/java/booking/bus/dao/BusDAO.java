@@ -32,4 +32,14 @@ public class BusDAO {
 	public int busUpdate(BusVO busVO) {
 		return sqlSession.update("mybatis.bus-Mapper.busUpdate", busVO);
 	}
+	
+	// 버스 테이블 조회
+	public List<BusVO> getBus(){
+		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
+	}
+	
+	// 버스 좌석 초기화
+	public int seatReset(String bus_no) {
+		return sqlSession.update("mybatis.bus-Mapper.seatReset", bus_no);
+	}
 }

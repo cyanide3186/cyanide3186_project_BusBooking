@@ -24,6 +24,11 @@ public class BookingServiceImpl implements BookingService {
 	private TicketDAO ticketDAO;
 
 	@Override
+	public int seatReset(String bus_no) {
+		return seatDAO.seatReset(bus_no);
+	}
+
+	@Override
 	public List<BusVO> busCheck(BusVO busVO) {
 		return busDAO.busCheck(busVO);
 	}
@@ -83,4 +88,12 @@ public class BookingServiceImpl implements BookingService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<BusVO> getBus() {
+		System.out.println("bus = " + busDAO.getBus());
+		return busDAO.getBus();
+	}
+	
+	
 }

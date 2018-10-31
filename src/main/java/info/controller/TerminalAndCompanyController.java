@@ -47,7 +47,7 @@ public class TerminalAndCompanyController {
 	        	word="dummyString";
 	        }
         }
-       
+       System.out.println("word===="+request.getParameter("word"));
         int endNum= pg*10;
         int startNum= endNum-9;
         List<TerminalVO> list = 
@@ -67,7 +67,7 @@ public class TerminalAndCompanyController {
         modelAndView.addObject("startPage", startPage);
         modelAndView.addObject("endPage", endPage);
         modelAndView.addObject("totalP", totalP);
-        System.out.println("지역"+region);
+        
         modelAndView.addObject("main", "../info/terminal_company_info.jsp");
         modelAndView.setViewName("../main/index.jsp");
         return modelAndView;

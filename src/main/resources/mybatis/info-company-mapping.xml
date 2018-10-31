@@ -2,6 +2,16 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="mybatis.company-mapper">
 
+<!-- 	<select id="CountCompany" resultType="int">
+		select count(*) from company
+	</select> -->
+	
+<!-- 	<selct id="pagingCompanyBoard" >
+	<![CDATA[
+		select * from company where rn>=#{startNum} and rn<=#{endNum}
+	]]>
+	</selct> -->
 </mapper>

@@ -12,11 +12,6 @@
 	margin-top: 90px;
 	margin-bottom: 90px;
 }
-#voc {
-	text-align: center;
-	font-size: 35px;
-	font-weight: bold;
-}
 .table {
 	border: 1px solid;
 	margin-top: 10px;
@@ -65,7 +60,7 @@
 <body>
 	<div class="wrapper">
 
-		<p id="voc">고객의 소리</p>
+		<p id="notice_txt">고객의 소리</p>
 			<hr>
 			<form action="../qboard/qboardWrite.do" name="qboardWriteForm"
 				method="post" id="qboardWriteForm">

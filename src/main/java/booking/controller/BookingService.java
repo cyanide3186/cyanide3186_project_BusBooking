@@ -33,10 +33,7 @@ public interface BookingService {
 
 	int payment(String ticket_no); // 티켓 결제
 	
-<<<<<<< HEAD
 	void clearSeat(String bus_no);
 	
 	List<String> timeCheck(String arrive_time);
-=======
->>>>>>> fd692090063f07e9d0e7eddd375614b43983c875
 }

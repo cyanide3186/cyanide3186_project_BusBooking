@@ -24,7 +24,7 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
-		if(word==null) {
+		if(word.equals("dummyString")) {
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {
 			return terminalDAO.searchTerminal(region, word, startNum, endNum);

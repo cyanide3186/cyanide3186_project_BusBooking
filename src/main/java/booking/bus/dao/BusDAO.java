@@ -13,16 +13,23 @@ public class BusDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public List<BusVO> busCheck(String arrive_time) {
-		
-		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", arrive_time);
+	// 배차 및 잔여 좌석 수 조회
+	public List<BusVO> busCheck(BusVO busVO) {
+		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", busVO);
 	}
 
-	public List<String> timeCheck(String arrive_time) {
-		
-		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
-		
+	// 터미널 목록 조회
+	public List<BusVO> busList() {
+		return sqlSession.selectList("mybatis.bus-Mapper.busList");
 	}
-
 	
+	// 버스 목록 수 조회 
+	public int busListCount(BusVO busVO) {
+		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", busVO);
+	}
+
+	// 버스 정보 수정
+	public int busUpdate(BusVO busVO) {
+		return sqlSession.update("mybatis.bus-Mapper.busUpdate", busVO);
+	}
 }

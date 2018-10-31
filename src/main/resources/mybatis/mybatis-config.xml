@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 게시판 관련 VO -->
 		<typeAlias type="board.bean.BoardVO" alias="boardVO"/>
 		<typeAlias type="qboard.bean.QboardVO" alias="qboardVO"/>
+		
+		<!-- 인포 관련 VO -->
+		<typeAlias type="info.terminal.bean.TerminalVO" alias="terminalVO"/>
+		<typeAlias type="info.company.bean.CompanyVO" alias="companyVO"/>
 	</typeAliases>
 	<!-- DAO 매퍼를 등록 -->
 	<mappers>
@@ -21,5 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/booking-ticket-mapping.xml"/>
 		<mapper resource="mybatis/board-mapping.xml"/>
 		<mapper resource="mybatis/qboard-mapping.xml"/>
+		<mapper resource="mybatis/info-company-mapping.xml"/>
+		<mapper resource="mybatis/info-terminal-mapping.xml"/>
 	</mappers>
 </configuration>

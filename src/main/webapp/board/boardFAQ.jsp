@@ -123,7 +123,6 @@ table {
 	margin-left: 140px;
 	text-align: center;
 }
-
 #logo1:hover {background-color:#20B2AA; text-decoration: none;}
 #logo2:hover {background-color:#20B2AA; text-decoration: none;}
 #logo3:hover {background-color:#20B2AA; text-decoration: none;}
@@ -133,10 +132,6 @@ table {
 </style>
 </head>
 <body>
-
-<div id=header>
-	<jsp:include page="../template/header.jsp" />
-</div>
 
 	<div class="wrapper">
 	<p id="notice_txt" >FAQ</p>
@@ -241,10 +236,6 @@ table {
 
 </div>
 
-		
-		
-		
-		<hr id="footline">
 		</form>
 	</div>
 

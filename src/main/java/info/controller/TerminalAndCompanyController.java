@@ -28,9 +28,13 @@ public class TerminalAndCompanyController {
 		String web_word =request.getParameter("word");
 		
 		/*파라미터값 확인용*/
+		System.out.println("받아온 파라미터값");
+		System.out.println("------------------------------------");
 		System.out.println("str_pg : "+str_pg);
 		System.out.println("web_region : "+web_region);
-		System.out.println("web_region : "+web_region);
+		System.out.println("web_word : "+web_word);
+		System.out.println("======================================");
+		System.out.println();
 		
 		 //초기값 설정
 		int pg=1; 
@@ -52,7 +56,14 @@ public class TerminalAndCompanyController {
 	        	word="dummyString";
 	        }
         }
-       System.out.println("word===="+request.getParameter("word"));
+        
+        System.out.println("설정된 파라미터 값");
+        System.out.println("------------------------------------");
+		System.out.println("pg : "+pg);
+		System.out.println("region : "+region);
+		System.out.println("word : "+word);
+		System.out.println("======================================");
+		System.out.println();
         int endNum= pg*10;
         int startNum= endNum-9;
         List<TerminalVO> list = 

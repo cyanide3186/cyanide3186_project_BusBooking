@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update seat where bus_no=#{bus_no}, bus_seat=#{bus_seat}, state
 	</update>
 	
+<<<<<<< HEAD
+	<update id="clearseat" parameterType="String">
+		update seat set ticket_no = null where bus_no=#{bus_no};
+=======
 	<!-- 버스 좌석 목록 조회 -->
 	<select id="getSeatList" parameterType="String" resultType="seatVO">
 		select * from seat where bus_no = #{bus_no}
@@ -38,6 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="seatReset" parameterType="String">
 		update seat set ticket_no = null 
 		where bus_no = #{bus_no}
+>>>>>>> fd692090063f07e9d0e7eddd375614b43983c875
 	</update>
 	
 </mapper>

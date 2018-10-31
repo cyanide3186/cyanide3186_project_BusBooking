@@ -79,8 +79,18 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+<<<<<<< HEAD
+	public void clearSeat(String bus_no) {
+		seatDAO.clearSeat(bus_no);
+	}
+
+	@Override
+	public List<String> timeCheck(String arrive_time) {
+		return busDAO.timeCheck(arrive_time);
+=======
 	public List<BusVO> busList() {
 		// TODO Auto-generated method stub
 		return null;
+>>>>>>> fd692090063f07e9d0e7eddd375614b43983c875
 	}
 }

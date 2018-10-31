@@ -22,6 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+<<<<<<< HEAD
+	<select id="timeCheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select bus_no from bus where arrive_time < #{arrive_time}
+=======
 	<!-- 배차 버스 목록 수 조회 -->
 	<select id="busListCount" parameterType="busVO" resultType="int">
 		<![CDATA[
@@ -30,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and end_tr = #{end_tr}
 				and arrive_time < 2400 
 				and arrive_time >= #{arrive_time}
+>>>>>>> fd692090063f07e9d0e7eddd375614b43983c875
 		]]>
 	</select>
 	
@@ -45,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 
-	
+	<!-- 버스터미널 목록 조회 -->
 	<select id="busList" resultType="busVO">
 		<![CDATA[
 			select DISTINCT start_tr end_tr from bus;

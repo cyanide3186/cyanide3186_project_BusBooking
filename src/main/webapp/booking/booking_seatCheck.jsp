@@ -102,19 +102,20 @@ div#page_button button {
 
 #menu1 {
 	float: left;
-	width: 340px;
+	width: 350px;
 }
 
 #menu2 {
-	margin-left: 49px;
+	margin-left: 200px;
 	float: left;
-	width: 340px;
+	width: 400px;
+	height: 300px;
 }
 
 }
 #menu3 {
 	margin-top: 670px;
-	float: left;
+	clear:both;
 	width: 340px;
 }
 
@@ -134,19 +135,20 @@ div#page_button button {
 	width: 340px;
 }
 
-.buy_area>ul {
-	
-}
+
+
 .seat ul span {
-	position:relative;
+	position: relative;
 	right: 40px;
 	top: -10px;
 }
+
 .seat .line1 {
 	position: absolute;
 	left: 820px;
 	top: 800px;
 }
+
 .seat>ul {
 	position: absolute;
 	left: 820px;
@@ -192,8 +194,7 @@ div#page_button button {
 					</div>
 					<div id="buy_area">
 						<ul>
-							<li id="menu1">
-								<span>매수 선택</span>
+							<li id="menu1"><span>매수 선택</span>
 								<div>
 									<table class="ui basic table">
 										<thead>
@@ -247,8 +248,7 @@ div#page_button button {
 											</tr>
 										</thead>
 									</table>
-								</div>
-							</li>
+								</div></li>
 							<li id="menu2"><span>좌석 선택</span>
 								<div class="seat">
 									<img src="../images/bg_seat.gif">
@@ -393,7 +393,30 @@ div#page_button button {
 										</a></li>
 									</ul>
 								</div></li>
-							<li id="menu3"></li>
+							<li id="menu3">
+								<table border="1px" style="width: 400px;height: 500px;">
+								
+									<tbody>
+										<tr>
+											<th colspan="2"><span>선택 매수 및 금액</span></th>
+										</tr>
+										<tr>
+											<th rowspan="3">가는편</th>
+											<td>어른 <span class="adult"></span>명</td>
+										</tr>
+										<tr>
+
+											<td>청소년 <span class="teen"></span>명</td>
+										</tr>
+										<tr>
+											<td>어린이 <span class="kids"></span>명</td>
+										</tr>
+										<tr>
+											<th>합계</th>
+											<td><span class="total"></span>명</td>
+										</tr>
+									</tbody>
+								</table></li>
 						</ul>
 
 					</div>

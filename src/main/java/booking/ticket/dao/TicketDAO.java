@@ -32,8 +32,7 @@ public class TicketDAO {
 	public TicketVO bookingCheck(String ticket_no) {
 		return sqlSession.selectOne("mybatis.ticket-Mapper.bookingCheck", ticket_no);
 	}
-	
-	
+
 	// 예약 수정
 	public int bookingModify(TicketVO ticketVO) {
 		return sqlSession.update("mybatis.ticket-Mapper.bookingModify", ticketVO);

@@ -14,6 +14,5 @@ public interface InfoService {
 	
 	//운수회사 목록 출력
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum);
-	//public ModelAndView ListCompany();
 	public int CountCompany();
 }

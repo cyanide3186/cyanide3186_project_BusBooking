@@ -52,8 +52,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 버스터미널 목록 조회 -->
 	<select id="busList" resultType="busVO">
-		<![CDATA[
-			select DISTINCT start_tr end_tr from bus;
-		]]>
+			select DISTINCT start_tr end_tr from bus
 	</select>
 </mapper>

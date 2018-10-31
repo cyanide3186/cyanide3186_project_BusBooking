@@ -25,10 +25,6 @@ public class SeatDAO {
 		 return sqlSession.insert("mybatis.seat-Mapper.payment", ticket_no);
 	}
 
-	public void clearSeat(String bus_no) {
-		sqlSession.delete("mybatis.seat-Mapper.clearSeat", bus_no);
-	}
-	
 	// 버스 좌석 목록 조회
 	public List<SeatVO> getSeatList(String bus_no) {
 		return sqlSession.selectList("mybatis.seat-Mapper.getSeatList", bus_no);

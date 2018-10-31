@@ -339,7 +339,7 @@ public class BookingController {
 		String arrive_time = String.valueOf(getTime);
 		List<String> bus_no = bookingService.timeCheck(arrive_time);
 		for(int i=0; i<=bus_no.size(); i++) {
-			bookingService.clearSeat(bus_no.get(i));
+			bookingService.seatReset(bus_no.get(i));
 		}
 	}
 

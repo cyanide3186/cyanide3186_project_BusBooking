@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from company
 	</select> 
 	
+	<select id="wordCountCompany" resultType="int">
+		select count(*) from company where addr like '%'||#{word, jdbcType=VARCHAR}||'%'
+	</select>
+
 	<select id="pagingCompanyBoard" resultType="companyVO" parameterType="java.util.Map">
 	<![CDATA[
 		select name, tel, addr from 
@@ -20,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchCompany" resultType="companyVO" parameterType="java.util.Map">
 	<![CDATA[
 	select * from(select rownum rn, tt.* from (select * from company
-	where (addr like '%#{word}%') order by name asc) tt)
-	where (rn>=#{startNum} and rn<=#{endNum});
+	where addr like '%'||#{word, jdbcType=VARCHAR}||'%' order by name asc) tt)
+	where rn>=#{startNum} and rn<=#{endNum}
 	]]>
 	</select>
 	

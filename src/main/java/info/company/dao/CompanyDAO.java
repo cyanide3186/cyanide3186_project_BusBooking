@@ -20,11 +20,6 @@ public class CompanyDAO {
 		Map<String, Object> map=  new HashMap<>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-
-		System.out.println("---------------------------");
-		System.out.println("startNum : "+startNum);
-		System.out.println("endNum : "+endNum);
-		System.out.println("===========================");
 		return sqlSessionTemplate.selectList("mybatis.company-mapper.pagingCompanyBoard", map);
 	}
 	
@@ -33,18 +28,17 @@ public class CompanyDAO {
 		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountCompany");
 	}
 
+	public int wordCountCompany(String word) {
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.wordCountCompany");
+	}
 	//운수사 검색 리스트
 	public List<CompanyVO> searchCompany(String word, int startNum, int endNum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("word", word);
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		
-		System.out.println("---------------------------");
-		System.out.println("word : "+word);
-		System.out.println("startNum : "+startNum);
-		System.out.println("endNum : "+endNum);
-		System.out.println("===========================");
 	return sqlSessionTemplate.selectList("mybatis.company-mapper.searchCompany", map);
 	}
+	
+	
 }

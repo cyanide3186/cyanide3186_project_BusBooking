@@ -43,8 +43,13 @@ public class InfoServiceImpl implements InfoService {
 
 	//운수회사 정보 목록 구현
 	@Override
-	public int CountCompany() {
-		return companyDAO.CountCompany();
+	public int CountCompany(String word) {
+		if(word.equals("searching")) {
+			return companyDAO.CountCompany();
+		} else {
+			return companyDAO.wordCountCompany(word);
+		}
+		
 	}
 
 	@Override

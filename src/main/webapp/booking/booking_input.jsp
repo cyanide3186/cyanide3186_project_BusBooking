@@ -32,11 +32,27 @@
 		
 		$('button').on("click",function(e){
 			e.preventDefault();
-			
+			var date =null;
 			var arrivedate = $("#arrivedate").val();
-			alert(arrivedate);
-			/* http://squll1.tistory.com/entry/javascript-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0-split-substring-substr */
-			
+			//alert(arrivedate);
+			if(arrivedate.indexOf(" ",1)==1){
+				var day="0"+arrivedate.substring(0,1);
+				var month=arrivedate.substring(2,4);
+				var year=arrivedate.substring(6,11);
+					
+				var date=year+"-"+month+"-"+day;
+				//alert(date);
+			}else{
+				var day=arrivedate.substring(0,2);
+				var month=arrivedate.substring(3,5);
+				var year=arrivedate.substring(7,12);
+				var date=year+month+day;
+				//alert(date);
+			}
+				$("#arrivedate").attr('value',date);
+				var value=$("#arrivedate").attr("value");
+				//alert(value+"값이 저장되었습니다.");
+				forObj.submit();
 		});
 	});
 	
@@ -445,6 +461,7 @@ h1 {
 
 			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
+				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
 					<table border="1px solid" align="center">
 						<tr>
@@ -475,14 +492,14 @@ h1 {
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" name="arrivedate" id="arrivedate">
+											placeholder="Date/Time"  id="arrivedate">
 									</div>
 							</td>
 						</tr>
 						<tr>
 							<td>출발 시각</td>
 							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
+								id="arrive_time" >
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>

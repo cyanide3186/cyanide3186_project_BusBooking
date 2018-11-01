@@ -1,5 +1,6 @@
 package booking.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import booking.bus.bean.SeatVO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+import info.terminal.bean.TerminalVO;
+
 
 @Controller
 public class BookingController {
@@ -24,10 +27,11 @@ public class BookingController {
 	BookingService bookingService;
 
 	
-	//터미널 목록 json 수정 예정  
-	@RequestMapping(value="/bookin/booking_inputJson.do")
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_inputJson.do")
 	public ModelAndView booking_Json (ModelAndView modelAndView) {
 		List<BusVO> list=bookingService.busList();
+		
 		String rt = null;
 		int total=	list.size();
 		if(total>0) {
@@ -38,21 +42,50 @@ public class BookingController {
 		JSONObject json = new JSONObject(); //첫번째 중괄호 
 		json.put("rt", rt);
 		json.put("total",total);
-		JSONArray items = new JSONArray();
 		if(total > 0 ) {
+			JSONArray items = new JSONArray();
 			for(int i = 0 ; i<list.size(); i++) {
 				BusVO vo = list.get(i);
 				JSONObject temp = new JSONObject();
-				temp.put("start_tr", vo.getStart_tr());
+				temp.put("end_tr", vo.getEnd_tr());
 				items.put(i,temp);
 			}
 			json.put("items",items);
 		}
 		System.out.println(json);
 		modelAndView.addObject("json",json);
-		modelAndView.addObject("main","../booking/booking_input.jsp");
-		modelAndView.setViewName("../main/index.jsp");
-		return null;
+		modelAndView.setViewName("../booking/booking_inputJson_end.jsp");
+		return modelAndView;
+	}
+	
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_RegionJson.do")
+	public ModelAndView booking_RegionJson (ModelAndView modelAndView) {
+		List<TerminalVO> list=bookingService.regionList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("region", vo.getRegion());
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_regionJson.jsp");
+		return modelAndView;
 	}
 	
 	// 버스 예약화면
@@ -328,4 +361,17 @@ public class BookingController {
 		
 		return count;
 	}
+	
+	// 좌석 초기화
+	@RequestMapping(value="clear.do")
+	public void clear() {
+		Calendar now = Calendar.getInstance();
+		int getTime = (((now.get(11)*100)+now.get(12))-100);
+		String arrive_time = String.valueOf(getTime);
+		List<String> bus_no = bookingService.timeCheck(arrive_time);
+		for(int i=0; i<=bus_no.size(); i++) {
+			bookingService.seatReset(bus_no.get(i));
+		}
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import booking.bus.bean.BusVO;
+import info.terminal.bean.TerminalVO;
 
 @Repository
 public class BusDAO {
@@ -32,14 +33,12 @@ public class BusDAO {
 	public int busUpdate(BusVO busVO) {
 		return sqlSession.update("mybatis.bus-Mapper.busUpdate", busVO);
 	}
-	
-	// 버스 테이블 조회
-	public List<BusVO> getBus(){
-		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
+
+	public List<String> timeCheck(String arrive_time) {
+		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
 	}
-	
-	// 버스 좌석 초기화
-	public int seatReset(String bus_no) {
-		return sqlSession.update("mybatis.bus-Mapper.seatReset", bus_no);
+	//터미널 지역 목록 리스트
+	public List<TerminalVO> regionList() {
+		return sqlSession.selectList("mybatis.bus-Mapper.regionList");
 	}
 }

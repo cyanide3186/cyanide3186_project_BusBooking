@@ -18,8 +18,6 @@
 
 <!-- Site Properties -->
 <title>Fixed Menu Example - Semantic</title>
-
-
 </head>
 <body>
 
@@ -27,7 +25,6 @@
 		<div class="ui container">
 			<a href="#" class="header item" width="300px"> <img class="logo"
 				src="../assets/logo.png" width="100px" height="40px">
-
 			</a> <a href="#" class="item">Home</a>
 
 			<div class="ui simple dropdown item">

@@ -22,9 +22,9 @@ public class SeatDAO {
 	}
 	
 	public int payment(String ticket_no) {
-		 return sqlSession.insert("mybatis.seat-Mapper.booking", ticket_no);
+		 return sqlSession.insert("mybatis.seat-Mapper.payment", ticket_no);
 	}
-	
+
 	// 버스 좌석 목록 조회
 	public List<SeatVO> getSeatList(String bus_no) {
 		return sqlSession.selectList("mybatis.seat-Mapper.getSeatList", bus_no);

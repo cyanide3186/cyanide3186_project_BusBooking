@@ -17,6 +17,7 @@ import booking.bus.bean.SeatVO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+import info.terminal.bean.TerminalVO;
 
 
 @Controller
@@ -54,6 +55,36 @@ public class BookingController {
 		System.out.println(json);
 		modelAndView.addObject("json",json);
 		modelAndView.setViewName("../booking/booking_inputJson_end.jsp");
+		return modelAndView;
+	}
+	
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_RegionJson.do")
+	public ModelAndView booking_RegionJson (ModelAndView modelAndView) {
+		List<TerminalVO> list=bookingService.regionList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("region", vo.getRegion());
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_regionJson.jsp");
 		return modelAndView;
 	}
 	

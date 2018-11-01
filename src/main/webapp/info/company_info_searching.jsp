@@ -88,20 +88,20 @@ table#tab {
     <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 10 }">
-       <a class="Paging" href="../info/company_info.do?pg=${startPage -1 }" >이전</a>
+       <a class="Paging" href="../info/searching.do?pg=${startPage -1 }" >이전</a>
       </c:if>
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pg == i}">
-				<a id="currentPaging" href="../info/company_info.do?pg=${i}"><img src=>${i}</a>
+				<a id="currentPaging" href="../info/searching.do?pg=${i}"><img src=>${i}</a>
 			</c:if>
 			<c:if test="${pg != i}">
-				<a id="paging" href="../info/company_info.do?pg=${i}">${i}</a>
+				<a id="paging" href="../info/searching.do?pg=${i}">${i}</a>
 			</c:if>		
 		</c:forEach>
 		
 		<c:if test="${endPage < totalP}">
-			<a id="paging" href="../info/company_info.do?pg=${endPage + 1}">다음</a>		
+			<a id="paging" href="../info/searching.do?pg=${endPage + 1}">다음</a>		
 		</c:if>
 		</td>
 	</tr>

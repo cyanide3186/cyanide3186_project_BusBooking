@@ -24,17 +24,14 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
-		System.out.println("On InfoService");
-		System.out.println("---------------------------");
-		System.out.println("region : "+region);
-		System.out.println("word : "+word);
-		System.out.println("startNum : "+startNum);
-		System.out.println("endNum : "+endNum);
-		System.out.println("===========================");
-		System.out.println();
+		
 		if(word.equals("dummyString")) {
+//			System.out.println("**Activate listTerminal**");
+//			System.out.println();
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {
+//			System.out.println("**Activate searchTerminal**");
+//			System.out.println();
 			return terminalDAO.searchTerminal(region, word, startNum, endNum);
 		}
 	}
@@ -56,6 +53,12 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
 		return companyDAO.pagingCompanyBoard(startNum, endNum);
+	}
+
+
+	@Override
+	public List<CompanyVO> searching(String word, int startNum, int endNum) {
+		return companyDAO.searching(word, startNum, endNum);
 	}
 
 	

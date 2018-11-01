@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.terminal.bean.TerminalVO;
-import javafx.scene.layout.Region;
 
 @Controller
 public class TerminalAndCompanyController {

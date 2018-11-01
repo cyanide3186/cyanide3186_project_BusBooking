@@ -27,11 +27,6 @@ public class CompanyDAO {
 		System.out.println("===========================");
 		return sqlSessionTemplate.selectList("mybatis.company-mapper.pagingCompanyBoard", map);
 	}
-	
-	//운수사 리스트 갯수
-	public int CountCompany() {
-		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountCompany");
-	}
 
 	//운수사 검색 리스트
 	public List<CompanyVO> searchCompany(String word, int startNum, int endNum) {
@@ -46,5 +41,14 @@ public class CompanyDAO {
 		System.out.println("endNum : "+endNum);
 		System.out.println("===========================");
 	return sqlSessionTemplate.selectList("mybatis.company-mapper.searchCompany", map);
+	}
+	
+	//운수사 리스트 갯수
+	public int CountAllCompany() {
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountAllCompany");
+	}
+	
+	public int CountSelectedCompany(String word) {
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountSelectedCompany",word);
 	}
 }

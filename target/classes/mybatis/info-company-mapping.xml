@@ -5,9 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.company-mapper">
 
-	<select id="CountCompany" resultType="int">
+	<select id="CountAllCompany" resultType="int">
 		select count(*) from company
 	</select> 
+	
+	<select id="CountSelectedCompany" parameterType="string" resultType="int">
+		select count(*) from company where addr like '%'||#{word}||'%'
+	</select>
 	
 	<select id="pagingCompanyBoard" resultType="companyVO" parameterType="java.util.Map">
 	<![CDATA[

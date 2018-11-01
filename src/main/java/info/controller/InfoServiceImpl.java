@@ -51,24 +51,21 @@ public class InfoServiceImpl implements InfoService {
 
 	//운수회사 정보 목록 구현
 	@Override
-	public int CountCompany() {
-		return companyDAO.CountCompany();
+	public int CountCompany(String word) {
+		if(word.equals("dummyString")) {
+			System.out.println("**Activate countAllTerminal**");
+			System.out.println();
+			return companyDAO.CountAllCompany();
+		} else {
+			System.out.println("**Activate countselectedTerminal**");
+			System.out.println();
+			return companyDAO.CountSelectedCompany(word);
+		}
 	}
 
 
 	@Override
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
+	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum) {
 		return companyDAO.pagingCompanyBoard(startNum, endNum);
 	}
-
-	@Override
-	public List<CompanyVO> searching(String word, int startNum, int endNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	
-
 }

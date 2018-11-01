@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper	namespace="mybatis.terminal-mapper">
 	<!-- 지역선택시 리스트 자동 출력 -->
-	<select id="autoListTerminal" parameterType="java.util.Map" resultType="terminalVO">
+	<select id="autoListTerminal" parameterType="map" resultType="terminalVO">
 	<![CDATA[
 		select * from(select rownum rn, tt.* from (select * from terminal where region=#{region} order by name asc) tt)
    		 where rn>=#{startNum} and rn<=#{endNum}
@@ -24,4 +24,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)from terminal
 	]]>
 	</select>
+
 </mapper>

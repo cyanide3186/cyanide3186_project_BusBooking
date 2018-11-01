@@ -11,6 +11,7 @@ import booking.bus.dao.BusDAO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+import info.terminal.bean.TerminalVO;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -24,8 +25,8 @@ public class BookingServiceImpl implements BookingService {
 	private TicketDAO ticketDAO;
 
 	@Override
-	public List<BusVO> busCheck(BusVO busVO) {
-		return busDAO.busCheck(busVO);
+	public List<BusVO> busCheck(BusVO busVO, int start_num, int end_num) {
+		return busDAO.busCheck(busVO, start_num, end_num);
 	}
 
 	@Override
@@ -80,13 +81,13 @@ public class BookingServiceImpl implements BookingService {
 
 
 	@Override
-	public List<String> timeCheck(int time) {
-		return busDAO.timeCheck(time);
+	public List<String> timeCheck(String arrive_time) {
+		return busDAO.timeCheck(arrive_time);
 	}
 
 	public List<BusVO> busList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return busDAO.busList();
 	}
 
 	@Override
@@ -95,7 +96,15 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<String> dayCheck(int day) {
-		return ticketDAO.dayCheck(day);
+	public List<TerminalVO> regionList() {
+	
+		return busDAO.regionList();
 	}
+
+	@Override
+	public List<BusVO> getBus() {
+		return busDAO.getBus();
+	}
+	
+	
 }

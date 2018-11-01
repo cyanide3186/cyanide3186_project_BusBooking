@@ -27,6 +27,35 @@
 
 
 <script type="text/javascript">
+	$(document).ready(function () {
+		var formObj =$("form");
+		
+		$('button').on("click",function(e){
+			e.preventDefault();
+			var date =null;
+			var arrivedate = $("#arrivedate").val();
+			//alert(arrivedate);
+			if(arrivedate.indexOf(" ",1)==1){
+				var day="0"+arrivedate.substring(0,1);
+				var month=arrivedate.substring(2,4);
+				var year=arrivedate.substring(6,11);
+					
+				var date=year+"-"+month+"-"+day;
+				//alert(date);
+			}else{
+				var day=arrivedate.substring(0,2);
+				var month=arrivedate.substring(3,5);
+				var year=arrivedate.substring(7,12);
+				var date=year+month+day;
+				//alert(date);
+			}
+				$("#arrivedate").attr('value',date);
+				var value=$("#arrivedate").attr("value");
+				//alert(value+"값이 저장되었습니다.");
+				forObj.submit();
+		});
+	});
+	
 	$(function() {
 
 		var dt = new Date();
@@ -75,7 +104,7 @@
 			$('#end_text').focus();
 			return false;
 		});
-		$('#start').dropdown({
+		$('#all_tr').dropdown({
 			//출발지선택 드롭다운 의 기능
 			direction : 'down',
 			duration : 700,
@@ -92,13 +121,30 @@
 			}
 		});
 
+		$('#local_start').dropdown({
+			//출발지 지역선택 드롭다운 의 기능
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				/* 지역선택에따른 jons 으로 터미널 목록 생성 */
+			}
+		});
+		$('#local_end').dropdown({
+			//도착지 지역선택 드롭다운 의 기능
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				/* 지역선택에따른 jons 으로 터미널 목록 생성 */
+			}
+		});
+
 		$('#end_tr').click(function() {
 			//도착지 버튼 클릭시 일어나는 기능
 			$(".end_bus").fadeIn(300);
 			$("#glayLayer").fadeIn(300);
 			return false;
 		});
-		$('#end').dropdown({
+		$('#all_end_tr').dropdown({
 			//도착지선택 드롭다운 의 기능
 			direction : 'down',
 			duration : 700,
@@ -155,6 +201,68 @@
 			onChange : function(value, text, $choice) {
 				alert("출발시간은" + value + "입니다");
 			}
+		});
+		$.ajax({
+			url : "booking_inputJson.do",
+			type : "post",
+			data : {},
+			dataType : "json",
+			success : function(data) {
+				$.each(data.items, function(index, item) {
+					var option = $("<option>", {
+						value : item.end_tr,
+						text : item.end_tr
+					});
+
+					$("#all_tr").append(option);
+				});
+				$.each(data.items, function(index, item) {
+					var option = $("<option>", {
+						value : item.end_tr,
+						text : item.end_tr
+					});
+
+					$("#all_end_tr").append(option);
+				});
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				$("div").html(
+						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
+								+ errorThrown + ")</div>");
+
+			}
+
+		});
+		$.ajax({
+			url : "booking_RegionJson.do",
+			type : "post",
+			data : {},
+			dataType : "json",
+			success : function(data) {
+				$.each(data.items, function(index, item) {
+					var option = $("<option>", {
+						value : item.region,
+						text : item.region
+					});
+
+					$("#local_start").append(option);
+				});
+				$.each(data.items, function(index, item) {
+					var option = $("<option>", {
+						value : item.region,
+						text : item.region
+					});
+
+					$("#local_end").append(option);
+				});
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				$("div").html(
+						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
+								+ errorThrown + ")</div>");
+
+			}
+
 		});
 
 	});
@@ -255,16 +363,23 @@ h1 {
 
 	<div id="glayLayer"></div>
 
+	<!-- 출발 터미널 선택 창 -->
 	<div class="start_bus" style="color: white;">
 		<h3 align="center" style="color: white">출발 터미널 선택</h3>
 		<table>
 			<tr>
-				<select name="start" class="ui
-			 fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					
-				</select>
-				</td>
+				<td>전체 터미널 목록</td>
+				<td><select name="start" class="ui dropdown" id="all_tr">
+						<option value="">전체 터미널 목록</option>
+						<!-- json으로 추가됨  -->
+				</select></td>
+			</tr>
+			<tr>
+				<td>지역별로 터미널 선택</td>
+				<td><select name="local" class="ui dropdown" id="local_start">
+						<option value="">지역별 선택</option>
+						<!-- document.on 함수 참조 -->
+				</select></td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
@@ -286,25 +401,29 @@ h1 {
 			</table>
 		</div>
 	</div>
-
-	<div class="end_bus">
+	<!-- 출발 터미널 선택창 끝 -->
+	<!-- 도착 터미널 선택창 -->
+	<div class="end_bus" style="color: white;">
 		<h3 align="center" style="color: white">도착 터미널 선택</h3>
 		<table>
 			<tr>
-				<td>
-				<select name="end" class="ui fluid selection dropdown">
-					<option value="">주요 터미널</option>
-					<option value="동서울">동서울</option>
-					<option value="인천공항1터미널">인천공항1터미널</option>
-					<option value="성남">성남</option>
-					<option value="수원">수원</option>
-				</select>
-				</td>
+				<td>전체 터미널 목록</td>
+				<td><select name="end" class="ui dropdown" id="all_end_tr">
+						<option value="">전체 터미널 목록</option>
+						<!-- json으로 목록 추가됨  -->
+				</select></td>
+			</tr>
+			<tr style="border-bottom: 1px solid white;">
+				<td>지역별로 터미널 선택</td>
+				<td><select name="local" class="ui dropdown" id="local_end">
+						<option value="">지역별 선택</option>
+						<!-- document.on 함수 참조 -->
+				</select></td>
 			</tr>
 			<tr style="border-bottom: 1px solid white;">
 				<td>터미널 검색</td>
 				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="start_text"
+						<input type="text" placeholder="Search..." id="end_text"
 							size="70%">
 					</div></td>
 			</tr>
@@ -313,8 +432,8 @@ h1 {
 
 
 	</div>
-	
-			</div>
+
+	</div>
 
 
 	<div class="wrapper">
@@ -340,8 +459,9 @@ h1 {
 
 
 
-			<form action="../booking/booking_bus.do" method="post"
+			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
+				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
 					<table border="1px solid" align="center">
 						<tr>
@@ -372,15 +492,14 @@ h1 {
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" name="arrivedate">
+											placeholder="Date/Time"  id="arrivedate">
 									</div>
-							
 							</td>
 						</tr>
 						<tr>
 							<td>출발 시각</td>
 							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
+								id="arrive_time" >
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>
@@ -438,8 +557,7 @@ h1 {
 									<option value="8">8</option>
 									<option value="9">9</option>
 									<option value="10">10</option>
-							</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<td>어린이</td>
@@ -455,8 +573,7 @@ h1 {
 									<option value="8">8</option>
 									<option value="9">9</option>
 									<option value="10">10</option>
-							</select>
-						</td>
+							</select></td>
 						</tr>
 						<tr>
 

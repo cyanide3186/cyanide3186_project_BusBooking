@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
@@ -24,49 +23,53 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum){
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
+		
 		if(word.equals("dummyString")) {
+			System.out.println("**Activate listTerminal**");
+			System.out.println();
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {
+			System.out.println("**Activate searchTerminal**");
+			System.out.println();
 			return terminalDAO.searchTerminal(region, word, startNum, endNum);
 		}
 	}
 
 	@Override
-	public int CountTerminal() {
-		return terminalDAO.countTerminal();
+	public int CountTerminal(String region, String word) {
+
+		if(word.equals("dummyString")) {
+			System.out.println("**Activate countAllTerminal**");
+			System.out.println();
+			return terminalDAO.countAllTerminal(region);
+		} else {
+			System.out.println("**Activate countselectedTerminal**");
+			System.out.println();
+			return terminalDAO.countSelectedTerminal(region, word);
+		}
 	}	
-	
-	@Override
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int CountCompany() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 	//운수회사 정보 목록 구현
-/*	@Override
-	public ModelAndView ListCompany() {
-		return companyDAO.ListCompany();
-	}*/
+	@Override
+	public int CountCompany(String word) {
 
-/*	@Override
-	public int CountCompany() {
-		return null;
-		//return companyDAO.CountCompany();
+		if(word.equals("searching")) {
+			return companyDAO.CountCompany();
+		} else {
+			return companyDAO.wordCountCompany(word);
+		}
+		
 	}
 
 
 	@Override
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		return null;
-		//return companyDAO.pagingCompanyBoard(startNum, endNum);
+	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum) {
+		if(word.equals("searching")) {
+			return companyDAO.pagingCompanyBoard(startNum, endNum);
+		} else {
+			return companyDAO.searchCompany(word, startNum, endNum);
+		}
+		
 	}
-*/
-	
 
 }

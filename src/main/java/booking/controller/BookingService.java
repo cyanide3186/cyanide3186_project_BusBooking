@@ -5,6 +5,7 @@ import java.util.List;
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
 import booking.ticket.bean.TicketVO;
+import info.terminal.bean.TerminalVO;
 
 public interface BookingService {
 
@@ -12,11 +13,13 @@ public interface BookingService {
 
 	int bookingCancel(String ticket_no); // 티켓 취소
 
-	List<BusVO> busCheck(BusVO busVO); // 배차 조회
+	List<BusVO> busCheck(BusVO busVO, int start_num, int end_num); // 배차 조회
 	
 	int busListCount(BusVO busVO); // 배차 조회 목록 수
 
 	List<BusVO> busList(); //터미널 목록 조회
+	
+	List<TerminalVO> regionList(); //지역 목록 조회
 
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 
@@ -34,7 +37,7 @@ public interface BookingService {
 	
 	void seatReset(String bus_no);
 	
-	List<String> timeCheck(int time);
-	
-	List<String> dayCheck(int day);
+	List<String> timeCheck(String arrive_time);
+
+	List<BusVO> getBus();
 }

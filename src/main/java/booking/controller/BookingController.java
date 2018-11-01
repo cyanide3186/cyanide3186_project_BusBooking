@@ -1,6 +1,6 @@
 package booking.controller;
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ import booking.bus.bean.SeatVO;
 import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
 import booking.ticket.dao.TicketDAO;
+import info.terminal.bean.TerminalVO;
 
 
 @Controller
@@ -27,11 +29,13 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 
+	String[] arrivalTime_array; 
 	
-	//터미널 목록 json 수정 예정  
-	@RequestMapping(value="/bookin/booking_inputJson.do")
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_inputJson.do")
 	public ModelAndView booking_Json (ModelAndView modelAndView) {
 		List<BusVO> list=bookingService.busList();
+		
 		String rt = null;
 		int total=	list.size();
 		if(total>0) {
@@ -42,21 +46,50 @@ public class BookingController {
 		JSONObject json = new JSONObject(); //첫번째 중괄호 
 		json.put("rt", rt);
 		json.put("total",total);
-		JSONArray items = new JSONArray();
 		if(total > 0 ) {
+			JSONArray items = new JSONArray();
 			for(int i = 0 ; i<list.size(); i++) {
 				BusVO vo = list.get(i);
 				JSONObject temp = new JSONObject();
-				temp.put("start_tr", vo.getStart_tr());
+				temp.put("end_tr", vo.getEnd_tr());
 				items.put(i,temp);
 			}
 			json.put("items",items);
 		}
 		System.out.println(json);
 		modelAndView.addObject("json",json);
-		modelAndView.addObject("main","../booking/booking_input.jsp");
-		modelAndView.setViewName("../main/index.jsp");
-		return null;
+		modelAndView.setViewName("../booking/booking_inputJson_end.jsp");
+		return modelAndView;
+	}
+	
+	//터미널 목록 json 
+	@RequestMapping(value="/booking/booking_RegionJson.do")
+	public ModelAndView booking_RegionJson (ModelAndView modelAndView) {
+		List<TerminalVO> list=bookingService.regionList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("region", vo.getRegion());
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_regionJson.jsp");
+		return modelAndView;
 	}
 	
 	// 버스 예약화면
@@ -79,17 +112,20 @@ public class BookingController {
 		
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
-		int arrive_time = Integer.parseInt(request.getParameter("arrive_time"));
+		String arrive_time = request.getParameter("arrive_time");
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
+		int start_num = Integer.parseInt(request.getParameter("start_num"));	// 배차 조회 항목 수
+		int end_num = Integer.parseInt(request.getParameter("end_num"));		// 배차 조회 항목 수
+		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(arrive_time);
 		
-		List<BusVO> list = bookingService.busCheck(busVO);		// 배차조회 결과 목록
+		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
 		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
@@ -276,7 +312,7 @@ public class BookingController {
 		String payday = request.getParameter("payday");        
 		int totalpay = Integer.parseInt(request.getParameter("totalpay"));         
 		int age_group  = Integer.parseInt(request.getParameter("kid"));             
-		int arrive_day = Integer.parseInt(request.getParameter("arrive_day"));
+		String arrive_day = request.getParameter("arrive_day");
 		
 		vo.setArrive_day(arrive_day);
 		vo.setHp(hp);
@@ -315,7 +351,7 @@ public class BookingController {
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
 		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 		
-		int arrive_day = Integer.parseInt(request.getParameter("arrive_day"));
+		String arrive_day = request.getParameter("arrive_day");
 		
 		// 예약번호 생성 기능
 		/*
@@ -334,21 +370,50 @@ public class BookingController {
 	}
 	
 	// 좌석 초기화
-	@RequestMapping(value="/booking/clear.do")
+	@RequestMapping(value="clear.do")
 	public void clear() {
 		Calendar now = Calendar.getInstance();
-		int day = ((now.get(1)*10000)+((now.get(2)+1)*100)+now.get(5));
-		List<String> bus = bookingService.dayCheck(day);
-		int time = (((now.get(11)*100)+now.get(12)));
-		List<String> bus_no = bookingService.timeCheck(time);
-		for(int i=0; i<bus.size(); i++) {
-			for(int j=0; j<bus_no.size(); j++) {
-				if(bus_no.size()!=0&&bus.size()!=0&&bus.get(i).equals(bus_no.get(j))){
-					for(int k=0; k<bus_no.size(); k++) {
-						System.out.println(bus.get(i));
-						bookingService.seatReset(bus_no.get(k));
-					}
-				}
+		int getTime = (((now.get(11)*100)+now.get(12))-100);
+		String arrive_time = String.valueOf(getTime);
+		List<String> bus_no = bookingService.timeCheck(arrive_time);
+		for(int i=0; i<=bus_no.size(); i++) {
+			bookingService.seatReset(bus_no.get(i));
+		}
+	}
+
+	// 버스 예상 도착시간에 좌석 초기화
+	@Scheduled(cron="0 * * * * *")
+	public void seatReset() {
+		
+		List<BusVO> list = new ArrayList<>();
+		list = bookingService.getBus();
+		
+		arrivalTime_array = new String[list.size()];
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int arrive_time = Integer.parseInt(list.get(i).getArrive_time());
+			int time = Integer.parseInt(list.get(i).getTime());
+			String bus_no = list.get(i).getBus_no();
+			
+			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
+			int arrivalTime = arrive_time + time;
+			
+			if(arrivalTime >= 2400) arrivalTime -= 2400;
+			
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime);
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+		Calendar cal = Calendar.getInstance();
+		String currentTime = sdf.format(cal.getTime());
+		
+		for(int i = 0; i < arrivalTime_array.length; i++) {
+			int cutIndex = arrivalTime_array[i].indexOf("+");
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+			
+			if(arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
+				bookingService.seatReset(bus_no);
 			}
 		}
 	}

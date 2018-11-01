@@ -47,8 +47,14 @@ public class TerminalDAO {
 		
 		return sqlSessionTemplate.selectList("mybatis.terminal-mapper.searchTerminal", map);	
 	}
-	//목록수 호출
-	public int countTerminal() {
-		return sqlSessionTemplate.selectOne("mybatis.terminal-mapper.countTerminal");
+	
+	//전체 목록수 호출
+	public int countAllTerminal() {
+		return sqlSessionTemplate.selectOne("mybatis.terminal-mapper.countAllTerminal");
+	}
+	
+	//검색 목록수 호출
+	public int countSelectedTerminal(String word) {
+		return sqlSessionTemplate.selectOne("mybatis.terminal-mapper.countSelectedTerminal",word);
 	}
 }

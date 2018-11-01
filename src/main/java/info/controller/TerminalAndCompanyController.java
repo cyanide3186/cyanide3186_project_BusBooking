@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.terminal.bean.TerminalVO;
-import javafx.scene.layout.Region;
 
 @Controller
 public class TerminalAndCompanyController {
@@ -35,7 +34,7 @@ public class TerminalAndCompanyController {
 //		System.out.println("web_word : "+web_word);
 //		System.out.println("======================================");
 //		System.out.println();
-		
+//		
 		 //초기값 설정
 		int pg=1; 
         String region = "서울특별시";
@@ -68,7 +67,7 @@ public class TerminalAndCompanyController {
         int startNum= endNum-9;
         List<TerminalVO> list = 
         		infoService.pagingTerminalBoard(region, word, startNum, endNum);
-        int totalC=infoService.CountTerminal();
+        int totalC=infoService.CountTerminal(region, word);
         int totalP=(totalC+9)/10;
         
         int startPage=(pg-1)/10*10+1;    
@@ -93,31 +92,47 @@ public class TerminalAndCompanyController {
 	@RequestMapping(value="/info/company_info.do")
 	public ModelAndView companyList(HttpServletRequest request) {
 		
-		int pg = Integer.parseInt(request.getParameter("pg"));
+		String str_pg = request.getParameter("pg");
+		String search_word = request.getParameter("word");
 		
-		 int endNum= pg*10;
-	        int startNum= endNum-9;
-	        List<CompanyVO> list = infoService.pagingCompanyBoard(startNum, endNum);
-	        int totalC=infoService.CountCompany();
-	        int totalP=(totalC+9)/10;
-	        
-	        int startPage=(pg-1)/10*10+1;    
-	        int endPage=startPage+9;
-	        if(endPage>totalP) {
-	            endPage=totalP;
-	        } 
-	        
-	        ModelAndView modelAndView = new ModelAndView();
-	        modelAndView.addObject("pg", pg);
-	        modelAndView.addObject("list", list);
-	        modelAndView.addObject("startPage", startPage);
-	        modelAndView.addObject("endPage", endPage);
-	        modelAndView.addObject("totalP", totalP);
-	        modelAndView.addObject("main", "../info/company_info.jsp");
-	        modelAndView.setViewName("../main/index.jsp");
-	        return modelAndView;	        
+		int pg=1; 
+		String word = "searching";
+		if(str_pg!=null){
+            pg=Integer.parseInt(str_pg);
+        }
+		
+		if(search_word!=null) {
+			word=search_word;
+			
+		String pattern="^[A-Za-z가-힣0-9]*$";
+		      if(!Pattern.matches(pattern, word)) {
+		       word="searching";
+		}
+		}
+		int endNum= pg*10;
+        int startNum= endNum-9;
+        List<CompanyVO> list = infoService.pagingCompanyBoard(word, startNum, endNum);
+        int totalC=infoService.CountCompany(word);
+        int totalP=(totalC+9)/10;
+        
+        int startPage=(pg-1)/10*10+1;    
+        int endPage=startPage+9;
+        if(endPage>totalP) {
+            endPage=totalP;
+        } 
+        
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("pg", pg);
+        modelAndView.addObject("list", list);
+        modelAndView.addObject("word", word);
+        modelAndView.addObject("startPage", startPage);
+        modelAndView.addObject("endPage", endPage);
+        modelAndView.addObject("totalP", totalP);
+        modelAndView.addObject("main", "../info/company_info.jsp");
+        modelAndView.setViewName("../main/index.jsp");
+        return modelAndView;	        
 	}
-	
+/*	
 	@RequestMapping(value="/info/searching.do")
 	public ModelAndView searching(HttpServletRequest request) {
 		
@@ -151,4 +166,5 @@ public class TerminalAndCompanyController {
         return modelAndView;	    
 		
 	}
+	*/
 }

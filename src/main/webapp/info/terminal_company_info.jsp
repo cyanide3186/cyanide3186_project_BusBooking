@@ -33,16 +33,30 @@ table#tab1 {
 	text-align: center;
 	cursor: pointer;
 }
-.terminal_table{
-	margin-left: 250px;
-	margin-top: 30px;
-	border: 1px solid black;
-	border-radius: 10px;
-	
-/* 	display: none; */
+.line {
+	border-bottom: 1px solid #ccc; 
+	border-right: 1px solid #ccc;
 }
+.linebuttom{
+	border-bottom: 1px solid #ccc;
+}
+.terminal_table{
+	margin-left: 150px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	text-align: center;
+	margin-top: 20px;
+}
+.table {margin-left: 150px; margin-bottom: 100px; }
+#currentPaging {
+	font-weight: 1000; 
+	color: black;
+	font-size: 20px; 
+	margin-right: 8px;
+}
+#paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 880px;
+	margin-left: 840px;
 	width:220px; 
 	height:30px;
 }
@@ -72,7 +86,7 @@ table#tab1 {
 
 	<table id="tab" >
 		<tr>
-			<td id="logo1" width="400" height="80"><a>터미널 안내</a></td>
+			<a href="../info/infoTrAndCompany.do"><td id="logo1" width="400" height="80">터미널 안내</td></a>
 			<td id="logo2" width="400"><a href="../info/company_info.do?pg=1">운수사 안내</a></td>
 		</tr>
 	</table>
@@ -127,38 +141,44 @@ table#tab1 {
 				
 	<table class="terminal_table" >
 	<tr height="50">
-		<th width="100">구/군</th>
-		<th width="300">명칭(전화번호),주소</th>
-		<th width="150">홈페이지</th>
+		<th width="120">구/군</th>
+		<th width="420">명칭(전화번호),주소</th>
+		<th width="170">홈페이지</th>
 		<th width="50">약도</th>
 	</tr>
+	</table>
+	<table class="table" style="border-bottom: 1px solid black;">
 	<c:forEach var="terminalVO" items="${list_terminal}">
 	<tr align="center" height="50" >
-		<td width="120" class="line">${terminalVO.city}</td>
-		<td width="420" class="linecenter">${terminalVO.name}(${terminalVO.subtext})<br>
+		<td width="120" class="line">
+		${terminalVO.city}</td>
+		<td width="420" class="line">
+		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="120" >${terminalVO.homepage }</td>
-		<td width="50" class="line">${terminalVO.map}</td>
+		<td width="170" class="line">
+		${terminalVO.homepage }</td>
+		<td width="50" class="linebuttom">
+		${terminalVO.map}</td>
 	</tr>
 	</c:forEach>	
 
 	    <tr>
-       <td colspan="5" align="center" height="30px;" style="border-top: 1px solid;">
+       <td colspan="5" align="center" height="30px;" >
        <c:if test="${startPage > 10 }">
-       <a class="Paging" href="../board/boardList.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
+       <a class="paging" href="../info/terminal.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
       </c:if>
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<c:if test="${pg == i}">
-				<a id="currentPaging" href="../board/boardList.do?pg=${i}"><img src=>${i}</a>
+				<a id="currentPaging" href="../info/terminal.do?pg=${i}"><img src=>${i}</a>
 			</c:if>
 			<c:if test="${pg != i}">
-				<a id="paging" href="../board/boardList.do?pg=${i}">${i}</a>
+				<a id="paging" href="../info/terminal.do?pg=${i}">${i}</a>
 			</c:if>		
 		</c:forEach>
 		
 		<c:if test="${endPage < totalP}">
-			<a id="paging" href="../board/boardList.do?pg=${endPage + 1}" style="font-size: 25px;">다음</a>		
+			<a id="paging" href="../info/terminal.do?pg=${endPage + 1}" style="font-size: 25px;">다음</a>		
 		</c:if>
 		</td>
 	</tr>

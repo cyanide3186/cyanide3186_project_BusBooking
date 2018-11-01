@@ -17,29 +17,28 @@ public class CompanyDAO {
 	
 	//운수사 리스트
 	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum){
-		Map<String, Integer> map=  new HashMap<>();
+		Map<String, Object> map=  new HashMap<>();
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		return sqlSessionTemplate.selectList("mybatis.company-mapper.pagingCompanyBoard", map);
 	}
-	
-	//운수사 리스트 갯수
-	public int CountCompany() {
-		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountCompany");
-	}
 
+	
 	//운수사 검색 리스트
-	public List<CompanyVO> searching(String word, int startNum, int endNum) {
+	public List<CompanyVO> searchCompany(String word, int startNum, int endNum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("word", word);
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
-		
-		System.out.println("---------------------------");
-		System.out.println("word : "+word);
-		System.out.println("startNum : "+startNum);
-		System.out.println("endNum : "+endNum);
-		System.out.println("===========================");
-	return sqlSessionTemplate.selectList("mybatis.company-mapper.searching", map);
+	return sqlSessionTemplate.selectList("mybatis.company-mapper.searchCompany", map);
+	}
+	
+	//운수사 리스트 갯수
+	public int CountCompany() {
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.CountAllCompany");
+	}
+	
+	public int wordCountCompany(String word) {
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.wordCountCompany", word);
 	}
 }

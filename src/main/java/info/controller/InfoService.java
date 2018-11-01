@@ -10,10 +10,9 @@ public interface InfoService {
 
 	//터미널 목록 출력
 	public List<TerminalVO> pagingTerminalBoard(String region, String word, int startNum, int endNum);
-	public int CountTerminal();
+	public int CountTerminal(String region, String word);
 	
 	//운수회사 목록 출력
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum);
-	public int CountCompany();
-	public List<CompanyVO> searching(String word, int startNum, int endNum);
+	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum);
+	public int CountCompany(String word);
 }

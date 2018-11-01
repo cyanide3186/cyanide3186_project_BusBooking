@@ -19,13 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 	</select>
 	<!--Counting ALL Terminals-->
-	<select id="countAllTerminal" resultType="int">
+	<select id="countAllTerminal" parameterType="string" resultType="int">
 	<![CDATA[
-		select count(*)from terminal
+		select count(*)from terminal where region=#{region}
 	]]>
 	</select>
 	<!-- Counting selected Terminals -->
-	<select id="countSelectedTerminal" parameterType="string" resultType="int">
+	<select id="countSelectedTerminal" parameterType="map" resultType="int">
 	<![CDATA[
 		select count(*)from terminal where name like '%'||#{word}||'%'
 	]]>

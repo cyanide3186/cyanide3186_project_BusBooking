@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.terminal.bean.TerminalVO;
-import javafx.scene.layout.Region;
 
 @Controller
 public class TerminalAndCompanyController {
@@ -68,7 +67,7 @@ public class TerminalAndCompanyController {
         int startNum= endNum-9;
         List<TerminalVO> list = 
         		infoService.pagingTerminalBoard(region, word, startNum, endNum);
-        int totalC=infoService.CountTerminal(word);
+        int totalC=infoService.CountTerminal(region, word);
         int totalP=(totalC+9)/10;
         
         int startPage=(pg-1)/10*10+1;    

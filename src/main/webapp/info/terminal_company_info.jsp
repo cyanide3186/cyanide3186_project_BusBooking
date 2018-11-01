@@ -8,39 +8,30 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
-#logo:hover { background-color: #87CEFA;}
-#logo {
-
-	border: 1px solid white;
-	border-radius: 10px;
-}
-#taga {
-	position: relative;
-	top: -20px;
-	font-size: 30px;
-}
+#logo1:hover {text-decoration: none; background-color: #87CEFA;}
+#logo2:hover {text-decoration: none; background-color: #87CEFA;}
 a { cursor: pointer;
 	margin: 20px;
 }
 table#tab {
-	margin-left: 250px;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	margin-left: 300px;
 	margin-top: 40px;
 	text-align: center;
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: 900;
 	cursor: pointer;
 }
-table#tab_area {
-	margin-left: 140px;
+table#tab1 {
+	margin-left: 300px;
 	font-size: 20px;
 	margin-bottom: 30px;
-	margin-top: 60px;
+	margin-top: 30px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
 	text-align: center;
 	cursor: pointer;
-}
-#area{
-	background-color:#C8D7FF;
-	border-radius: 10px;
 }
 .line {
 	border-bottom: 1px solid #ccc; 
@@ -65,10 +56,9 @@ table#tab_area {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 800px;
+	margin-left: 840px;
 	width:220px; 
 	height:30px;
-	border-radius: 10px;
 }
 </style>
 
@@ -94,57 +84,52 @@ table#tab_area {
 			<hr>
 			<div class="form">
 
-		<table id="tab">
-			<tr>
-			<td width="350" id="logo" >
-			<img src="../images/terminal.png" width="60" height="60">
-			<a href="../info/infoTrAndCompany.do" id="taga"  >터미널 안내</a></td>
-			<td width="350"  id="logo">
-			<img src="../images/bus.png" width="60" height="60">
-			<a href="../info/company_info.do?pg=1" id="taga">운수사 안내</a></td>
-			</tr>
-		</table>
-		
-		<!-- 터미널 인포 -->
-		<table id="tab_area" cellspacing="20px">
+	<table id="tab" >
 		<tr>
-			<td width="200" height="60" class="tabA" id="area">
+			<a href="../info/infoTrAndCompany.do"><td id="logo1" width="400" height="80">터미널 안내</td></a>
+			<td id="logo2" width="400"><a href="../info/company_info.do?pg=1">운수사 안내</a></td>
+		</tr>
+	</table>
+		<!-- 터미널 인포 -->
+		<table id="tab1" >
+		<tr style="border-bottom: 1px solid black;">
+			<td width="200" height="60" class="tabA">
 			<a href="../info/terminal.do?region=서울특별시&pg=1">서울특별시</a></td>
-			<td width="200" class="tabB"  id="area">
+			<td width="200" class="tabB">
 			<a href="../info/terminal.do?region=경기도&pg=1">경기도</a></td>
-			<td width="200" class="tabC" id="area">
+			<td width="200" class="tabC">
 			<a href="../info/terminal.do?region=인천광역시&pg=1">인천광역시</a></td>
-			<td width="200" class="tabD" id="area">
+			<td width="200" class="tabD">
 			<a href="../info/terminal.do?region=강원도&pg=1">강원도</a></td>
 		</tr>
 		<tr>
-			<td width="200" height="60" class="tabE" id="area">
+			<td width="200" height="60" class="tabE">
 			<a href="../info/terminal.do?region=충청북도&pg=1">충청북도</a></td>
-			<td width="200" class="tabF" id="area">
+			<td width="200" class="tabF">
 			<a href="../info/terminal.do?region=대전광역시&pg=1">대전광역시</a></td>
-			<td width="200" class="tabG" id="area">
+			<td width="200" class="tabG">
 			<a href="../info/terminal.do?region=충청남도&pg=1">충청남도</a></td>
-			<td width="200" class="tabH" id="area">
+			<td width="200" class="tabH">
 			<a href="../info/terminal.do?region=세종특별자치시&pg=1">세종특별자치시</a></td>
 		</tr>
 		<tr>
-			<td width="180" height="60" class="tabI"  id="area">
+			<td width="180" height="60" class="tabI">
 			<a href="../info/terminal.do?region=전라북도&pg=1">전라북도</a></td>
-			<td width="180" class="tabJ" id="area">
+			<td width="180" class="tabJ">
 			<a href="../info/terminal.do?region=전라남도&pg=1">전라남도</a></td>
-			<td width="180" class="tabK" id="area">
+			<td width="180" class="tabK">
 			<a href="../info/terminal.do?region=광주광역시&pg=1">광주광역시</a></td>
-			<td width="180" class="tabL" id="area">
+			<td width="180" class="tabL">
 			<a href="../info/terminal.do?region=경상북도&pg=1">경상북도</a></td>
 		</tr>
 		<tr>
-			<td width="200" height="60" class="tabM" id="area">
+			<td width="200" height="60" class="tabM">
 			<a href="../info/terminal.do?region=대구광역시&pg=1">대구광역시</a></td>
-			<td width="200" class="tabN" id="area">
+			<td width="200" class="tabN">
 			<a href="../info/terminal.do?region=경상남도&pg=1">경상남도</a></td>
-			<td width="200" class="tabO" id="area">
+			<td width="200" class="tabO">
 			<a href="../info/terminal.do?region=울산광역시&pg=1">울산광역시</a></td>
-			<td width="200" class="tabP" id="area">
+			<td width="200" class="tabP">
 			<a href="../info/terminal.do?region=부산광역시&pg=1">부산광역시</a></td>
 		</tr>
 	</table>
@@ -156,23 +141,23 @@ table#tab_area {
 				
 	<table class="terminal_table" >
 	<tr height="50">
-		<th width="160">구/군</th>
-		<th width="460">명칭(전화번호),주소</th>
-		<th width="210">홈페이지</th>
-		<th width="90">약도</th>
+		<th width="120">구/군</th>
+		<th width="420">명칭(전화번호),주소</th>
+		<th width="170">홈페이지</th>
+		<th width="50">약도</th>
 	</tr>
 	</table>
 	<table class="table" style="border-bottom: 1px solid black;">
 	<c:forEach var="terminalVO" items="${list_terminal}">
 	<tr align="center" height="50" >
-		<td width="160" class="line">
+		<td width="120" class="line">
 		${terminalVO.city}</td>
-		<td width="460" class="line">
-		${terminalVO.name}(${terminalVO.subtext})<br>
+		<td width="420" class="line">
+		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="210" class="line">
+		<td width="170" class="line">
 		${terminalVO.homepage }</td>
-		<td width="90" class="linebuttom">
+		<td width="50" class="linebuttom">
 		${terminalVO.map}</td>
 	</tr>
 	</c:forEach>	

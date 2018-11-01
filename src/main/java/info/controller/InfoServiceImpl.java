@@ -36,22 +36,23 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public int CountTerminal(String word) {
+	public int CountTerminal(String region, String word) {
 
 		if(word.equals("dummyString")) {
 			System.out.println("**Activate countAllTerminal**");
 			System.out.println();
-			return terminalDAO.countAllTerminal();
+			return terminalDAO.countAllTerminal(region);
 		} else {
 			System.out.println("**Activate countselectedTerminal**");
 			System.out.println();
-			return terminalDAO.countSelectedTerminal(word);
+			return terminalDAO.countSelectedTerminal(region, word);
 		}
 	}	
 
 	//운수회사 정보 목록 구현
 	@Override
 	public int CountCompany(String word) {
+
 		if(word.equals("searching")) {
 			return companyDAO.CountCompany();
 		} else {

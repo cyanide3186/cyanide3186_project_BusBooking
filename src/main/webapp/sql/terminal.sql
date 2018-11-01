@@ -1,67 +1,23 @@
---í„°ë¯¸ë„ ì •ë³´
 create table terminal(
-    region varchar2(45),    --ê¶Œì—­(ì§€ì—­)
-    city   varchar2(150),   --ì‹œêµ°êµ¬
-    name varchar2(120),     --ëª…ì¹­
-    subtext varchar2(120),      --ì „í™”ë²ˆí˜¸/ë¶€ê¸°ì •ë³´
-    addr varchar2(300),     --ì£¼ì†Œ
-    homepage varchar2(300), --í™ˆíŽ˜ì´ì§€
-    map varchar2(900)       --ì•½ë„
+    region varchar2(45),    --±Ç¿ª(Áö¿ª)
+    city   varchar2(150),   --½Ã±º±¸
+    name varchar2(120),     --¸íÄª
+    subtext varchar2(120),      --ÀüÈ­¹øÈ£/ºÎ±âÁ¤º¸
+    addr varchar2(300),     --ÁÖ¼Ò
+    homepage varchar2(300), --È¨ÆäÀÌÁö
+    map varchar2(900)       --¾àµµ
 );
---ìš´ìˆ˜íšŒì‚¬ ì •ë³´
-create table company(
-    name varchar2(90),      --íšŒì‚¬ëª…
-    tel  varchar2(150),     --ì „í™”ë²ˆí˜¸
-    addr varchar2(300)      --ì£¼ì†Œ
-);
-
---í„°ë¯¸ë„ ì •ë³´ ìž…ë ¥
---**í˜„ìž¬ê¹Œì§€ busí…Œì´ë¸”ì— ìž…ë ¥ëœ í„°ë¯¸ë„**
--- ê°•ì´Œ ì›ì£¼ ë…¼ì‚° ëŒ€ì „ë³µí•© 
--- ê³µì£¼ ì—¬ì£¼ ê²½ì£¼ ê°•ì´Œ ë³´ë ¹(ëŒ€ì²œ) ë™ëŒ€êµ¬ êµ¬ë¯¸ 
---ìˆ˜ì›í„°ë¯¸ë„ ìš©ì¸ ê¹€ì²œ ì²­ì£¼ ëŒ€ì•¼ ê´‘ì–‘ ê³ ì–‘(ë°±ì„) ì°½ì› 
---í†µì˜ ë¶€ì•ˆ ê³ ë• ì˜¤ì‚° ì–‘í‰ ê³µê·¼ ëŒ€ì „ì„œë‚¨ë¶€ ê´‘ì£¼(ê²½ê¸°) ì—¬ìˆ˜
-
---ì €ìž¥
+--Data Save
 commit;
---ë‹¨ì¼ insert
-insert into terminal values('ê²½ê¸°ë„','','','í‰ê°€ì¤‘','','','');
---ë°ì´í„° ì‚­ì œ
-delete from terminal where subtext ='í‰ê°€ì¤‘';
---ë‹¤ì¤‘ insert 
-insert all          --ê¶Œì—­/ì‹œêµ°êµ¬/ëª…ì¹­/ë¶€ê¸°ì •ë³´/ì£¼ì†Œ/í™ˆíŽ˜ì´ì§€/ì•½ë„
-    -- into terminal values('','','','','','','')
-    into terminal values('ì„œìš¸íŠ¹ë³„ì‹œ','ê´‘ì§„êµ¬','ë™ì„œìš¸','1688-5979','ì„œìš¸ ê´‘ì§„êµ¬ êµ¬ì˜ë™ 546-1','https://www.ti21.co.kr/','') 
-    into terminal values('ê²½ê¸°ë„','ê°€í‰êµ°','ê°€í‰','','ê²½ê¸° ê°€í‰êµ° ê°€í‰ì ê°€í™”ë¡œ 51','','')
-    into terminal values('ê²½ê¸°ë„','í‰íƒì‹œ','í‰íƒ','','ê²½ê¸° í‰íƒì‹œ í‰íƒë™ 185-245','','')
-    into terminal values('ì¶©ì²­ë‚¨ë„','ì²œì•ˆì‹œ ë™ë‚¨êµ¬','ì²œì•ˆ','041-640-6400','ì¶©ì²­ë‚¨ë„ ì²œì•ˆì‹œ ë™ë‚¨êµ¬ ì‹ ë¶€ë™ 356-2','http://www.cheonanterminal.co.kr/','')
-    into terminal values('ì„œìš¸íŠ¹ë³„ì‹œ','ì„œì´ˆêµ¬','ì„œìš¸ë‚¨ë¶€','1688-0540','ì„œìš¸ ì„œì´ˆêµ¬ íš¨ë ¹ë¡œ 292','http://www.nambuterminal.com/','')
-    into terminal values('ì „ë¼ë¶ë„','ì „ì£¼ì‹œ ë•ì§„êµ¬','ì „ì£¼','1688-1745','ì „ë¼ë¶ë„ ì „ì£¼ì‹œ ë•ì§„êµ¬ ê¸ˆì•”ë™ 705-10','','')
-    into terminal values('ê²½ìƒë‚¨ë„','ë‚¨í•´êµ°','ë‚¨í•´','055-863-5056','ê²½ìƒë‚¨ë„ ë‚¨í•´êµ° ë‚¨í•´ì ë¶ë³€ë¦¬ 316-3','','')
-    into terminal values('ì „ë¼ë¶ë„','ìµì‚°ì‹œ','ìµì‚°','063-843-5100','ì „ë¼ë¶ë„ ìµì‚°ì‹œ ìµì‚°ëŒ€ë¡œ 52','','')
-    into terminal values('ì¶©ì²­ë‚¨ë„','ì•„ì‚°ì‹œ','ì•„ì‚°(ì˜¨ì–‘)','1688-9311','ì¶©ì²­ë‚¨ë„ ì•„ì‚°ì‹œ ë²ˆì˜ë¡œ 225','','')
-    into terminal values('ì„¸ì¢…íŠ¹ë³„ìžì¹˜ì‹œ','','ì„¸ì¢…ì‹œ','070-4904-3262','ì„¸ì¢…ì‹œ ëŒ€í‰ë™ 269-14 ì„¸ì¢…ê³ ì†ì‹œì™¸ë²„ìŠ¤í„°ë¯¸ë„','','')
-    into terminal values('ë¶€ì‚°ê´‘ì—­ì‹œ','í•´ìš´ëŒ€êµ¬','ë¶€ì‚°í•´ìš´ëŒ€(ìˆ˜ë„ê¶Œ)','','ë¶€ì‚° í•´ìš´ëŒ€êµ¬ ìš°1ë™ 839-1','','')
-    into terminal values('ê²½ìƒë¶ë„','í¬í•­ì‹œ ë‚¨êµ¬','í¬í•­','1666-2313','ê²½ìƒë¶ë„ í¬í•­ì‹œ ë‚¨êµ¬ ìƒë„ë™ 579-13','','')
-    into terminal values('ì„œìš¸íŠ¹ë³„ì‹œ','ê°•ì„œêµ¬','ê¹€í¬ê³µí•­','','ì„œìš¸ ê°•ì„œêµ¬ ë°©í™”ë™ 886','','')
-    into terminal values('ì „ë¼ë¶ë„','êµ°ì‚°ì‹œ','êµ°ì‚°','1666-2747','ì „ë¼ë¶ë„ êµ°ì‚°ì‹œ í•´ë§ë¡œ 18','','')
-    into terminal values('ê²½ê¸°ë„','ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬','ì„±ë‚¨','1644-2689','ê²½ê¸° ì„±ë‚¨ì‹œ ë¶„ë‹¹êµ¬ ì•¼íƒ‘ë™ 341','http://www.newseongnamterminal.co.kr/','')
-    into terminal values('ìš¸ì‚°ê´‘ì—­ì‹œ','ë‚¨êµ¬','ìš¸ì‚°','','ìš¸ì‚° ë‚¨êµ¬ ì‚¼ì‚°ë™ 1481-1ë²ˆì§€','','')
-    into terminal values('ì „ë¼ë‚¨ë„','ìˆœì²œì‹œ','ìˆœì²œ','','ì „ë¼ë‚¨ë„ ìˆœì²œì‹œ ìž¥ì²œë™ 18-22','','')
-    into terminal values('ê°•ì›ë„','ë™í•´ì‹œ','ë™í•´','','ê°•ì› ë™í•´ì‹œ í‰ë¦‰ë™ 166-4','','')
-    into terminal values('ê²½ê¸°ë„','ì•ˆì‚°ì‹œ ìƒë¡êµ¬','ì•ˆì‚°','','ê²½ê¸° ì•ˆì‚°ì‹œ ìƒë¡êµ¬ í•­ê°€ìš¸ë¡œ 410','','')
-    into terminal values('ê²½ê¸°ë„','ì•ˆì‚°ì‹œ ìƒë¡êµ¬','ìƒë¡ìˆ˜','','ê²½ê¸° ì•ˆì‚°ì‹œ ìƒë¡êµ¬ ë³¸ì˜¤ë¡œ 133','','')
-    into terminal values('ë¶€ì‚°ê´‘ì—­ì‹œ','ê¸ˆì •êµ¬','ë¶€ì‚°ë™ë¶€','','ë¶€ì‚°ì‹œ ê¸ˆì •êµ¬ ë…¸í¬ë™ 133 ë¶€ì‚°ë™ë¶€ë²„ìŠ¤í„°ë¯¸ë„','','')
-    into terminal values('ê²½ìƒë¶ë„','ì•ˆë™ì‹œ','ì•ˆë™','','ê²½ìƒë¶ë„ ì•ˆë™ì‹œ ê²½ë™ë¡œ 130','','')
-    
-select *from dual;
+-- Single Insert
+insert into terminal values('°æ±âµµ','','','Æò°¡Áß','','','');
+--Delete Data
+delete from terminal where subtext ='Æò°¡Áß';
 
---ëª…ì¹­ì´ ì¤‘ë³µëœ í„°ë¯¸ë„ ì œê±°
-delete from terminal a where ROWID >(select MIN(ROWID) from terminal b where a.name = b.name);
 
---ì •ë³´ í™•ì¸
+--print Data
 select *from terminal;
---ì •ë³´ ìˆ˜ì •
+--Update Data
 update terminal
     set 
         region='',
@@ -70,13 +26,46 @@ update terminal
           addr='',
         hompage='',
           map=''
-     where ;--ë³€ê²½í•˜ì§€ ì•Šì„ê²ƒìœ¼ë¡œ ê¸°ìž…
+     where ;--º¯°æÇÏÁö ¾ÊÀ»°ÍÀ¸·Î ±âÀÔ
      
---**DAOì— ë“¤ì–´ê°ˆ ì¿¼ë¦¬ë¬¸** 
---ì§€ì—­ì„ íƒì‹œ ìžë™ìœ¼ë¡œ ë¦¬ìŠ¤íŠ¸ (ëª…ì¹­ê¸°ì¤€ ê°€ë‚˜ë‹¤ìˆœ ì •ë ¬)
-select * from(select rownum rn, tt.* from (select * from terminal order by name asc) tt)
-    where region='ê²½ê¸°ë„' and (rn>=1 and rn<=5);
---ê²€ìƒ‰ì°½ì— ë‹¨ì–´ ìž…ë ¥ì‹œ ê²€ìƒ‰ (ì§€ì—­ì„ íƒì„ ê°•ì œí•œ ìƒíƒœì—ì„œ ëª…ì¹­ ë° ë¶€ê¸°ëª…-ìˆ«ìžë¡œëŠ” ê²€ìƒ‰x-ìœ¼ë¡œ ê²€ìƒ‰
-select * from
-(select rownum rn, tt.* from (select * from terminal order by name asc) tt)
- where (region = 'ê²½ê¸°ë„' and (name like '%%' or subtext like '%í‰%')) and (rn>=1 and rn<=5);
+--**SQL Query sentences On DAO** 
+--AutoList When click Region Buttons
+select * from (select rownum rn, tt.* from (select *from terminal 
+where region = '°æ±âµµ' order by name asc) tt) where rn>=1 and rn<=5;
+--Searching terminals(name)
+select * from (select rownum rn, tt.* from
+(select *from terminal where region = '°æ±âµµ' and name like '%Æò%' order by name asc)
+ tt) where rn>=1 and rn<=5;
+
+
+**Copy & Paste ==>Execute on your Com.
+--Mutiple Insert
+insert all          --region/city/name/subtext/addr/homepage/map
+    -- into terminal values('','','','','','','')
+    into terminal values('¼­¿ïÆ¯º°½Ã','±¤Áø±¸','µ¿¼­¿ï','1688-5979','¼­¿ï ±¤Áø±¸ ±¸ÀÇµ¿ 546-1','https://www.ti21.co.kr/','') 
+    into terminal values('°æ±âµµ','°¡Æò±º','°¡Æò','','°æ±â °¡Æò±º °¡ÆòÀ¾ °¡È­·Î 51','','')
+    into terminal values('°æ±âµµ','ÆòÅÃ½Ã','ÆòÅÃ','','°æ±â ÆòÅÃ½Ã ÆòÅÃµ¿ 185-245','','')
+    into terminal values('ÃæÃ»³²µµ','Ãµ¾È½Ã µ¿³²±¸','Ãµ¾È','041-640-6400','ÃæÃ»³²µµ Ãµ¾È½Ã µ¿³²±¸ ½ÅºÎµ¿ 356-2','http://www.cheonanterminal.co.kr/','')
+    into terminal values('¼­¿ïÆ¯º°½Ã','¼­ÃÊ±¸','¼­¿ï³²ºÎ','1688-0540','¼­¿ï ¼­ÃÊ±¸ È¿·É·Î 292','http://www.nambuterminal.com/','')
+    into terminal values('Àü¶óºÏµµ','ÀüÁÖ½Ã ´öÁø±¸','ÀüÁÖ','1688-1745','Àü¶óºÏµµ ÀüÁÖ½Ã ´öÁø±¸ ±Ý¾Ïµ¿ 705-10','','')
+    into terminal values('°æ»ó³²µµ','³²ÇØ±º','³²ÇØ','055-863-5056','°æ»ó³²µµ ³²ÇØ±º ³²ÇØÀ¾ ºÏº¯¸® 316-3','','')
+    into terminal values('Àü¶óºÏµµ','ÀÍ»ê½Ã','ÀÍ»ê','063-843-5100','Àü¶óºÏµµ ÀÍ»ê½Ã ÀÍ»ê´ë·Î 52','','')
+    into terminal values('ÃæÃ»³²µµ','¾Æ»ê½Ã','¾Æ»ê(¿Â¾ç)','1688-9311','ÃæÃ»³²µµ ¾Æ»ê½Ã ¹ø¿µ·Î 225','','')
+    into terminal values('¼¼Á¾Æ¯º°ÀÚÄ¡½Ã','','¼¼Á¾½Ã','070-4904-3262','¼¼Á¾½Ã ´ëÆòµ¿ 269-14 ¼¼Á¾°í¼Ó½Ã¿Ü¹ö½ºÅÍ¹Ì³Î','','')
+    into terminal values('ºÎ»ê±¤¿ª½Ã','ÇØ¿î´ë±¸','ºÎ»êÇØ¿î´ë(¼öµµ±Ç)','','ºÎ»ê ÇØ¿î´ë±¸ ¿ì1µ¿ 839-1','','')
+    into terminal values('°æ»óºÏµµ','Æ÷Ç×½Ã ³²±¸','Æ÷Ç×','1666-2313','°æ»óºÏµµ Æ÷Ç×½Ã ³²±¸ »óµµµ¿ 579-13','','')
+    into terminal values('¼­¿ïÆ¯º°½Ã','°­¼­±¸','±èÆ÷°øÇ×','','¼­¿ï °­¼­±¸ ¹æÈ­µ¿ 886','','')
+    into terminal values('Àü¶óºÏµµ','±º»ê½Ã','±º»ê','1666-2747','Àü¶óºÏµµ ±º»ê½Ã ÇØ¸Á·Î 18','','')
+    into terminal values('°æ±âµµ','¼º³²½Ã ºÐ´ç±¸','¼º³²','1644-2689','°æ±â ¼º³²½Ã ºÐ´ç±¸ ¾ßÅ¾µ¿ 341','http://www.newseongnamterminal.co.kr/','')
+    into terminal values('¿ï»ê±¤¿ª½Ã','³²±¸','¿ï»ê','','¿ï»ê ³²±¸ »ï»êµ¿ 1481-1¹øÁö','','')
+    into terminal values('Àü¶ó³²µµ','¼øÃµ½Ã','¼øÃµ','','Àü¶ó³²µµ ¼øÃµ½Ã ÀåÃµµ¿ 18-22','','')
+    into terminal values('°­¿øµµ','µ¿ÇØ½Ã','µ¿ÇØ','','°­¿ø µ¿ÇØ½Ã Æò¸ªµ¿ 166-4','','')
+    into terminal values('°æ±âµµ','¾È»ê½Ã »ó·Ï±¸','¾È»ê','','°æ±â ¾È»ê½Ã »ó·Ï±¸ Ç×°¡¿ï·Î 410','','')
+    into terminal values('°æ±âµµ','¾È»ê½Ã »ó·Ï±¸','»ó·Ï¼ö','','°æ±â ¾È»ê½Ã »ó·Ï±¸ º»¿À·Î 133','','')
+    into terminal values('ºÎ»ê±¤¿ª½Ã','±ÝÁ¤±¸','ºÎ»êµ¿ºÎ','','ºÎ»ê½Ã ±ÝÁ¤±¸ ³ëÆ÷µ¿ 133 ºÎ»êµ¿ºÎ¹ö½ºÅÍ¹Ì³Î','','')
+    into terminal values('°æ»óºÏµµ','¾Èµ¿½Ã','¾Èµ¿','','°æ»óºÏµµ ¾Èµ¿½Ã °æµ¿·Î 130','','')
+    
+select *from dual;
+
+--Delete overlaped Termial(name)
+delete from terminal a where ROWID >(select MIN(ROWID) from terminal b where a.name = b.name);

@@ -20,6 +20,8 @@ public interface BookingService {
 	List<BusVO> busList(); //터미널 목록 조회
 	
 	List<TerminalVO> regionList(); //지역 목록 조회
+	
+	List<TerminalVO> terminalList(String region); //지역별 선택 드롭다운 선택시 목록 출력
 
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 
@@ -38,4 +40,6 @@ public interface BookingService {
 	void seatReset(String bus_no);
 	
 	List<String> timeCheck(String arrive_time);
+	
+	
 }

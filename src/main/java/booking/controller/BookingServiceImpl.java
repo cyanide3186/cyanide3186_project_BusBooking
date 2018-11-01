@@ -100,4 +100,10 @@ public class BookingServiceImpl implements BookingService {
 	
 		return busDAO.regionList();
 	}
+
+	@Override
+	public List<TerminalVO> terminalList(String region) {
+		
+		return busDAO.terminalList(region);
+	}
 }

@@ -58,7 +58,7 @@ public class BookingController {
 		return modelAndView;
 	}
 	
-	//터미널 목록 json 
+	//지역별 선택 드롭다운 목록 json 
 	@RequestMapping(value="/booking/booking_RegionJson.do")
 	public ModelAndView booking_RegionJson (ModelAndView modelAndView) {
 		List<TerminalVO> list=bookingService.regionList();
@@ -85,6 +85,39 @@ public class BookingController {
 		System.out.println(json);
 		modelAndView.addObject("json",json);
 		modelAndView.setViewName("../booking/booking_input_regionJson.jsp");
+		return modelAndView;
+	}
+	
+	
+	//지역별 선택 드롭다운 목록 json 
+	@RequestMapping(value="/booking/booking_input_TerminalJson.do")
+	public ModelAndView booking_terminalJson (ModelAndView modelAndView ,HttpServletRequest request ) {
+		System.out.println(request.getParameter("local"));
+		String region =request.getParameter("local");
+		List<TerminalVO> list=bookingService.terminalList(region);
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("name", vo.getName());/*지역별터미널이름*/
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_TerminalJson.jsp");
 		return modelAndView;
 	}
 	

@@ -26,8 +26,12 @@ public class InfoServiceImpl implements InfoService {
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
 		
 		if(word.equals("dummyString")) {
+//			System.out.println("**Activate listTerminal**");
+//			System.out.println();
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {
+//			System.out.println("**Activate searchTerminal**");
+//			System.out.println();
 			return terminalDAO.searchTerminal(region, word, startNum, endNum);
 		}
 	}

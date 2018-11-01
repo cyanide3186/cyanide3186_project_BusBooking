@@ -17,11 +17,16 @@ public class TerminalDAO {
 	
 	//리스트 출력
 	public List<TerminalVO> listTerminal(String region, int startNum, int endNum){
-	
 		Map<String, Object> map = new HashMap<>();
 			map.put("region", region);
 			map.put("startNum", startNum);
 			map.put("endNum", endNum);
+		//맵 데이터 확인
+//		System.out.println("=============================");	
+//		System.out.println("**On Terminal DAO**");	
+//		for (String mapkey : map.keySet()){
+//	        System.out.println("key:"+mapkey+",value:"+map.get(mapkey));
+//	    }
 		return sqlSessionTemplate.selectList("mybatis.terminal-mapper.autoListTerminal", map);
 	}
 	
@@ -29,10 +34,16 @@ public class TerminalDAO {
 	public List<TerminalVO> searchTerminal(String region, String word, int startNum, int endNum){
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("region", region);
-		map.put("word", word);
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
+			map.put("region", region);
+			map.put("word", word);
+			map.put("startNum", startNum);
+			map.put("endNum", endNum);
+		//맵 데이터 확인
+//			System.out.println("=============================");	
+//			System.out.println("**On Terminal DAO**");	
+//			for (String mapkey : map.keySet()){
+//		        System.out.println(mapkey+" : "+map.get(mapkey));
+//		    }
 		
 		return sqlSessionTemplate.selectList("mybatis.terminal-mapper.searchTerminal", map);	
 	}

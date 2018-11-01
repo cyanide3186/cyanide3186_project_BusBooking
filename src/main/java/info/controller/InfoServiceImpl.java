@@ -36,36 +36,40 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public int CountTerminal(String word) {
+	public int CountTerminal(String region, String word) {
 
 		if(word.equals("dummyString")) {
 			System.out.println("**Activate countAllTerminal**");
 			System.out.println();
-			return terminalDAO.countAllTerminal();
+			return terminalDAO.countAllTerminal(region);
 		} else {
 			System.out.println("**Activate countselectedTerminal**");
 			System.out.println();
-			return terminalDAO.countSelectedTerminal(word);
+			return terminalDAO.countSelectedTerminal(region, word);
 		}
 	}	
 
 	//운수회사 정보 목록 구현
 	@Override
 	public int CountCompany(String word) {
-		if(word.equals("dummyString")) {
-			System.out.println("**Activate countAllTerminal**");
-			System.out.println();
-			return companyDAO.CountAllCompany();
+
+		if(word.equals("searching")) {
+			return companyDAO.CountCompany();
 		} else {
-			System.out.println("**Activate countselectedTerminal**");
-			System.out.println();
-			return companyDAO.CountSelectedCompany(word);
+			return companyDAO.wordCountCompany(word);
 		}
+		
 	}
 
 
 	@Override
 	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum) {
-		return companyDAO.pagingCompanyBoard(startNum, endNum);
+		if(word.equals("searching")) {
+			return companyDAO.pagingCompanyBoard(startNum, endNum);
+		} else {
+			return companyDAO.searchCompany(word, startNum, endNum);
+		}
+		
 	}
+
 }

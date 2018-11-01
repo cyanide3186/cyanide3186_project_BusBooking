@@ -86,12 +86,8 @@ table#tab1 {
 
 	<table id="tab" >
 		<tr>
-			<td id="logo1" width="400" height="80">
-				<a href="../info/terminal.do">터미널 안내</a>
-			</td>
-			<td id="logo2" width="400">
-				<a href="../info/company_info.do?pg=1">운수사 안내</a>
-			</td>
+			<a href="../info/infoTrAndCompany.do"><td id="logo1" width="400" height="80">터미널 안내</td></a>
+			<td id="logo2" width="400"><a href="../info/company_info.do?pg=1">운수사 안내</a></td>
 		</tr>
 	</table>
 		<!-- 터미널 인포 -->
@@ -157,7 +153,7 @@ table#tab1 {
 		<td width="120" class="line">
 		${terminalVO.city}</td>
 		<td width="420" class="line">
-		${terminalVO.name}(${terminalVO.subtext})<br>
+		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
 		<td width="170" class="line">
 		${terminalVO.homepage }</td>

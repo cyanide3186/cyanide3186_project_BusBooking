@@ -6,238 +6,402 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/base.css">
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-
-$(function() {
-	$("#logo1").click(function() {
-		$("#tab2,#tab3,#tab4,#tab5").hide();
-		$("div#tab1").fadeIn();
-      	$("#tab1 > a:eq(0)").click(function() {
-		$("#tab1 > div:eq(0)").slideToggle();
-	});   
-      	$("#tab1 > a:eq(1)").click(function() {
-    	$("#tab1 > div:eq(1)").slideToggle();
-    });   
-      	$("#tab1 > a:eq(2)").click(function() {
-       	$("#tab1 > div:eq(2)").slideToggle();
-    });   	
-      	$("#tab1 > a:eq(3)").click(function() {
-        $("#tab1 > div:eq(3)").slideToggle();
-    });  	
-      	$("#tab1 > a:eq(4)").click(function() {
-        $("#tab1 > div:eq(4)").slideToggle();
-    });  	
-      	$("#tab1 > a:eq(5)").click(function() {
-        $("#tab1 > div:eq(5)").slideToggle();
-    });  	
-      	$("#tab1 > a:eq(6)").click(function() {
-        $("#tab1 > div:eq(6)").slideToggle();
-    });  	
-      	$("#tab1 > a:eq(7)").click(function() {
-        $("#tab1 > div:eq(7)").slideToggle();
-    });  	
-      	$("#tab1 > a:eq(8)").click(function() {
-        $("#tab1 > div:eq(8)").slideToggle();
-    }); 
-});
-});
-$(function() {
-	$("#logo2").click(function() {
-		$("#tab1,#tab3,#tab4,#tab5").hide();
-		$("div#tab2").fadeIn();
-		
-		$("#tab2 > a:eq(0)").click(function() {
-		$("#tab2 > div:eq(0)").slideToggle();
-	});   
-	    $("#tab2 > a:eq(1)").click(function() {
-	    $("#tab2 > div:eq(1)").slideToggle();
-	});  
-	});
-});
-$(function() {
-	$("#logo3").click(function() {
-		$("#tab1,#tab2,#tab4,#tab5").hide();
-		$("div#tab3").fadeIn();
-		$("#tab3 > a:eq(0)").click(function() {
-		$("#tab3 > div:eq(0)").slideToggle();
-		});   
-	    $("#tab3 > a:eq(1)").click(function() {
-	    $("#tab3 > div:eq(1)").slideToggle();
-	    });  
-	});
-});
-$(function() {
-	$("#logo4").click(function() {
-		$("#tab1,#tab2,#tab3,#tab5").hide();
-		$("div#tab4").fadeIn();
-		$("#tab4 > a:eq(0)").click(function() {
-		$("#tab4 > div:eq(0)").slideToggle();
-		});   
-	    $("#tab4 > a:eq(1)").click(function() {
-	    $("#tab4 > div:eq(1)").slideToggle();
-	    });  
-	});
-});
-$(function() {
-	$("#logo5").click(function() {
-		$("#tab1,#tab2,#tab3,#tab4").hide();
-		$("div#tab5").fadeIn();
-		
-		$("#tab5 > a:eq(0)").click(function() {
-		$("#tab5 > div:eq(0)").slideToggle();
-		//$(this).children("div#answer").slideToggle();
-	});   
-	    $("#tab5 > a:eq(1)").click(function() {
-	    $("#tab5 > div:eq(1)").slideToggle();
-	});  
-	});
-});
-
-
-</script>
 <style type="text/css">
-a {text-decoration: none; cursor: pointer;}
-#answer {display: none;}
-#question {
-	font-weight: 700; 
-	text-align: center;
+#request {margin-left: 70px;}
+.info {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin-left: 150px;
+	margin-top: 40px;
+	width: 200;
+	height: 100;
+}
+#img {
+	border-right : 1px solid black;	
+	border-right-style: dashed;
+	border-right-color: #a0a0a0;
+}
+#text {
+	font-weight: 800;
 	font-size: 15px;
 }
-#tab2,#tab3,#tab4,#tab5 {display: none; margin: 20px;}
-input {
-	width: 120px;
-	height: 50px;
-	margin-left: 43px;
-	margin-right: 70px;
-}
-.clicked {
-	background-color: white;
-}
-table {
-	margin-top: 40px;
-	margin-bottom: 30px;
-	cursor: pointer;
-	border-bottom: 1px solid;
-	border-top: 1px solid;
-	margin-left: 140px;
+#step {
+	margin-left: 50px;
+	width: 100px;
+	height: 40px;
 	text-align: center;
+	border-radius: 10px;
 }
-#logo1:hover {background-color:#20B2AA; text-decoration: none;}
-#logo2:hover {background-color:#20B2AA; text-decoration: none;}
-#logo3:hover {background-color:#20B2AA; text-decoration: none;}
-#logo4:hover {background-color:#20B2AA; text-decoration: none;}
-#logo5:hover {background-color:#20B2AA; text-decoration: none;}
+#steptable {
+	margin-left: 250px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 
-</style>
+}
+#content {
+	border-bottom: 1px solid;
+	border-color: #a0a0a0;
+ 	padding-top: 20px;
+	padding-bottom: 20px; 
+}
+#refer {
+	font-size: 13px; 
+	text-align: left;
+	margin-left: 150px;
+	font-weight: 800;
+}
+#check {
+	width: 25;
+	height: 25;
+	margin-left: 20px;
+	margin-right: 10px;
+
+}
+#logo {
+	margin-left: 150px;}
+#imglabel {
+	width: 25px;
+	height: 25px;
+}
+#label {
+	font-size: 18px;
+	font-weight: 900;
+}
+#undertable {
+	text-align: center;
+	padding: 5px;
+	margin-left: 150px; 
+	margin-bottom: 30px;
+}
+#uppertable{
+	padding: 5px;
+	margin-left: 150px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	text-align: center;
+	margin-top: 20px;
+}
+#info_image{
+	background-color: #FFD2D2;
+	align-content: center;
+	border-bottom : 1px solid gray;
+	border-top : 1px solid gray;
+	border-left: 1px solid gray;
+	border-right: 1px dotted gray;
+	border-radius: 15px 0px 0px 15px;
+} 
+#info_content{
+	background-color: #FFD2D2;
+	border-bottom : 1px solid gray;
+	border-top : 1px solid gray;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	border-radius: 10px 10px 10px 10px;
+	height: 20px;
+}
+#infomation {
+	width: 800px;
+	margin-left: 180px;
+	border-spacing: 0 15px;
+}
+#content_line {
+	border-right: 1px solid #ccc; 
+	border-bottom: 1px solid #ccc; 
+	text-align: left; 
+	padding: 8px;
+}
+</style> 
 </head>
 <body>
-
-	<div class="wrapper">
-	<p id="notice_txt" >FAQ</p>
-	<hr id="headline">
-		<form id="form">
-  	<table>
-		<tr>
-			<td id="logo1" width="180" height="70"><a>승차권 예약</a></td>
-			<td id="logo2" width="180"><a>홈티켓</a></td>
-			<td id="logo3" width="180"><a>대금결제</a></td>
-			<td id="logo4" width="180"><a>홈페이지 예약</a></td>
-			<td id="logo5" width="180"><a>기타</a></td>
-		</tr>
-	</table>  
-
-		
-		<div id="tab1">
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권 예약은 언제까지 가능한가요? </a><br><hr>
-				<div id="answer" style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				시외버스 승차권의 예약기간은 특별히 정해져 있는 것은 아니고, 해당 노선의 배차정보가 입력된 일자까지 가능합니다.<br>
-					배차정보의 입력은 출발지 터미널에서 처리하고 있으며, 일반적으로 현재일을 기준으로 1개월 이후의 배차정보가 입력되어 운영되고 있습니다.<br>
- 					"조회 가능한 내역이 없습니다." 고 나오면 출발지 터미널로 문의하시기 바랍니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권 예약시 지정한 좌석과 실제 이용시 좌석이 다른 경우는 왜 그런가요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				예약시 나오는 좌석배치도는 대부분의 시외버스가 갖고 있는 일반적인 형태의 좌석배치도입니다.<br>
-					버스의 종류에 따라 좌우측이 바뀌는 경우 등으로 인해 예약시 좌석배치도와 실제 좌석배치도가 다를 수도 있습니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권을 예약한 경우 발권은 어떻게 하나요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				터미널 매표창구에 예약한 신용카드를 제시하고 예약한 사항이 있다고 말씀하시면 됩니다.<br>
-					출발 당일뿐만 아니라 그 이전에도 출발시간 이전이면 터미널 매표업무 시간내 언제든지 발권이 가능합니다.<br>
-					매표업무 시간은 터미널 별로 차이가 있을 수 있으니 해당 터미널로 문의하시기 바랍니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">신용카드를 지참하지 않고 터미널 매표창구에서 예약한 승차권을 발권받을 수 있나요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				예약할때 사용하신 신용카드 번호를 매표창구에 제시하시거나 생년월일, 휴대폰 번호로 예매 내역 조회 후 발권이 가능합니다.<br>
-					예약한 카드를 분실하거나 재발급 받은 경우에도 동일합니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">계좌이체로 예약이 가능한가요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				현재 본 홈페이지에서는 계좌이체를 통한 예약은 불가능합니다.<br>
-					계좌이체 예약 건이 적은 금융기관의 경우 예약사항 취소 시 취소대금이 입금되기까지 수일이 소요되는 경우가 많아 적잖은 고객불편을 초래할 수 있습니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">ARS 또는 상담원과의 전화로 예약이 가능한가요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				ARS 또는 상담원과의 전화로는 예약을 하실 수 없습니다.<br>
-					예약은 인터넷으로 본인이 직접하셔야 합니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권 예약하고 변경,취소했는데 카드사에서는 취소가 확인되지 않습니다.</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				승차권 예약취소 시 당일예약 후 당일전체 취소시에만 실시간 취소가 이루어지고 그 외의 경우에는 실시간으로 이루어지지는 않으며,<br>
-					카드사에 따라 주말을 제외하고 영업일 기준 2~3일 후에 처리가 됩니다.<hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">예약을 하다가 오류가 발생해서 다시 예약을 하는데 선택했던 좌석이 예약된 좌석처럼 선택할 수 없도록 되어있는데 예약이 된 건가요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				예약 시 좌석선택 Step에서 좌석을 선택하면 동시에 같은 좌석을 예약하는 것을 방지하기 위해서<br>
-					 예약완료 여부와 무관하게 해당 좌석을 5분간 막아두는 기능(좌석선점)이 적용되어 있습니다. <br>
-					꼭 해당 좌석으로 예약하셔야되면 5분 정도 후에 시도하세요.<br>
-					예약완료 여부는 예약조회 메뉴를 통해 확인하실 수 있습니다.<hr></div>
-		</div>
-	
-	<div id="tab2" >
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">승차권을 예약했는데 홈티켓이 출력되지 않은 경우에는 어떻게 하나요? </a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				홈티켓 발권 시 티켓이 정상적으로 출력되지 않은 경우에는 횟수에 제한 없이 홈티켓 재발행을 시도할 수 있습니다.<br>
-				그럼에도 홈티켓이 출력되지 않은 경우에는 홈티켓 발권에 사용한 카드를 지참하고 터미널 매표창구에 홈티켓을 발권받지 못했다고 말씀하시면 티켓을 재발행해드립니다.<hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">홈티켓 발권 후 사용하지 못한 승차권의 환불은 어떻게 하나요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				승차일로부터 2일 이내에 홈티켓을 지참하고 출발지 터미널 매표창구로 방문하시면 됩니다.<hr></div>
-	</div>
-	
-	<div id="tab3" >
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">예약도중 시스템 에러 등의 이유로 예약이 안 된 것으로 알고 있었는데 나중에 부도위약금이 청구되었습니다.</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				홈티켓 발권 시 티켓이 정상적으로 출력되지 않은 경우에는 횟수에 제한 없이 홈티켓 재발행을 시도할 수 있습니다.<br>
-				그럼에도 홈티켓이 출력되지 않은 경우에는 홈티켓 발권에 사용한 카드를 지참하고 터미널 매표창구에 홈티켓을 발권받지 못했다고 말씀하시면 티켓을 재발행해드립니다.<hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">시스템 장애로 인해 예약취소 또는 승차권 발권을 하지 못해서 발생한 수수료에 대한 처리는 어떻게 되나요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				승차일로부터 2일 이내에 홈티켓을 지참하고 출발지 터미널 매표창구로 방문하시면 됩니다.<hr></div>
-	
-	</div>
-	
-	<div id="tab4" >
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">홈페이지 이용 시 페이지오류가 발생합니다.</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				페이지 오류(스크립트 오류)가 발생하는 것은 웹브라우저의 문제입니다.<br>
-				인터넷 익스플로어의 경우 가끔식 원인을 알 수 없는 페이지 오류가 발생하는데<br>
-				이런 경우에는 현재 실행중인 창을 닫은 후에 다시 접속해 보시기 바랍니다. <hr></div>
-			<img src="../images/qna.png" width="35;" height="35;"><a id="question">현재까지 본인이 이용한 내역을 조회할 수 있는 방법은 없나요?</a><br><hr>
-				<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-				본 홈페이지는 회원가입을 받고 있지 않습니다.<br>
-				따라서 현재까지 본인이 이용한 내역을 조회할 수 있는 메뉴는 없으며, 해당 내역이 꼭 필요하신 경우에는 고객센터로 연락을 주시면 <br>
-				해당 카드번호로 조회한 내역을 보내드릴 수 있습니다. <hr></div>
-	</div>
-	
-	<div id="tab5" >
-		<img src="../images/qna.png" width="35;" height="35;"><a id="question">버스구분, 운행시간에 따라 소요시간에 차이가 있나요?</a><br><hr>
-			<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-			버스구분에 따른 소요시간의 차이는 거의 없습니다.<br>
-				야간 운행의 경우 규정속도보다 10% 감속운행을 하므로 소요시간이 길어질 수 있습니다. <hr></div>
-		<img src="../images/qna.png" width="35;" height="35;"><a id="question">임시배차의 운행은 어떻게 결정되나요?</a><br><hr>
-			<div id="answer"style="margin-left: 20px;"><img src="../images/line.png" width="20" height="20">
-			임시배차는 해당 터미널에서 이용승객폭주, 사고발생, 차량고장, 기상이변에 의한 연착, 지연 등이 발생할 경우에<br>
-				 정규배차 이외에 터미널 차고에 보관중인 차량을 바로 투입하는 것을 말합니다.<br>
-				이러한 임시배차는 운수업자가 상황에 따라 결정하며 대부분 출발당일에 결정됩니다.<br>
-				이에 대한 자세한 사항은 해당 터미널로 문의하시기 바랍니다.<hr> </div>
-	</div>
-
+<div id=header>
+	<jsp:include page="../template/header.jsp" />
 </div>
 
-		</form>
-	</div>
+<div class="wrapper">
+<p id="notice_txt" >예매 변경 및 취소 안내</p>
+<hr id="headline">
+	<form id="form">
+	
+	<table class="info" >
+		<tr id="notice">
+		<td width="200" id="img"><img src="../images/request.png" id="request" width="70" height="70"></td>
+		<td width="700" id="text">
+		예매 변경 및 취소가 필요한 경우에는 "시외버스 예매 > 예매조회/취소/변경" 에서 처리가 가능합니다.</td>
+		</tr>
+	</table>
 
-</body>
+	<table id="steptable">
+	<tr>
+	<td id="step" style="background-color: #FFB6C1;">1단계</td>
+	<td id="content" width="500" height="30">"시외버스 예매 > 예매조회/취소/변경" 페이지에서 예매한 승차권 조회를 합니다.</td>
+	</tr>
+	</table>
+	<table  id="steptable">
+	<tr>
+	<td id="step" style="background-color: #FF7A85;">2단계</td>
+	<td  id="content" width="500" height="30">예매내역을 확인한 후, "상세" 버튼을 클릭하여 예매 상세페이지로 이동합니다.</td>
+	</tr>
+	</table>
+	<table  id="steptable" >
+	<tr>
+	<td id="step" style="background-color: #FF5675;" >3단계</td>
+	<td id="content" width="500" height="30">예매내역 상세 페이지에서 예매한 승차권을 확인한 후에 하단의 "예매취소" 혹은 "변경(매수변경 / 시간변경)"을 클릭하여, 예매변경이나 취소를 할 수 있습니다.</td>
+	</tr>
+	</table>
+	
+	<br>
+	<hr style="color: #ccc; border-style: dotted">
+	<br>
+	<p id="refer" style="color: red; margin-top: 20px;">※ 예매 변경 및 취소를 하게 될 경우 취소 수수료가 발생하거나 기존 할인 금액이 변경될 수 있습니다.</p>
+	<p id="refer" style="margin-left: 800px;">상세한 규정은 아래의 내용에서 확인할 수 있습니다.</p>
+	
+	<br>
+	<div id="logo"><p id="label"><img src="../images/line.png" id="imglabel">
+	&nbsp;예매 변경 주의 사항(매수 변경)</p></div>
+	<br>
+	
+			<table cellpadding="10" id="infomation">
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				"변경 > 매수변경 "버튼을 선택하여 예매한 승차권을 변경할 수 있습니다. 단, 매수 변경은 감소만 가능합니다.
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				매수 감소는 편도예매에서만 가능하며, 왕복예매에서는 불가능합니다.<br>
+				왕복예매의 매수 감소 시에는 예매를 전체 취소 후, 다시 예매를 하셔야 합니다.
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				매수 변경을 하게 되면, “기존 승차권”에 대한 전체 취소가 발생되며, “변경 승차권”은 재결제를 합니다.<br>
+				( ex, 5매 예매를 4매로 변경할 경우 : 5매 전체 예매 취소 후,
+				변경 된 4매에 대해서 다시 결제가 진행됩니다. )
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				매수 감소 시에는 예매한 승차권의 일자, 시간, 좌석 등의 변경이 불가합니다. 
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				예매 시간의 변경이 필요한 경우에는 시간 변경 버튼을 클릭하여 변경할 수 있습니다.
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				예매한 승차권의 좌석 변경이 필요한 경우에는 예매한 승차권 전체를 취소한 후 다시 예매하실 수 있습니다.
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				"변경 > 매수변경 "버튼을 선택하여 예매한 승차권을 변경할 수 있습니다. 단, 매수 변경은 감소만 가능합니다.
+				</td>
+			</tr>
+			<tr>
+				<td id="info_content">
+				<img src="../images/check.png" width="15px" height="15px">
+				매수 감소 시에는 기존에 적용되었던 할인 혜택이 변경될 수 있습니다.<br>
+				사전 할인 혜택을 받은 경우에는 기존 할인 혜택이 그대로 유지됩니다.<br>
+				단체예매 할인이나 뒷좌석 할인의 경우에는 매수 감소로 인해서 할인 조건이 맞지 않는 경우, 할인혜택이 적용되지 않을 수 있습니다.
+				</td>
+			</tr>
+		</table>
+	
+	
+	<br>
+	<div id="logo"><p id="label"><img src="../images/line.png" id="imglabel">
+	&nbsp;예매 변경 주의 사항(시간 변경)</p></div>
+	<br>
+	<table cellpadding="10"  id="infomation">
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			"변경 > 시간 변경" 버튼을 선택하여 예매한 승차권을 변경할 수 있습니다. 
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			단, 시간 변경의 경우, 기존에 예매한 사항은 모두 취소가 되며, 다시 한번 카드 결제가 이루어집니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			시간 변경은 편도예매와 왕복예매 모두 가능합니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			시간 변경 시에는 매수 변경, 좌석 변경도 가능합니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			“기존 승차권”에 대한 결제 취소는 신용카드와 체크카드에 따라서 3~5일 가량의 처리 시간이 소요됩니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			시간 변경 시에는 기존에 애매한 사항은 모두 취소가 됨으로 기존에 적용되었던 할인 혜택은 모두 삭제되며,<br>
+			변경 시에 선택한 시간, 매수 수량, 좌석 선택에 따라 할인 혜택이 적용됩니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			"변경 > 매수변경 "버튼을 선택하여 예매한 승차권을 변경할 수 있습니다. 단, 매수 변경은 감소만 가능합니다.
+			</td>
+		</tr>
+	</table>
+			
+			
+
+	<br>
+	<div id="logo"><p id="label"><img src="../images/line.png" id="imglabel">
+	&nbsp;예매 취소 주의 사항</p></div>
+	<br>
+	
+	<table cellpadding="10" id="infomation">
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			"예매취소" 버튼을 클릭하면, 예매한 승차권을 취소할 수 있습니다.<br>
+			 다만, 취소한 경우, 출발일자에 따라 취소 수수료가 부과될 수 있습니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			예매된 상태에서 발권 또는 취소를 하지 않고 출발시간이 지난 경우<br>
+		 	부도 취소 수수료(차량 출발후 6시간 이전 승차권요금의 30%, 차량 출발후 6시간 이후 승차권요금의 100%)가 청구됩니다.
+			</td>
+		</tr>
+		<tr>
+			<td id="info_content">
+			<img src="../images/check.png" width="15px" height="15px">
+			승차권 예매 취소 시, 결제 취소는 신용카드와 체크카드에 따라서 3~5일 가량의 처리 시간이 소요되며,<br>
+			이후 해당 카드사에 문의하시면 취소 여부를 확인할 수 있습니다.
+			</td>
+		</tr>
+	</table>
+
+
+	<br>
+	<div id="logo"><p id="label"><img src="../images/line.png"id="imglabel">
+	&nbsp;공항버스 한정면허(서울시) 취소수수료 안내</p></div>
+	<br>
+	<p style="margin-left: 150px; font-weight: 900; color: #323232;">* 승차권 발권 전 취소 또는 승차권 발권 후 환불</p>
+	<p style="margin-left: 800px;">(취소 수수료는 100만원 미만은 절사)</p>
+
+	<table id="uppertable" >
+	<tr style="font-weight: 1000; ">
+		<td width="220">구분</td>
+		<td width="510">취소 시기</td>
+		<td width="120">수수료</td>
+	</tr>
+	</table>
+	<table id="undertable" style="border-bottom: 1px solid black;">
+	<tr>
+		<td rowspan="6" style="width: 220px; border-right: 1px solid #ccc;">취소 수수료</td>
+		<td id="content_line">
+		<ui><li>차량 출발일 2일(48시간) 전까지 취소 시</li>
+			<li>(당일 포함) 구매(예매)시점 기준 1시간 이내이면서 출발 1시간 이전까지 취소 시</li></ui>
+		</td>
+		<td style="border-bottom: 1px solid #ccc;">수수료 없음</td>
+	</tr>
+	<tr>
+		<td id="content_line">
+		<ui><li>차량 출발일 2일(48시간) 이내이며 구매시점 기준 1시간 경과 후<br>
+		 차량 출발 1시간 이전까지 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 10%</td>
+	</tr>
+	<tr>
+		<td id="content_line">
+		<ui><li>차량 출발 1시간 이내부터 차량 출발 15분 이전까지 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 20%</td>
+	</tr>
+	<tr>
+		<td id="content_line">
+		<ui><li>차량 출발 15분 이내부터 차량 출발 전까지 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 30%</td>
+	</tr>
+	<tr style="color: red;">
+		<td id="content_line">
+		<ui ><li>차량 출발 후 3시간 이전 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 50%</td>
+	</tr>
+	<tr style="color: red;">
+		<td style=" border-right: 1px solid #ccc; text-align: left; padding: 8px;">
+		<ui><li>차량 출발 후 3시간 이후 (취소 불가)</li></ui>
+			<ui><li>차량 출발 후 3시간 이후에는 예매한 승차권을 자동취소(부도처리)</li></ui></td>
+		<td>승차권 요금의 100%</td>
+	</tr>
+	</table>
+	<p>
+
+	<div style="margin-left: 150px;">※ 대상 운수사 : 공항리무진, 서울공항리무진, KAL리무진, 한국도심공항 (4개사)<br>
+	※ 구매시점이란 승객이 승차권을 결제한 시점을 의미합니다.</div>
+	<br><br>
+	
+	<div id="logo"><p id="label"><img src="../images/line.png" id="imglabel">시외버스 취소 수수료 안내</p></div>
+	<p style="margin-left: 800px;">(최수 수수료는 100만원 미만은 절사)</p>
+	
+	<table id="uppertable" >
+		<tr style=" font-weight: 1000; width: 40px;">
+		<td width="220">구분</td>
+		<td width="510">취소 시기</td>
+		<td width="120">수수료</td>
+		</tr>
+	</table>
+	<table id="undertable" style="border-bottom: 1px solid black;">
+		<tr>
+		<td rowspan="5" style="width: 220px; border-right: 1px solid #ccc;">승차권(모바일승차권 포함)<br>
+		발권 후 예매 후</td>
+		<td id="content_line" style="width: 510px;"><ui><li>지정차 출발 2일 전까지</li></ui>
+			<ui><li>승차권 발권 시점(예매 후 발권은 제외) 기준 1시간 이내 <br>
+			또는 예매시점 기준 1시간 이내. 단, 지정차 출발 전에 한함</li></ui></td>
+		<td style=" width:120px; border-bottom: 1px solid #ccc;">없음</td>
+		</tr>
+		<tr>
+		<td id="content_line">
+		<ui><li>지정차 출발 1일전 ~ 1시간 이전까지</li></ui></td>
+		<td  style="border-bottom: 1px solid #ccc;">5%</td>
+		</tr>
+		<tr>
+		<td id="content_line">
+		<ui><li>지정차 출발 1시간 이내 ~ 출발 직전까지</li></ui></td>
+		<td style=" border-bottom: 1px solid #ccc;">10%</td>
+		</tr>
+		<tr style="color: red;">
+		<td id="content_line"><ui><li>지정차 출발 후 6시간 이전까지</li></ui></td>
+		<td style=" border-bottom: 1px solid #ccc;">30%</td>
+		</tr>
+		<tr style="color: red;">
+		<td style="text-align: left; border-right: 1px solid #ccc; padding: 8px;"><ui><li>지정차 출발 후 6시간 이후<br>
+		* 예매 및 모바일 승차권의 경우는 출발 6시간 이후 자동취소(부도처리)</li></ui></td>
+		<td >100%</td>
+		</tr>
+	</table>
+
+	
+	<hr id="footline">
+</form>
+</div>
+
+<!-- 짤림방지용 텍스트 -->
+
 </html>
+</body>

@@ -1,4 +1,4 @@
-package booking.bus.dao;
+﻿package booking.bus.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ import info.terminal.bean.TerminalVO;
 public class BusDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+
 	// 배차 및 잔여 좌석 수 조회
 	public List<BusVO> busCheck(BusVO busVO, int start_num, int end_num) {
 		Map<String, Object> map = new HashMap<>();
@@ -33,8 +33,8 @@ public class BusDAO {
 	public List<BusVO> busList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.busList");
 	}
-	
-	// 버스 목록 수 조회 
+
+	// 버스 목록 수 조회
 	public int busListCount(BusVO busVO) {
 		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", busVO);
 	}
@@ -47,12 +47,19 @@ public class BusDAO {
 	public List<String> timeCheck(String arrive_time) {
 		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
 	}
-	//터미널 지역 목록 리스트
+
+	// 터미널 지역 목록 리스트
 	public List<TerminalVO> regionList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.regionList");
 	}
 
+
+	// 지역별선택 드롭다운 선택시 드롭다운 터미널 목록 리스트
+	public List<TerminalVO> terminalList(String region) {
+		return sqlSession.selectList("mybatis.bus-Mapper.terminalList",region);
+
 	public List<BusVO> getBus() {
 		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
+
 	}
 }

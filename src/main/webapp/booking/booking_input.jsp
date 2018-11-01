@@ -27,34 +27,42 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		var formObj =$("form");
+	$(document).ready(function() {
+		var formObj = $("form");
 		
-		$('button').on("click",function(e){
+		$('button').on("click", function(e) {
 			e.preventDefault();
-			var date =null;
+			var date = null;
 			var arrivedate = $("#arrivedate").val();
 			//alert(arrivedate);
-			if(arrivedate.indexOf(" ",1)==1){
-				var day="0"+arrivedate.substring(0,1);
-				var month=arrivedate.substring(2,4);
-				var year=arrivedate.substring(6,11);
-					
-				var date=year+"-"+month+"-"+day;
+			if (arrivedate.indexOf(" ", 1) == 1) {
+				var day = "0" + arrivedate.substring(0, 1);
+				var month = arrivedate.substring(2, 4);
+				var year = arrivedate.substring(6, 11);
+
+				var date = year + "-" + month + "-" + day;
 				//alert(date);
-			}else{
-				var day=arrivedate.substring(0,2);
-				var month=arrivedate.substring(3,5);
-				var year=arrivedate.substring(7,12);
-				var date=year+month+day;
+			} else {
+				var day = arrivedate.substring(0, 2);
+				var month = arrivedate.substring(3, 5);
+				var year = arrivedate.substring(7, 12);
+				var date = year + month + day;
 				//alert(date);
 			}
-				$("#arrivedate").attr('value',date);
-				var value=$("#arrivedate").attr("value");
-				//alert(value+"값이 저장되었습니다.");
-				forObj.submit();
+			$("#arrivedate").attr('value', date);
+			var value = $("#arrivedate").attr("value");
+			//alert(value+"값이 저장되었습니다.");
+			formObj.submit();
 		});
+		
+		
+	
 	});
+	$(document).on("change",".start_terminal",function(){
+		alert("dd");
+		alert($('input[name="chk_terminal"]:checked').val());
+		alert($(".start_terminal").val());
+	}); 
 	
 	$(function() {
 
@@ -121,14 +129,53 @@
 			}
 		});
 
-		$('#local_start').dropdown({
-			//출발지 지역선택 드롭다운 의 기능
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				/* 지역선택에따른 jons 으로 터미널 목록 생성 */
-			}
-		});
+		$('#local_start').dropdown(
+				{
+					//출발지 지역선택 드롭다운 의 기능
+					direction : 'down',
+					duration : 700,
+					onChange : function(value, text, $choice) {
+						/* 지역선택에따른 jons 으로 터미널 목록 생성 */
+						var local = value;//드롭박스에서 선택한 값을 가져옴 
+						 $("#result_terminal").empty();
+						//ajax실행 
+						$.ajax({
+							url : "booking_input_TerminalJson.do",
+							type : "post",
+							data : {
+								"local" : local
+							},
+							dataType : "json",
+							success : function(data) {
+								$.each(data.items, function(index, item) {
+									var tr = $("<tr>");
+									var td = $("<td>");
+									var label=$("<label>");
+									var input = $("<input name='chk_terminal'class='start_terminal' type='radio'>",{
+										value : item.name
+									});
+									label.html(item.name);
+									td.append(label).append(input);
+									tr.append(td);
+									$("#result_terminal").append(tr);
+									
+									
+								});
+
+							},
+							error : function(xhr, textStatus, errorThrown) {
+								$("div").html(
+										"<div>" + textStatus + "(HTTP-)"
+												+ xhr.status + "/"
+												+ errorThrown + ")</div>");
+
+							}
+
+						});
+
+					}
+				});
+
 		$('#local_end').dropdown({
 			//도착지 지역선택 드롭다운 의 기능
 			direction : 'down',
@@ -202,6 +249,7 @@
 				alert("출발시간은" + value + "입니다");
 			}
 		});
+		/* 전체 터미널 목록 Json */
 		$.ajax({
 			url : "booking_inputJson.do",
 			type : "post",
@@ -276,8 +324,8 @@ p {
 .start_bus {
 	display: none;
 	background-color: #01A9DB;
-	width: 1000x;
-	height: 300px;
+	width: 500px;
+	height: 500px;
 	position: fixed;
 	top: 20%;
 	left: 40%;
@@ -349,13 +397,16 @@ li {
 	background-color: #0489B1;
 }
 
-table {
+#booking_table {
 	margin-top: 40px;
-	background-color:
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
+}
+
+input {
+	width: 25%;
 }
 </style>
 </head>
@@ -392,13 +443,10 @@ h1 {
 		</table>
 
 		<div>
-			<table>
-				<tr>
-					<!-- 검색전 (전체 터미널 목록) -->
-					<!-- 검색후 (검색된 터미널 목록) -->
-				</tr>
-
+			<table border="1px" style="width: 480px;"id="result_terminal">
+			
 			</table>
+			<button type="button" id="select">선택</button>
 		</div>
 	</div>
 	<!-- 출발 터미널 선택창 끝 -->
@@ -463,7 +511,7 @@ h1 {
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table border="1px solid" align="center">
+					<table border="1px solid" align="center" id="booking_table">
 						<tr>
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
@@ -492,14 +540,14 @@ h1 {
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time"  id="arrivedate">
+											placeholder="Date/Time" id="arrivedate">
 									</div>
 							</td>
 						</tr>
 						<tr>
 							<td>출발 시각</td>
 							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time" >
+								id="arrive_time">
 									<option value="">출발시각</option>
 									<option value="00:00">00:00</option>
 									<option value="01:00">01:00</option>
@@ -578,7 +626,7 @@ h1 {
 						<tr>
 
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit">조회</button>
+									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 					</table>

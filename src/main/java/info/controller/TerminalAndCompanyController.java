@@ -35,7 +35,7 @@ public class TerminalAndCompanyController {
 //		System.out.println("web_word : "+web_word);
 //		System.out.println("======================================");
 //		System.out.println();
-		
+//		
 		 //초기값 설정
 		int pg=1; 
         String region = "서울특별시";
@@ -68,7 +68,7 @@ public class TerminalAndCompanyController {
         int startNum= endNum-9;
         List<TerminalVO> list = 
         		infoService.pagingTerminalBoard(region, word, startNum, endNum);
-        int totalC=infoService.CountTerminal();
+        int totalC=infoService.CountTerminal(word);
         int totalP=(totalC+9)/10;
         
         int startPage=(pg-1)/10*10+1;    
@@ -117,7 +117,7 @@ public class TerminalAndCompanyController {
 	        modelAndView.setViewName("../main/index.jsp");
 	        return modelAndView;	        
 	}
-	
+/*	
 	@RequestMapping(value="/info/searching.do")
 	public ModelAndView searching(HttpServletRequest request) {
 		
@@ -151,4 +151,5 @@ public class TerminalAndCompanyController {
         return modelAndView;	    
 		
 	}
+	*/
 }

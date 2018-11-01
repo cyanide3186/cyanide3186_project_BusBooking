@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import info.company.bean.CompanyVO;
 import info.company.dao.CompanyDAO;
@@ -26,22 +25,29 @@ public class InfoServiceImpl implements InfoService {
 		//검색어 없이 실행시 listTerminal을, 검색어가 있으면 SeachTerminal을 실행
 		
 		if(word.equals("dummyString")) {
-//			System.out.println("**Activate listTerminal**");
-//			System.out.println();
+			System.out.println("**Activate listTerminal**");
+			System.out.println();
 			return terminalDAO.listTerminal(region, startNum, endNum);
 		} else {
-//			System.out.println("**Activate searchTerminal**");
-//			System.out.println();
+			System.out.println("**Activate searchTerminal**");
+			System.out.println();
 			return terminalDAO.searchTerminal(region, word, startNum, endNum);
 		}
 	}
 
 	@Override
-	public int CountTerminal() {
-		return terminalDAO.countTerminal();
-	}	
-	
+	public int CountTerminal(String word) {
 
+		if(word.equals("dummyString")) {
+			System.out.println("**Activate countAllTerminal**");
+			System.out.println();
+			return terminalDAO.countAllTerminal();
+		} else {
+			System.out.println("**Activate countselectedTerminal**");
+			System.out.println();
+			return terminalDAO.countSelectedTerminal(word);
+		}
+	}	
 
 	//운수회사 정보 목록 구현
 	@Override
@@ -55,11 +61,13 @@ public class InfoServiceImpl implements InfoService {
 		return companyDAO.pagingCompanyBoard(startNum, endNum);
 	}
 
-
 	@Override
 	public List<CompanyVO> searching(String word, int startNum, int endNum) {
-		return companyDAO.searching(word, startNum, endNum);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 
 	
 

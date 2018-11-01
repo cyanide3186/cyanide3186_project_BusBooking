@@ -17,4 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn>=#{startNum} and rn<=#{endNum}]]>
 	</select>  
 	
+	<select id="searching" resultType="companyVO" parameterType="java.util.Map">
+	<![CDATA[
+	select * from(select rownum rn, tt.* from (select * from company order by name asc) tt)
+	where (addr like '%${word}%') and (rn>=#{startNum} and rn<=#{endNum})]]>
+	</select>
+	
 </mapper>

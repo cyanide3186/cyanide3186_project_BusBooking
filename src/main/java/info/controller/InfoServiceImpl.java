@@ -55,6 +55,12 @@ public class InfoServiceImpl implements InfoService {
 		return companyDAO.pagingCompanyBoard(startNum, endNum);
 	}
 
+
+	@Override
+	public List<CompanyVO> searching(String word, int startNum, int endNum) {
+		return companyDAO.searching(word, startNum, endNum);
+	}
+
 	
 
 }

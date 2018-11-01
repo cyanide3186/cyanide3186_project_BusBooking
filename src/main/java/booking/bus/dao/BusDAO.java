@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import booking.bus.bean.BusVO;
+import info.terminal.bean.TerminalVO;
 
 @Repository
 public class BusDAO {
@@ -35,5 +36,9 @@ public class BusDAO {
 
 	public List<String> timeCheck(String arrive_time) {
 		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
+	}
+	//터미널 지역 목록 리스트
+	public List<TerminalVO> regionList() {
+		return sqlSession.selectList("mybatis.bus-Mapper.regionList");
 	}
 }

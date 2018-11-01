@@ -34,5 +34,7 @@ public interface BookingService {
 	
 	void seatReset(String bus_no);
 	
-	List<String> timeCheck(String arrive_time);
+	List<String> timeCheck(int time);
+	
+	List<String> dayCheck(int day);
 }

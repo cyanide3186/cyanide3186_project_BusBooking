@@ -1,5 +1,7 @@
 package booking.controller;
 
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -77,7 +79,7 @@ public class BookingController {
 		
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
-		String arrive_time = request.getParameter("arrive_time");
+		int arrive_time = Integer.parseInt(request.getParameter("arrive_time"));
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
@@ -274,7 +276,7 @@ public class BookingController {
 		String payday = request.getParameter("payday");        
 		int totalpay = Integer.parseInt(request.getParameter("totalpay"));         
 		int age_group  = Integer.parseInt(request.getParameter("kid"));             
-		String arrive_day = request.getParameter("arrive_day");
+		int arrive_day = Integer.parseInt(request.getParameter("arrive_day"));
 		
 		vo.setArrive_day(arrive_day);
 		vo.setHp(hp);
@@ -313,7 +315,7 @@ public class BookingController {
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
 		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 		
-		String arrive_day = request.getParameter("arrive_day");
+		int arrive_day = Integer.parseInt(request.getParameter("arrive_day"));
 		
 		// 예약번호 생성 기능
 		/*
@@ -332,15 +334,22 @@ public class BookingController {
 	}
 	
 	// 좌석 초기화
-	@RequestMapping(value="clear.do")
+	@RequestMapping(value="/booking/clear.do")
 	public void clear() {
 		Calendar now = Calendar.getInstance();
-		int getTime = (((now.get(11)*100)+now.get(12))-100);
-		String arrive_time = String.valueOf(getTime);
-		List<String> bus_no = bookingService.timeCheck(arrive_time);
-		for(int i=0; i<=bus_no.size(); i++) {
-			bookingService.seatReset(bus_no.get(i));
+		int day = ((now.get(1)*10000)+((now.get(2)+1)*100)+now.get(5));
+		List<String> bus = bookingService.dayCheck(day);
+		int time = (((now.get(11)*100)+now.get(12)));
+		List<String> bus_no = bookingService.timeCheck(time);
+		for(int i=0; i<bus.size(); i++) {
+			for(int j=0; j<bus_no.size(); j++) {
+				if(bus_no.size()!=0&&bus.size()!=0&&bus.get(i).equals(bus_no.get(j))){
+					for(int k=0; k<bus_no.size(); k++) {
+						System.out.println(bus.get(i));
+						bookingService.seatReset(bus_no.get(k));
+					}
+				}
+			}
 		}
 	}
-
 }

@@ -53,4 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ticket_no = #{ticket_no}
 	</update>
 	
+	<select id="dayCheck" parameterType="int" resultType="String">
+		<![CDATA[
+			select bus_no from ticket where arrive_day <= #{day}
+		]]>
+	</select>
+	
 </mapper>

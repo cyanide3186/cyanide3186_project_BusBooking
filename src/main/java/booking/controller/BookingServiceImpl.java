@@ -80,8 +80,8 @@ public class BookingServiceImpl implements BookingService {
 
 
 	@Override
-	public List<String> timeCheck(String arrive_time) {
-		return busDAO.timeCheck(arrive_time);
+	public List<String> timeCheck(int time) {
+		return busDAO.timeCheck(time);
 	}
 
 	public List<BusVO> busList() {
@@ -92,5 +92,10 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public void seatReset(String bus_no) {
 		seatDAO.seatReset(bus_no);
+	}
+
+	@Override
+	public List<String> dayCheck(int day) {
+		return ticketDAO.dayCheck(day);
 	}
 }

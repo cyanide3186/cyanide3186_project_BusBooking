@@ -68,12 +68,18 @@
 	font-weight: 900;
 }
 #undertable {
-	border: 3px solid #ccc;
-	border-radius: 10px;
-	margin-top: 40px;
-	margin-bottom: 30px;
+	text-align: center;
+	padding: 5px;
 	margin-left: 150px; 
-	width: 850px;"
+	margin-bottom: 30px;
+}
+#uppertable{
+	padding: 5px;
+	margin-left: 150px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	text-align: center;
+	margin-top: 20px;
 }
 #info_image{
 	background-color: #FFD2D2;
@@ -97,6 +103,12 @@
 	width: 800px;
 	margin-left: 180px;
 	border-spacing: 0 15px;
+}
+#content_line {
+	border-right: 1px solid #ccc; 
+	border-bottom: 1px solid #ccc; 
+	text-align: left; 
+	padding: 8px;
 }
 </style> 
 </head>
@@ -294,40 +306,48 @@
 	<p style="margin-left: 150px; font-weight: 900; color: #323232;">* 승차권 발권 전 취소 또는 승차권 발권 후 환불</p>
 	<p style="margin-left: 800px;">(취소 수수료는 100만원 미만은 절사)</p>
 
-	<table id="undertable" border="1">
-	<tr style="text-align: center; font-weight: 1000; ">
-		<td>구분</td>
-		<td>취소 시기</td>
-		<td>수수료</td>
+	<table id="uppertable" >
+	<tr style="font-weight: 1000; ">
+		<td width="220">구분</td>
+		<td width="510">취소 시기</td>
+		<td width="120">수수료</td>
 	</tr>
+	</table>
+	<table id="undertable" style="border-bottom: 1px solid black;">
 	<tr>
-		<td rowspan="6" style="width: 220px; text-align: center;">취소 수수료</td>
-		<td><ui><li>차량 출발일 2일(48시간) 전까지 취소 시</li>
+		<td rowspan="6" style="width: 220px; border-right: 1px solid #ccc;">취소 수수료</td>
+		<td id="content_line">
+		<ui><li>차량 출발일 2일(48시간) 전까지 취소 시</li>
 			<li>(당일 포함) 구매(예매)시점 기준 1시간 이내이면서 출발 1시간 이전까지 취소 시</li></ui>
 		</td>
-		<td style="text-align: center;">수수료 없음</td>
+		<td style="border-bottom: 1px solid #ccc;">수수료 없음</td>
 	</tr>
 	<tr>
-		<td><ui><li>차량 출발일 2일(48시간) 이내이며 구매시점 기준 1시간 경과 후<br>
+		<td id="content_line">
+		<ui><li>차량 출발일 2일(48시간) 이내이며 구매시점 기준 1시간 경과 후<br>
 		 차량 출발 1시간 이전까지 취소 시</li></ui></td>
-		<td style="text-align: center;">승차권 요금의 10%</td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 10%</td>
 	</tr>
 	<tr>
-		<td><ui><li>차량 출발 1시간 이내부터 차량 출발 15분 이전까지 취소 시</li></ui></td>
-		<td style="text-align: center;">승차권 요금의 20%</td>
+		<td id="content_line">
+		<ui><li>차량 출발 1시간 이내부터 차량 출발 15분 이전까지 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 20%</td>
 	</tr>
 	<tr>
-		<td><ui><li>차량 출발 15분 이내부터 차량 출발 전까지 취소 시</li></ui></td>
-		<td style="text-align: center;">승차권 요금의 30%</td>
+		<td id="content_line">
+		<ui><li>차량 출발 15분 이내부터 차량 출발 전까지 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 30%</td>
 	</tr>
 	<tr style="color: red;">
-		<td><ui><li>차량 출발 후 3시간 이전 취소 시</li></ui></td>
-		<td style="text-align: center;">승차권 요금의 50%</td>
+		<td id="content_line">
+		<ui ><li>차량 출발 후 3시간 이전 취소 시</li></ui></td>
+		<td style="border-bottom: 1px solid #ccc;">승차권 요금의 50%</td>
 	</tr>
 	<tr style="color: red;">
-		<td><ui><li>차량 출발 후 3시간 이후 (취소 불가)</li></ui>
+		<td style=" border-right: 1px solid #ccc; text-align: left; padding: 8px;">
+		<ui><li>차량 출발 후 3시간 이후 (취소 불가)</li></ui>
 			<ui><li>차량 출발 후 3시간 이후에는 예매한 승차권을 자동취소(부도처리)</li></ui></td>
-		<td style="text-align: center;">승차권 요금의 100%</td>
+		<td>승차권 요금의 100%</td>
 	</tr>
 	</table>
 	<p>
@@ -338,37 +358,41 @@
 	
 	<div id="logo"><p id="label"><img src="../images/line.png" id="imglabel">시외버스 취소 수수료 안내</p></div>
 	<p style="margin-left: 800px;">(최수 수수료는 100만원 미만은 절사)</p>
-	<table id="undertable" style="margin-bottom: 100px;" border="1">
-		<tr style="text-align: center; font-weight: 1000; width: 40px;">
-		<td>구분</td>
-		<td>취소 시기</td>
-		<td>수수료</td>
+	
+	<table id="uppertable" >
+		<tr style=" font-weight: 1000; width: 40px;">
+		<td width="220">구분</td>
+		<td width="510">취소 시기</td>
+		<td width="120">수수료</td>
 		</tr>
-		<tr style="text-align: center;">
-		<td rowspan="5">승차권(모바일승차권 포함)<br>
+	</table>
+	<table id="undertable" style="border-bottom: 1px solid black;">
+		<tr>
+		<td rowspan="5" style="width: 220px; border-right: 1px solid #ccc;">승차권(모바일승차권 포함)<br>
 		발권 후 예매 후</td>
-		<td style="text-align: left;"><ui><li>지정차 출발 2일 전까지</li></ui>
+		<td id="content_line" style="width: 510px;"><ui><li>지정차 출발 2일 전까지</li></ui>
 			<ui><li>승차권 발권 시점(예매 후 발권은 제외) 기준 1시간 이내 <br>
 			또는 예매시점 기준 1시간 이내. 단, 지정차 출발 전에 한함</li></ui></td>
-		<td  style="width: 120px;">없음</td>
+		<td style=" width:120px; border-bottom: 1px solid #ccc;">없음</td>
 		</tr>
 		<tr>
-		<td><ui><li>지정차 출발 1일전 ~ 1시간 이전까지</li></ui></td>
-		<td style="text-align: center;">5%</td>
+		<td id="content_line">
+		<ui><li>지정차 출발 1일전 ~ 1시간 이전까지</li></ui></td>
+		<td  style="border-bottom: 1px solid #ccc;">5%</td>
 		</tr>
 		<tr>
-		<td><ui><li>지정차 출발 1시간 이내 ~ 출발 직전까지</li></ui></td>
-		<td style="text-align: center;">10%</td>
+		<td id="content_line">
+		<ui><li>지정차 출발 1시간 이내 ~ 출발 직전까지</li></ui></td>
+		<td style=" border-bottom: 1px solid #ccc;">10%</td>
 		</tr>
 		<tr style="color: red;">
-		<td><ui><li>지정차 출발 후 6시간 이전까지</li></ui></td>
-		<td style="text-align: center;">30%</td>
+		<td id="content_line"><ui><li>지정차 출발 후 6시간 이전까지</li></ui></td>
+		<td style=" border-bottom: 1px solid #ccc;">30%</td>
 		</tr>
 		<tr style="color: red;">
-		<td><ui><li>지정차 출발 후 6시간 이후<br>
-			* 예매 및 모바일 승차권의 경우는 출발 6시간 이후 자동취소(부도처리)</li></ui></td>
-		<td style="text-align: center;">100%</td>
-		
+		<td style="text-align: left; border-right: 1px solid #ccc; padding: 8px;"><ui><li>지정차 출발 후 6시간 이후<br>
+		* 예매 및 모바일 승차권의 경우는 출발 6시간 이후 자동취소(부도처리)</li></ui></td>
+		<td >100%</td>
 		</tr>
 	</table>
 

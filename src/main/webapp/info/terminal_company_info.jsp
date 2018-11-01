@@ -8,9 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
-#logo:hover { background-color: #87CEFA;}
+#logo:hover { background-color: #AAB9FF;}
 #logo {
-
 	border: 1px solid white;
 	border-radius: 10px;
 }

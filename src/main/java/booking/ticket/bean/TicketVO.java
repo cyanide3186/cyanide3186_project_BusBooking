@@ -9,7 +9,7 @@ public class TicketVO {
 	private int totalpay;          // 결제금액
 	private String cancle_check;   // 취소 여부확인.  취소되면 y  
 	private String payday;         // 결제일
-	private int arrive_day;	   // 출발일자
+	private String arrive_day;	   // 출발일자
 	
 	public String getTicket_no() {
 		return ticket_no;
@@ -59,11 +59,11 @@ public class TicketVO {
 	public void setPayday(String payday) {
 		this.payday = payday;
 	}
-	public int getArrive_day() {
+	public String getArrive_day() {
 		return arrive_day;
 	}
-	public void setArrive_day(int arrive_day) {
-		this.arrive_day = arrive_day;
+	public void setArrive_day(String arrive_day2) {
+		this.arrive_day = arrive_day2;
 	}
 	
 

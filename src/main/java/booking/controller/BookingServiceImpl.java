@@ -25,8 +25,8 @@ public class BookingServiceImpl implements BookingService {
 	private TicketDAO ticketDAO;
 
 	@Override
-	public List<BusVO> busCheck(BusVO busVO) {
-		return busDAO.busCheck(busVO);
+	public List<BusVO> busCheck(BusVO busVO, int start_num, int end_num) {
+		return busDAO.busCheck(busVO, start_num, end_num);
 	}
 
 	@Override
@@ -102,8 +102,14 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+
 	public List<TerminalVO> terminalList(String region) {
 		
 		return busDAO.terminalList(region);
 	}
+
+	public List<BusVO> getBus() {
+		return busDAO.getBus();
+	}
+
 }

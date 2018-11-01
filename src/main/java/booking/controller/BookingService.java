@@ -1,4 +1,4 @@
-package booking.controller;
+﻿package booking.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface BookingService {
 
 	int bookingCancel(String ticket_no); // 티켓 취소
 
-	List<BusVO> busCheck(BusVO busVO); // 배차 조회
+	List<BusVO> busCheck(BusVO busVO, int start_num, int end_num); // 배차 조회
 	
 	int busListCount(BusVO busVO); // 배차 조회 목록 수
 
@@ -40,6 +40,7 @@ public interface BookingService {
 	void seatReset(String bus_no);
 	
 	List<String> timeCheck(String arrive_time);
-	
-	
+
+	List<BusVO> getBus();
+
 }

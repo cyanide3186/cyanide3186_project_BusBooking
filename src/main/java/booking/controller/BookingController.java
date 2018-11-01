@@ -1,5 +1,7 @@
 package booking.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +29,7 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 
+	String[] arrivalTime_array; 
 	
 	//터미널 목록 json 
 	@RequestMapping(value="/booking/booking_inputJson.do")
@@ -147,11 +151,14 @@ public class BookingController {
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
+		int start_num = Integer.parseInt(request.getParameter("start_num"));	// 배차 조회 항목 수
+		int end_num = Integer.parseInt(request.getParameter("end_num"));		// 배차 조회 항목 수
+		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(arrive_time);
 		
-		List<BusVO> list = bookingService.busCheck(busVO);		// 배차조회 결과 목록
+		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
 		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
@@ -407,4 +414,40 @@ public class BookingController {
 		}
 	}
 
+	// 버스 예상 도착시간에 좌석 초기화
+	@Scheduled(cron="0 * * * * *")
+	public void seatReset() {
+		
+		List<BusVO> list = new ArrayList<>();
+		list = bookingService.getBus();
+		
+		arrivalTime_array = new String[list.size()];
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int arrive_time = Integer.parseInt(list.get(i).getArrive_time());
+			int time = Integer.parseInt(list.get(i).getTime());
+			String bus_no = list.get(i).getBus_no();
+			
+			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
+			int arrivalTime = arrive_time + time;
+			
+			if(arrivalTime >= 2400) arrivalTime -= 2400;
+			
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime);
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+		Calendar cal = Calendar.getInstance();
+		String currentTime = sdf.format(cal.getTime());
+		
+		for(int i = 0; i < arrivalTime_array.length; i++) {
+			int cutIndex = arrivalTime_array[i].indexOf("+");
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+			
+			if(arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
+				bookingService.seatReset(bus_no);
+			}
+		}
+	}
 }

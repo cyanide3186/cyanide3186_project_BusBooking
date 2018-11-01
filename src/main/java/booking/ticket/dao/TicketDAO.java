@@ -37,5 +37,9 @@ public class TicketDAO {
 	public int bookingModify(TicketVO ticketVO) {
 		return sqlSession.update("mybatis.ticket-Mapper.bookingModify", ticketVO);
 	}
+
+	public List<String> dayCheck(int day) {
+		return sqlSession.selectList("mybatis.ticket-Mapper.dayCheck", day);
+	}
 	
 }

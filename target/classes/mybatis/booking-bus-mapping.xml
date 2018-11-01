@@ -11,21 +11,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	-->
 	
 	<!-- 배차 및 잔여 좌석 수 조회 -->
-	<select id="busCheck" parameterType="busVO" resultType="busVO">
+	<select id="busCheck" parameterType="java.util.Map" resultType="busVO">
 		<![CDATA[
-			select bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
-    			   (select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as bus_seats from bus
-			where start_tr = #{start_tr} 
-			and end_tr = #{end_tr} 
-			and arrive_time < 2400 
-			and arrive_time >= #{arrive_time}
+			select * from 
+				(select rownum rn, tt.* from 
+					(select  bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
+						(select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as seat_count from bus
+				where start_tr = #{start_tr} and end_tr = #{end_tr} and arrive_time < 2400 and arrive_time >= #{arrive_time}) tt)
+			where rn >= #{start_num} and rn <= #{end_num};
 		]]>
 	</select>
 	
-	<select id="timeCheck" parameterType="String" resultType="String">
-		<![CDATA[
-			select bus_no from bus where arrive_time < #{arrive_time}
-		]]>
+	<select id="timeCheck" parameterType="int" resultType="String">
+			select bus_no from bus where arrive_time + time = #{time}
 	</select>
 	
 	<select id="busListCount" parameterType="busVO" resultType="int">
@@ -64,4 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 select name from terminal where region=#{region}
 	</select>
 	
+	<select id="getBus" resultType="busVO">
+		select * from bus
+	</select>
 </mapper>

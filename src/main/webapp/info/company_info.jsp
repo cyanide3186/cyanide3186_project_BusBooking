@@ -14,24 +14,42 @@
 a { cursor: pointer;
 	margin: 20px;
 }
+#logo:hover { background-color: #87CEFA;}
+#logo {
+	border: 1px solid white;
+	border-radius: 10px;
+}
+#taga {
+	position: relative;
+	top: -20px;
+	font-size: 30px;
+}
+a { cursor: pointer;
+	margin: 20px;
+}
 table#tab {
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-	margin-left: 300px;
+	margin-left: 220px;
 	margin-top: 40px;
 	text-align: center;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: 900;
 	cursor: pointer;
 }
+.line {
+	border-bottom: 1px solid #ccc; 
+	border-right: 1px solid #ccc;
+}
+.linebuttom{
+	border-bottom: 1px solid #ccc;
+}
 .company_table {
-	margin-left: 100px;
+	margin-left: 120px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 100px; margin-bottom: 100px;}
+.table {margin-left: 120px; margin-bottom: 100px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -40,8 +58,10 @@ table#tab {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 800px;
-	width:300px; 
+	border-radius: 10px;
+	margin-top: 80px;
+	margin-left: 810px;
+	width:220px; 
 	height:30px;
 }
 </style>
@@ -57,38 +77,46 @@ table#tab {
 			<hr>
 			<div class="form">
 
-	<table id="tab" >
-		<tr>
-			<td id="logo1" width="400" height="80"><a href="../info/infoTrAndCompany.do">터미널 안내</a></td>
-			<td id="logo2" width="400"><a href="../info/company_info.do?pg=1">운수사 안내</a></td>
-		</tr>
-	</table>
+	<table id="tab">
+			<tr>
+			<td width="350" id="logo" >
+			<img src="../images/terminal.png" width="60" height="60">
+			<a href="../info/infoTrAndCompany.do" id="taga"  >터미널 안내</a></td>
+			<td width="350"  id="logo">
+			<img src="../images/bus.png" width="60" height="60">
+			<a href="../info/company_info.do?pg=1" id="taga">운수사 안내</a></td>
+			</tr>
+		</table>
 
-		<form method="post" action="../info/searching.do?pg=1">
+		
+		<form method="post" action="../info/company_info.do">
 			<input type="text" id="search_text" name="word" placeholder="검색어를 입력하세요">
 			<input type="submit" value="검색" >
 		</form>
 		
 		<table class="company_table">
 		<tr height="50">
-			<th width="200">구/회사명</th>
-			<th width="100">전화번호</th>
-			<th width="490">주소</th>
+			<th width="240">구/회사명</th>
+			<th width="190">전화번호</th>
+			<th width="530">주소</th>
 		</tr>
 		</table>
 		
 	<table class="table" style="border-bottom: 1px solid black;">
  	<c:forEach var="companyVO" items="${list}">
-		<tr align="center" height="50" >
-			<td width="200" class="line">${companyVO.name}</td>
-			<td width="100" class="linecenter">${companyVO.tel}</td>
-			<td width="490" class="line">${companyVO.addr}</td>
+		<tr align="center" height="50">
+			<td width="240" class="line">
+			${companyVO.name}</td>
+			<td width="190" class="line">
+			${companyVO.tel}</td>
+			<td width="530" class="linebuttom">
+			${companyVO.addr}</td>
 		</tr>
 	</c:forEach> 
     <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 10 }">
-       <a class="Paging" href="../info/company_info.do?pg=${startPage -1 }" >이전</a>
+       <a class="paging" href="../info/company_info.do?pg=${startPage -1 }" >이전</a>
       </c:if>
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">

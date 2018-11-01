@@ -16,19 +16,6 @@
 
 <!-- Site Properties -->
 <title>Fixed Menu Example - Semantic</title>
-<script type="text/javascript">
-	
-	function time(){
-		 $.ajax({
-			type: "POST",
-			url: "../booking/clear.do",
-			data: null,
-		    cache: true,
-		});
-	}
-	setInterval(time, 10000);
-</script>
-
 </head>
 <body>
 

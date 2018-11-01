@@ -13,7 +13,7 @@ public interface InfoService {
 	public int CountTerminal();
 	
 	//운수회사 목록 출력
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum);
+	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum);
 	public int CountCompany();
-	public List<CompanyVO> searching(String word, int startNum, int endNum);
+	//public List<CompanyVO> searching(String word, int startNum, int endNum);
 }

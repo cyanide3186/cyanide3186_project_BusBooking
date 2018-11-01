@@ -24,14 +24,21 @@ table#tab {
 	font-weight: 900;
 	cursor: pointer;
 }
+.line {
+	border-bottom: 1px solid #ccc; 
+	border-right: 1px solid #ccc;
+}
+.linebuttom{
+	border-bottom: 1px solid #ccc;
+}
 .company_table {
-	margin-left: 100px;
+	margin-left: 150px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 100px; margin-bottom: 100px;}
+.table {margin-left: 150px; margin-bottom: 100px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -40,8 +47,9 @@ table#tab {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 800px;
-	width:300px; 
+	margin-top: 30px;
+	margin-left: 840px;
+	width:220px; 
 	height:30px;
 }
 </style>
@@ -64,7 +72,7 @@ table#tab {
 		</tr>
 	</table>
 
-		<form method="post" action="../info/searching.do?pg=1">
+		<form method="post" action="../info/company_info.do">
 			<input type="text" id="search_text" name="word" placeholder="검색어를 입력하세요">
 			<input type="submit" value="검색" >
 		</form>
@@ -72,23 +80,26 @@ table#tab {
 		<table class="company_table">
 		<tr height="50">
 			<th width="200">구/회사명</th>
-			<th width="100">전화번호</th>
+			<th width="150">전화번호</th>
 			<th width="490">주소</th>
 		</tr>
 		</table>
 		
 	<table class="table" style="border-bottom: 1px solid black;">
  	<c:forEach var="companyVO" items="${list}">
-		<tr align="center" height="50" >
-			<td width="200" class="line">${companyVO.name}</td>
-			<td width="100" class="linecenter">${companyVO.tel}</td>
-			<td width="490" class="line">${companyVO.addr}</td>
+		<tr align="center" height="50">
+			<td width="200" class="line">
+			${companyVO.name}</td>
+			<td width="150" class="line">
+			${companyVO.tel}</td>
+			<td width="490" class="linebuttom">
+			${companyVO.addr}</td>
 		</tr>
 	</c:forEach> 
     <tr>
        <td colspan="5" align="center" height="70px;">
        <c:if test="${startPage > 10 }">
-       <a class="Paging" href="../info/company_info.do?pg=${startPage -1 }" >이전</a>
+       <a class="paging" href="../info/company_info.do?pg=${startPage -1 }" >이전</a>
       </c:if>
          
 		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">

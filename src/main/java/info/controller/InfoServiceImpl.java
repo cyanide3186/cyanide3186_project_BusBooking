@@ -35,9 +35,7 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public int CountTerminal() {
 		return terminalDAO.countTerminal();
-	}	
-	
-
+	}
 
 	//운수회사 정보 목록 구현
 	@Override
@@ -45,18 +43,15 @@ public class InfoServiceImpl implements InfoService {
 		return companyDAO.CountCompany();
 	}
 
-
 	@Override
-	public List<CompanyVO> pagingCompanyBoard(int startNum, int endNum) {
-		return companyDAO.pagingCompanyBoard(startNum, endNum);
+	public List<CompanyVO> pagingCompanyBoard(String word, int startNum, int endNum) {
+		if(word.equals("searching")) {
+			return companyDAO.pagingCompanyBoard(startNum, endNum);
+		} else {
+			return companyDAO.searchCompany(word, startNum, endNum);
+		}
 	}
 
 
-	@Override
-	public List<CompanyVO> searching(String word, int startNum, int endNum) {
-		return companyDAO.searching(word, startNum, endNum);
-	}
-
-	
 
 }

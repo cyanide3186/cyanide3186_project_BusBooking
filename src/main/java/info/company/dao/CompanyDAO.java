@@ -29,7 +29,7 @@ public class CompanyDAO {
 	}
 
 	public int wordCountCompany(String word) {
-		return sqlSessionTemplate.selectOne("mybatis.company-mapper.wordCountCompany");
+		return sqlSessionTemplate.selectOne("mybatis.company-mapper.wordCountCompany", word);
 	}
 	//운수사 검색 리스트
 	public List<CompanyVO> searchCompany(String word, int startNum, int endNum) {

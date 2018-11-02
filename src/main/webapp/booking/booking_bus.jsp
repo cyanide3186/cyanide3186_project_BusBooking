@@ -97,6 +97,16 @@ div#page_button button {
 td, th {
 	text-align: center;
 }
+#currentPaging {
+	color: red; text-decoration: underline;
+}
+#paging {
+	color: blue; text-decoration: none;
+}
+#subjectA:link {color:black; text-decoration: none;}
+#subjectA:visited {color:black; text-decoration: none;}
+#subjectA:achive {color:black; text-decoration: none;}
+#subjectA:hover {color:green; text-decoration: underline;}
 </style>
 </head>
 <body>
@@ -112,6 +122,7 @@ td, th {
 						<li id="mainli">2.배차 조회</li>
 						<li>3.매수 및 좌석 선택</li>
 						<li>4.카드 정보 입력</li>
+						<li>${startPage},${endPage},${totalPage }</li>
 					</ul>
 					<hr>
 				</header>
@@ -124,21 +135,21 @@ td, th {
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">
-							<ul class="road">
-								<li >출발지</li>
-								<li></li>
-								<li>도착지</li>
-								<li></li>
-							</ul>
-						</div>
+						<div class="active item">가는 편</div>
 
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1px solid black">
 							<tr>
-								<td width="500px" height="50px"></td>
-								<td width="500px"></td>
+								<td width="500px" height="50px">
+									<ul class="road">
+										<li>출발지</li>
+										<li>${ start_tr}</li>
+										<li>도착지</li>
+										<li>${ end_tr}</li>
+									</ul>
+								</td>
+								<td width="500px">${arrive_day}</td>
 							</tr>
 						</table>
 					</div>
@@ -165,7 +176,7 @@ td, th {
 									<td>${busVO.arrive_time}</td>
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
-									<td>${busVO.bus_seats}</td>
+									<td>${busVO.bus_seats}석/총 40석</td>
 								</tr>
 							</c:forEach>
 
@@ -179,11 +190,27 @@ td, th {
 			<div>
 				<div class="ui text container" id="page_button">
 					<table>
+
 						<tr>
-							<td width="200px" align="center"><button
-									class="ui teal basic button">이전시간</button></td>
-							<td width="200px" align="center"><button
-									class="ui teal basic button">다음시간</button></td>
+							<td width="200px" align="center"><c:if
+									test="${startPage >5}">
+									<button class="ui teal basic button"
+										onclick="location.href='../booking/booking_bus.do?pg=${startPage -1}'">이전시간</button>
+								</c:if></td>
+							<td width="50%"><c:forEach var="i" begin="${startPage}" end="${endPage}"
+									step="1">
+									<c:if test="${pg == i}">
+										[<a id="currentPaging" href="../booking/booking_bus.do?pg=${i}">${i}</a>]
+									</c:if>
+									<c:if test="${pg != i}">
+										[<a id="paging" href="../booking/booking_bus.do?pg=${i}">${i}</a>]
+									</c:if>
+								</c:forEach></td>
+							<td width="200px" align="center">
+							<c:if test="${endPage <= totalPage}">
+									<button class="ui teal basic button" onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}'">다음시간</button>
+								</c:if></td>
+
 						</tr>
 					</table>
 

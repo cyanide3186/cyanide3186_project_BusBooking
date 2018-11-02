@@ -67,7 +67,7 @@
 				var date = year + month + day;
 				//alert(date);
 			}
-			$("#arrivedate").attr('value', date);
+			$("#real_arrivedate").attr('value', date);
 			var value = $("#arrivedate").attr("value");
 			//alert(value+"값이 저장되었습니다.");
 			formObj.submit();

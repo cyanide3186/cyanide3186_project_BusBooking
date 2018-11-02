@@ -190,9 +190,6 @@ public class BookingController {
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(arrive_time);
-		System.out.println("출발 터미널 : " + start_tr);
-		System.out.println("도착 터미널 : " + end_tr);
-		System.out.println("출발 시간 : " + arrive_time);
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
 		int totalPage = (busListCount + 4) / 5;
@@ -200,8 +197,6 @@ public class BookingController {
 		int endPage = startPage + 4;
 
 		if (endPage > totalPage) endPage = totalPage;
-		
-		
 		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
 		

@@ -173,22 +173,32 @@ public class BookingController {
 		BusVO busVO = new BusVO();
 		
 		String start_tr = request.getParameter("start_tr");
-		System.out.println(start_tr);
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
-		int start_num = Integer.parseInt(request.getParameter("start_num"));	// 배차 조회 항목 수
-		int end_num = Integer.parseInt(request.getParameter("end_num"));		// 배차 조회 항목 수
+		
+		int pg = 1;
+		String param_pg = request.getParameter("pg");
+		if(param_pg != null) pg = Integer.parseInt(param_pg);
+		
+		int end_num = pg * 10;			// 배차 조회 항목 수
+		int start_num = end_num - 9;	// 배차 조회 항목 수
 		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(arrive_time);
 		
+		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
+		int totalPage = (busListCount + 4) / 5;
+		int startPage = (pg - 1) / 5 * 5 + 1;
+		int endPage = startPage + 4;
+
+		if (endPage > totalPage) endPage = totalPage;
+		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
-		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
@@ -196,9 +206,12 @@ public class BookingController {
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);
 		modelAndView.addObject("busListCount", busListCount);
+		modelAndView.addObject("totalPage", totalPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
-			
+		
 		return modelAndView;
 	}
 	
@@ -376,7 +389,7 @@ public class BookingController {
 		int age_group  = Integer.parseInt(request.getParameter("kid"));             
 		String arrive_day = request.getParameter("arrive_day");
 		
-		//vo.setArrive_day(arrive_day);
+		vo.setArrive_day(arrive_day);
 		vo.setHp(hp);
 		vo.setPayday(payday);
 		vo.setTotalpay(totalpay);
@@ -424,18 +437,18 @@ public class BookingController {
 		ticketVO.setBus_no(bus_no);
 		ticketVO.setSeat_no(seat_no);
 		ticketVO.setHp(hp);
-		//ticketVO.setArrive_day(arrive_day);
+		ticketVO.setArrive_day(arrive_day);
 		
 		int count = bookingService.booking(ticketVO);
 		
 		return count;
 	}
 	
-	// 버스 예상 도착시간에 좌석 초기화
+	// 버스 도착 예상시간에 좌석 초기화
 	@Scheduled(cron="0 * * * * *")
 	public void seatReset() {
 		
-		/*List<BusVO> list = new ArrayList<>();
+		List<BusVO> list = new ArrayList<>();
 		list = bookingService.getBus();
 		
 		arrivalTime_array = new String[list.size()];
@@ -465,6 +478,6 @@ public class BookingController {
 			if(arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
 				bookingService.seatReset(bus_no);
 			}
-		}*/
+		}
 	}
 }

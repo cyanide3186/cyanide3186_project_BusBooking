@@ -79,8 +79,6 @@ public class BookingServiceImpl implements BookingService {
 		return seatDAO.seatModify(ticket_no);
 	}
 
-
-	
 	@Override
 	public List<BusVO> busList() {
 		

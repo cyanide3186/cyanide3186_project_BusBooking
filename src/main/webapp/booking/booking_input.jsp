@@ -67,7 +67,7 @@
 				var date = year + month + day;
 				//alert(date);
 			}
-			$("#arrivedate").attr('value', date);
+			$("#real_arrivedate").attr('value', date);
 			var value = $("#arrivedate").attr("value");
 			//alert(value+"값이 저장되었습니다.");
 			formObj.submit();
@@ -514,7 +514,7 @@ p {
 .end_bus {
 	display: none;
 	background-color: #01A9DB;
-	width: 500x;
+	width: 500px;
 	height: 500px;
 	position: fixed;
 	top: 20%;
@@ -690,12 +690,12 @@ input {
 			</div>
 
 		</div>
+
+
+
+
+
 		<div>
-
-
-
-
-
 			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
@@ -738,30 +738,30 @@ input {
 							<td><select name="arrive_time" class="ui dropdown"
 								id="arrive_time">
 									<option value="">출발시각</option>
-									<option value="00:00">00:00</option>
-									<option value="01:00">01:00</option>
-									<option value="02:00">02:00</option>
-									<option value="03:00">03:00</option>
-									<option value="04:00">04:00</option>
-									<option value="05:00">05:00</option>
-									<option value="06:00">06:00</option>
-									<option value="07:00">07:00</option>
-									<option value="08:00">08:00</option>
-									<option value="09:00">09:00</option>
-									<option value="10:00">10:00</option>
-									<option value="11:00">11:00</option>
-									<option value="12:00">12:00</option>
-									<option value="13:00">13:00</option>
-									<option value="14:00">14:00</option>
-									<option value="15:00">15:00</option>
-									<option value="16:00">16:00</option>
-									<option value="17:00">17:00</option>
-									<option value="18:00">18:00</option>
-									<option value="19:00">19:00</option>
-									<option value="20:00">20:00</option>
-									<option value="21:00">21:00</option>
-									<option value="22:00">22:00</option>
-									<option value="23:00">23:00</option>
+									<option value="0000">00:00</option>
+									<option value="0100">01:00</option>
+									<option value="0200">02:00</option>
+									<option value="0300">03:00</option>
+									<option value="0400">04:00</option>
+									<option value="0500">05:00</option>
+									<option value="0600">06:00</option>
+									<option value="0700">07:00</option>
+									<option value="0800">08:00</option>
+									<option value="0900">09:00</option>
+									<option value="1000">10:00</option>
+									<option value="1100">11:00</option>
+									<option value="1200">12:00</option>
+									<option value="1300">13:00</option>
+									<option value="1400">14:00</option>
+									<option value="1500">15:00</option>
+									<option value="1600">16:00</option>
+									<option value="1700">17:00</option>
+									<option value="1800">18:00</option>
+									<option value="1900">19:00</option>
+									<option value="2000">20:00</option>
+									<option value="2100">21:00</option>
+									<option value="2200">22:00</option>
+									<option value="2300">23:00</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -813,11 +813,12 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-
+							
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
+						
 					</table>
 
 				</div>

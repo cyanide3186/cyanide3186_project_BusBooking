@@ -195,7 +195,7 @@ td, th {
 							<td width="200px" align="center"><c:if
 									test="${startPage >5}">
 									<button class="ui teal basic button"
-										onclick="location.href='../booking/booking_bus.do?pg=${startPage -1}'">이전시간</button>
+										onclick="location.href='../booking/booking_bus.do?pg=${startPage -1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}''">이전시간</button>
 								</c:if></td>
 							<td width="50%"><c:forEach var="i" begin="${startPage}" end="${endPage}"
 									step="1">
@@ -208,7 +208,7 @@ td, th {
 								</c:forEach></td>
 							<td width="200px" align="center">
 							<c:if test="${endPage <= totalPage}">
-									<button class="ui teal basic button" onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}'">다음시간</button>
+									<button class="ui teal basic button" onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}'">다음시간</button>
 								</c:if></td>
 
 						</tr>

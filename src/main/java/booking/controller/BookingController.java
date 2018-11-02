@@ -124,6 +124,35 @@ public class BookingController {
 		modelAndView.setViewName("../booking/booking_input_TerminalJson.jsp");
 		return modelAndView;
 	}
+	//검색을위한 터미널 목록 
+	@RequestMapping(value="/booking/booking_input_TerminalSearchJson.do")
+	public ModelAndView booking_terminalJson (ModelAndView modelAndView ) {
+		List<TerminalVO> list=bookingService.terminalAllList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("name", vo.getName());/*지역별터미널이름*/
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_TerminalSearchJson.jsp");
+		return modelAndView;
+	}
 	
 	// 버스 예약화면
 	@RequestMapping(value="/booking/booking_inputForm.do")
@@ -156,7 +185,7 @@ public class BookingController {
 		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
-		busVO.setArrive_time(arrive_time);
+		//busVO.setArrive_time(arrive_time);
 		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
 		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
@@ -347,7 +376,7 @@ public class BookingController {
 		int age_group  = Integer.parseInt(request.getParameter("kid"));             
 		String arrive_day = request.getParameter("arrive_day");
 		
-		vo.setArrive_day(arrive_day);
+		//vo.setArrive_day(arrive_day);
 		vo.setHp(hp);
 		vo.setPayday(payday);
 		vo.setTotalpay(totalpay);
@@ -395,7 +424,7 @@ public class BookingController {
 		ticketVO.setBus_no(bus_no);
 		ticketVO.setSeat_no(seat_no);
 		ticketVO.setHp(hp);
-		ticketVO.setArrive_day(arrive_day);
+		//ticketVO.setArrive_day(arrive_day);
 		
 		int count = bookingService.booking(ticketVO);
 		
@@ -418,7 +447,7 @@ public class BookingController {
 	@Scheduled(cron="0 * * * * *")
 	public void seatReset() {
 		
-		List<BusVO> list = new ArrayList<>();
+		/*List<BusVO> list = new ArrayList<>();
 		list = bookingService.getBus();
 		
 		arrivalTime_array = new String[list.size()];
@@ -448,6 +477,6 @@ public class BookingController {
 			if(arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
 				bookingService.seatReset(bus_no);
 			}
-		}
+		}*/
 	}
 }

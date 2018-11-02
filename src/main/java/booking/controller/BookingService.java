@@ -42,5 +42,7 @@ public interface BookingService {
 	List<String> timeCheck(String arrive_time);
 
 	List<BusVO> getBus();
+	
+	List<TerminalVO> terminalAllList(); //터미널 검색시 사용하는 모든 터미널 목록 
 
 }

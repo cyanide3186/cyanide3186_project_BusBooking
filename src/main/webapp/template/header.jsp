@@ -80,7 +80,7 @@
 					<a class="item" href="../board/boardList.do">공지사항</a> 
 					<a class="item" href="../board/boardFAQ.do">FAQ</a>
 					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a>
-					<div class="divider"></div>
+					<!-- <div class="divider"></div>
 					<div class="header">Header Item</div>
 					<div class="item">
 						<i class="dropdown icon"></i> Sub Menu
@@ -89,7 +89,7 @@
 								Item</a>
 						</div>
 					</div>
-					<a class="item" href="#">Link Item</a>
+					<a class="item" href="#">Link Item</a> -->
 				</div>
 			</div>
 

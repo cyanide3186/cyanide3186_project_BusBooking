@@ -29,7 +29,7 @@ a { cursor: pointer;
 	margin: 20px;
 }
 table#tab {
-	margin-left: 220px;
+	margin-left: 250px;
 	margin-top: 40px;
 	text-align: center;
 	font-size: 25px;
@@ -48,7 +48,7 @@ table#tab {
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 .table {margin-left: 120px; margin-bottom: 100px; }
 #currentPaging {
@@ -61,9 +61,16 @@ table#tab {
 #search_text {
 	border-radius: 10px;
 	margin-top: 80px;
-	margin-left: 810px;
+	margin-left: 750px;
 	width:220px; 
 	height:30px;
+}
+#button {
+	width: 60px;
+	height: 30px;
+	background-color: #282828;
+	color: white;
+	border-radius: 10px;
 }
 </style>
 
@@ -92,25 +99,25 @@ table#tab {
 		
 		<form method="post" action="../info/company_info.do">
 			<input type="text" id="search_text" name="word" placeholder="검색어를 입력하세요">
-			<input type="submit" value="검색" >
+			<input id="button" type="submit" value="검색" >
 		</form>
 		
 		<table class="company_table">
 		<tr height="50">
-			<th width="240">구/회사명</th>
-			<th width="190">전화번호</th>
-			<th width="530">주소</th>
+			<th width="220">구/회사명</th>
+			<th width="170">전화번호</th>
+			<th width="520">주소</th>
 		</tr>
 		</table>
 		
 	<table class="table" style="border-bottom: 1px solid black;">
  	<c:forEach var="companyVO" items="${list}">
 		<tr align="center" height="50">
-			<td width="240" class="line">
+			<td width="220" class="line">
 			${companyVO.name}</td>
-			<td width="190" class="line">
+			<td width="170" class="line">
 			${companyVO.tel}</td>
-			<td width="530" class="linebuttom">
+			<td width="520" class="linebuttom">
 			${companyVO.addr}</td>
 		</tr>
 	</c:forEach> 

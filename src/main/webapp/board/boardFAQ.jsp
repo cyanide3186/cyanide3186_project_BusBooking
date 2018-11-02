@@ -152,6 +152,7 @@ table#menu {
 #logo3:hover {background-color: #FAC87D; text-decoration: none;}
 #logo4:hover {background-color: #FAC87D; text-decoration: none;}
 #logo5:hover {background-color: #FAC87D; text-decoration: none;}
+#menulogo:hover {color: white;}
 </style> 
 </head>
 <body>

@@ -58,10 +58,30 @@
 		
 	
 	});
-	$(document).on("change",".start_terminal",function(){
-		alert("dd");
-		alert($('input[name="chk_terminal"]:checked').val());
-		alert($(".start_terminal").val());
+	$(document).on("click",".start_terminal",function(){
+		var startterminal=$('input:radio[name="chk_terminal"]:checked').val();
+		//var startterminal=$('input:radio[name="chk_terminal"]').val();
+		alert(startterminal+"을 선택하셨습니다.");
+		$("#start_tr").attr({
+			placeholder : startterminal,
+			value : startterminal,
+			readonly : "true"
+		});
+		$(".start_bus").fadeOut(200);
+		$("#glayLayer").fadeOut(300)
+
+	}); 
+	$(document).on("click",".end_terminal",function(){
+		var endterminal=$('input:radio[name="chk_terminal"]:checked').val();
+		alert(endterminal+"을 선택하셨습니다.");
+		$("#end_tr").attr({
+			placeholder : endterminal,
+			value : endterminal,
+			readonly : "true"
+		});
+		$(".end_bus").fadeOut(200);
+		$("#glayLayer").fadeOut(300)
+
 	}); 
 	
 	$(function() {
@@ -151,9 +171,10 @@
 									var tr = $("<tr>");
 									var td = $("<td>");
 									var label=$("<label>");
-									var input = $("<input name='chk_terminal'class='start_terminal' type='radio'>",{
-										value : item.name
+									var input = $("<input name='chk_terminal' class='start_terminal' type='radio'>",{
+										value: item.name
 									});
+									input.attr("value",item.name);
 									label.html(item.name);
 									td.append(label).append(input);
 									tr.append(td);
@@ -179,9 +200,49 @@
 		$('#local_end').dropdown({
 			//도착지 지역선택 드롭다운 의 기능
 			direction : 'down',
-			duration : 700,
+			duration : 1000,
 			onChange : function(value, text, $choice) {
 				/* 지역선택에따른 jons 으로 터미널 목록 생성 */
+				/* 지역선택에따른 jons 으로 터미널 목록 생성 */
+				var local = value;//드롭박스에서 선택한 값을 가져옴 
+				 $("#result_terminal").empty();
+				alert(local);
+				//ajax실행 
+				$.ajax({
+					url : "booking_input_TerminalJson.do",
+					type : "post",
+					data : {
+						"local" : local
+					},
+					dataType : "json",
+					success : function(data) {
+						alert("success");
+						$.each(data.items, function(index, item) {
+							var tr = $("<tr>");
+							var td = $("<td>");
+							var label=$("<label>");
+							var input = $("<input name='chk_terminal' class='end_terminal' type='radio'>",{
+								value: item.name
+							});
+							input.attr("value",item.name);
+							label.html(item.name);
+							td.append(label).append(input);
+							tr.append(td);
+							$("#result_terminal_end").append(tr);
+							
+							
+						});
+
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						$("div").html(
+								"<div>" + textStatus + "(HTTP-)"
+										+ xhr.status + "/"
+										+ errorThrown + ")</div>");
+
+					}
+
+				});
 			}
 		});
 
@@ -446,7 +507,6 @@ input {
 			<table border="1px" style="width: 480px;"id="result_terminal">
 			
 			</table>
-			<button type="button" id="select">선택</button>
 		</div>
 	</div>
 	<!-- 출발 터미널 선택창 끝 -->
@@ -476,12 +536,15 @@ input {
 					</div></td>
 			</tr>
 		</table>
-
+		<div>
+			<table border="1px" style="width: 480px;"id="result_terminal_end">
+			
+			</table>
+		</div>
 
 
 	</div>
 
-	</div>
 
 
 	<div class="wrapper">

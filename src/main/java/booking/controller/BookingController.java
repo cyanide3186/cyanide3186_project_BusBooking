@@ -187,20 +187,23 @@ public class BookingController {
 		int end_num = pg * 10;			// 배차 조회 항목 수
 		int start_num = end_num - 9;	// 배차 조회 항목 수
 		
-		int bus_list_count = bookingService.busListCount(busVO);
-		int totalPage = (bus_list_count + 4) / 5;
+		busVO.setStart_tr(start_tr);
+		busVO.setEnd_tr(end_tr);
+		busVO.setArrive_time(arrive_time);
+		System.out.println("출발 터미널 : " + start_tr);
+		System.out.println("도착 터미널 : " + end_tr);
+		System.out.println("출발 시간 : " + arrive_time);
+		
+		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
+		int totalPage = (busListCount + 4) / 5;
 		int startPage = (pg - 1) / 5 * 5 + 1;
 		int endPage = startPage + 4;
 
 		if (endPage > totalPage) endPage = totalPage;
 		
 		
-		busVO.setStart_tr(start_tr);
-		busVO.setEnd_tr(end_tr);
-		busVO.setArrive_time(arrive_time);
 		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
-		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);

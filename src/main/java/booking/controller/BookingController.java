@@ -201,7 +201,6 @@ public class BookingController {
 		if (endPage > totalPage) endPage = totalPage;
 		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
-		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("arrive_time", arrive_time);
@@ -214,6 +213,7 @@ public class BookingController {
 		modelAndView.addObject("totalPage", totalPage);
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
+		
 		
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");

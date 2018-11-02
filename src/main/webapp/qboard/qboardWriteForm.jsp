@@ -52,7 +52,13 @@
 	border-bottom: 1px solid;
 	border-color: #a0a0a0;
 }
-
+#button {
+	width: 90px;
+	height: 40px;
+	background-color: #282828;
+	color: white;
+	border-radius: 10px;
+}
 </style>
 <script type="text/javascript" 
   src="../script/qboardScript.js?v=1"></script>
@@ -92,7 +98,7 @@
 						<td id="line2"><textarea name="content" rows="10" cols="80"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="right" height="40"><input type="button" value="확인"
+						<td colspan="2" align="right" height="40"><input id="button" type="button" value="확인"
 							onclick="checkqboardWrite()"></td>
 					</tr>
 				</table>

@@ -65,6 +65,13 @@ table#tab {
 	width:220px; 
 	height:30px;
 }
+#button {
+	width: 60px;
+	height: 30px;
+	background-color: #282828;
+	color: white;
+	border-radius: 10px;
+}
 </style>
 
 <script type="text/javascript">
@@ -92,7 +99,7 @@ table#tab {
 		
 		<form method="post" action="../info/company_info.do">
 			<input type="text" id="search_text" name="word" placeholder="검색어를 입력하세요">
-			<input type="submit" value="검색" >
+			<input id="button" type="submit" value="검색" >
 		</form>
 		
 		<table class="company_table">

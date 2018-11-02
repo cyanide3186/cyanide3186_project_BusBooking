@@ -79,12 +79,7 @@ public class BookingServiceImpl implements BookingService {
 		return seatDAO.seatModify(ticket_no);
 	}
 
-
 	@Override
-	public List<String> timeCheck(String arrive_time) {
-		return busDAO.timeCheck(arrive_time);
-	}
-
 	public List<BusVO> busList() {
 		
 		return busDAO.busList();
@@ -102,9 +97,20 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+
+	public List<TerminalVO> terminalList(String region) {
+		
+		return busDAO.terminalList(region);
+	}
+
 	public List<BusVO> getBus() {
 		return busDAO.getBus();
 	}
-	
-	
+
+	@Override
+	public List<TerminalVO> terminalAllList() {
+		
+		return busDAO.terminalAllList();
+	}
+
 }

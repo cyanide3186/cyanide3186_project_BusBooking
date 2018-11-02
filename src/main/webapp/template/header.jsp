@@ -16,21 +16,6 @@
 
 <!-- Site Properties -->
 <title>Fixed Menu Example - Semantic</title>
-<script type="text/javascript">
-	
-	function time(){
-		 $.ajax({
-			type: "POST",
-			url: "../booking/clear.do",
-			data: null,
-		    cache: true,
-		});
-	}
-	setInterval(time, 10000);
-</script>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 
@@ -79,7 +64,7 @@
 			<div class="ui simple dropdown item">
 				<span>이용안내 </span><i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="../info/infoBusBooking.do" >승차권 예매 안내</a>
+					<a class="item" href="../info/infoBusBooking.do">승차권 예매 안내</a>
 					<a class="item" href="../info/infoModyAndCancle.do">예매변경 및 취소 안내</a>
 					<a class="item" href="../info/infoTrAndCompany.do">터미널 및 운수사 안내</a>
 					<a class="item" href="../info/infoTax.do">현금영수증 안내</a>
@@ -98,14 +83,22 @@
 				</div>
 			</div>
 
-			<div class="ui simple dropdown item" >
+			<div class="ui simple dropdown item">
 				<span>고객지원</span> <i class="dropdown icon"></i>
 				<div class="menu">
 					<a class="item" href="../board/boardList.do">공지사항</a> 
-					<a class="item" href="../board/boardFAQ.do" >FAQ</a>
-					<a class="item" href="../qboard/qboardWriteForm.do" >고객의 소리</a>
+					<a class="item" href="../board/boardFAQ.do">FAQ</a>
+					<a class="item" href="../qboard/qboardWriteForm.do">고객의 소리</a>
 					<div class="divider"></div>
-					
+					<div class="header">Header Item</div>
+					<div class="item">
+						<i class="dropdown icon"></i> Sub Menu
+						<div class="menu">
+							<a class="item" href="#">Link Item</a> <a class="item" href="#">Link
+								Item</a>
+						</div>
+					</div>
+					<a class="item" href="#">Link Item</a>
 				</div>
 			</div>
 

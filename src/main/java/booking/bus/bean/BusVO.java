@@ -6,9 +6,9 @@ public class BusVO { //버스정보 DTO - table bus와 대응
     private String start_tr;	//기점정보
     private String end_tr;  	//종점정보
     private String company; 	//운수회사
-    private int arrive_time;	//버스 출발시각  
+    private String arrive_time;	//버스 출발시각  
     private int bus_seats; 		//잔여 좌석 (최대 40)
-    private int time; 		//소요시간
+    private String time; 		//소요시간
     private int payment; 		//티켓 1장 요금
 
     //빈 생성자
@@ -49,12 +49,12 @@ public class BusVO { //버스정보 DTO - table bus와 대응
 		this.company = company;
 	}
 
-	public int getArrive_time() {
+	public String getArrive_time() {
 		return arrive_time;
 	}
 
-	public void setArrive_time(int arrive_time) {
-		this.arrive_time = arrive_time;
+	public void setArrive_time(String arrive_time2) {
+		this.arrive_time = arrive_time2;
 	}
 
 	public int getBus_seats() {
@@ -65,11 +65,11 @@ public class BusVO { //버스정보 DTO - table bus와 대응
 		this.bus_seats = bus_seats;
 	}
 
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

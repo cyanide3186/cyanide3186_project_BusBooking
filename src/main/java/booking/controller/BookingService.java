@@ -1,4 +1,4 @@
-package booking.controller;
+﻿package booking.controller;
 
 import java.util.List;
 
@@ -20,6 +20,8 @@ public interface BookingService {
 	List<BusVO> busList(); //터미널 목록 조회
 	
 	List<TerminalVO> regionList(); //지역 목록 조회
+	
+	List<TerminalVO> terminalList(String region); //지역별 선택 드롭다운 선택시 목록 출력
 
 	SeatVO seatCheck(String ticket_no); // 좌석 조회
 
@@ -36,8 +38,9 @@ public interface BookingService {
 	int payment(String ticket_no); // 티켓 결제
 	
 	void seatReset(String bus_no);
-	
-	List<String> timeCheck(String arrive_time);
 
 	List<BusVO> getBus();
+	
+	List<TerminalVO> terminalAllList(); //터미널 검색시 사용하는 모든 터미널 목록 
+
 }

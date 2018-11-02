@@ -62,7 +62,7 @@ public class BookingController {
 		return modelAndView;
 	}
 	
-	//터미널 목록 json 
+	//지역별 선택 드롭다운 목록 json 
 	@RequestMapping(value="/booking/booking_RegionJson.do")
 	public ModelAndView booking_RegionJson (ModelAndView modelAndView) {
 		List<TerminalVO> list=bookingService.regionList();
@@ -92,6 +92,68 @@ public class BookingController {
 		return modelAndView;
 	}
 	
+	
+	//지역별 선택 드롭다운 목록 json 
+	@RequestMapping(value="/booking/booking_input_TerminalJson.do")
+	public ModelAndView booking_terminalJson (ModelAndView modelAndView ,HttpServletRequest request ) {
+		System.out.println(request.getParameter("local"));
+		String region =request.getParameter("local");
+		List<TerminalVO> list=bookingService.terminalList(region);
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("name", vo.getName());/*지역별터미널이름*/
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_TerminalJson.jsp");
+		return modelAndView;
+	}
+	//검색을위한 터미널 목록 
+	@RequestMapping(value="/booking/booking_input_TerminalSearchJson.do")
+	public ModelAndView booking_terminalJson (ModelAndView modelAndView ) {
+		List<TerminalVO> list=bookingService.terminalAllList();
+		String rt = null;
+		int total=	list.size();
+		if(total>0) {
+			rt="OK";
+		}else {
+			rt="FAIL";
+		}
+		JSONObject json = new JSONObject(); //첫번째 중괄호 
+		json.put("rt", rt);
+		json.put("total",total);
+		if(total > 0 ) {
+			JSONArray items = new JSONArray();
+			for(int i = 0 ; i<list.size(); i++) {
+				TerminalVO vo = list.get(i);
+				JSONObject temp = new JSONObject();
+				temp.put("name", vo.getName());/*지역별터미널이름*/
+				items.put(i,temp);
+			}
+			json.put("items",items);
+		}
+		System.out.println(json);
+		modelAndView.addObject("json",json);
+		modelAndView.setViewName("../booking/booking_input_TerminalSearchJson.jsp");
+		return modelAndView;
+	}
+	
 	// 버스 예약화면
 	@RequestMapping(value="/booking/booking_inputForm.do")
 	public ModelAndView booking_inputForm(HttpServletRequest request) {
@@ -118,15 +180,25 @@ public class BookingController {
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
-		int start_num = Integer.parseInt(request.getParameter("start_num"));	// 배차 조회 항목 수
-		int end_num = Integer.parseInt(request.getParameter("end_num"));		// 배차 조회 항목 수
+		int pg = 1;
+		String param_pg = request.getParameter("pg");
+		if(param_pg != null) pg = Integer.parseInt(param_pg);
+		
+		int end_num = pg * 10;			// 배차 조회 항목 수
+		int start_num = end_num - 9;	// 배차 조회 항목 수
 		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(arrive_time);
 		
+		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
+		int totalPage = (busListCount + 4) / 5;
+		int startPage = (pg - 1) / 5 * 5 + 1;
+		int endPage = startPage + 4;
+
+		if (endPage > totalPage) endPage = totalPage;
+		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
-		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
 		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
@@ -134,6 +206,9 @@ public class BookingController {
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);
 		modelAndView.addObject("busListCount", busListCount);
+		modelAndView.addObject("totalPage", totalPage);
+		modelAndView.addObject("startPage", startPage);
+		modelAndView.addObject("endPage", endPage);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
@@ -369,19 +444,7 @@ public class BookingController {
 		return count;
 	}
 	
-	// 좌석 초기화
-	@RequestMapping(value="clear.do")
-	public void clear() {
-		Calendar now = Calendar.getInstance();
-		int getTime = (((now.get(11)*100)+now.get(12))-100);
-		String arrive_time = String.valueOf(getTime);
-		List<String> bus_no = bookingService.timeCheck(arrive_time);
-		for(int i=0; i<=bus_no.size(); i++) {
-			bookingService.seatReset(bus_no.get(i));
-		}
-	}
-
-	// 버스 예상 도착시간에 좌석 초기화
+	// 버스 도착 예상시간에 좌석 초기화
 	@Scheduled(cron="0 * * * * *")
 	public void seatReset() {
 		

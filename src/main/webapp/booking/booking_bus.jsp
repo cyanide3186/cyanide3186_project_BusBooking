@@ -47,8 +47,16 @@ header {
 	height: 100px;
 	vertical-align: middle;
 }
+li{
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+}
 
-li {
+.level li {
 	list-style: none;
 	margin: 0 0;
 	font-size: 1.5rem;
@@ -93,20 +101,36 @@ div#page_button button {
 	width: 50%;
 	height: 100%;
 }
-
+.road .box{
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: orange;
+}
 td, th {
 	text-align: center;
 }
 #currentPaging {
-	color: red; text-decoration: underline;
+	font-weight: 1000; 
+	color: black;
+	font-size: 2rem; 
+	margin-right: 8px;
 }
-#paging {
-	color: blue; text-decoration: none;
-}
+#paging {font-size: 30px; margin-right: 8px;}
 #subjectA:link {color:black; text-decoration: none;}
 #subjectA:visited {color:black; text-decoration: none;}
 #subjectA:achive {color:black; text-decoration: none;}
 #subjectA:hover {color:green; text-decoration: underline;}
+span{
+	
+}
 </style>
 </head>
 <body>
@@ -122,7 +146,6 @@ td, th {
 						<li id="mainli">2.배차 조회</li>
 						<li>3.매수 및 좌석 선택</li>
 						<li>4.카드 정보 입력</li>
-						<li>${startPage},${endPage},${totalPage }</li>
 					</ul>
 					<hr>
 				</header>
@@ -143,13 +166,14 @@ td, th {
 							<tr>
 								<td width="500px" height="50px">
 									<ul class="road">
-										<li>출발지</li>
-										<li>${ start_tr}</li>
-										<li>도착지</li>
-										<li>${ end_tr}</li>
+										<li class=box>출발지</li>
+										<li >${ start_tr}</li>
+										<li><img src="../images/point.png" height="30px" width="100px"></li>
+										<li class=box>도착지</li>
+										<li >${ end_tr}</li>
 									</ul>
 								</td>
-								<td width="500px">${arrive_day}</td>
+								<td width="500px"><ul><li>출발날짜</li></ul>${arrive_day}</td>
 							</tr>
 						</table>
 					</div>
@@ -163,7 +187,7 @@ td, th {
 								<th>출발시간</th>
 								<th>소요시간</th>
 								<th>요금</th>
-								<th>잔여좌석</th>
+								<th>현재좌석/총좌석</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -176,7 +200,7 @@ td, th {
 									<td>${busVO.arrive_time}</td>
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
-									<td>${busVO.bus_seats}석/총 40석</td>
+									<td><span>${busVO.bus_seats}석/총 40석</span></td>
 								</tr>
 							</c:forEach>
 
@@ -197,7 +221,8 @@ td, th {
 									<button class="ui teal basic button"
 										onclick="location.href='../booking/booking_bus.do?pg=${startPage -1}'">이전시간</button>
 								</c:if></td>
-							<td width="50%"><c:forEach var="i" begin="${startPage}" end="${endPage}"
+							<td width="50%">
+							<c:forEach var="i" begin="${startPage}" end="${endPage}"
 									step="1">
 									<c:if test="${pg == i}">
 										[<a id="currentPaging" href="../booking/booking_bus.do?pg=${i}">${i}</a>]
@@ -207,7 +232,7 @@ td, th {
 									</c:if>
 								</c:forEach></td>
 							<td width="200px" align="center">
-							<c:if test="${endPage <= totalPage}">
+							<c:if test="${endPage < totalPage}">
 									<button class="ui teal basic button" onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}'">다음시간</button>
 								</c:if></td>
 

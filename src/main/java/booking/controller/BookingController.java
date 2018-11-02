@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
@@ -24,11 +25,12 @@ import info.terminal.bean.TerminalVO;
 
 
 @Controller
+
 public class BookingController {
+	
 	
 	@Autowired
 	BookingService bookingService;
-
 	String[] arrivalTime_array; 
 	
 	//터미널 목록 json 

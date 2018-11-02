@@ -1,0 +1,9 @@
+diff a/src/main/webapp/board/boardFAQ.jsp b/src/main/webapp/board/boardFAQ.jsp	(rejected hunks)
+@@ -6,7 +6,6 @@
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <link rel="stylesheet" type="text/css" href="../css/base.css">
+-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+ <style type="text/css">
+ #request {margin-left: 70px;}
+ .info {

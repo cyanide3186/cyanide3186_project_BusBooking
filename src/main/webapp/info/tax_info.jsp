@@ -8,12 +8,12 @@
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
 #textInfo{
-	width: 1000px;
+	width: 900px;
 	margin-left: 120px;
 	border-spacing: 0 15px;
 }
 #info_tax{
-	width: 1000px;
+	width: 900px;
 	margin-left: 120px;
 	margin-top: -55px;
 	border: 1px solid gray;
@@ -80,7 +80,7 @@
 			<!-- 상단 안내 텍스트 -->
 			<tr id="info_no1">
 				<td id="info_image">
-					<img alt="안내" src="../images/check.png" width="35px" height="35px">
+					<img alt="안내" src="../images/businfo.png" width="35px" height="35px">
 				</td>
 				<td id="info_content">
 					&nbsp;시외버스 터미널에서 승차권 발권 시 고객님이 현금영수증 등록을 요청하지 않아도 국세청이 지정한 코드(010-000-1234)로 현금영수증을 자진발급하며, 차후에 고객님이 현금영수증 처리를 원할 경우 현금영수증 홈페이지에서 자진발급분 소비자 등록을 할 수 있습니다.
@@ -88,7 +88,7 @@
 			</tr>
 			<tr id="info_no1">
 				<td id="info_image">
-					<img alt="안내" src="../images/check.png" width="35px" height="35px">
+					<img alt="안내" src="../images/businfo.png" width="35px" height="35px">
 				</td>
 				<td id="info_content">
 					&nbsp;타인의 자진발급 현금영수증을 부당 수취하여 등록하는 경우에는 조세범 처벌법에 의하여 처벌받을 수 있습니다.
@@ -96,7 +96,7 @@
 			</tr>
 			<tr id="info_no1">
 				<td id="info_image">
-					<img alt="안내" src="../images/check.png" width="35px" height="35px">
+					<img alt="안내" src="../images/businfo.png" width="35px" height="35px">
 				</td>
 				<td id="info_content">
 					&nbsp;현금영수증 자진발급분 소비자 등록 방법

@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
-#logo:hover { background-color: #AAB9FF;}
+#logo:hover { background-color: #AAB9FF; }
+#taga:hover {color: white;}
 #logo {
 	border: 1px solid white;
 	border-radius: 10px;
@@ -96,10 +97,10 @@ table#tab_area {
 		<table id="tab">
 			<tr>
 			<td width="350" id="logo" >
-			<img src="../images/terminal.png" width="60" height="60">
+			<img src="../images/terminal.png" width="60" height="80">
 			<a href="../info/infoTrAndCompany.do" id="taga"  >터미널 안내</a></td>
 			<td width="350"  id="logo">
-			<img src="../images/bus.png" width="60" height="60">
+			<img src="../images/bus.png" width="60" height="80">
 			<a href="../info/company_info.do?pg=1" id="taga">운수사 안내</a></td>
 			</tr>
 		</table>

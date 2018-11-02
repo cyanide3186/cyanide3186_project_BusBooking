@@ -167,6 +167,17 @@ public class BookingController {
 		
 		return modelAndView;
 	}
+	// 버스 운행정보 조회 페이지 이동
+	@RequestMapping(value="/booking/booking_information_inquiry.do")
+	public ModelAndView booking_information_inquiry(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("main","../booking/booking_information_inquiry.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
 	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")

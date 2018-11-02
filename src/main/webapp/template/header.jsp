@@ -46,18 +46,9 @@
 			<div class="ui simple dropdown item">
 				<span>운행정보 </span><i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="#">Link Item</a> <a class="item" href="#">Link
-						Item</a>
+					<a class="item" href="../booking/booking_information_inquiry.do">노선/운행정보</a> 
 					<div class="divider"></div>
-					<div class="header">Header Item</div>
-					<div class="item">
-						<i class="dropdown icon"></i> Sub Menu
-						<div class="menu">
-							<a class="item" href="#">Link Item</a> <a class="item" href="#">Link
-								Item</a>
-						</div>
-					</div>
-					<a class="item" href="#">Link Item</a>
+					<div class="header"></div>
 				</div>
 			</div>
 

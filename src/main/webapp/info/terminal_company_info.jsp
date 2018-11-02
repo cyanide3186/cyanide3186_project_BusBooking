@@ -50,13 +50,13 @@ table#tab_area {
 	border-bottom: 1px solid #ccc;
 }
 .terminal_table{
-	margin-left: 150px;
+	margin-left: 100px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 150px; margin-bottom: 100px; }
+.table {margin-left: 100px; margin-bottom: 150px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -65,7 +65,7 @@ table#tab_area {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 800px;
+	margin-left: 750px;
 	width:220px; 
 	height:30px;
 	border-radius: 10px;
@@ -170,13 +170,15 @@ table#tab_area {
 	</table>
 	<table class="table" style="border-bottom: 1px solid black;">
 	<c:forEach var="terminalVO" items="${list_terminal}">
-	<tr align="center" height="50" >
-		<td width="160" class="line">
+	<tr align="left" height="50">
+		<td width="160" class="line" style="text-align: center;">
 		${terminalVO.city}</td>
-		<td width="460" class="line">
+		<td style="border-bottom: 1px solid #ccc; padding: 10px;">
+		<img src="../images/terminalbus.png" width="30" height="30"></td>
+		<td width="460" class="line" style="padding: 6px; font-weight: 700;">
 		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="210" class="line">
+		<td width="210" class="line"  style="padding: 6px;">
 		${terminalVO.homepage }</td>
 		<td width="90" class="linebuttom">
 		${terminalVO.map}</td>

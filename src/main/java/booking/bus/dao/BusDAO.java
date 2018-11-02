@@ -44,10 +44,6 @@ public class BusDAO {
 		return sqlSession.update("mybatis.bus-Mapper.busUpdate", busVO);
 	}
 
-	public List<String> timeCheck(String arrive_time) {
-		return sqlSession.selectList("mybatis.bus-Mapper.timeCheck", arrive_time);
-	}
-
 	// 터미널 지역 목록 리스트
 	public List<TerminalVO> regionList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.regionList");
@@ -57,7 +53,8 @@ public class BusDAO {
 	// 지역별선택 드롭다운 선택시 드롭다운 터미널 목록 리스트
 	public List<TerminalVO> terminalList(String region) {
 		return sqlSession.selectList("mybatis.bus-Mapper.terminalList",region);
-
+	}
+		
 	public List<BusVO> getBus() {
 		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
 

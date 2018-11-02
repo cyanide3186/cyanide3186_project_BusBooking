@@ -66,7 +66,4 @@ public class TicketVO {
 		this.arrive_day = arrive_day2;
 	}
 	
-
-	
-	
 }

@@ -308,11 +308,8 @@
 				$("div").html(
 						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
 								+ errorThrown + ")</div>");
-
 			}
-
 		});
-
 	});
 </script>
 <style type="text/css">
@@ -411,9 +408,7 @@ input {
 </style>
 </head>
 <body>
-
 	<div id="glayLayer"></div>
-
 	<!-- 출발 터미널 선택 창 -->
 	<div class="start_bus" style="color: white;">
 		<h3 align="center" style="color: white">출발 터미널 선택</h3>
@@ -502,11 +497,6 @@ input {
 
 		</div>
 		<div>
-
-
-
-
-
 			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
@@ -624,7 +614,6 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
@@ -652,10 +641,7 @@ input {
 					</span> <br>
 				</p>
 			</div>
-
 		</div>
-
 	</div>
-
 </body>
 </html>

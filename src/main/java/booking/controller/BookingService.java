@@ -38,8 +38,6 @@ public interface BookingService {
 	int payment(String ticket_no); // 티켓 결제
 	
 	void seatReset(String bus_no);
-	
-	List<String> timeCheck(String arrive_time);
 
 	List<BusVO> getBus();
 

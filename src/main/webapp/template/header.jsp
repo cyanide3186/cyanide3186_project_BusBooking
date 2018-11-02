@@ -23,7 +23,7 @@
 		<div class="ui container">
 			<a href="#" class="header item" width="300px"> <img class="logo"
 				src="../assets/logo.png" width="100px" height="40px">
-			</a> <a href="#" class="item">Home</a>
+			</a> <a href="../main/index.jsp" class="item">Home</a>
 
 			<div class="ui simple dropdown item">
 				<span> 예매</span><i class="dropdown icon"></i>

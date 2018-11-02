@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 
 <script type="text/javascript">
 	$(function() {
-			
+
 	});
 </script>
 <style type="text/css">
@@ -92,6 +93,10 @@ div#page_button button {
 	width: 50%;
 	height: 100%;
 }
+
+td, th {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -119,36 +124,51 @@ div#page_button button {
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">Tab</div>
+						<div class="active item">
+							<ul class="road">
+								<li >출발지</li>
+								<li></li>
+								<li>도착지</li>
+								<li></li>
+							</ul>
+						</div>
 
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1px solid black">
 							<tr>
-								<td width="500px" height="100px">가는편</td>
-								<td width="500px">가는날짜</td>
+								<td width="500px" height="50px"></td>
+								<td width="500px"></td>
 							</tr>
 						</table>
 					</div>
 					<table class="ui teal table" style="margin-top: 5%">
 						<thead>
 							<tr>
-								<th>Food</th>
-								<th>Calories</th>
-								<th>Protein</th>
+								<th>버스번호</th>
+								<th>출발터미널</th>
+								<th>도착터미널</th>
+								<th>차편정보</th>
+								<th>출발시간</th>
+								<th>소요시간</th>
+								<th>요금</th>
+								<th>잔여좌석</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>200</td>
-								<td>0g</td>
-							</tr>
-							<tr>
-								<td>Orange</td>
-								<td>310</td>
-								<td>0g</td>
-							</tr>
+							<c:forEach var="busVO" items="${list}">
+								<tr align="center" height="50">
+									<td>${busVO.bus_no}</td>
+									<td>${busVO.start_tr}</td>
+									<td>${busVO.end_tr}</td>
+									<td>${busVO.company}</td>
+									<td>${busVO.arrive_time}</td>
+									<td>${busVO.time}</td>
+									<td>${busVO.payment}</td>
+									<td>${busVO.bus_seats}</td>
+								</tr>
+							</c:forEach>
+
 						</tbody>
 					</table>
 
@@ -171,8 +191,8 @@ div#page_button button {
 				</div>
 
 			</div>
-		</div>	
-		
+		</div>
+
 	</div>
 </body>
 </html>

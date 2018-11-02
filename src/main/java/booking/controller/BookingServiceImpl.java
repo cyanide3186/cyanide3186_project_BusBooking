@@ -80,11 +80,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 
-	@Override
-	public List<String> timeCheck(String arrive_time) {
-	//	return busDAO.timeCheck(arrive_time);
-		return null;
-	}
+	
 	@Override
 	public List<BusVO> busList() {
 		

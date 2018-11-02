@@ -173,19 +173,19 @@ public class BookingController {
 		BusVO busVO = new BusVO();
 		
 		String start_tr = request.getParameter("start_tr");
+		System.out.println(start_tr);
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
 		String arrive_day = request.getParameter("arrive_day");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
-		
 		int start_num = Integer.parseInt(request.getParameter("start_num"));	// 배차 조회 항목 수
 		int end_num = Integer.parseInt(request.getParameter("end_num"));		// 배차 조회 항목 수
 		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
-		//busVO.setArrive_time(arrive_time);
+		busVO.setArrive_time(arrive_time);
 		
 		List<BusVO> list = bookingService.busCheck(busVO , start_num, end_num);		// 배차조회 결과 목록
 		int busListCount = bookingService.busListCount(busVO);	// 배차조회 목록 수 
@@ -198,7 +198,7 @@ public class BookingController {
 		modelAndView.addObject("busListCount", busListCount);
 		modelAndView.addObject("main","../booking/booking_bus.jsp");
 		modelAndView.setViewName("../main/index.jsp");
-		
+			
 		return modelAndView;
 	}
 	

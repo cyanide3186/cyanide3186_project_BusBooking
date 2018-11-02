@@ -50,13 +50,13 @@ table#tab_area {
 	border-bottom: 1px solid #ccc;
 }
 .terminal_table{
-	margin-left: 100px;
+	margin-left: 120px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 100px; margin-bottom: 150px; }
+.table {margin-left: 110px; margin-bottom: 150px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -65,7 +65,7 @@ table#tab_area {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 750px;
+	margin-left: 735px;
 	width:220px; 
 	height:30px;
 	border-radius: 10px;
@@ -163,7 +163,7 @@ table#tab_area {
 	<table class="terminal_table" >
 	<tr height="50">
 		<th width="160">구/군</th>
-		<th width="460">명칭(전화번호),주소</th>
+		<th width="400">명칭(전화번호),주소</th>
 		<th width="210">홈페이지</th>
 		<th width="90">약도</th>
 	</tr>
@@ -175,10 +175,10 @@ table#tab_area {
 		${terminalVO.city}</td>
 		<td style="border-bottom: 1px solid #ccc; padding: 10px;">
 		<img src="../images/terminalbus.png" width="30" height="30"></td>
-		<td width="460" class="line" style="padding: 6px; font-weight: 700;">
+		<td width="370" class="line" style="padding: 6px; font-weight: 700;">
 		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="210" class="line"  style="padding: 6px;">
+		<td width="200" class="line"  style="padding: 6px;">
 		${terminalVO.homepage }</td>
 		<td width="90" class="linebuttom">
 		${terminalVO.map}</td>
@@ -186,7 +186,7 @@ table#tab_area {
 	</c:forEach>	
 
 	    <tr>
-       <td colspan="5" align="center" height="30px;" >
+       <td colspan="5" align="center" height="60px" >
        <c:if test="${startPage > 10 }">
        <a class="paging" href="../info/terminal.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
       </c:if>

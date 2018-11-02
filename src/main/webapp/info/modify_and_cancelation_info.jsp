@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -124,25 +124,21 @@
 	
 	<table class="info" >
 		<tr id="notice">
-		<td width="200" id="img"><img src="../images/request.png" id="request" width="70" height="70"></td>
+		<td width="200" id="img"><img src="../images/cancel.png" id="request" width="60" height="60"></td>
 		<td width="700" id="text">
 		예매 변경 및 취소가 필요한 경우에는 "시외버스 예매 > 예매조회/취소/변경" 에서 처리가 가능합니다.</td>
 		</tr>
 	</table>
 
-	<table id="steptable">
+	<table id="steptable" cellspacing="20px">
 	<tr>
 	<td id="step" style="background-color: #FFB6C1;">1단계</td>
 	<td id="content" width="500" height="30">"시외버스 예매 > 예매조회/취소/변경" 페이지에서 예매한 승차권 조회를 합니다.</td>
 	</tr>
-	</table>
-	<table  id="steptable">
 	<tr>
 	<td id="step" style="background-color: #FF7A85;">2단계</td>
 	<td  id="content" width="500" height="30">예매내역을 확인한 후, "상세" 버튼을 클릭하여 예매 상세페이지로 이동합니다.</td>
 	</tr>
-	</table>
-	<table  id="steptable" >
 	<tr>
 	<td id="step" style="background-color: #FF5675;" >3단계</td>
 	<td id="content" width="500" height="30">예매내역 상세 페이지에서 예매한 승차권을 확인한 후에 하단의 "예매취소" 혹은 "변경(매수변경 / 시간변경)"을 클릭하여, 예매변경이나 취소를 할 수 있습니다.</td>

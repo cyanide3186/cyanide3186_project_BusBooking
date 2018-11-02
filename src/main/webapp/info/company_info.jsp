@@ -14,7 +14,8 @@
 a { cursor: pointer;
 	margin: 20px;
 }
-#logo:hover { background-color: #87CEFA;}
+#logo:hover { background-color:#AAB9FF; color: white;}
+#taga:hover {color: white;}
 #logo {
 	border: 1px solid white;
 	border-radius: 10px;
@@ -80,10 +81,10 @@ table#tab {
 	<table id="tab">
 			<tr>
 			<td width="350" id="logo" >
-			<img src="../images/terminal.png" width="60" height="60">
+			<img src="../images/terminal.png" width="80" height="80">
 			<a href="../info/infoTrAndCompany.do" id="taga"  >터미널 안내</a></td>
 			<td width="350"  id="logo">
-			<img src="../images/bus.png" width="60" height="60">
+			<img src="../images/bus.png" width="80" height="80">
 			<a href="../info/company_info.do?pg=1" id="taga">운수사 안내</a></td>
 			</tr>
 		</table>

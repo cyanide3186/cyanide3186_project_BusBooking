@@ -22,10 +22,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
-	<select id="timeCheck" parameterType="int" resultType="String">
-			select bus_no from bus where arrive_time + time = #{time}
-	</select>
-	
 	<select id="busListCount" parameterType="busVO" resultType="int">
 		<![CDATA[
 			select count(*) as buscount from bus 

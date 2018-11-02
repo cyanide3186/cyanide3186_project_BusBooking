@@ -431,18 +431,6 @@ public class BookingController {
 		return count;
 	}
 	
-	// 좌석 초기화
-	@RequestMapping(value="clear.do")
-	public void clear() {
-		Calendar now = Calendar.getInstance();
-		int getTime = (((now.get(11)*100)+now.get(12))-100);
-		String arrive_time = String.valueOf(getTime);
-		List<String> bus_no = bookingService.timeCheck(arrive_time);
-		for(int i=0; i<=bus_no.size(); i++) {
-			bookingService.seatReset(bus_no.get(i));
-		}
-	}
-
 	// 버스 예상 도착시간에 좌석 초기화
 	@Scheduled(cron="0 * * * * *")
 	public void seatReset() {

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
@@ -24,11 +25,12 @@ import info.terminal.bean.TerminalVO;
 
 
 @Controller
+
 public class BookingController {
+	
 	
 	@Autowired
 	BookingService bookingService;
-
 	String[] arrivalTime_array; 
 	
 	//터미널 목록 json 
@@ -165,13 +167,25 @@ public class BookingController {
 		
 		return modelAndView;
 	}
+	// 버스 운행정보 조회 페이지 이동
+	@RequestMapping(value="/booking/booking_information_inquiry.do")
+	public ModelAndView booking_information_inquiry(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("main","../booking/booking_information_inquiry.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
 	
 	// 버스 배차조회
 	@RequestMapping(value="/booking/booking_bus.do")
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 		
 		BusVO busVO = new BusVO();
-		
+		String is_bus_info=null;
+		is_bus_info = request.getParameter("is_bus_info");
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
@@ -212,8 +226,13 @@ public class BookingController {
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
 		
-		
-		modelAndView.addObject("main","../booking/booking_bus.jsp");
+		if(is_bus_info!=null) {
+			
+			modelAndView.addObject("main","../booking/booking_information_list.jsp");
+		}else {
+			
+			modelAndView.addObject("main","../booking/booking_bus.jsp");
+		}
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;

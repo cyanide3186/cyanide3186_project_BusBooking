@@ -13,10 +13,8 @@
 	href="/Project_BusBooking/css/daterangepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/base.css">
-	
-<!-- <link rel="stylesheet" type="text/css"
-	href="/Project_BusBooking/semantic/semantic.css"> -->
-	
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -612,93 +610,29 @@ ul {
 	margin: 0 0;
 	list-style: none;
 }
-#info_content{
+
+#info_content {
 	background-color: #FFD2D2;
-	border-bottom : 1px solid gray;
-	border-top : 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
 	border-left: 1px solid gray;
 	border-right: 1px solid gray;
 	border-radius: 10px 10px 10px 10px;
 	height: 20px;
+	width: 500px;
+}
+
+table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 20px;
+	border-color: grey;
+	display: table;
 }
 </style>
 </head>
 <body>
 
-	<div id="glayLayer"></div>
-
-	<!-- 출발 터미널 선택 창 -->
-	<div class="start_bus" style="color: white;">
-		<h3 align="center" style="color: white">출발 터미널 선택</h3>
-		<table>
-			<tr>
-				<td>전체 터미널 목록</td>
-				<td><select name="start" class="ui dropdown" id="all_tr">
-						<option value="">전체 터미널 목록</option>
-						<!-- json으로 추가됨  -->
-				</select></td>
-			</tr>
-			<tr>
-				<td>지역별로 터미널 선택</td>
-				<td><select name="local" class="ui dropdown" id="local_start">
-						<option value="">지역별 선택</option>
-						<!-- document.on 함수 참조 -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white;">
-				<td>터미널 검색</td>
-				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="start_text"
-							size="70%">
-					</div></td>
-			</tr>
-
-		</table>
-
-		<div id="terminal_scroll"
-			style="width: 100%; height: 300px; overflow: auto">
-			<table id="result_terminal" width="100%" border="0" cellspacing="0"
-				cellpadding="0">
-
-			</table>
-		</div>
-	</div>
-	<!-- 출발 터미널 선택창 끝 -->
-	<!-- 도착 터미널 선택창 -->
-	<div class="end_bus" style="color: white;">
-		<h3 align="center" style="color: white">도착 터미널 선택</h3>
-		<table>
-			<tr>
-				<td>전체 터미널 목록</td>
-				<td><select name="end" class="ui dropdown" id="all_end_tr">
-						<option value="">전체 터미널 목록</option>
-						<!-- json으로 목록 추가됨  -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white;">
-				<td>지역별로 터미널 선택</td>
-				<td><select name="local" class="ui dropdown" id="local_end">
-						<option value="">지역별 선택</option>
-						<!-- document.on 함수 참조 -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white;">
-				<td>터미널 검색</td>
-				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="end_text"
-							size="70%">
-					</div></td>
-			</tr>
-		</table>
-		<div style="width: 100%; height: 300px; overflow: auto">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0"
-				id="result_terminal_end">
-
-			</table>
-		</div>
-
-
-	</div>
 
 
 
@@ -707,7 +641,7 @@ ul {
 		<div>
 			<div class="column">
 				<header>
-					<h1>노선/운행정보</h1>
+					<h1>예매 조회/변경/취소</h1>
 
 					<hr>
 				</header>
@@ -724,132 +658,68 @@ ul {
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table border="1px solid" align="center" id="booking_table">
-						<tr>
-							<td rowspan="8" style="background-color: #A9E2F3"><img
-								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
-								<h2 style="text-align: center; font-weight: bold;">운행정보조회</h2>
-								시외버스 및 일부 고속버스 운행정보 조회</td>
-							<td>출발지</td>
-							<td>
-								<div class="ui input">
-									<input type="text" placeholder="출발지선택" id="start_tr"
-										name="start_tr">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>도착지</td>
-							<td><div class="ui input">
-									<input type="text" placeholder="도착지선택" id="end_tr"
-										name="end_tr">
-								</div></td>
-						</tr>
-						<tr>
-							<td>가는 일시</td>
-							<td>
+					<div class="ui top attached tabular menu">
+						<div class="active item">휴대폰번호로 찾기</div>
 
-								<div class="ui calendar" id="example1">
-									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" id="arrivedate">
-									</div>
-							</td>
-						</tr>
-						<tr>
-							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
-									<option value="">출발시각</option>
-									<option value="0000">00:00</option>
-									<option value="0100">01:00</option>
-									<option value="0200">02:00</option>
-									<option value="0300">03:00</option>
-									<option value="0400">04:00</option>
-									<option value="0500">05:00</option>
-									<option value="0600">06:00</option>
-									<option value="0700">07:00</option>
-									<option value="0800">08:00</option>
-									<option value="0900">09:00</option>
-									<option value="1000">10:00</option>
-									<option value="1100">11:00</option>
-									<option value="1200">12:00</option>
-									<option value="1300">13:00</option>
-									<option value="1400">14:00</option>
-									<option value="1500">15:00</option>
-									<option value="1600">16:00</option>
-									<option value="1700">17:00</option>
-									<option value="1800">18:00</option>
-									<option value="1900">19:00</option>
-									<option value="2000">20:00</option>
-									<option value="2100">21:00</option>
-									<option value="2200">22:00</option>
-									<option value="2300">23:00</option>
-							</select></td>
-						</tr>
-
-						<tr>
-							<input type="hidden" name="is_bus_info"
-								value="booking_infomation_list">
+					</div>
+					<table class="ui single line table">
+						<thead>
+							<tr>
+								<th>휴대폰 번호 입력</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr>
+								<td><input type="text" name="hp"></td>
+								
+							</tr>
+								<tr>
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="">조회</button>
+									class="ui teal basic button" type="submit" id="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
-
+							
+						</tbody>
 					</table>
+					
+					
 
 				</div>
+
 			</form>
-		</div>
-		<div>
-			<div class="ui text container"
-				style="text-align: left; margin: 5rem auto;">
-				<div id="waring">
-
-				<div id="logo">
-					<p id="label">
-						<img src="../images/line.png" id="imglabel"> &nbsp;예매 변경 주의
-						사항(매수 변경)
-					</p>
-				</div>
-				<br>
-
+			<div class="column" align="center">
 				<table cellpadding="10" id="infomation">
 					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> 운행정보 메뉴에서는 시외버스 및 일부 고속버스 운행정보 조회를 서비스 하고 있습니다.</td>
+						<td rowspan="9"><img src="../images/caution.jpg"></td>
+						<td id="info_content">예매한 승차권 발권 시에는 반드시 예매한 카드를 지참하셔야 하며, 해당
+							터미널 매표 창구에 예약된 사항이 있다고 말씀하시고 카드를 제시하시면 승차권을 발권받으실 수 있습니다. (발권방법의
+							차이가 있는 터미널이 존재하며, 해당 터미널에 문의하시면 정확한 발권방법의 확인이 가능합니다.)</td>
 					</tr>
 					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> 운행정보 조회기간은 해당 노선의 배차정보가 입력된 일자까지 가능합니다. 배차정보의 입력은
-								출발지 터미널에서 처리하고 있으며, 일반적으로 현재일 기준으로 1개월 이후의 배차정보가 입력되어 운영되고 있습니다.</td>
+						<td id="info_content">출발시간이 지난 후에는 승차권을 발권받을 수 없습니다. 출발 당일
+							터미널 혼잡에 대비하여 출발시간보다 여유있게 터미널에 도착하셔서 발권 받으시기 바랍니다.</td>
 					</tr>
 					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> “조회 가능한 내역이 없습니다.”라고 나오면 출발지 터미널로 문의하시기 바랍니다.</td>
+						<td id="info_content">출발일시 및 매수, 좌석번호 등을 다시 한번 확인해 주시기 바랍니다.</td>
 					</tr>
-				
+					<tr>
+						<td id="info_content">취소 및 부도위약금의 안내를 다시 한 번 확인해서 불이익을 받지 않도록
+							유의해주시기 바랍니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">과거 예매 내역은 1주일 이내만 조회 가능합니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">당일 이후 탑승 예정인 구매 내역은 모두 조회 가능합니다.</td>
+					</tr>
+
 				</table>
 
-				</div>
-
-
 			</div>
 
-
 		</div>
-		<div class="ui text container"
-			style="text-align: left; margin: 5rem auto;">
-			<div class="ui link list">
-				<div class="active item">운행정보가 없는 노선의 경우 아래 사이트를 참조하세요.</div>
-				<a class="item" href="https//:www.busterminal.or.kr">www.busterminal.or.kr</a>
-			</div>
-
-
-		</div>
-
-	</div>
 
 	</div>
 

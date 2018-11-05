@@ -60,7 +60,6 @@ li {
 .level li {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
@@ -69,27 +68,39 @@ li {
 	padding: 1px 2px;
 	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 3px solid yellow;
+	border: 1px solid white;
 	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
+	border: 3px solid yellow;
 }
 
 table {
 	margin-top: 40px;
-	background-color:
+		border-radius: 20px;
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 .road .box {
@@ -153,8 +164,12 @@ button {
 	border-radius: 20px;
 	padding: 0 0;
 	color: white;
-	background-color: orange;
+	background-color: #FFD2D2;
 	width: 120px;
+	color: black;
+}
+.ui.menu[class*="top attached"]:first-child {
+  margin-top:3em;
 }
 </style>
 </head>
@@ -172,7 +187,7 @@ button {
 						<li>3.매수 및 좌석 선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
-					<hr>
+					<hr >
 				</header>
 			</div>
 
@@ -277,12 +292,12 @@ button {
 						</tr>
 					</table>
 
-
+					<hr id="footline">
 				</div>
 
 			</div>
 		</div>
-
+	
 	</div>
 </body>
 </html>

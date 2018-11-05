@@ -774,7 +774,7 @@ ul {
 						</tr>
 
 						<tr>
-
+								<input type="hidden" name="is_bus_info" value="booking_infomation_list">
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>

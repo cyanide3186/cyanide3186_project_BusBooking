@@ -184,7 +184,8 @@ public class BookingController {
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 		
 		BusVO busVO = new BusVO();
-		
+		String is_bus_info=null;
+		is_bus_info = request.getParameter("is_bus_info");
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
@@ -225,8 +226,13 @@ public class BookingController {
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
 		
-		
-		modelAndView.addObject("main","../booking/booking_bus.jsp");
+		if(is_bus_info!=null) {
+			
+			modelAndView.addObject("main","../booking/booking_information_list.jsp");
+		}else {
+			
+			modelAndView.addObject("main","../booking/booking_bus.jsp");
+		}
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;

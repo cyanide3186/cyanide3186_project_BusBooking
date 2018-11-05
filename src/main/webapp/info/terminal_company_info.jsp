@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/base.css">
 <style type="text/css">
-#logo:hover { background-color: #AAB9FF;}
+#logo:hover { background-color: #AAB9FF; }
+#taga:hover {color: white;}
 #logo {
 	border: 1px solid white;
 	border-radius: 10px;
@@ -55,7 +56,7 @@ table#tab_area {
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 150px; margin-bottom: 100px; }
+.table {margin-left: 150px; margin-bottom: 150px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -64,9 +65,16 @@ table#tab_area {
 }
 #paging {font-size: 20px; margin-right: 8px;}
 #search_text {
-	margin-left: 800px;
+	margin-left: 735px;
 	width:220px; 
 	height:30px;
+	border-radius: 10px;
+}
+#button {
+	width: 60px;
+	height: 30px;
+	background-color: #282828;
+	color: white;
 	border-radius: 10px;
 }
 </style>
@@ -96,10 +104,10 @@ table#tab_area {
 		<table id="tab">
 			<tr>
 			<td width="350" id="logo" >
-			<img src="../images/terminal.png" width="60" height="60">
+			<img src="../images/terminal.png" width="60" height="80">
 			<a href="../info/infoTrAndCompany.do" id="taga"  >터미널 안내</a></td>
 			<td width="350"  id="logo">
-			<img src="../images/bus.png" width="60" height="60">
+			<img src="../images/bus.png" width="60" height="80">
 			<a href="../info/company_info.do?pg=1" id="taga">운수사 안내</a></td>
 			</tr>
 		</table>
@@ -149,26 +157,28 @@ table#tab_area {
 	</table>
 		<form method="post" action="../info/terminal.do?region=${region}">
 				<input type="text" id="search_text" name="word" placeholder="검색어를 입력하세요">
-				<input type="submit" value="검색" onclick="">
+				<input id="button" type="submit" value="검색">
 		</form>
 			
 	<table class="terminal_table" >
 	<tr height="50">
 		<th width="160">구/군</th>
-		<th width="460">명칭(전화번호),주소</th>
+		<th width="400">명칭(전화번호),주소</th>
 		<th width="210">홈페이지</th>
 		<th width="90">약도</th>
 	</tr>
 	</table>
 	<table class="table" style="border-bottom: 1px solid black;">
 	<c:forEach var="terminalVO" items="${list_terminal}">
-	<tr align="center" height="50" >
-		<td width="160" class="line">
+	<tr align="left" height="50">
+		<td width="160" class="line" style="text-align: center;">
 		${terminalVO.city}</td>
-		<td width="460" class="line">
+		<td style="border-bottom: 1px solid #ccc; padding: 10px;">
+		<img src="../images/terminalbus.png" width="30" height="30"></td>
+		<td width="350" class="line" style="padding: 6px; font-weight: 700;">
 		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="210" class="line">
+		<td width="210" class="line"  style="padding: 6px;">
 		${terminalVO.homepage }</td>
 		<td width="90" class="linebuttom">
 		${terminalVO.map}</td>
@@ -176,7 +186,7 @@ table#tab_area {
 	</c:forEach>	
 
 	    <tr>
-       <td colspan="5" align="center" height="30px;" >
+       <td colspan="5" align="center" height="60px" >
        <c:if test="${startPage > 10 }">
        <a class="paging" href="../info/terminal.do?pg=${startPage -1 }" style="font-size: 25px;">이전</a>
       </c:if>

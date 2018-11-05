@@ -8,3 +8,8 @@
     payment number not null             	-- 티켓 1장 요금
 );
 
+-- 배차 및 잔여좌석 조회 
+select * from (select rownum rn, tt.* from (select  bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
+    (select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as seat_count from bus
+where start_tr = '부산' and end_tr = '서울' and arrive_time < 2400 and arrive_time >= 0) tt)
+where rn >= 1 and rn <= 3;

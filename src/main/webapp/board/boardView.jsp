@@ -17,11 +17,6 @@
 	margin-top: 30px;
 	margin-bottom: 40px;
 }
-#notice_txt {
-	text-align: center;
-	font-size: 35px;
-	font-weight: bold;
-}
 #new { margin-left: 100px;}
 #p {
 	font-size: 15px;
@@ -39,17 +34,26 @@
 	border-bottom: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 }
-#font {
-	text-align: center;
-	font-size: 15px;
-	font-weight: 800;
-	
-}
 .line2 {
 	border-bottom: 1px solid #ccc;
 	text-align: center;
 }
-
+#font {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 800;
+}
+#content {
+	padding-top: 20px;
+	padding-left: 20px;
+}
+#button {
+	width: 90px;
+	height: 40px;
+	background-color: #282828;
+	color: white;
+	border-radius: 10px;
+}
 </style>
 
 </head>
@@ -75,7 +79,7 @@
      <td width="220" class="line2"> ${boardVO.writeday}</td>
    </tr>
    <tr>
-   	 <td colspan="4" width="850" height="400" id="content">${boardVO.content}</td>
+   	 <td colspan="4" width="850" height="400" id="content" valign="top">${boardVO.content}</td>
    </tr>
 	<td colspan="4" align="right"><input id="button" type="button" value="목록" 
 onclick="location.href='../board/boardList.do?pg=${pg}'"></td>

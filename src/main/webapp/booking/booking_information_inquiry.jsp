@@ -27,55 +27,64 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var formObj = $("form");//form태그를 객체 선언
-		
-		//출발지 선택의 검색 기능 
-		 $("#start_text").keyup(function() {
-             var k = $(this).val();
-             $("#result_terminal > tr").hide();
-             var temp = $("#result_terminal > tr > td:contains('" + k + "')");
-             $(temp).parent().show();
-         })
-		//도착지 선택의 검색 기능 
-		 $("#end_text").keyup(function() {
-             var k = $(this).val();
-             $("#result_terminal_end > tr").hide();
-             var temp = $("#result_terminal_end > tr > td:contains('" + k + "')");
-             $(temp).parent().show();
-         })
+	$(document)
+			.ready(
+					function() {
+						var formObj = $("form");//form태그를 객체 선언
 
-		
-		
-		//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
-		$('button').on("click", function(e) {
-			e.preventDefault();
-			var date = null;
-			var arrivedate = $("#arrivedate").val();
-			//alert(arrivedate);
-			if (arrivedate.indexOf(" ", 1) == 1) {
-				var day = "0" + arrivedate.substring(0, 1);
-				var month = arrivedate.substring(2, 4);
-				var year = arrivedate.substring(6, 11);
+						//출발지 선택의 검색 기능 
+						$("#start_text")
+								.keyup(
+										function() {
+											var k = $(this).val();
+											$("#result_terminal > tr").hide();
+											var temp = $("#result_terminal > tr > td:contains('"
+													+ k + "')");
+											$(temp).parent().show();
+										})
+						//도착지 선택의 검색 기능 
+						$("#end_text")
+								.keyup(
+										function() {
+											var k = $(this).val();
+											$("#result_terminal_end > tr")
+													.hide();
+											var temp = $("#result_terminal_end > tr > td:contains('"
+													+ k + "')");
+											$(temp).parent().show();
+										})
 
-				var date = year + "-" + month + "-" + day;
-				//alert(date);
-			} else {
-				var day = arrivedate.substring(0, 2);
-				var month = arrivedate.substring(3, 5);
-				var year = arrivedate.substring(7, 12);
-				var date = year + month + day;
-				//alert(date);
-			}
-			$("#real_arrivedate").attr('value', date);
-			var value = $("#arrivedate").attr("value");
-			//alert(value+"값이 저장되었습니다.");
-			formObj.submit();
-		});
+						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
+						$('button').on("click", function(e) {
+							e.preventDefault();
+							var date = null;
+							var arrivedate = $("#arrivedate").val();
+							//alert(arrivedate);
+							if (arrivedate.indexOf(" ", 1) == 1) {
+								var day = "0" + arrivedate.substring(0, 1);
+								var month = arrivedate.substring(2, 4);
+								var year = arrivedate.substring(6, 11);
 
-	});
+								var date = year + "-" + month + "-" + day;
+								//alert(date);
+							} else {
+								var day = arrivedate.substring(0, 2);
+								var month = arrivedate.substring(3, 5);
+								var year = arrivedate.substring(7, 12);
+								var date = year + month + day;
+								//alert(date);
+							}
+							$("#real_arrivedate").attr('value', date);
+							var value = $("#arrivedate").attr("value");
+							//alert(value+"값이 저장되었습니다.");
+							formObj.submit();
+						});
+
+					});
 	/*출발터미널의 지역목록 선택후 기능  */
-	$(document).on("click",".start_terminal",
+	$(document).on(
+			"click",
+			".start_terminal",
 			function() {
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
@@ -203,13 +212,24 @@
 																			{
 																				value : item.name
 																			});
-																	input.attr("value",item.name);
-																	label.html(item.name);
-																	td.append(label)
-																	td2.append(input);
-																	tr.append(td);
-																	tr.append(td2);
-																	$("#result_terminal").append(tr);
+																	input
+																			.attr(
+																					"value",
+																					item.name);
+																	label
+																			.html(item.name);
+																	td
+																			.append(label)
+																	td2
+																			.append(input);
+																	tr
+																			.append(td);
+																	tr
+																			.append(td2);
+																	$(
+																			"#result_terminal")
+																			.append(
+																					tr);
 
 																});
 
@@ -254,7 +274,8 @@
 											dataType : "json",
 											success : function(data) {
 												alert("success");
-												$.each(
+												$
+														.each(
 																data.items,
 																function(index,
 																		item) {
@@ -267,13 +288,24 @@
 																			{
 																				value : item.name,
 																			});
-																	input.attr("value",item.name);
-																	label.html(item.name);
-																	td.append(label)
-																	td2.append(input);
-																	tr.append(td);
-																	tr.append(td2);
-																	$("#result_terminal_end").append(tr);
+																	input
+																			.attr(
+																					"value",
+																					item.name);
+																	label
+																			.html(item.name);
+																	td
+																			.append(label)
+																	td2
+																			.append(input);
+																	tr
+																			.append(td);
+																	tr
+																			.append(td2);
+																	$(
+																			"#result_terminal_end")
+																			.append(
+																					tr);
 
 																});
 
@@ -330,27 +362,7 @@
 				maxDate : "+12M +10D"
 			});
 		});
-		$('#adult').dropdown({//어른 인원 드롭다운
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
-		$('#teen').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
-		$('#kid').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
+
 		$('#arrive_time').dropdown({
 			direction : 'down',
 			duration : 700,
@@ -421,74 +433,83 @@
 			}
 
 		});
-		$.ajax({
-			url : "booking_input_TerminalSearchJson.do",
-			type : "post",
-			data : {},
-			dataType : "json",
-			success : function(data) {
-				$.each(data.items, function(index, item) {
-					var tr = $("<tr>");
-					var td = $("<td>");
-					var td2 = $("<td>");
-					var label = $("<label>");
-					var input = $(
-							"<input name='chk_terminal' class='start_terminal' type='radio'>",
-							{
-								value : item.name
-							});
-					input.attr("value",item.name);
-					label.html(item.name);
-					td.append(label)
-					td2.append(input);
-					tr.append(td);
-					tr.append(td2);
-					$("#result_terminal").append(tr);
+		$
+				.ajax({
+					url : "booking_input_TerminalSearchJson.do",
+					type : "post",
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						$
+								.each(
+										data.items,
+										function(index, item) {
+											var tr = $("<tr>");
+											var td = $("<td>");
+											var td2 = $("<td>");
+											var label = $("<label>");
+											var input = $(
+													"<input name='chk_terminal' class='start_terminal' type='radio'>",
+													{
+														value : item.name
+													});
+											input.attr("value", item.name);
+											label.html(item.name);
+											td.append(label)
+											td2.append(input);
+											tr.append(td);
+											tr.append(td2);
+											$("#result_terminal").append(tr);
+										});
+
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						$("div").html(
+								"<div>" + textStatus + "(HTTP-)" + xhr.status
+										+ "/" + errorThrown + ")</div>");
+
+					}
+
 				});
-				
-			},
-			error : function(xhr, textStatus, errorThrown) {
-				$("div").html(
-						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
-								+ errorThrown + ")</div>");
+		$
+				.ajax({
+					url : "booking_input_TerminalSearchJson.do",
+					type : "post",
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						$
+								.each(
+										data.items,
+										function(index, item) {
+											var tr = $("<tr>");
+											var td = $("<td>");
+											var td2 = $("<td>");
+											var label = $("<label>");
+											var input = $(
+													"<input name='chk_terminal' class='end_terminal' type='radio'>",
+													{
+														value : item.name
+													});
+											input.attr("value", item.name);
+											label.html(item.name);
+											td.append(label)
+											td2.append(input);
+											tr.append(td);
+											tr.append(td2);
+											$("#result_terminal_end")
+													.append(tr);
+										});
 
-			}
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						$("div").html(
+								"<div>" + textStatus + "(HTTP-)" + xhr.status
+										+ "/" + errorThrown + ")</div>");
 
-		});
-		$.ajax({
-			url : "booking_input_TerminalSearchJson.do",
-			type : "post",
-			data : {},
-			dataType : "json",
-			success : function(data) {
-				$.each(data.items, function(index, item) {
-					var tr = $("<tr>");
-					var td = $("<td>");
-					var td2 = $("<td>");
-					var label = $("<label>");
-					var input = $(
-							"<input name='chk_terminal' class='end_terminal' type='radio'>",
-							{
-								value : item.name
-							});
-					input.attr("value",item.name);
-					label.html(item.name);
-					td.append(label)
-					td2.append(input);
-					tr.append(td);
-					tr.append(td2);
-					$("#result_terminal_end").append(tr);
+					}
+
 				});
-				
-			},
-			error : function(xhr, textStatus, errorThrown) {
-				$("div").html(
-						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
-								+ errorThrown + ")</div>");
-
-			}
-
-		});
 
 	});
 </script>
@@ -548,20 +569,6 @@ header {
 	vertical-align: middle;
 }
 
-li {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-	background-color: #0489B1;
-}
-
 #mainli {
 	list-style: none;
 	margin: 0 0;
@@ -575,7 +582,7 @@ li {
 }
 
 #booking_table {
-	margin-top: 40px;
+	margin-top: 0x;
 }
 
 h1 {
@@ -585,13 +592,19 @@ h1 {
 input {
 	width: 25%;
 }
-#result_terminal td{
-	width: 30%;
-}
-#result_terminal_end td{
+
+#result_terminal td {
 	width: 30%;
 }
 
+#result_terminal_end td {
+	width: 30%;
+}
+
+ul {
+	margin: 0 0;
+	list-style: none;
+}
 </style>
 </head>
 <body>
@@ -678,13 +691,8 @@ input {
 		<div>
 			<div class="column">
 				<header>
-					<h1>승차권 예매</h1>
-					<ul class="level">
-						<li id="mainli">1.기초정보 입력</li>
-						<li>2.배차 조회</li>
-						<li>3.매수 및 좌석 선택</li>
-						<li>4.카드 정보 입력</li>
-					</ul>
+					<h1>노선/운행정보</h1>
+
 					<hr>
 				</header>
 			</div>
@@ -705,8 +713,8 @@ input {
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
 								style="width: 50px; height: 50px; margin-left: 40%;">
-								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
-								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
+								<h2 style="text-align: center; font-weight: bold;">운행정보조회</h2>
+								시외버스 및 일부 고속버스 운행정보 조회</td>
 							<td>출발지</td>
 							<td>
 								<div class="ui input">
@@ -764,61 +772,14 @@ input {
 									<option value="2300">23:00</option>
 							</select></td>
 						</tr>
+
 						<tr>
-							<td>어른</td>
-							<td><select name="adult" class="ui dropdown" id="adult">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>청소년</td>
-							<td><select name="teen" class="ui dropdown" id="teen">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>어린이</td>
-							<td><select name="kid" class="ui dropdown" id="kid">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-							
+								<input type="hidden" name="is_bus_info" value="booking_infomation_list">
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
-						
+
 					</table>
 
 				</div>
@@ -826,21 +787,34 @@ input {
 		</div>
 		<div>
 			<div class="ui text container"
-				style="text-align: left; margin: 2rem auto;">
-				<p>
-					1.당일 출발하는 차량은 출발시간 1시간 전까지 예매가 가능합니다.<br> <br> 2. 1회 최대
-					예매 매수는 10매입니다. 10매 이상 예매를 원하시는 경우에는 중복예매 가능합니다.<br> <br>
-					3. 예매한 승차권 발권 시에는 반드시 예약한 카드를 지참해야 하여, 해당 터미널 매표 창구에 예약된 사항이 있다고
-					말씀하시고, 카드를 제시하시면 승차권을 발권받으실 수 있습니다. 단, 부득이하게 예약한 카드를 소지하지 못한 경우,
-					예약한 카드 번호를 매표 창구에 제시하시면 승차권을 발급받을 수 있습니다. (발권 방법의 차이가 있는 터미널이 존재하며,
-					해당 터미널에 문의하시면 정확한 발권 방법의 확인이 가능합니다.)<br> <br> 4. <span
-						style="font-weight: bold;">시외우등형버스는 다음과 같은 할인조건에 따라서 요금할인이
-						적용되며, 중복적용되지 않습니다. (노선에 따라 상이할 수 있음)<br> <br> * 할인은
-						성인에게만 적용됩니다. (아동/중고생은 제외)<br> * 사전에 인터넷과 모바일 예매를 이용한 승객에게만
-						적용됩니다. (터미널 현장발권은 대상에서 제외됩니다. 단, 뒤좌석 예매는 예외)<br> * 요금할인이 적용되는
-						시외우등형버스는 결제시 할인율을 확인할 수 있습니다.
-					</span> <br>
-				</p>
+				style="text-align: left; margin: 5rem auto;">
+				<div id="waring">
+					<ul>
+						<div class="ui inverted segment">
+							<li><p>운행정보 메뉴에서는 시외버스 및 일부 고속버스 운행정보 조회를 서비스 하고 있습니다.</p></li>
+							<div class="ui inverted divider"></div>
+							<li><p>운행정보 조회기간은 해당 노선의 배차정보가 입력된 일자까지 가능합니다. 배차정보의 입력은
+									출발지 터미널에서 처리하고 있으며, 일반적으로 현재일 기준으로 1개월 이후의 배차정보가 입력되어 운영되고
+									있습니다.</p></li>
+							<div class="ui inverted divider"></div>
+							<li><p>“조회 가능한 내역이 없습니다.”라고 나오면 출발지 터미널로 문의하시기 바랍니다.</p>
+							<li>
+						</div>
+					</ul>
+
+
+				</div>
+
+
+			</div>
+			<div class="ui text container"
+				style="text-align: left; margin: 5rem auto;">
+				<div class="ui link list" >
+					<div class="active item">운행정보가 없는 노선의 경우 아래 사이트를 참조하세요.</div>
+					<a class="item" href="www.busterminal.or.kr">www.busterminal.or.kr</a>
+				</div>
+
+
 			</div>
 
 		</div>

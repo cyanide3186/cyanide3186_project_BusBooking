@@ -32,6 +32,8 @@
 	border-bottom: 1px solid #ccc;
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #ccc;
+	text-align: left;
+	padding: 15px;
 }
 .wrap2 {
 	border-top: 1px solid black;
@@ -71,7 +73,7 @@
 <p id="text" >승차권 예매 및 터미널 관련 새 소식을 전해드립니다.</p>
 </div>
 <table class="tableline">
-	<tr height="50">
+	<tr height="40">
 		<th width="120">NO</th>
 		<th width="620">제목</th>
 		<th width="220">작성일</th>
@@ -79,12 +81,12 @@
 </table>
 <table class="table" style="border-bottom: 1px solid black;">
 <c:forEach var="boardVO" items="${list}">
-	<tr align="center" height="50" >
-		<td width="120" class="line">${boardVO.board_no}</td>
+	<tr height="40" >
+		<td width="120" class="line" style="text-align: center;">${boardVO.board_no}</td>
 		<td width="620" class="linecenter">
 		<a id="subjectA" href="../board/boardView.do?board_no=${boardVO.board_no}&pg=${pg}">
 		${boardVO.subject}</a></td>
-		<td width="220" class="line">${boardVO.writeday}</td>
+		<td width="220" class="line" style="text-align: center;">${boardVO.writeday}</td>
 	</tr>
 </c:forEach>	
 

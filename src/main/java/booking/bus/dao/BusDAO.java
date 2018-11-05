@@ -54,7 +54,16 @@ public class BusDAO {
 	public List<TerminalVO> terminalList(String region) {
 		return sqlSession.selectList("mybatis.bus-Mapper.terminalList",region);
 	}
-		
+
+	
+	
+	// 검색을 위한 전체 터미널 목록 리스트
+	public List<TerminalVO> terminalAllList() {
+		return sqlSession.selectList("mybatis.bus-Mapper.terminalAllList");
+	}
+	
+	
+
 	public List<BusVO> getBus() {
 		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
 

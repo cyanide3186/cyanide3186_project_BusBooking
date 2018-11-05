@@ -15,6 +15,10 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <!-- Site Properties -->
+<style type="text/css">
+
+
+</style>
 <title>Fixed Menu Example - Semantic</title>
 </head>
 <body>
@@ -29,7 +33,7 @@
 				<span> 예매</span><i class="dropdown icon"></i>
 				<div class="menu">
 					<a class="item" href="../booking/booking_inputForm.do">예매</a> 
-					<a class="item" href="#">LinkItem</a>
+					<a class="item" href="../booking/booking_modifyForm.do">예매조회/취소/변경</a>
 					<div class="divider"></div>
 					<div class="header">Header Item</div>
 					<div class="item">

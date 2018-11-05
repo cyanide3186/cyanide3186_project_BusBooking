@@ -227,7 +227,7 @@ button {
 									<td>${busVO.arrive_time}</td>
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
-									<td style="padding: 0 0;"><button type="submit">
+									<td style="padding: 0 0;">
 											${busVO.bus_seats}석/총40석
 										</button></td>
 								</tr>

@@ -17,6 +17,16 @@ insert into terminal values('경기도','','','평가중','','','');
 delete from terminal where subtext ='평가중';
 
 select name from terminal where region='경기도' order by name asc;
+--예매검색시 명칭과 터미널검색시 명칭이 다른 터미널
+insert all
+    --검색시에는 통영이라 나옴
+     into terminal values('경상남도','통영시','통영터미널','1688-0017','경상남도 통영시 광도면 죽림4로 24','','')
+    --검색시 보령(대천)이라 나옴
+     into terminal values('충청남도','보령시','보령','(041-936-5757)','충청남도 보령시 터미널길 8','','')
+    --검색시 고덕이라 나옴 
+     into terminal values('서울특별시','강동구','고덕역','','서울특별시 강동구 고덕로 253 (고덕동, 고덕역)','','')
+select *from dual;
+
 
 --print Data
 select *from terminal;
@@ -118,74 +128,8 @@ insert all          --region/city/name/subtext/addr/homepage/map
     into terminal values('강원도','삼척시','장호','','강원 삼척시 근덕면 삼척로 2095','','')
     into terminal values('강원도','정선군','정선','','강원 정선군 정선읍 북실리 757-3','','')
     into terminal values('강원도','강릉시','주문진','(033-662-2559)','강원 강릉시 주문진읍 주문로 4','','')
-    into terminal values('충청남도','보령시','보령(대천)','(041-936-5757)','충청남도 보령시 터미널길 8','','')
-    into terminal values('서울특별시','강동구','고덕','','서울특별시 강동구 고덕로 253 (고덕동, 고덕역)','','')
-    into terminal values('경상남도','통영시','통영','(1688-0017)','경상남도 통영시 광도면 죽림4로 24','','')
-    into terminal values('강원도','강릉','강릉시외터미널','(033-643-6092)','강원 강릉시 하슬라로 27','','')
-    into terminal values('강원도','고성군','간성','','강원 고성군 간성읍 신안리 250-1','','')
-    into terminal values('강원도','고성군','거진','','강원 고성군 거진읍 거진길 21-2 거진터미널','','')
-    into terminal values('강원도','양양군','낙산','','강원 양양군 강현면 주청리 99-11','','')
-    into terminal values('강원도','철원군','동송','(033-456-1213)','강원 철원군 동송읍 금학로 215','','')
-    into terminal values('강원도','동해시','동해','','강원 동해시 평릉동 166-4','','')
-    into terminal values('강원도','양양군','물치','','강원도 속초시 동해대로 3677 세븐일레븐 설악해맞이점','','')
-    into terminal values('강원도','인제군','백담사','(033-462-5817)','강원 인제군 북면 용대리 544-17','','')
-    into terminal values('강원도','삼척시','삼척','(1688-5727)','강원 삼척시 남양동 341','http://www.samcheokterminal.com/index.php','')
-    into terminal values('강원도','정선군','신고한(사북)','','강원 정선군 고한읍 지장천로 856','','')
-    into terminal values('강원도','양구군','양구','(033-481-3456)','강원 양구군 중심로 196 양구터미널','','')
-    into terminal values('강원도','양양군','양양','','강원 양양군 양양읍 남문리 3-52','','')
-    into terminal values('강원도','영월군','영월','(070-4150-2450)','강원 영월군 영월읍 중앙1로 23','','')
-    into terminal values('강원도','양양군','오색','','강원 양양군 서면 오색리 534','','')
-    into terminal values('강원도','철원군','와수리','(033-458-3555)','강원 철원군 서면 와수로173번길 17','','')
-    into terminal values('강원도','인제군','원통','','강원 인제군 북면 원통로147번길 31','','')
-    into terminal values('강원도','평창군','진부','(033-335-6307)','강원 평창군 진부면 하진부리 116-19','','')
-    into terminal values('강원도','춘천시','춘천','','강원 춘천시 온의동 511','','')
-    into terminal values('강원도','태백시','태백','','강원 태백시 황지동 270-1','','')
-    into terminal values('강원도','평창시','평창','(033-332-2407)','강원 평창군 평창읍 백오1길 3','','')
-    into terminal values('강원도','양양시','하조대','','강원 양양군 현북면 하조대1길 46','','')
-    into terminal values('강원도','삼척시','호산','(033-572-6412)','강원 삼척시 원덕읍 삼척로 381','','')
-    into terminal values('강원','홍천군','홍천','','강원 홍천군 홍천읍 희망리 393','','')
-    into terminal values('강원도','평창군','횡계','(033-335-5289)','강원 평창군 대관령면 대관령로 78','','')
-    into terminal values('강원도','횡성군','횡성','','강원 횡성군 횡성읍 횡성로 377','','')
-    into terminal values('경상남도','진주시','거창','','경상남도 거창군 거창읍 대평리 1005','','')
-    into terminal values('경상남도','고성군','고성(경남)','(1666-0081)','경상남도 고성군 고성읍 송학고분로 339','','')
-    into terminal values('경상남도','거제시','고현','(1688-5003)','경상남도 거제시 고현천로 10','','')
-    into terminal values('경상남도','김해시','김해','','경상남도 김해시 전하로304번길 24','','')
-    into terminal values('경상남도','의령군','대의','','경상남도 의령군 대의면','','')
-    into terminal values('경상남도','창원시 마산회원구','마산','','경상남도 창원시 마산회원구 합성동 267','','')
-    into terminal values('경상남도','창원시 마산합포구','마산남부','','경상남도 창원시 마산합포구 해운동 5-56','','')
-    into terminal values('경상남도','밀양시','밀양','','경상남도 밀양시 북성로 7','','')
-    into terminal values('경상남도','고성군','배둔','(055-673-1940)','경상남도 고성군 회화면 남해안대로 3666','','')
-    into terminal values('경상남도','창녕군','부곡','(055-536-5007)','경상남도 창녕군 부곡면 원앙로 199','','')
-    into terminal values('경상남도','사천시','사천시','(1688-4003)','경상남도 사천시 사천읍 옥산로 120','','')
-    into terminal values('경상남도','산청군','산청','','경상남도 산청군 산청읍 지리','','')
-    into terminal values('경상남도','합천군','삼가','','경상남도 합천군 삼가면 삼가1로 78','','')
-    into terminal values('경상남도','사천시','삼천포','(1688-3006)','경상남도 사천시 중앙로 158','','')
-    into terminal values('경상남도','의령군','신반','','경상남도 의령군 부림면 신반리','','')
-    into terminal values('경상남도','양산시','양산','(1688-0243)','경상남도 양산시 중부동 710-1','','')
-    into terminal values('경상남도','창녕군','영산(경남)','(055-536-3801)','경상남도 창녕군 영산면 연지길 7','','')
-    into terminal values('경상남도','창원시 진해구','용원(녹산,명지)','','경상남도 창원시 진해구 용원동','','') 
-    into terminal values('경상남도','김해시','원지','','경상남도 김해시 대동면 초정리','','') 
-    into terminal values('경상남도','산청군','원지','','경상남도 산청군 신안면 원지로 16','','') 
-    into terminal values('경상남도','의령군','의령','(1688-2112)','경상남도 의령군 의령읍 의병로6길 13','','')  
-    into terminal values('경상남도','거제시','장승포','(1688-0078)','경상남도 거제시 능포동 633-215','','')
-    into terminal values('경상남도','김해시','장유','','경상남도 김해시 장유로 469 (신문동,롯데아울렛)','','')
-    into terminal values('경상남도','김해시','장유(환승)','','경상남도 김해시 금관대로 599번길 17','','')
-    into terminal values('경상남도','함양군','지리산(백무동)','','경상남도 함양군 마천면 강청리 203-4','','')
-    into terminal values('경상남도','김해시','진영','','경상남도 김해시 진영읍 여래리 711-1','','')
-    into terminal values('경상남도','진주시','진주','(1688-0841)','경상남도 진주시 옥봉동 807-11','','')
-    into terminal values('경상남도','창원시 진해구','진해','(055-547-8424)','경상남도 창원시 진해구 태평로34번길 17','','')
-    into terminal values('경상남도','창녕군','창녕','(055-533-4000)','경상남도 창녕군 창녕읍 명덕로 10-1','','')
-    into terminal values('경상남도','창원시 성산구','창원남산','(1688-5090)','경상남도 창원시 성산구 남산동 629-12','','')
-    into terminal values('경상남도','창원시 의창구','창원역','(1688-5090)','경상남도 창원시 의창구 의창대로 67 창원역노천대합실
-','','')
-    into terminal values('경상남도','함안군','칠원읍','','경상남도 함안군 칠원읍 구성길 6','','')
-    into terminal values('경상남도','하동군','하동','(055-883-2663)','경상남도 하동군 하동읍 읍내리 333-14','','')
-    into terminal values('경상남도','함안군','함안가야','(1688-9060)','경상남도 함안군 가야읍 말산리 605-3','','')
-    into terminal values('경상남도','함안군','함안군북','','경상남도 함안군 군북면 소포리','','')
-    into terminal values('경상남도','함양군','함양','(1688-7494)','경상남도 함양군 함양읍 한들로 159','','')
-    into terminal values('경상남도','합천군','합천','(1688-4460)','경상남도 합천군 합천읍 대야로 883','','')
-    into terminal values('경상남도','하동군','화개공용','','경상남도 하동군 화개면 섬진강대로 3916','','')
-select *from dual
+    
+select *from dual;
 
 --Delete overlaped Termial(name)
 delete from terminal a where ROWID <(select MAX(ROWID) from terminal b where a.name = b.name);
@@ -393,3 +337,256 @@ insert into terminal values('서울특별시','노원구','수락터미널(김�
 insert into terminal values('서울특별시','은평구','수색기차역 ','','서울특별시 은평구 수색로','','');
 insert into terminal values('서울특별시','강남구','수서역 ','','서울특별시 강남구 광평로 지하 270','','');
 
+--부산
+insert into terminal values('부산광역시','강서구','가락IC','','부산 강서구 봉림동','','');
+insert into terminal values('부산광역시','강서구','가락주민센타 ','','부산 강서구 가락대로 1476 가락동 주민센터','','');
+insert into terminal values('부산광역시','기장군','개천마을 ','','부산 기장군 장안읍 오리','','');
+insert into terminal values('부산광역시','강서구','경마장 ','','부산 강서구 가락대로 929','','');
+insert into terminal values('부산광역시','기장군','관음사입구 ','','부산광역시 기장군 장안읍 임랑리','','');
+insert into terminal values('부산광역시','기장군','교리 ','','부산 기장군 기장읍 대라리','','');
+insert into terminal values('부산광역시','북구','구포 ','','부산 북구 구포동','','');
+insert into terminal values('부산광역시','기장군','기장','','부산 기장군 기장읍 동부리 124','','');
+insert into terminal values('부산광역시','기장군','기장문화학교 ','','부산 기장군 장안읍 월내리 579','','');
+insert into terminal values('부산광역시','기장군','기장중 ','','부산광역시 기장군 기장읍 대라리','','');
+insert into terminal values('부산광역시','강서구','김해공항 ','','부산 강서구 대저2동 2378-1','','');
+insert into terminal values('부산광역시','기장군','내리','','부산 기장군 기장읍 내리','','');
+insert into terminal values('부산광역시','금정구','노포 ','','부산광역시 금정구 노포동 ','','');
+insert into terminal values('부산광역시','강서구','대동수문 ','','부산 강서구 대저1동','','');
+insert into terminal values('부산광역시','기장군','대룡(기장군) ','','부산 기장군 장안읍 오리','','');
+insert into terminal values('부산광역시','해운대구','대우마리나 ','','부산 해운대구 우동','','');
+insert into terminal values('부산광역시','강서구','덕계 ','','부산 강서구 강동동','','');
+insert into terminal values('부산광역시','동래구','동래(심야) ','','부산 동래구 구만덕로','','');
+insert into terminal values('부산광역시','동래구','동래고교 ','','부산 동래구 칠산동 360','','');
+insert into terminal values('부산광역시','동래구','동래역 ','','부산 동래구 온천동','','');
+insert into terminal values('부산광역시','동래구','동래정류소','','부산 동래구 명륜동','','');
+insert into terminal values('부산광역시','기장군','동백선착장 ','','
+부산 기장군 일광면 동백리','','');
+insert into terminal values('부산광역시','해운대구','동백정류장 ','','
+부산 해운대구 우동 710-1','','');
+insert into terminal values('부산광역시','기장군','동부산농협 ','','부산 기장군 기장읍','','');
+insert into terminal values('부산광역시','금정구','만남의광장 ','','부산 금정구 구서동','','');
+insert into terminal values('부산광역시','기장군','명례 ','','부산 기장군 장안읍 명례리','','');
+insert into terminal values('부산광역시','금정구','무적 ','','부산 금정구 장전3동 316-4','','');
+insert into terminal values('부산광역시','기장군','문동 ','','부산 기장군 일광면 문동리','','');
+insert into terminal values('부산광역시','기장군','문중 ','','부산 기장군 일광면 문중리','','');
+insert into terminal values('부산광역시','해운대구','문화여고 ','','부산 해운대구 해운대로469번길 50 학교법인한독학원','','');
+insert into terminal values('부산광역시','해운대구','벡스코 ','','부산 해운대구 APEC로 55','','');
+insert into terminal values('부산광역시','금정구','부대앞(부산대앞) ','','부산 금정구 장전동','','');
+insert into terminal values('부산광역시','동래구','부산동래 ','','부산 동래구 중앙대로1325번길 24','','');
+insert into terminal values('부산광역시','금정구','부산동부 ','','부산시 금정구 노포동 133 부산동부버스터미널','','');
+insert into terminal values('부산광역시','강서구','부산산업고 ','','부산 강서구 봉림동 15','','');
+insert into terminal values('부산광역시','사상구','부산서부(사상) (1577-8301) ','','부산 사상구 괘법동 533','','');
+insert into terminal values('부산광역시','사하구','부산신평 ','','부산 사하구 신평동 7-16','','');
+insert into terminal values('부산광역시','동구','부산역 ','','부산광역시 동구 초량동 1206-1','','');
+insert into terminal values('부산광역시','해운대구','부산해운대(수도권) ','','부산 해운대구 우1동 839-1','','');
+insert into terminal values('부산광역시','동구','삼익아파트 ','','부산 동구 범일동','','');
+insert into terminal values('부산광역시','해운대구','삼익아파트 ','','부산 해운대구 재송동','','');
+insert into terminal values('부산광역시','기장군','새끝 ','','부산 기장군 일광면 문동리','','');
+insert into terminal values('부산광역시','강서구','새벽시장 ','','부산 강서구 죽동동','','');
+insert into terminal values('부산광역시','강서구','생곡 ','','부산 강서구 가달1로 38','','');
+insert into terminal values('부산광역시','부산진구','서면 ','','부산 부산진구 부전동 573-1','','');
+insert into terminal values('부산광역시','강서구','세산 ','','부산 강서구 가락대로 793','','');
+insert into terminal values('부산광역시','해운대구','센텀피오레 ','','부산 해운대구 반여동','','');
+insert into terminal values('부산광역시','강서구','송산마을 ','','부산 강서구 죽동동','','');
+insert into terminal values('부산광역시','해운대구','송정(해운대) ','','부산 해운대구 송정동','','');
+insert into terminal values('부산광역시','해운대구','송정해수욕장','','부산 해운대구 송정동 727-2','','');
+insert into terminal values('부산광역시','해운대구','신도시 ','','부산 해운대구 좌동 1461-4','','');
+insert into terminal values('부산광역시','해운대구','신도시시장 ','','부산 해운대구 좌동 1429-1','','');
+insert into terminal values('부산광역시','기장군','신평 ','','부산 기장군 일광면 신평리','','');
+insert into terminal values('부산광역시','사하구','신평(부산시)','','부산광역시 사하구 신평동','','');
+insert into terminal values('부산광역시','사하구','신평역 ','','부산광역시 사하구 신평동 646번지','','');
+insert into terminal values('부산광역시','금정구','양산,범어사','','부산광역시 금정구 범어사로 250','','');
+insert into terminal values('부산광역시','기장군','온정(부산) ','','부산광역시 기장군 일광면 동백리','','');
+insert into terminal values('부산광역시','동래구','온천장 ','','부산광역시 동래구 온천동','','');
+insert into terminal values('부산광역시','남구','용당 ','','부산 남부 용당동','','');
+--6페이지까지
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+insert into terminal values('부산광역시','','','','','','');
+
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');
+insert into terminal values('','','','','','','');

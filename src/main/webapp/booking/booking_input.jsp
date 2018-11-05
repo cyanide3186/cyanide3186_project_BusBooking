@@ -13,8 +13,10 @@
 	href="/Project_BusBooking/css/daterangepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/base.css">
-<link rel="stylesheet" type="text/css"
-	href="/Project_BusBooking/semantic/semantic.css">
+	
+<!--<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">  -->
+	
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"

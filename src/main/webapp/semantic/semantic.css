@@ -6849,7 +6849,7 @@ i.flag.zimbabwe:before {
   font-weight: bold;
   line-height: 1.28571429em;
   text-transform: none;
-  color: rgba(0, 0, 0, 0.87);
+  background-color: #00008c;
 }
 
 .ui.header:first-child {
@@ -25143,7 +25143,7 @@ Floated Menu / Item
 
 .ui.inverted.menu {
   border: 0px solid transparent;
-  background: #1B1C1D;
+  background: #0e345a;
   -webkit-box-shadow: none;
   box-shadow: none;
 }

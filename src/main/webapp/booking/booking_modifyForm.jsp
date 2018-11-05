@@ -622,7 +622,7 @@ ul {
 	width: 500px;
 }
 
- table {
+table {
 	display: table;
 	border-collapse: separate;
 	border-spacing: 20px;
@@ -658,25 +658,33 @@ ul {
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-				<div class="ui top attached tabular menu">
+					<div class="ui top attached tabular menu">
 						<div class="active item">휴대폰번호로 찾기</div>
 
 					</div>
-					<table border="1px solid" align="center" id="booking_table">
-						<tr>
-							<td>휴대폰번호</td>
-							<td><input type="text"></td>
-						</tr>
-						
-						<tr>
-							<input type="hidden" name="is_bus_info"
-								value="booking_infomation_list">
+					<table class="ui single line table">
+						<thead>
+							<tr>
+								<th>휴대폰 번호 입력</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr>
+								<td><input type="text" name="hp"></td>
+								
+							</tr>
+								<tr>
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="">조회</button>
+									class="ui teal basic button" type="submit" id="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
-
+							
+						</tbody>
 					</table>
+					
+					
 
 				</div>
 

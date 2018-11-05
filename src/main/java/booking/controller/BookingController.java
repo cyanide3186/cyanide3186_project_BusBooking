@@ -477,41 +477,37 @@ public class BookingController {
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
-	@Scheduled(cron = "0 * * * * *")
-	public void seatReset() {
-
-		List<BusVO> list = new ArrayList<>();
-		list = bookingService.getBus();
-
-		arrivalTime_array = new String[list.size()];
-
-		for (int i = 0; i < list.size(); i++) {
-
-			int arrive_time = Integer.parseInt(list.get(i).getArrive_time());
-			int time = Integer.parseInt(list.get(i).getTime());
-			String bus_no = list.get(i).getBus_no();
-
-			if ((arrive_time / 10 % 10) + (time / 10 % 10) >= 6)
-				time += 40;
-			int arrivalTime = arrive_time + time;
-
-			if (arrivalTime >= 2400)
-				arrivalTime -= 2400;
-
-			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime);
-		}
-
-		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
-		Calendar cal = Calendar.getInstance();
-		String currentTime = sdf.format(cal.getTime());
-
-		for (int i = 0; i < arrivalTime_array.length; i++) {
-			int cutIndex = arrivalTime_array[i].indexOf("+");
-			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
-
-			if (arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
-				bookingService.seatReset(bus_no);
-			}
-		}
-	}
+	   @Scheduled(fixedDelay = 60000)
+	   public void seatReset() {
+	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
+	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
+	            + (now.get(11) * 100) + now.get(12));             // 현재 년월일시분
+//	      now.set((now.get(1) * 10000), ((now.get(2) + 1) * 100), now.get(5));    // 달력일정을 현재년월일로 설정
+	      long maxDay = (now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000  + (now.getActualMaximum(Calendar.DAY_OF_MONTH)*10000+2359));            // 설정된 달력의 해당 달 최대일자
+//	      long limitDay = now.getActualMaximum(Calendar.DAY_OF_MONTH) * 10000;   // 그 달의 최대일크기(28일 28만,30일 30만)
+	      long limitMonth = (now.get(1) * 100000000L) + 12312359L;            // 그 해의 최대 맥스치 12월31일23시59분
+	      List<SeatVO> seatVO = new ArrayList<SeatVO>();
+	      seatVO = bookingService.seatInfo(expiration);                     // 유효기간 만료 좌석 정보                              // db내 유효기간최대일 추출                              //
+	      if(!"0".equals(String.valueOf(seatVO.size()))) {   
+	         long upDay =  bookingService.maxDay(seatVO.get(0).getBus_no());
+	         for (int i = 0; i < seatVO.size(); i++) {
+	               long busTime = seatVO.get(i).getExpiration()%10000;            
+	               long newDay = (upDay + 10000) / 10000 * 10000 + (busTime%10000);                           //변화되야할 일자 테이블내 최대일수+하루
+	               if(newDay > maxDay) {                                 //해당월 최대일자 초과시 한달이 증가                        //그 달에 최대치를 넘어갈경우 월을 증가시키고 일자를 초기화
+	                  newDay = (upDay / 1000000 * 1000000 + 1000000 + 10000)       //다음달 1일로 초기화(시,분리셋)
+	                     + (busTime%10000);                               //시,분 추가
+	               } 
+	               if(newDay > limitMonth) {                              //해당년도 최대월 초과시 일년이 증가
+	                  newDay = (upDay / 1000000 * 1000000 + 90010000)            //내년 1일로 초기화(시,분리셋)
+	                     + (busTime%10000);                              //시,분 추가
+	               }   
+	               seatVO.get(i).setBus_no(seatVO.get(i).getBus_no());   
+	               seatVO.get(i).setBus_seat(seatVO.get(i).getBus_seat());
+	               seatVO.get(i).setTicket_no("");
+	               seatVO.get(i).setExpiration(newDay);
+	               bookingService.seatInsert(seatVO.get(i));
+	            }
+	         }
+	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
+	      }
 }

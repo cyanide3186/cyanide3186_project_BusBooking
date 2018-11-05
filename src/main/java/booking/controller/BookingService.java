@@ -48,5 +48,7 @@ public interface BookingService {
 	List<BusVO> getBus();
 	
 	long maxDay(String bus_no);
+	
+	public List<TerminalVO> terminalAllList();
 
 }

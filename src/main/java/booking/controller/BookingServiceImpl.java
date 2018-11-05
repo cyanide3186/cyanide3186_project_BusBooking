@@ -125,4 +125,10 @@ public class BookingServiceImpl implements BookingService {
 	public long maxDay(String bus_no) {
 		return seatDAO.maxDay(bus_no);
 	}
+
+	@Override
+	public List<TerminalVO> terminalAllList() {
+		
+		return busDAO.terminalAllList();
+	}
 }

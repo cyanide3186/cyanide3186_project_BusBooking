@@ -106,4 +106,23 @@ public class BookingServiceImpl implements BookingService {
 		return busDAO.getBus();
 	}
 
+	@Override
+	public void seatInsert(SeatVO seatVO) {
+		seatDAO.seatInsert(seatVO);
+	}
+
+	@Override
+	public void seatDelete(long expiration) {
+		seatDAO.seatDelete(expiration);
+	}
+
+	@Override
+	public List<SeatVO> seatInfo(long expiration) {
+		return seatDAO.seatInfo(expiration);
+	}
+
+	@Override
+	public long maxDay(String bus_no) {
+		return seatDAO.maxDay(bus_no);
+	}
 }

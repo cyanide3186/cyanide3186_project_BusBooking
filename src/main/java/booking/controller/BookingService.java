@@ -38,7 +38,15 @@ public interface BookingService {
 	int payment(String ticket_no); // 티켓 결제
 	
 	void seatReset(String bus_no);
+	
+	void seatInsert(SeatVO seatVO);
+	
+	void seatDelete(long expiration);
+	
+	List<SeatVO> seatInfo(long expiration);
 
 	List<BusVO> getBus();
+	
+	long maxDay(String bus_no);
 
 }

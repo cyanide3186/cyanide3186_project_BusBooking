@@ -50,13 +50,13 @@ table#tab_area {
 	border-bottom: 1px solid #ccc;
 }
 .terminal_table{
-	margin-left: 120px;
+	margin-left: 150px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	text-align: center;
 	margin-top: 20px;
 }
-.table {margin-left: 110px; margin-bottom: 150px; }
+.table {margin-left: 150px; margin-bottom: 150px; }
 #currentPaging {
 	font-weight: 1000; 
 	color: black;
@@ -175,10 +175,10 @@ table#tab_area {
 		${terminalVO.city}</td>
 		<td style="border-bottom: 1px solid #ccc; padding: 10px;">
 		<img src="../images/terminalbus.png" width="30" height="30"></td>
-		<td width="370" class="line" style="padding: 6px; font-weight: 700;">
+		<td width="350" class="line" style="padding: 6px; font-weight: 700;">
 		${terminalVO.name}&nbsp;${terminalVO.subtext}<br>
 		${terminalVO.addr}</td>
-		<td width="200" class="line"  style="padding: 6px;">
+		<td width="210" class="line"  style="padding: 6px;">
 		${terminalVO.homepage }</td>
 		<td width="90" class="linebuttom">
 		${terminalVO.map}</td>

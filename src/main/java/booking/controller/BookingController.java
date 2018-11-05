@@ -344,7 +344,7 @@ public class BookingController {
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
 		SeatDAO seatDAO = new SeatDAO();
-
+		
 		String ticket_no = request.getParameter("ticket_no");
 
 		ticketVO = ticketDAO.bookingCheck(ticket_no);
@@ -353,7 +353,7 @@ public class BookingController {
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
 		modelAndView.addObject("main", "");
-
+		
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;

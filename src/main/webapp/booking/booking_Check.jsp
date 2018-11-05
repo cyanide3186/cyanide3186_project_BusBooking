@@ -654,7 +654,7 @@ table {
 
 
 		<div>
-			<form role="form" action="../booking/booking_bus.do" method="post"
+			<form role="form" action="../booking/bookingCheck.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">

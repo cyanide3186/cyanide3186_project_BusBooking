@@ -51,8 +51,27 @@ public class InfoPageController {
 	}
 	
 	//이용 약관
-	
+	@RequestMapping(value="/info/termsNconditions.do")
+	public ModelAndView termsNconditions(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("main","../info/termsNconditions.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		return modelAndView;
+	}
 	//개인정보 처리 방침
-	
+	@RequestMapping(value="/info/personal_info.do")
+	public ModelAndView personalinfo(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("main","../info/personal_info.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		return modelAndView;
+	}
 	//이메일 무단수집 거부
+	@RequestMapping(value="/info/email_collection.do")
+	public ModelAndView emailcollection(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("main","../info/email_collection.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		return modelAndView;
+	}
 }

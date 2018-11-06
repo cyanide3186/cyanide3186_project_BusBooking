@@ -483,7 +483,6 @@ public class BookingController {
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
-//<<<<<<< HEAD
 	@Scheduled(cron="0 * * * * *")
 	public void seatResetf() {
 		List<BusVO> list = new ArrayList<>();
@@ -632,8 +631,7 @@ public class BookingController {
 			}
 		}
 	}
-//=======
-//	   @Scheduled(fixedDelay = 60000)
+	   @Scheduled(fixedDelay = 1000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
 	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
@@ -666,5 +664,4 @@ public class BookingController {
 	         }
 	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
 	      }
-//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
 }

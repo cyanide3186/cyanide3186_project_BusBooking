@@ -512,55 +512,46 @@ public class BookingController {
 			//System.out.println(arrivalTime_array[i].substring(14));
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");	// 현재시간 ex : 오후 5시 10분 - > 1710
-		SimpleDateFormat sdf2 = new SimpleDateFormat("MM");		// 현재 월
-		SimpleDateFormat sdf3 = new SimpleDateFormat("dd");		// 현재 일
+																// 날짜 포맷
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");	// 시간 ex : 오후 5시 10분 - > 1710
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM");		// 월
+		SimpleDateFormat sdf3 = new SimpleDateFormat("dd");		// 일
 		
 		Calendar cal = Calendar.getInstance();
-		String currentTime = sdf.format(cal.getTime());
-		String currentMonth = sdf2.format(cal.getTime()); 
-		String currentDay =   sdf3.format(cal.getTime()); 
+		String currentTime = sdf.format(cal.getTime());			// 현재 시간
+		String currentMonth = sdf2.format(cal.getTime()); 		// 현재 월
+		String currentDay =   sdf3.format(cal.getTime()); 		// 현재 일
 		//int month = Integer.parseInt(sdf2.format(cal.getTime())); 
 		//int day = Integer.parseInt(sdf3.format(cal.getTime())); 
-		int dayofMonth = cal.getActualMaximum(Calendar.DATE);
-		int resetMonth = 0;
-		int resetDay = 0;
+		int resetMonth = 0;										// seat 초기화 할 때 입력 될 월
+		int resetDay = 0;										// seat 초기화 할 때 입력 될 일			
 		
 		//currentMonth = "1";
 		//currentDay = "31";
 		
 		for(int i = 0; i < arrivalTime_array.length; i++) {
-			int cutIndex = arrivalTime_array[i].indexOf("+");
+			int cutIndex = arrivalTime_array[i].indexOf("+");			
 			int monthIndex = arrivalTime_array[i].indexOf("m:") + 2;
 			int dayIndex = arrivalTime_array[i].indexOf("d:");
-			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);			// 배열에 저장된 버스 번호
 
 			//System.out.println("monthIndex = " + monthIndex );
 			//System.out.println("dayIndex = " + dayIndex);
 			
-			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);
-			String getDay = arrivalTime_array[i].substring(dayIndex + 2);
+			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);	// 배열에 저장 된 버스의 출발 월
+			String getDay = arrivalTime_array[i].substring(dayIndex + 2);			// 배열에 저장 된 버스의 출발 일
 			SeatVO seatVO = new SeatVO();
-			/*
-			switch (dayofMonth) {
 			
-			case 31: resetDay = Integer.parseInt(getDay) + 30; break;
-			case 30: resetDay = Integer.parseInt(getDay) + 30; break;
-			case 29: resetDay = Integer.parseInt(getDay) + 30; break;
-			case 28: resetDay = Integer.parseInt(getDay) + 30; break;
+			resetDay = Integer.parseInt(getDay);									
 			
-			}
-			*/
-			
-			resetDay = Integer.parseInt(getDay);
-			
-			if(resetDay > dayofMonth) {
-				resetDay -= dayofMonth;
-				if(resetDay > dayofMonth) resetMonth = Integer.parseInt(getMonth) + 2;
-				else resetMonth = Integer.parseInt(getMonth) + 1;
-			}
-			
+			resetMonth = Integer.parseInt(getMonth) + 1;							// 좌석의 월을 다음달로 변경
 			if(resetMonth > 12 ) resetMonth = 1;
+
+//			if(resetDay > dayofMonth) {
+//				resetDay -= dayofMonth;
+//				if(resetDay > dayofMonth) resetMonth = Integer.parseInt(getMonth) + 2;
+//				else resetMonth = Integer.parseInt(getMonth) + 1;
+//			}
 			
 			seatVO.setBus_no(bus_no);
 			seatVO.setArrive_month(Integer.parseInt(getMonth));
@@ -575,6 +566,7 @@ public class BookingController {
 			//System.out.println("currentDay : " + currentDay );
 			//System.out.println("-------------------------------------------");
 			
+			// 현재 시간(월, 일 시각)을 배열에 저장되있는 시간과 비교해서 일치하면 좌석을 초기화 시킨다. 
 			if(arrivalTime_array[i].substring(cutIndex + 1, monthIndex - 2).equals(currentTime) && getMonth.equals(currentMonth) && getDay.equals(currentDay)) {
 				bookingService.seatReset(seatVO);
 			}
@@ -582,6 +574,7 @@ public class BookingController {
 	}
 	
 	// 월말 좌석 초기화
+	// 이번 달이 저번 달보다 총 일수가 적을 경우 초기화 되지 않는 좌석들을 초기화 시킨다.
 	@Scheduled(cron="0 0 0 28-30 * *")
 	public void seatResetLastday() {
 		List<BusVO> list = new ArrayList<>();

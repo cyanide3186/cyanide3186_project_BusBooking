@@ -19,12 +19,13 @@
 
 .ui.inverted.segment, .ui.primary.inverted.segment {
     border: 0px solid transparent;
-    background:#062038;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    background:#051a2d;
 }
 .ui .stackable.inverted.divided.grid {
 	margin-left: 185px;
+}
+.ui.inverted.header {
+	background-color: #051a2d;
 }
 </style>
 

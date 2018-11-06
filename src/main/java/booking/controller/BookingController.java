@@ -29,7 +29,35 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 	String[] arrivalTime_array;
-
+	
+	
+	
+	//티켓취소 페이지 이동
+	@RequestMapping(value = "/booking/booking_cancle.do")
+	public ModelAndView booking_cancle(ModelAndView modelAndView,TicketVO vo) {
+		
+		bookingService.bookingCancel(vo.getTicket_no());
+		modelAndView.addObject("main", "../booking/booking_cancle.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+	
+	//티켓확인 페이지 이동
+	@RequestMapping(value = "/booking/booking_check.do")
+	public ModelAndView booking_Check(ModelAndView modelAndView,TicketVO vo) {
+		if(vo.getTicket_no()==null) {
+			modelAndView.addObject("main", "../booking/booking_modifyForm.jsp");
+		}else {
+			vo=bookingService.bookingCheck(vo.getTicket_no());
+			modelAndView.addObject("ticket",vo);
+			modelAndView.addObject("main", "../booking/booking_check.jsp");
+		}
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+	//티켓 조회/삭제/수정 입력 페이지 이동
 	@RequestMapping(value = "/booking/booking_modifyForm.do")
 	public ModelAndView booking_modifyForm(ModelAndView modelAndView) {
 
@@ -362,21 +390,7 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 예약 취소 폼
-	@RequestMapping(value = "/booking/bookingCancleForm.do")
-	public ModelAndView bookingCancleForm(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-		TicketVO ticketVO = new TicketVO();
-
-		String ticket_no = request.getParameter("ticket_no");
-		ticketVO = bookingService.bookingCheck(ticket_no);
-
-		modelAndView.addObject("ticketVO", ticketVO);
-		modelAndView.addObject("main", "");
-		modelAndView.setViewName("../main/index.jsp");
-
-		return modelAndView;
-	}
+	
 
 	// 예약 취소 기능
 	@RequestMapping(value = "/booking/bookingCancle.do")

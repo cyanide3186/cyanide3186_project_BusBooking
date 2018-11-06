@@ -216,7 +216,6 @@ public class BookingController {
 
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
-//<<<<<<< HEAD
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
@@ -225,10 +224,9 @@ public class BookingController {
 //
 //		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수
 //>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
-		int totalPage = (busListCount + 4) / 5;
-		int startPage = (pg - 1) / 5 * 5 + 1;
-		int endPage = startPage + 4;
-
+		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
+		int endPage = (int)(Math.ceil(pg/10.0))*10;
+		int startPage = endPage-9;
 		if (endPage > totalPage)
 			endPage = totalPage;
 

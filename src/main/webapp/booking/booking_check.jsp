@@ -40,7 +40,15 @@
 				formObj.attr("action","../booking/booking_bus.do");
 				
 			}else if(operation ==='cancle'){
-			
+				if(confirm("정말 취소하시겠습니까 ?") == true){
+			        alert("취소되었습니다");
+			    }
+			    else{
+			        return ;
+			    }	    
+			});
+
+
 			}
 			formObj.submit();
 	});
@@ -163,9 +171,9 @@ table {
 	border-color: grey;
 	display: table;
 	margin: auto;
-	
 }
-#ticket_contents>td{
+
+#ticket_contents>td {
 	vertical-align: middle;
 }
 </style>
@@ -215,27 +223,27 @@ table {
 							</tr>
 						</thead>
 						<tbody>
-							
+
 							<tr id="ticket_contents">
-								<td rowspan="2">${ticket.ticket_no}</td>
-								<td rowspan="2">${ticket.bus_no}</td>
-								<td rowspan="2">${ticket.seat_no}</td>
-								<td rowspan="2">${ticket.hp}</td>
-								<td rowspan="2">${ticket.totalpay}</td>
-								<td rowspan="2">${ticket.payday}</td>
-								<td rowspan="2">${ticket.arrive_day}</td>
-								<td ><button
-									class="ui teal basic button" type="submit" data-oper="modify">예매변경</button>
-								</td>
+								<td rowspan="2">${TicketVO.ticket_no}</td>
+								<td rowspan="2">${TicketVO.bus_no}</td>
+								<td rowspan="2">${TicketVO.seat_no}</td>
+								<td rowspan="2">${TicketVO.hp}</td>
+								<td rowspan="2">${TicketVO.totalpay}</td>
+								<td rowspan="2">${TicketVO.payday}</td>
+								<td rowspan="2">${TicketVO.arrive_day}</td>
+								<td><button class="ui teal basic button" type="submit"
+										data-oper="modify">예매변경</button></td>
 							</tr>
 							<tr>
-								<td><button class="ui teal basic button" type="submit" data-oper="cancle">예매취소</button></td>
+								<td><button class="ui teal basic button" type="submit"
+										data-oper="cancle">예매취소</button></td>
 							</tr>
 						</tbody>
 					</table>
-								
-					
-					
+
+
+
 
 				</div>
 

@@ -477,7 +477,7 @@ public class BookingController {
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
-	   @Scheduled(fixedDelay = 60000)
+	   @Scheduled(fixedDelay = 1000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
 	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
@@ -505,9 +505,10 @@ public class BookingController {
 	               seatVO.get(i).setBus_seat(seatVO.get(i).getBus_seat());
 	               seatVO.get(i).setTicket_no("");
 	               seatVO.get(i).setExpiration(newDay);
-	               bookingService.seatInsert(seatVO.get(i));
+	               bookingService.seatUpdate(seatVO.get(i));
+//	               bookingService.seatInsert(seatVO.get(i));
 	            }
 	         }
-	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
+//	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
 	      }
 }

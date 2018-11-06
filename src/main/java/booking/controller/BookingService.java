@@ -39,9 +39,11 @@ public interface BookingService {
 	
 	void seatReset(String bus_no);
 	
-	void seatInsert(SeatVO seatVO);
+//	void seatInsert(SeatVO seatVO);
+//	
+//	void seatDelete(long expiration);
 	
-	void seatDelete(long expiration);
+	void seatUpdate(SeatVO seatVO);
 	
 	List<SeatVO> seatInfo(long expiration);
 

@@ -44,6 +44,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete seat where expiration = #{expiration}
 	</update>
 	
+	<update id="seatUpdate" parameterType="seatVO">
+		update seat set ticket_no = null,expiration = #{expiration}
+		where bus_no=#{bus_no} and expiration = #{expiration}
+	</update>
+	
 	<insert id="seatInsert" parameterType="seatVO">
 		insert into seat values (	 #{bus_no}
 									,#{bus_seat}

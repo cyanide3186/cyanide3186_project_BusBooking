@@ -3,6 +3,7 @@ package booking.bus.bean;
 public class SeatVO {			//좌석정보 DTO - tabel seat와 대응
 	private String bus_no;		//버스번호-BusVO, ticketVO와 호응
     private int bus_seat;		//(1~40)
+    
     private int arrive_month;	//출발 월
     private int arrive_day;		//출발 일
     

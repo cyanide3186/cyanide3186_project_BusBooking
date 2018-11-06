@@ -85,8 +85,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void seatReset(String bus_no) {
-		seatDAO.seatReset(bus_no);
+	public void seatReset(SeatVO seatVO) {
+		seatDAO.seatReset(seatVO);
 	}
 
 	@Override
@@ -96,25 +96,25 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-
 	public List<TerminalVO> terminalList(String region) {
 		
 		return busDAO.terminalList(region);
 	}
 
+	@Override
 	public List<BusVO> getBus() {
 		return busDAO.getBus();
 	}
 
-//	@Override
-//	public void seatInsert(SeatVO seatVO) {
-//		seatDAO.seatInsert(seatVO);
-//	}
-//
-//	@Override
-//	public void seatDelete(long expiration) {
-//		seatDAO.seatDelete(expiration);
-//	}
+	@Override
+	public void seatInsert(SeatVO seatVO) {
+		seatDAO.seatInsert(seatVO);
+	}
+
+	@Override
+	public void seatDelete(long expiration) {
+		seatDAO.seatDelete(expiration);
+	}
 
 	@Override
 	public List<SeatVO> seatInfo(long expiration) {
@@ -133,8 +133,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void seatUpdate(SeatVO seatVO) {
+	public void seatReset(String bus_no) {
 		
-		seatDAO.seatUpdate(seatVO);
 	}
 }

@@ -268,7 +268,7 @@ button {
 
 						<tr>
 							<td width="200px" align="center"><c:if
-									test="${startPage >endPage}">
+									test="${startPage > 3 }">
 									<button class="ui teal basic button"
 										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">이전시간</button>
 								</c:if></td>

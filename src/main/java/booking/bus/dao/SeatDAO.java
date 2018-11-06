@@ -41,8 +41,8 @@ public class SeatDAO {
 	}
 	
 	// 좌석 초기화 (seat 테이블의 ticket_no를 null로 변경한다)
-	public int seatReset(String bus_no) {
-		return sqlSession.update("mybatis.seat-Mapper.seatReset", bus_no);
+	public int seatReset(SeatVO seatVO) {
+		return sqlSession.update("mybatis.seat-Mapper.seatReset", seatVO);
 	}
 
 //	public int seatDelete(long expiration) {

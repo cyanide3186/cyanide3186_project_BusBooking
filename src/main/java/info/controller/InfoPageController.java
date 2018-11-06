@@ -1,14 +1,10 @@
 package info.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import info.company.bean.CompanyVO;
 
 @Controller
 public class InfoPageController {
@@ -54,5 +50,9 @@ public class InfoPageController {
 		return modelAndView;
 	}
 	
-
+	//이용 약관
+	
+	//개인정보 처리 방침
+	
+	//이메일 무단수집 거부
 }

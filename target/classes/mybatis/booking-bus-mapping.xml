@@ -13,16 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select * from (
 							select rownum rn, tt.* from
-                   									 (select distinct (select count(*) from bus, seat where seat.bus_no = bus.bus_no and ticket_no is null and arrive_day = 29 and arrive_month = 3) as seat_count, b.*, s.arrive_month, s.arrive_day 
+                   									 (select distinct (select count(*) from bus, seat where seat.bus_no = bus.bus_no and ticket_no is null and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as seat_count, b.*, s.arrive_month, s.arrive_day 
 	                      								 	from bus b, seat s 
 	                      							  where b.bus_no = s.bus_no
-	                        						  and start_tr = '부산' and end_tr = '서울'
-								                      and arrive_time < 2400 and arrive_time >= 0
-								                      and arrive_month = 3
-								                      and arrive_day = 29
+	                        						  and start_tr = #{start_tr} and end_tr = #{end_tr}
+								                      and arrive_time < 2400 and arrive_time >= #{arrive_time}
+								                      and arrive_month = #{arrive_month}
+								                      and arrive_day = #{arrive_day}
                     								 )
                			  tt)
-			where rn >= 1 and rn <= 5;
+			where rn >= #{start_num} and rn <= #{end_num};
 		]]>
 	</select>
 

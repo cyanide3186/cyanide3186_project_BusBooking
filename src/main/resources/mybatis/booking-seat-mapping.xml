@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="seatUpdate" parameterType="seatVO">
 		update seat set ticket_no = null,expiration = #{expiration}
-		where bus_no=#{bus_no} and expiration = #{expiration}
+		where bus_no=#{bus_no} and expiration=(select min(expiration) from seat)
 	</update>
 	
 	<insert id="seatInsert" parameterType="seatVO">

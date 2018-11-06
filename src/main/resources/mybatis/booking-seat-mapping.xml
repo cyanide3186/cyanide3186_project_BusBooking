@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 예약 좌석 조회 -->
 	<select id="seatCheck" parameterType="String" resultType="seatVO">
-		select * from seat where ticket_no=#{ticket_no}
+		select * from seat where ticket_no = #{ticket_no}
 	</select>
 	
 	<update id="seatModify" parameterType="int" >
@@ -25,21 +25,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 좌석 예약 상태로 변경 -->
 	<update id="seatBooking" parameterType="seatVO">
 		update seat set ticket_no = #{ticket_no}
-		where bus_no = #{bus_no} and bus_seat = #{bus_seat}
+		where bus_no = #{bus_no} 
+		and bus_seat = #{bus_seat}
+		and arrive_month = #{arrive_month}
+		and arrive_day	 = #{arrive_day}
 	</update>
 	
 	<!-- 좌석 예약 취소 -->
 	<update id="seatCancle" parameterType="seatVO">
 		update seat set ticket_no = null 
-		where bus_no = #{bus_no} and bus_seat = #{bus_seat}
+		where ticket_no = #{ticket_no}
 	</update>
 	
 	<!-- 좌석 초기화 -->
-	<update id="seatReset" parameterType="String">
-		update seat set ticket_no = null 
-		where bus_no = #{bus_no}
+	<update id="seatReset" parameterType="seatVO">
+		update seat set ticket_no = null
+						, arrive_month = #{resetMonth} 
+						, arrive_day = #{resetDay} 
+		where bus_no	 = #{bus_no}
+		and arrive_month = #{arrive_month}
+		and arrive_day	 = #{arrive_day}
 	</update>
-	
+<!--  
+<<<<<<< HEAD
+=======
+-->
 	<update id="seatDelete" parameterType="long">
 		delete seat where expiration = #{expiration}
 	</update>
@@ -59,4 +69,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="maxDay" parameterType="string" resultType="long">	
 		select max(expiration) from seat where bus_no = #{bus_no}
 	</select>
+<!--  >>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298 -->
 </mapper>

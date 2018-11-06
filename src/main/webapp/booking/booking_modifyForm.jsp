@@ -672,7 +672,7 @@ table {
 						<tbody>
 							
 							<tr>
-								<td><input type="text" name="hp"></td>
+								<td><input type="text" name="ticket_no"></td>
 								
 							</tr>
 								<tr>

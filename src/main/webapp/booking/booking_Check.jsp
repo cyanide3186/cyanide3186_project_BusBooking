@@ -13,10 +13,8 @@
 	href="/Project_BusBooking/css/daterangepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/base.css">
-	
-<!--<link rel="stylesheet" type="text/css"
-	href="/Project_BusBooking/semantic/semantic.css">  -->
-	
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -364,27 +362,7 @@
 				maxDate : "+12M +10D"
 			});
 		});
-		$('#adult').dropdown({//어른 인원 드롭다운
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
-		$('#teen').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
-		$('#kid').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				alert(value);
-			}
-		});
+
 		$('#arrive_time').dropdown({
 			direction : 'down',
 			duration : 700,
@@ -589,56 +567,28 @@ header {
 	display: inline-block;
 	height: 100px;
 	vertical-align: middle;
-	margin-top: 40px;
-	margin-bottom: 40px;
-}
-
-li {
-	list-style: none;
-	margin: 0 0;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-	background-color: #0489B1;
-	font-size: 1rem;
-	padding: 0 0;
-	color: white;
-	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
+	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-	background-color: #0489B1;
-	font-size: 1rem;
-	padding: 0 0;
-	color: white;
-	width: 120px;
 	border: 3px solid yellow;
-	
+	border-radius: 20px;
+	background-color: #0489B1;
 }
 
 #booking_table {
-	margin-top: 120px;
-	border: 1px solid black;
-	border-radius: 20px;
+	margin-top: 50px;
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
+	margin-bottom: 30px;
 	padding-bottom: 30px;
-	margin-top: 100px;
 	text-align: center;
 	font-size: 35px;
 	font-weight: bold;
@@ -655,84 +605,34 @@ input {
 #result_terminal_end td {
 	width: 30%;
 }
+
+ul {
+	margin: 0 0;
+	list-style: none;
+}
+
+#info_content {
+	background-color: #FFD2D2;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	border-radius: 10px 10px 10px 10px;
+	height: 20px;
+	width: 500px;
+}
+
+table {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 20px;
+	border-color: grey;
+	display: table;
+}
 </style>
 </head>
 <body>
 
-	<div id="glayLayer"></div>
-
-	<!-- 출발 터미널 선택 창 -->
-	<div class="start_bus" style="color: white;">
-		<h3 align="center" style="color: white">출발 터미널 선택</h3>
-		<table>
-			<tr>
-				<td>전체 터미널 목록</td>
-				<td><select name="start" class="ui dropdown" id="all_tr">
-						<option value="">전체 터미널 목록</option>
-						<!-- json으로 추가됨  -->
-				</select></td>
-			</tr>
-			<tr>
-				<td>지역별로 터미널 선택</td>
-				<td><select name="local" class="ui dropdown" id="local_start">
-						<option value="">지역별 선택</option>
-						<!-- document.on 함수 참조 -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white;">
-				<td>터미널 검색</td>
-				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="start_text"
-							size="70%">
-					</div></td>
-			</tr>
-
-		</table>
-
-		<div id="terminal_scroll"
-			style="width: 100%; height: 300px; overflow: auto">
-			<table id="result_terminal" width="100%" border="0" cellspacing="0"
-				cellpadding="0">
-
-			</table>
-		</div>
-	</div>
-	<!-- 출발 터미널 선택창 끝 -->
-	<!-- 도착 터미널 선택창 -->
-	<div class="end_bus" style="color: white;">
-		<h3 align="center" style="color: white">도착 터미널 선택</h3>
-		<table>
-			<tr>
-				<td>전체 터미널 목록</td>
-				<td><select name="end" class="ui dropdown" id="all_end_tr">
-						<option value="">전체 터미널 목록</option>
-						<!-- json으로 목록 추가됨  -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white;">
-				<td>지역별로 터미널 선택</td>
-				<td><select name="local" class="ui dropdown" id="local_end">
-						<option value="">지역별 선택</option>
-						<!-- document.on 함수 참조 -->
-				</select></td>
-			</tr>
-			<tr style="border-bottom: 1px solid white; ">
-				<td>터미널 검색</td>
-				<td><div class="ui input focus">
-						<input type="text" placeholder="Search..." id="end_text"
-							size="70%">
-					</div></td>
-			</tr>
-		</table>
-		<div style="width: 100%; height: 300px; overflow: auto">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0"
-				id="result_terminal_end">
-
-			</table>
-		</div>
-
-
-	</div>
 
 
 
@@ -741,13 +641,8 @@ input {
 		<div>
 			<div class="column">
 				<header>
-					<h1>승차권 예매</h1>
-					<ul class="level">
-						<li id="mainli">1.기초정보 입력</li>
-						<li>2.배차 조회</li>
-						<li>3.매수 및 좌석선택</li>
-						<li>4.카드 정보 입력</li>
-					</ul>
+					<h1>예매 조회/변경/취소</h1>
+
 					<hr>
 				</header>
 			</div>
@@ -759,153 +654,71 @@ input {
 
 
 		<div>
-			<form role="form" action="../booking/booking_bus.do" method="post"
+			<form role="form" action="../booking/bookingCheck.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table  align="center" id="booking_table">
-						<tr>
-							<td rowspan="8" style="background-color: #A9E2F3"><img
-								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
-								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
-								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
-							<td>출발지</td>
-							<td>
-								<div class="ui input">
-									<input type="text" placeholder="출발지선택" id="start_tr"
-										name="start_tr">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>도착지</td>
-							<td><div class="ui input">
-									<input type="text" placeholder="도착지선택" id="end_tr"
-										name="end_tr">
-								</div></td>
-						</tr>
-						<tr>
-							<td>가는 일시</td>
-							<td>
+					<div class="ui top attached tabular menu">
+						<div class="active item">휴대폰번호로 찾기</div>
 
-								<div class="ui calendar" id="example1">
-									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" id="arrivedate">
-									</div>
-							</td>
-						</tr>
-						<tr>
-							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
-									<option value="">출발시각</option>
-									<option value="0000">00:00</option>
-									<option value="0100">01:00</option>
-									<option value="0200">02:00</option>
-									<option value="0300">03:00</option>
-									<option value="0400">04:00</option>
-									<option value="0500">05:00</option>
-									<option value="0600">06:00</option>
-									<option value="0700">07:00</option>
-									<option value="0800">08:00</option>
-									<option value="0900">09:00</option>
-									<option value="1000">10:00</option>
-									<option value="1100">11:00</option>
-									<option value="1200">12:00</option>
-									<option value="1300">13:00</option>
-									<option value="1400">14:00</option>
-									<option value="1500">15:00</option>
-									<option value="1600">16:00</option>
-									<option value="1700">17:00</option>
-									<option value="1800">18:00</option>
-									<option value="1900">19:00</option>
-									<option value="2000">20:00</option>
-									<option value="2100">21:00</option>
-									<option value="2200">22:00</option>
-									<option value="2300">23:00</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>어른</td>
-							<td><select name="adult" class="ui dropdown" id="adult">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>청소년</td>
-							<td><select name="teen" class="ui dropdown" id="teen">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-							<td>어린이</td>
-							<td><select name="kid" class="ui dropdown" id="kid">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select></td>
-						</tr>
-						<tr>
-
+					</div>
+					<table class="ui single line table">
+						<thead>
+							<tr>
+								<th>휴대폰 번호 입력</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr>
+								<td><input type="text" name="ticket_no"></td>
+								
+							</tr>
+								<tr>
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="">조회</button>
+									class="ui teal basic button" type="submit" id="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
-
+							
+						</tbody>
 					</table>
+					
+					
 
 				</div>
+
 			</form>
-		</div>
-		<div>
-			<div class="ui text container"
-				style="text-align: left; margin: 2rem auto;">
-				<p>
-					1.당일 출발하는 차량은 출발시간 1시간 전까지 예매가 가능합니다.<br> <br> 2. 1회 최대
-					예매 매수는 10매입니다. 10매 이상 예매를 원하시는 경우에는 중복예매 가능합니다.<br> <br>
-					3. 예매한 승차권 발권 시에는 반드시 예약한 카드를 지참해야 하여, 해당 터미널 매표 창구에 예약된 사항이 있다고
-					말씀하시고, 카드를 제시하시면 승차권을 발권받으실 수 있습니다. 단, 부득이하게 예약한 카드를 소지하지 못한 경우,
-					예약한 카드 번호를 매표 창구에 제시하시면 승차권을 발급받을 수 있습니다. (발권 방법의 차이가 있는 터미널이 존재하며,
-					해당 터미널에 문의하시면 정확한 발권 방법의 확인이 가능합니다.)<br> <br> 4. <span
-						style="font-weight: bold;">시외우등형버스는 다음과 같은 할인조건에 따라서 요금할인이
-						적용되며, 중복적용되지 않습니다. (노선에 따라 상이할 수 있음)<br> <br> * 할인은
-						성인에게만 적용됩니다. (아동/중고생은 제외)<br> * 사전에 인터넷과 모바일 예매를 이용한 승객에게만
-						적용됩니다. (터미널 현장발권은 대상에서 제외됩니다. 단, 뒤좌석 예매는 예외)<br> * 요금할인이 적용되는
-						시외우등형버스는 결제시 할인율을 확인할 수 있습니다.
-					</span> <br>
-				</p>
+			<div class="column" align="center">
+				<table cellpadding="10" id="infomation">
+					<tr>
+						<td rowspan="9"><img src="../images/caution.jpg"></td>
+						<td id="info_content">예매한 승차권 발권 시에는 반드시 예매한 카드를 지참하셔야 하며, 해당
+							터미널 매표 창구에 예약된 사항이 있다고 말씀하시고 카드를 제시하시면 승차권을 발권받으실 수 있습니다. (발권방법의
+							차이가 있는 터미널이 존재하며, 해당 터미널에 문의하시면 정확한 발권방법의 확인이 가능합니다.)</td>
+					</tr>
+					<tr>
+						<td id="info_content">출발시간이 지난 후에는 승차권을 발권받을 수 없습니다. 출발 당일
+							터미널 혼잡에 대비하여 출발시간보다 여유있게 터미널에 도착하셔서 발권 받으시기 바랍니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">출발일시 및 매수, 좌석번호 등을 다시 한번 확인해 주시기 바랍니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">취소 및 부도위약금의 안내를 다시 한 번 확인해서 불이익을 받지 않도록
+							유의해주시기 바랍니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">과거 예매 내역은 1주일 이내만 조회 가능합니다.</td>
+					</tr>
+					<tr>
+						<td id="info_content">당일 이후 탑승 예정인 구매 내역은 모두 조회 가능합니다.</td>
+					</tr>
+
+				</table>
+
 			</div>
-			<hr id="footline">
+
 		</div>
 
 	</div>

@@ -268,12 +268,12 @@ button {
 
 						<tr>
 							<td width="200px" align="center"><c:if
-									test="${startPage >endPage}">
+									test="${startPage > 3 }">
 									<button class="ui teal basic button"
 										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">이전시간</button>
 								</c:if></td>
 							<td width="50%"><c:forEach var="i" begin="${startPage}"
-									end="${endPage-1}" step="1">
+									end="${endPage}" step="1">
 									<c:if test="${pg == i}">
 										[<a id="currentPaging"
 											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${i}</a>]

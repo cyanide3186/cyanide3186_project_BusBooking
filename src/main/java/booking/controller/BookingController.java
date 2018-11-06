@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
@@ -212,13 +211,17 @@ public class BookingController {
 
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
-		busVO.setArrive_time(arrive_time);
-
-		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수
-		int totalPage = (busListCount + 4) / 5;
-		int startPage = (pg - 1) / 5 * 5 + 1;
-		int endPage = startPage + 4;
-
+		busVO.setArrive_time(Integer.parseInt(arrive_time));
+		
+		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
+//=======
+//		busVO.setArrive_time(arrive_time);
+//
+//		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수
+//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
+		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
+		int endPage = (int)(Math.ceil(pg/10.0))*10;
+		int startPage = endPage-9;
 		if (endPage > totalPage)
 			endPage = totalPage;
 
@@ -344,7 +347,7 @@ public class BookingController {
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
 		SeatDAO seatDAO = new SeatDAO();
-
+		
 		String ticket_no = request.getParameter("ticket_no");
 
 		ticketVO = ticketDAO.bookingCheck(ticket_no);
@@ -353,7 +356,7 @@ public class BookingController {
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
 		modelAndView.addObject("main", "");
-
+		
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
@@ -477,6 +480,156 @@ public class BookingController {
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
+//<<<<<<< HEAD
+	@Scheduled(cron="0 * * * * *")
+	public void seatResetf() {
+		List<BusVO> list = new ArrayList<>();
+		list = bookingService.getBus();
+		
+		arrivalTime_array = new String[list.size()];	// 버스번호와 시간 정보를 담을 배열
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int arrive_time = list.get(i).getArrive_time();
+			int time = list.get(i).getTime();
+			
+			String bus_no = list.get(i).getBus_no();
+			
+			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
+			int arrivalTime = arrive_time + time;	// 도착 예상시간
+			
+			if(arrivalTime >= 2400) arrivalTime -= 2400;
+			
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime) 
+									+ "m:" + String.valueOf(list.get(i).getArrive_month()) + "d:" + String.valueOf(list.get(i).getArrive_day());
+			
+			//System.out.println(arrivalTime_array[i]);
+			//System.out.println("m: 위치 = " + arrivalTime_array[i].indexOf("m:"));
+			//System.out.println("d: 위치 = " + arrivalTime_array[i].indexOf("d:") + 1);
+			//System.out.println(arrivalTime_array[i].substring(11, 13));
+			//System.out.println(arrivalTime_array[i].substring(14));
+		}
+		
+																// 날짜 포맷
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");	// 시간 ex : 오후 5시 10분 - > 1710
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM");		// 월
+		SimpleDateFormat sdf3 = new SimpleDateFormat("dd");		// 일
+		
+		Calendar cal = Calendar.getInstance();
+		String currentTime = sdf.format(cal.getTime());			// 현재 시간
+		String currentMonth = sdf2.format(cal.getTime()); 		// 현재 월
+		String currentDay =   sdf3.format(cal.getTime()); 		// 현재 일
+		//int month = Integer.parseInt(sdf2.format(cal.getTime())); 
+		//int day = Integer.parseInt(sdf3.format(cal.getTime())); 
+		int resetMonth = 0;										// seat 초기화 할 때 입력 될 월
+		int resetDay = 0;										// seat 초기화 할 때 입력 될 일			
+		
+		//currentMonth = "1";
+		//currentDay = "31";
+		
+		for(int i = 0; i < arrivalTime_array.length; i++) {
+			int cutIndex = arrivalTime_array[i].indexOf("+");			
+			int monthIndex = arrivalTime_array[i].indexOf("m:") + 2;
+			int dayIndex = arrivalTime_array[i].indexOf("d:");
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);			// 배열에 저장된 버스 번호
+
+			//System.out.println("monthIndex = " + monthIndex );
+			//System.out.println("dayIndex = " + dayIndex);
+			
+			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);	// 배열에 저장 된 버스의 출발 월
+			String getDay = arrivalTime_array[i].substring(dayIndex + 2);			// 배열에 저장 된 버스의 출발 일
+			SeatVO seatVO = new SeatVO();
+			
+			resetDay = Integer.parseInt(getDay);									
+			
+			resetMonth = Integer.parseInt(getMonth) + 1;							// 좌석의 월을 다음달로 변경
+			if(resetMonth > 12 ) resetMonth = 1;
+
+//			if(resetDay > dayofMonth) {
+//				resetDay -= dayofMonth;
+//				if(resetDay > dayofMonth) resetMonth = Integer.parseInt(getMonth) + 2;
+//				else resetMonth = Integer.parseInt(getMonth) + 1;
+//			}
+			
+			seatVO.setBus_no(bus_no);
+			seatVO.setArrive_month(Integer.parseInt(getMonth));
+			seatVO.setArrive_day(Integer.parseInt(getDay));
+			seatVO.setResetMonth(resetMonth);
+			seatVO.setResetDay(resetDay);
+			//System.out.println("시간표 : " + arrivalTime_array[i].substring(cutIndex + 1, monthIndex - 2));
+			//System.out.println("현재 시각 : " + currentTime);
+			//System.out.println("getmonth : " + getMonth);
+			//System.out.println("currentMonth : " + currentMonth );
+			//System.out.println("getday : " + getDay);
+			//System.out.println("currentDay : " + currentDay );
+			//System.out.println("-------------------------------------------");
+			
+			// 현재 시간(월, 일 시각)을 배열에 저장되있는 시간과 비교해서 일치하면 좌석을 초기화 시킨다. 
+			if(arrivalTime_array[i].substring(cutIndex + 1, monthIndex - 2).equals(currentTime) && getMonth.equals(currentMonth) && getDay.equals(currentDay)) {
+				bookingService.seatReset(seatVO);
+			}
+		}
+	}
+	
+	// 월말 좌석 초기화
+	// 이번 달이 저번 달보다 총 일수가 적을 경우 초기화 되지 않는 좌석들을 초기화 시킨다.
+	@Scheduled(cron="0 0 0 28-30 * *")
+	public void seatResetLastday() {
+		List<BusVO> list = new ArrayList<>();
+		list = bookingService.getBus();
+		
+		arrivalTime_array = new String[list.size()];
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int arrive_time = list.get(i).getArrive_time();
+			int time = list.get(i).getTime();
+			
+			String bus_no = list.get(i).getBus_no();
+			
+			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
+			int arrivalTime = arrive_time + time;
+			
+			if(arrivalTime >= 2400) arrivalTime -= 2400;
+			
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime) 
+			+ "m:" + String.valueOf(list.get(i).getArrive_month()) + "d:" + String.valueOf(list.get(i).getArrive_day());
+			
+		}
+		
+		Calendar cal = Calendar.getInstance();
+		int dayofMonth = cal.getActualMaximum(Calendar.DATE);
+		int resetMonth = 0;
+		int resetDay = 0;
+		
+		for(int i = 0; i < arrivalTime_array.length; i++) {
+			int cutIndex = arrivalTime_array[i].indexOf("+");
+			int monthIndex = arrivalTime_array[i].indexOf("m:") + 2;
+			int dayIndex = arrivalTime_array[i].indexOf("d:");
+		
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);
+			String getDay = arrivalTime_array[i].substring(dayIndex + 2);
+			SeatVO seatVO = new SeatVO();
+			
+			resetDay = Integer.parseInt(getDay);
+			
+			resetMonth = Integer.parseInt(getMonth) + 1;
+			
+			if(resetMonth > 12 ) resetMonth = 1;
+			
+			seatVO.setBus_no(bus_no);
+			seatVO.setArrive_month(Integer.parseInt(getMonth));
+			seatVO.setArrive_day(Integer.parseInt(getDay));
+			seatVO.setResetMonth(resetMonth);
+			seatVO.setResetDay(resetDay);
+			
+			if(Integer.parseInt(getDay) > dayofMonth ) {
+				bookingService.seatReset(seatVO);
+			}
+		}
+	}
+//=======
 	   @Scheduled(fixedDelay = 60000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
@@ -491,7 +644,7 @@ public class BookingController {
 	      if(!"0".equals(String.valueOf(seatVO.size()))) {   
 	         long upDay =  bookingService.maxDay(seatVO.get(0).getBus_no());
 	         for (int i = 0; i < seatVO.size(); i++) {
-	               long busTime = seatVO.get(i).getExpiration()%10000;            
+	               long busTime = seatVO.get(i).getExpiration()%10000;        
 	               long newDay = (upDay + 10000) / 10000 * 10000 + (busTime%10000);                           //변화되야할 일자 테이블내 최대일수+하루
 	               if(newDay > maxDay) {                                 //해당월 최대일자 초과시 한달이 증가                        //그 달에 최대치를 넘어갈경우 월을 증가시키고 일자를 초기화
 	                  newDay = (upDay / 1000000 * 1000000 + 1000000 + 10000)       //다음달 1일로 초기화(시,분리셋)
@@ -510,4 +663,5 @@ public class BookingController {
 	         }
 	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
 	      }
+//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
 }

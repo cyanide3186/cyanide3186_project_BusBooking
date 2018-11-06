@@ -36,8 +36,8 @@ public class SeatDAO {
 	}
 	
 	// 예약 좌석 취소
-	public int seatCancle(SeatVO seatVO) {
-		return sqlSession.update("mybatis.seat-Mapper.seatCancle", seatVO);
+	public int seatCancle(String ticket_no) {
+		return sqlSession.update("mybatis.seat-Mapper.seatCancle", ticket_no);
 	}
 	
 	// 좌석 초기화 (seat 테이블의 ticket_no를 null로 변경한다)
@@ -59,5 +59,9 @@ public class SeatDAO {
 
 	public long maxDay(String bus_no) {
 		return sqlSession.selectOne("mybatis.seat-Mapper.maxDay", bus_no);
+	}
+
+	public int seatUpdate(SeatVO seatVO) {
+		return sqlSession.update("mybatis.seat-Mapper.seatUpdate", seatVO);
 	}
 }

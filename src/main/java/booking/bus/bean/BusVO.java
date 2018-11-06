@@ -74,7 +74,4 @@ public class BusVO { //버스정보 DTO - table bus와 대응
 	public void setArrive_month(int arrive_month) {
 		this.arrive_month = arrive_month;
 	}
-	
-
-    
 }

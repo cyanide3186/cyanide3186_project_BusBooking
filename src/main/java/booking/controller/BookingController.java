@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
-import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
-import booking.ticket.dao.TicketDAO;
 import info.terminal.bean.TerminalVO;
 
 @Controller
@@ -228,7 +227,7 @@ public class BookingController {
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
-
+		
 		int pg = 1;
 		String param_pg = request.getParameter("pg");
 		if (param_pg != null)
@@ -371,15 +370,13 @@ public class BookingController {
 	@RequestMapping(value = "/booking/bookingCheck.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO ticketDAO = new TicketDAO();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-		SeatDAO seatDAO = new SeatDAO();
 		
 		String ticket_no = request.getParameter("ticket_no");
 
-		ticketVO = ticketDAO.bookingCheck(ticket_no);
-		seatVO = seatDAO.seatCheck(ticket_no);
+		ticketVO = bookingService.bookingCheck(ticket_no);
+		seatVO = bookingService.seatCheck(ticket_no);
 
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
@@ -396,11 +393,12 @@ public class BookingController {
 	@RequestMapping(value = "/booking/bookingCancle.do")
 	public ModelAndView bookingCancle(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO dao = new TicketDAO();
 
 		String ticket_no = request.getParameter("ticket_no");
-		int count = dao.bookingCancel(ticket_no);
-
+		int count = bookingService.bookingCancel(ticket_no);
+		
+		if(count > 0) bookingService.seatCancle(ticket_no); 
+			
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
 		modelAndView.addObject("main", "");
@@ -429,7 +427,6 @@ public class BookingController {
 	@RequestMapping(value = "")
 	public ModelAndView bookingModify(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO dao = new TicketDAO();
 		TicketVO vo = new TicketVO();
 
 		String ticket_no = request.getParameter("ticket_no");
@@ -446,7 +443,7 @@ public class BookingController {
 		vo.setAge_group(age_group);
 		vo.setTicket_no(ticket_no);
 
-		int count = dao.bookingModify(vo);
+		int count = bookingService.bookingModify(vo);
 
 		modelAndView.addObject("count", count);
 		modelAndView.addObject("main", "");
@@ -468,20 +465,21 @@ public class BookingController {
 	}
 
 	// 버스 예약기능 함수
+	@SuppressWarnings("static-access")
 	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
 
+		StringUtils utils = new StringUtils();
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer
-				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
-
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
 		String arrive_day = request.getParameter("arrive_day");
-
-		// 예약번호 생성 기능
-		/*
-		 * 추가 예정 ticket_no = arrive_day + bus_no + seat_no;
-		 */
+		String arrive_time = request.getParameter("arrive_time");
+		
+		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
+		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no + utils.leftPad(String.valueOf(seat_no), 2, "0");
+		
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);
 		ticketVO.setSeat_no(seat_no);
@@ -494,7 +492,6 @@ public class BookingController {
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
-//<<<<<<< HEAD
 	@Scheduled(cron="0 * * * * *")
 	public void seatResetf() {
 		List<BusVO> list = new ArrayList<>();
@@ -643,8 +640,7 @@ public class BookingController {
 			}
 		}
 	}
-//=======
-	   @Scheduled(fixedDelay = 60000)
+	   @Scheduled(fixedDelay = 1000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
 	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
@@ -677,5 +673,4 @@ public class BookingController {
 	         }
 	         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
 	      }
-//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
 }

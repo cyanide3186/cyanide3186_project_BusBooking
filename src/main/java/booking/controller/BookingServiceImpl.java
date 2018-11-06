@@ -133,7 +133,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void seatReset(String bus_no) {
-		
+	public int seatCancle(String ticket_no) {
+		return seatDAO.seatCancle(ticket_no);
 	}
+
 }

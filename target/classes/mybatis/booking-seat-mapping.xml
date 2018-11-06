@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 좌석 예약 취소 -->
-	<update id="seatCancle" parameterType="seatVO">
+	<update id="seatCancle" parameterType="String">
 		update seat set ticket_no = null 
 		where ticket_no = #{ticket_no}
 	</update>
@@ -52,6 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 	<update id="seatDelete" parameterType="long">
 		delete seat where expiration = #{expiration}
+	</update>
+	
+	<update id="seatUpdate" parameterType="seatVO">
+		update seat set ticket_no = null,expiration = #{expiration}
+		where bus_no=#{bus_no} and expiration=(select min(expiration) from seat)
 	</update>
 	
 	<insert id="seatInsert" parameterType="seatVO">

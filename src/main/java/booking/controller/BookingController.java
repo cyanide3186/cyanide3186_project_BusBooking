@@ -35,7 +35,9 @@ public class BookingController {
 	@RequestMapping(value = "/booking/booking_cancle.do")
 	public ModelAndView booking_cancle(ModelAndView modelAndView,TicketVO vo) {
 		
-		bookingService.bookingCancel(vo.getTicket_no());
+		int count=bookingService.bookingCancel(vo.getTicket_no());
+		modelAndView.addObject("count", count);
+		
 		modelAndView.addObject("main", "../booking/booking_cancle.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
@@ -44,14 +46,13 @@ public class BookingController {
 	
 	//티켓확인 페이지 이동
 	@RequestMapping(value = "/booking/booking_check.do")
-	public ModelAndView booking_Check(ModelAndView modelAndView,TicketVO vo) {
-		if(vo.getTicket_no()==null) {
-			modelAndView.addObject("main", "../booking/booking_modifyForm.jsp");
-		}else {
-			vo=bookingService.bookingCheck(vo.getTicket_no());
-			modelAndView.addObject("ticket",vo);
+	public ModelAndView booking_Check(ModelAndView modelAndView,HttpServletRequest request) {
+			String ticket_no=request.getParameter("ticket_no");
+		
+			TicketVO vo=bookingService.bookingCheck(ticket_no);
+			modelAndView.addObject("TicketVO",vo);
 			modelAndView.addObject("main", "../booking/booking_check.jsp");
-		}
+		
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
@@ -389,23 +390,7 @@ public class BookingController {
 
 	
 
-	// 예약 취소 기능
-	@RequestMapping(value = "/booking/bookingCancle.do")
-	public ModelAndView bookingCancle(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		String ticket_no = request.getParameter("ticket_no");
-		int count = bookingService.bookingCancel(ticket_no);
-		
-		if(count > 0) bookingService.seatCancle(ticket_no); 
-			
-		modelAndView.addObject("ticket_no", ticket_no);
-		modelAndView.addObject("count", count);
-		modelAndView.addObject("main", "");
-		modelAndView.setViewName("../main/index.jsp");
-
-		return modelAndView;
-	}
+	
 
 	// 예약 수정 폼
 	@RequestMapping(value = "/booking/bookingModifyForm.do")

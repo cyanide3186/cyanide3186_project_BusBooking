@@ -27,9 +27,27 @@
 
 
 <script type="text/javascript">
-	
+	$(document).ready(function(){
+		var formObj = $("form");
+		$('button').on("click"),function(e){
+			e.preventDefault();
+			
+			var operation = $(this).data("oper");
+			
+			console.log(operation);
+			
+			if(operation ==='modify'){
+				formObj.attr("action","../booking/booking_bus.do");
+				
+			}else if(operation ==='cancle'){
+			
+			}
+			formObj.submit();
+		});
+	});
 
-</script>
+
+	</script>
 <style type="text/css">
 p {
 	padding: 3rem;
@@ -145,6 +163,11 @@ table {
 	border-spacing: 20px;
 	border-color: grey;
 	display: table;
+	margin: auto;
+	
+}
+#ticket_contents>td{
+	vertical-align: middle;
 }
 </style>
 </head>
@@ -158,7 +181,7 @@ table {
 		<div>
 			<div class="column">
 				<header>
-					<h1>예매 조회/변경/취소</h1>
+					<h1>예매 조회</h1>
 
 					<hr>
 				</header>
@@ -171,35 +194,47 @@ table {
 
 
 		<div>
-			<form role="form" action="../booking/booking_Check.do" method="post"
+			<form role="form" action="../booking/booking_cancle.do" method="post"
 				name="bus_input">
-				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
+				<input type="hidden" name="ticket_no" value="${ticket_no}">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">티켓번호로 조회</div>
+						<div class="active item">티켓 조회</div>
 
 					</div>
 					<table class="ui single line table">
 						<thead>
 							<tr>
-								<th>티켓 번호 입력</th>
-								
+								<th>예약번호</th>
+								<th>버스번호</th>
+								<th>좌석번호</th>
+								<th>핸드폰 번호</th>
+								<th>결제 금액</th>
+								<th>결제일</th>
+								<th>출발일자</th>
+								<th>상세</th>
 							</tr>
 						</thead>
 						<tbody>
 							
-							<tr>
-								<td><input type="text" name="ticket_no"></td>
-								
+							<tr id="ticket_contents">
+								<td rowspan="2">${ticket.ticket_no}</td>
+								<td rowspan="2">${ticket.bus_no}</td>
+								<td rowspan="2">${ticket.seat_no}</td>
+								<td rowspan="2">${ticket.hp}</td>
+								<td rowspan="2">${ticket.totalpay}</td>
+								<td rowspan="2">${ticket.payday}</td>
+								<td rowspan="2">${ticket.arrive_day}</td>
+								<td ><button
+									class="ui teal basic button" type="submit" data-oper="modify">예매변경</button>
+								</td>
 							</tr>
-								<tr>
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="submit">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
-						</tr>
-							
+							<tr>
+								<td><button class="ui teal basic button" type="submit" data-oper="cancle">예매취소</button></td>
+							</tr>
 						</tbody>
 					</table>
+								
 					
 					
 

@@ -13,8 +13,10 @@
 	href="/Project_BusBooking/css/daterangepicker.css" />
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/base.css">
-<link rel="stylesheet" type="text/css"
-	href="/Project_BusBooking/semantic/semantic.css">
+	
+<!--<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">  -->
+	
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -27,55 +29,64 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var formObj = $("form");//form태그를 객체 선언
-		
-		//출발지 선택의 검색 기능 
-		 $("#start_text").keyup(function() {
-             var k = $(this).val();
-             $("#result_terminal > tr").hide();
-             var temp = $("#result_terminal > tr > td:contains('" + k + "')");
-             $(temp).parent().show();
-         })
-		//도착지 선택의 검색 기능 
-		 $("#end_text").keyup(function() {
-             var k = $(this).val();
-             $("#result_terminal_end > tr").hide();
-             var temp = $("#result_terminal_end > tr > td:contains('" + k + "')");
-             $(temp).parent().show();
-         })
+	$(document)
+			.ready(
+					function() {
+						var formObj = $("form");//form태그를 객체 선언
 
-		
-		
-		//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
-		$('button').on("click", function(e) {
-			e.preventDefault();
-			var date = null;
-			var arrivedate = $("#arrivedate").val();
-			//alert(arrivedate);
-			if (arrivedate.indexOf(" ", 1) == 1) {
-				var day = "0" + arrivedate.substring(0, 1);
-				var month = arrivedate.substring(2, 4);
-				var year = arrivedate.substring(6, 11);
+						//출발지 선택의 검색 기능 
+						$("#start_text")
+								.keyup(
+										function() {
+											var k = $(this).val();
+											$("#result_terminal > tr").hide();
+											var temp = $("#result_terminal > tr > td:contains('"
+													+ k + "')");
+											$(temp).parent().show();
+										})
+						//도착지 선택의 검색 기능 
+						$("#end_text")
+								.keyup(
+										function() {
+											var k = $(this).val();
+											$("#result_terminal_end > tr")
+													.hide();
+											var temp = $("#result_terminal_end > tr > td:contains('"
+													+ k + "')");
+											$(temp).parent().show();
+										})
 
-				var date = year + "-" + month + "-" + day;
-				//alert(date);
-			} else {
-				var day = arrivedate.substring(0, 2);
-				var month = arrivedate.substring(3, 5);
-				var year = arrivedate.substring(7, 12);
-				var date = year + month + day;
-				//alert(date);
-			}
-			$("#real_arrivedate").attr('value', date);
-			var value = $("#arrivedate").attr("value");
-			//alert(value+"값이 저장되었습니다.");
-			formObj.submit();
-		});
+						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
+						$('button').on("click", function(e) {
+							e.preventDefault();
+							var date = null;
+							var arrivedate = $("#arrivedate").val();
+							//alert(arrivedate);
+							if (arrivedate.indexOf(" ", 1) == 1) {
+								var day = "0" + arrivedate.substring(0, 1);
+								var month = arrivedate.substring(2, 4);
+								var year = arrivedate.substring(6, 11);
 
-	});
+								var date = year + "-" + month + "-" + day;
+								//alert(date);
+							} else {
+								var day = arrivedate.substring(0, 2);
+								var month = arrivedate.substring(3, 5);
+								var year = arrivedate.substring(7, 12);
+								var date = year + month + day;
+								//alert(date);
+							}
+							$("#real_arrivedate").attr('value', date);
+							var value = $("#arrivedate").attr("value");
+							//alert(value+"값이 저장되었습니다.");
+							formObj.submit();
+						});
+
+					});
 	/*출발터미널의 지역목록 선택후 기능  */
-	$(document).on("click",".start_terminal",
+	$(document).on(
+			"click",
+			".start_terminal",
 			function() {
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
@@ -203,13 +214,24 @@
 																			{
 																				value : item.name
 																			});
-																	input.attr("value",item.name);
-																	label.html(item.name);
-																	td.append(label)
-																	td2.append(input);
-																	tr.append(td);
-																	tr.append(td2);
-																	$("#result_terminal").append(tr);
+																	input
+																			.attr(
+																					"value",
+																					item.name);
+																	label
+																			.html(item.name);
+																	td
+																			.append(label)
+																	td2
+																			.append(input);
+																	tr
+																			.append(td);
+																	tr
+																			.append(td2);
+																	$(
+																			"#result_terminal")
+																			.append(
+																					tr);
 
 																});
 
@@ -254,7 +276,8 @@
 											dataType : "json",
 											success : function(data) {
 												alert("success");
-												$.each(
+												$
+														.each(
 																data.items,
 																function(index,
 																		item) {
@@ -267,13 +290,24 @@
 																			{
 																				value : item.name,
 																			});
-																	input.attr("value",item.name);
-																	label.html(item.name);
-																	td.append(label)
-																	td2.append(input);
-																	tr.append(td);
-																	tr.append(td2);
-																	$("#result_terminal_end").append(tr);
+																	input
+																			.attr(
+																					"value",
+																					item.name);
+																	label
+																			.html(item.name);
+																	td
+																			.append(label)
+																	td2
+																			.append(input);
+																	tr
+																			.append(td);
+																	tr
+																			.append(td2);
+																	$(
+																			"#result_terminal_end")
+																			.append(
+																					tr);
 
 																});
 
@@ -421,74 +455,83 @@
 			}
 
 		});
-		$.ajax({
-			url : "booking_input_TerminalSearchJson.do",
-			type : "post",
-			data : {},
-			dataType : "json",
-			success : function(data) {
-				$.each(data.items, function(index, item) {
-					var tr = $("<tr>");
-					var td = $("<td>");
-					var td2 = $("<td>");
-					var label = $("<label>");
-					var input = $(
-							"<input name='chk_terminal' class='start_terminal' type='radio'>",
-							{
-								value : item.name
-							});
-					input.attr("value",item.name);
-					label.html(item.name);
-					td.append(label)
-					td2.append(input);
-					tr.append(td);
-					tr.append(td2);
-					$("#result_terminal").append(tr);
+		$
+				.ajax({
+					url : "booking_input_TerminalSearchJson.do",
+					type : "post",
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						$
+								.each(
+										data.items,
+										function(index, item) {
+											var tr = $("<tr>");
+											var td = $("<td>");
+											var td2 = $("<td>");
+											var label = $("<label>");
+											var input = $(
+													"<input name='chk_terminal' class='start_terminal' type='radio'>",
+													{
+														value : item.name
+													});
+											input.attr("value", item.name);
+											label.html(item.name);
+											td.append(label)
+											td2.append(input);
+											tr.append(td);
+											tr.append(td2);
+											$("#result_terminal").append(tr);
+										});
+
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						$("div").html(
+								"<div>" + textStatus + "(HTTP-)" + xhr.status
+										+ "/" + errorThrown + ")</div>");
+
+					}
+
 				});
-				
-			},
-			error : function(xhr, textStatus, errorThrown) {
-				$("div").html(
-						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
-								+ errorThrown + ")</div>");
+		$
+				.ajax({
+					url : "booking_input_TerminalSearchJson.do",
+					type : "post",
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						$
+								.each(
+										data.items,
+										function(index, item) {
+											var tr = $("<tr>");
+											var td = $("<td>");
+											var td2 = $("<td>");
+											var label = $("<label>");
+											var input = $(
+													"<input name='chk_terminal' class='end_terminal' type='radio'>",
+													{
+														value : item.name
+													});
+											input.attr("value", item.name);
+											label.html(item.name);
+											td.append(label)
+											td2.append(input);
+											tr.append(td);
+											tr.append(td2);
+											$("#result_terminal_end")
+													.append(tr);
+										});
 
-			}
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						$("div").html(
+								"<div>" + textStatus + "(HTTP-)" + xhr.status
+										+ "/" + errorThrown + ")</div>");
 
-		});
-		$.ajax({
-			url : "booking_input_TerminalSearchJson.do",
-			type : "post",
-			data : {},
-			dataType : "json",
-			success : function(data) {
-				$.each(data.items, function(index, item) {
-					var tr = $("<tr>");
-					var td = $("<td>");
-					var td2 = $("<td>");
-					var label = $("<label>");
-					var input = $(
-							"<input name='chk_terminal' class='end_terminal' type='radio'>",
-							{
-								value : item.name
-							});
-					input.attr("value",item.name);
-					label.html(item.name);
-					td.append(label)
-					td2.append(input);
-					tr.append(td);
-					tr.append(td2);
-					$("#result_terminal_end").append(tr);
+					}
+
 				});
-				
-			},
-			error : function(xhr, textStatus, errorThrown) {
-				$("div").html(
-						"<div>" + textStatus + "(HTTP-)" + xhr.status + "/"
-								+ errorThrown + ")</div>");
-
-			}
-
-		});
 
 	});
 </script>
@@ -546,12 +589,13 @@ header {
 	display: inline-block;
 	height: 100px;
 	vertical-align: middle;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 li {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
@@ -560,38 +604,57 @@ li {
 	padding: 1px 2px;
 	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 3px solid yellow;
+	border: 1px solid white;
 	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
+	border: 3px solid yellow;
+	
 }
 
 #booking_table {
-	margin-top: 40px;
+	margin-top: 120px;
+	border: 1px solid black;
+	border-radius: 20px;
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
+	padding-bottom: 30px;
+	margin-top: 100px;
+	text-align: center;
+	font-size: 35px;
+	font-weight: bold;
 }
 
 input {
 	width: 25%;
 }
-#result_terminal td{
-	width: 30%;
-}
-#result_terminal_end td{
+
+#result_terminal td {
 	width: 30%;
 }
 
+#result_terminal_end td {
+	width: 30%;
+}
 </style>
 </head>
 <body>
@@ -653,7 +716,7 @@ input {
 						<!-- document.on 함수 참조 -->
 				</select></td>
 			</tr>
-			<tr style="border-bottom: 1px solid white;">
+			<tr style="border-bottom: 1px solid white; ">
 				<td>터미널 검색</td>
 				<td><div class="ui input focus">
 						<input type="text" placeholder="Search..." id="end_text"
@@ -700,7 +763,7 @@ input {
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table border="1px solid" align="center" id="booking_table">
+					<table  align="center" id="booking_table">
 						<tr>
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
@@ -813,12 +876,12 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-							
+
 							<td colspan="2" align="right"><button
 									class="ui teal basic button" type="submit" id="">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
-						
+
 					</table>
 
 				</div>
@@ -842,7 +905,7 @@ input {
 					</span> <br>
 				</p>
 			</div>
-
+			<hr id="footline">
 		</div>
 
 	</div>

@@ -37,10 +37,22 @@ public interface BookingService {
 
 	int payment(String ticket_no); // 티켓 결제
 	
+//<<<<<<< HEAD
 	void seatReset(SeatVO seatVO);
+//=======
+	void seatReset(String bus_no);
+	
+	void seatInsert(SeatVO seatVO);
+	
+	void seatDelete(long expiration);
+	
+	List<SeatVO> seatInfo(long expiration);
+//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
 
 	List<BusVO> getBus();
 	
-	List<TerminalVO> terminalAllList(); //터미널 검색시 사용하는 모든 터미널 목록 
+	long maxDay(String bus_no);
+	
+	public List<TerminalVO> terminalAllList();
 
 }

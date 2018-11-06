@@ -79,7 +79,6 @@ public class BookingServiceImpl implements BookingService {
 		return seatDAO.seatModify(ticket_no);
 	}
 
-	@Override
 	public List<BusVO> busList() {
 		
 		return busDAO.busList();
@@ -108,9 +107,33 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+	public void seatInsert(SeatVO seatVO) {
+		seatDAO.seatInsert(seatVO);
+	}
+
+	@Override
+	public void seatDelete(long expiration) {
+		seatDAO.seatDelete(expiration);
+	}
+
+	@Override
+	public List<SeatVO> seatInfo(long expiration) {
+		return seatDAO.seatInfo(expiration);
+	}
+
+	@Override
+	public long maxDay(String bus_no) {
+		return seatDAO.maxDay(bus_no);
+	}
+
+	@Override
 	public List<TerminalVO> terminalAllList() {
 		
 		return busDAO.terminalAllList();
 	}
 
+	@Override
+	public void seatReset(String bus_no) {
+		
+	}
 }

@@ -46,4 +46,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and arrive_month = #{arrive_month}
 		and arrive_day	 = #{arrive_day}
 	</update>
+<!--  
+<<<<<<< HEAD
+=======
+-->
+	<update id="seatDelete" parameterType="long">
+		delete seat where expiration = #{expiration}
+	</update>
+	
+	<insert id="seatInsert" parameterType="seatVO">
+		insert into seat values (	 #{bus_no}
+									,#{bus_seat}
+									,#{ticket_no}
+									,#{expiration}
+								)
+	</insert>
+	
+	<select id="seatInfo" parameterType="long" resultType="seatVO">
+		select * from seat where expiration = #{expiration} 
+	</select>
+		
+	<select id="maxDay" parameterType="string" resultType="long">	
+		select max(expiration) from seat where bus_no = #{bus_no}
+	</select>
+<!--  >>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298 -->
 </mapper>

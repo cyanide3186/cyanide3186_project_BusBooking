@@ -60,6 +60,7 @@ li {
 .level li {
 	list-style: none;
 	margin: 0 0;
+	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
@@ -68,39 +69,27 @@ li {
 	padding: 1px 2px;
 	color: white;
 	background-color: #0489B1;
-	font-size: 1rem;
-	padding: 0 0;
-	color: white;
-	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
+	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 1px solid white;
-	border-radius: 20px;
-	padding: 1px 2px;
-	color: white;
-	background-color: #0489B1;
-	font-size: 1rem;
-	padding: 0 0;
-	color: white;
-	width: 120px;
 	border: 3px solid yellow;
+	border-radius: 20px;
+	background-color: #0489B1;
 }
 
 table {
 	margin-top: 40px;
-		border-radius: 20px;
+	background-color:
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
-	margin-bottom: 30px;
-	padding-bottom: 30px;
 }
 
 .road .box {
@@ -164,12 +153,8 @@ button {
 	border-radius: 20px;
 	padding: 0 0;
 	color: white;
-	background-color: #FFD2D2;
+	background-color: orange;
 	width: 120px;
-	color: black;
-}
-.ui.menu[class*="top attached"]:first-child {
-  margin-top:3em;
 }
 </style>
 </head>
@@ -180,14 +165,7 @@ button {
 		<div>
 			<div class="column">
 				<header>
-					<h1>승차권 예매</h1>
-					<ul class="level">
-						<li>1.기초정보 입력</li>
-						<li id="mainli">2.배차 조회</li>
-						<li>3.매수 및 좌석 선택</li>
-						<li>4.카드 정보 입력</li>
-					</ul>
-					<hr >
+					<h1>노선 운행정보</h1>
 				</header>
 			</div>
 
@@ -249,8 +227,8 @@ button {
 									<td>${busVO.arrive_time}</td>
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
-									<td style="padding: 0 0;"><button type="submit">
-											<div id="seat">${busVO.bus_seats}석/총40석</div>
+									<td style="padding: 0 0;">
+											${busVO.bus_seats}석/총40석
 										</button></td>
 								</tr>
 							</c:forEach>
@@ -259,6 +237,7 @@ button {
 					</table>
 
 				</div>
+				<input type="hidden" name="is_bus_info" value="booking_infomation_list">
 			</form>
 
 
@@ -268,36 +247,36 @@ button {
 
 						<tr>
 							<td width="200px" align="center"><c:if
-									test="${startPage > 3 }">
+									test="${startPage >endPage}">
 									<button class="ui teal basic button"
-										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">이전시간</button>
+										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }'">이전시간</button>
 								</c:if></td>
 							<td width="50%"><c:forEach var="i" begin="${startPage}"
 									end="${endPage-1}" step="1">
 									<c:if test="${pg == i}">
 										[<a id="currentPaging"
-											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${i}</a>]
+											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }">${i}</a>]
 									</c:if>
 									<c:if test="${pg != i}">
 										[<a id="paging"
-											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${i}</a>]
+											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }">${i}</a>]
 									</c:if>
 								</c:forEach></td>
 							<td width="200px" align="center"><c:if
 									test="${endPage < totalPage}">
 									<button class="ui teal basic button"
-										onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">다음시간</button>
-								</c:if></td>
+										onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }'">다음시간</button>
+								</c:if></td>	
 
 						</tr>
 					</table>
 
-					<hr id="footline">
+
 				</div>
 
 			</div>
 		</div>
-	
+
 	</div>
 </body>
 </html>

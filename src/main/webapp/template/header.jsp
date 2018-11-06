@@ -16,9 +16,22 @@
 
 <!-- Site Properties -->
 <title>Fixed Menu Example - Semantic</title>
+<style type="text/css">
+.ui.inverted.menu {
+    border: 0px solid transparent;
+    background:#082948;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.ui.menu {
+    font-size: 1.3rem;
+}
+.ui.container {
+	width: 1300px;
+}
+</style>
 </head>
 <body>
-
 	<div class="ui fixed inverted menu" style="height: 100px;">
 		<div class="ui container">
 			<a href="#" class="header item" width="300px"> <img class="logo"
@@ -26,11 +39,11 @@
 			</a> <a href="../main/index.jsp" class="item">Home</a>
 
 			<div class="ui simple dropdown item">
-				<span> 예매</span><i class="dropdown icon"></i>
+				<span>예매</span><i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="../booking/booking_inputForm.do">예매</a> 
-					<a class="item" href="#">LinkItem</a>
-					<div class="divider"></div>
+					<a class="item" href="../booking/booking_inputForm.do">승차권 예매</a> 
+					<a class="item" href="#">예매조회/취소/변경</a>
+					<!-- <div class="divider"></div>
 					<div class="header">Header Item</div>
 					<div class="item">
 						<i class="dropdown icon"></i> Sub Menu
@@ -39,7 +52,7 @@
 								Item</a>
 						</div>
 					</div>
-					<a class="item" href="#">Link Item</a>
+					<a class="item" href="#">Link Item</a> -->
 				</div>
 			</div>
 

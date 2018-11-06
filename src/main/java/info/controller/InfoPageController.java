@@ -50,5 +50,9 @@ public class InfoPageController {
 		return modelAndView;
 	}
 	
-
+	//이용 약관
+	
+	//개인정보 처리 방침
+	
+	//이메일 무단수집 거부
 }

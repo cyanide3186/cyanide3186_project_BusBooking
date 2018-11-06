@@ -52,7 +52,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0) 0%;
 }
 .sq-item.sq-item-large{
 	background: #2c77af;
@@ -71,7 +70,7 @@
 			</a></li>
 			<li class="sq-item" style="background-color: #d6ac32;">
 				<a class="sq-item-anchor" href=""> 
-				<img class="sq-item-anchor-cover" src="../images/section_image4.png" width="100" height="100" style="margin: 70px;"> 
+				<img class="sq-item-anchor-cover" src="../images/section_image4." width="100" height="100" style="margin: 70px;"> 
 				<span class="sq-item-anchor-title" style="font-family: sans-serif;">노선/운행정보</span>
 			</a></li>
 			<li class="sq-item" style="background-color: ">
@@ -83,7 +82,7 @@
 			</a></li>
 			<li class="sq-item" style="background-color: ">
 				<a class="sq-item-anchor" href=""> 
-				<img class="sq-item-anchor-cover" src="../images/section_image11.png" width="80" height="80" > 
+				<img class="sq-item-anchor-cover" src="../images/section_image11." width="80" height="80" > 
 				<span class="sq-item-anchor-title" style="font-family: sans-serif; font-size: 22px;">승차권 예매 안내</span>
 			</a></li>
 			<li class="sq-item sq-item-long sq-item-float-right" style="background-color: ">

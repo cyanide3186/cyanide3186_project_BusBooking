@@ -219,12 +219,12 @@ table {
 							
 							<tr id="ticket_contents">
 								<td rowspan="2">${ticket.ticket_no}</td>
-								<td rowspan="2">${ticket.bus_no}1</td>
-								<td rowspan="2">${ticket.seat_no}2</td>
-								<td rowspan="2">${ticket.hp}3</td>
-								<td rowspan="2">${ticket.totalpay}4</td>
-								<td rowspan="2">${ticket.payday}5</td>
-								<td rowspan="2">${ticket.arrive_day}6</td>
+								<td rowspan="2">${ticket.bus_no}</td>
+								<td rowspan="2">${ticket.seat_no}</td>
+								<td rowspan="2">${ticket.hp}</td>
+								<td rowspan="2">${ticket.totalpay}</td>
+								<td rowspan="2">${ticket.payday}</td>
+								<td rowspan="2">${ticket.arrive_day}</td>
 								<td ><button
 									class="ui teal basic button" type="submit" data-oper="modify">예매변경</button>
 								</td>

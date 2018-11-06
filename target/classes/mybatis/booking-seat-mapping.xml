@@ -46,10 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and arrive_month = #{arrive_month}
 		and arrive_day	 = #{arrive_day}
 	</update>
-<!--  
-<<<<<<< HEAD
-=======
--->
+
 	<update id="seatDelete" parameterType="long">
 		delete seat where expiration = #{expiration}
 	</update>

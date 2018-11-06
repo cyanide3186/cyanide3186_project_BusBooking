@@ -45,13 +45,13 @@ public class SeatDAO {
 		return sqlSession.update("mybatis.seat-Mapper.seatReset", seatVO);
 	}
 
-//	public int seatDelete(long expiration) {
-//		return sqlSession.delete("mybatis.seat-Mapper.seatDelete", expiration);
-//	}
-//	
-//	public int seatInsert(SeatVO seatVO) {
-//		return sqlSession.insert("mybatis.seat-Mapper.seatInsert", seatVO);
-//	}
+	public int seatDelete(long expiration) {
+		return sqlSession.delete("mybatis.seat-Mapper.seatDelete", expiration);
+	}
+	
+	public int seatInsert(SeatVO seatVO) {
+		return sqlSession.insert("mybatis.seat-Mapper.seatInsert", seatVO);
+	}
 
 	public List<SeatVO> seatInfo(long expiration) {
 		return sqlSession.selectList("mybatis.seat-Mapper.seatInfo", expiration);

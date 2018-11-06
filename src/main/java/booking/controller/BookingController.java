@@ -18,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
-import booking.bus.dao.SeatDAO;
 import booking.ticket.bean.TicketVO;
-import booking.ticket.dao.TicketDAO;
 import info.terminal.bean.TerminalVO;
 
 @Controller
@@ -344,15 +342,13 @@ public class BookingController {
 	@RequestMapping(value = "/booking/bookingCheck.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO ticketDAO = new TicketDAO();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-		SeatDAO seatDAO = new SeatDAO();
 		
 		String ticket_no = request.getParameter("ticket_no");
 
-		ticketVO = ticketDAO.bookingCheck(ticket_no);
-		seatVO = seatDAO.seatCheck(ticket_no);
+		ticketVO = bookingService.bookingCheck(ticket_no);
+		seatVO = bookingService.seatCheck(ticket_no);
 
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
@@ -417,7 +413,6 @@ public class BookingController {
 	@RequestMapping(value = "")
 	public ModelAndView bookingModify(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO dao = new TicketDAO();
 		TicketVO vo = new TicketVO();
 
 		String ticket_no = request.getParameter("ticket_no");
@@ -434,7 +429,7 @@ public class BookingController {
 		vo.setAge_group(age_group);
 		vo.setTicket_no(ticket_no);
 
-		int count = dao.bookingModify(vo);
+		int count = bookingService.bookingModify(vo);
 
 		modelAndView.addObject("count", count);
 		modelAndView.addObject("main", "");

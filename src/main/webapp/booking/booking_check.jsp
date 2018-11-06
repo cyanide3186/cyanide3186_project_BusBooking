@@ -43,7 +43,6 @@
 			
 			}
 			formObj.submit();
-		});
 	});
 
 

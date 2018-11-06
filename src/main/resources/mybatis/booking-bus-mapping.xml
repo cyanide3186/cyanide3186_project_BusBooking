@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select * from 
 				(select rownum rn, tt.* from 
 					(select  bus_no, start_tr, end_tr, company, arrive_time, time, payment, 
-						(select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as seat_count from bus
+						(select count(*) from seat where bus_no = bus.bus_no and ticket_no is null) as bus_seats from bus
 				where start_tr = #{start_tr} and end_tr = #{end_tr} and arrive_time < 2400 and arrive_time >= #{arrive_time}) tt)
 			where rn >= #{start_num} and rn <= #{end_num}
 		]]>

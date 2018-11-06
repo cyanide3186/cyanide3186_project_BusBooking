@@ -67,6 +67,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="getBus" resultType="busVO">
-		select * from bus
+		select * from bus, seat where bus.bus_no = seat.bus_no
 	</select>
 </mapper>

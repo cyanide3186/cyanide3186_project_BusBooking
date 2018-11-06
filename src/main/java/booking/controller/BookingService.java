@@ -37,7 +37,7 @@ public interface BookingService {
 
 	int payment(String ticket_no); // 티켓 결제
 	
-	void seatReset(String bus_no);
+	void seatReset(SeatVO seatVO);
 
 	List<BusVO> getBus();
 	

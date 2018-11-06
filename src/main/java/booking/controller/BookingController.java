@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
@@ -202,7 +201,7 @@ public class BookingController {
 		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
-		busVO.setArrive_time(arrive_time);
+		busVO.setArrive_time(Integer.parseInt(arrive_time));
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
 		int totalPage = (busListCount + 4) / 5;
@@ -463,8 +462,106 @@ public class BookingController {
 	
 	// 버스 도착 예상시간에 좌석 초기화
 	@Scheduled(cron="0 * * * * *")
-	public void seatReset() {
+	public void seatResetf() {
+		List<BusVO> list = new ArrayList<>();
+		list = bookingService.getBus();
 		
+		arrivalTime_array = new String[list.size()];	// 버스번호와 시간 정보를 담을 배열
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int arrive_time = list.get(i).getArrive_time();
+			int time = list.get(i).getTime();
+			
+			String bus_no = list.get(i).getBus_no();
+			
+			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
+			int arrivalTime = arrive_time + time;	// 도착 예상시간
+			
+			if(arrivalTime >= 2400) arrivalTime -= 2400;
+			
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime) 
+									+ "m:" + String.valueOf(list.get(i).getArrive_month()) + "d:" + String.valueOf(list.get(i).getArrive_day());
+			
+			//System.out.println(arrivalTime_array[i]);
+			//System.out.println("m: 위치 = " + arrivalTime_array[i].indexOf("m:"));
+			//System.out.println("d: 위치 = " + arrivalTime_array[i].indexOf("d:") + 1);
+			//System.out.println(arrivalTime_array[i].substring(11, 13));
+			//System.out.println(arrivalTime_array[i].substring(14));
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");	// 현재시간 ex : 오후 5시 10분 - > 1710
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM");		// 현재 월
+		SimpleDateFormat sdf3 = new SimpleDateFormat("dd");		// 현재 일
+		
+		Calendar cal = Calendar.getInstance();
+		String currentTime = sdf.format(cal.getTime());
+		String currentMonth = sdf2.format(cal.getTime()); 
+		String currentDay =   sdf3.format(cal.getTime()); 
+		//int month = Integer.parseInt(sdf2.format(cal.getTime())); 
+		//int day = Integer.parseInt(sdf3.format(cal.getTime())); 
+		int dayofMonth = cal.getActualMaximum(Calendar.DATE);
+		int resetMonth = 0;
+		int resetDay = 0;
+		
+		//currentMonth = "1";
+		//currentDay = "31";
+		
+		for(int i = 0; i < arrivalTime_array.length; i++) {
+			int cutIndex = arrivalTime_array[i].indexOf("+");
+			int monthIndex = arrivalTime_array[i].indexOf("m:") + 2;
+			int dayIndex = arrivalTime_array[i].indexOf("d:");
+			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+
+			//System.out.println("monthIndex = " + monthIndex );
+			//System.out.println("dayIndex = " + dayIndex);
+			
+			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);
+			String getDay = arrivalTime_array[i].substring(dayIndex + 2);
+			SeatVO seatVO = new SeatVO();
+			/*
+			switch (dayofMonth) {
+			
+			case 31: resetDay = Integer.parseInt(getDay) + 30; break;
+			case 30: resetDay = Integer.parseInt(getDay) + 30; break;
+			case 29: resetDay = Integer.parseInt(getDay) + 30; break;
+			case 28: resetDay = Integer.parseInt(getDay) + 30; break;
+			
+			}
+			*/
+			
+			resetDay = Integer.parseInt(getDay);
+			
+			if(resetDay > dayofMonth) {
+				resetDay -= dayofMonth;
+				if(resetDay > dayofMonth) resetMonth = Integer.parseInt(getMonth) + 2;
+				else resetMonth = Integer.parseInt(getMonth) + 1;
+			}
+			
+			if(resetMonth > 12 ) resetMonth = 1;
+			
+			seatVO.setBus_no(bus_no);
+			seatVO.setArrive_month(Integer.parseInt(getMonth));
+			seatVO.setArrive_day(Integer.parseInt(getDay));
+			seatVO.setResetMonth(resetMonth);
+			seatVO.setResetDay(resetDay);
+			//System.out.println("시간표 : " + arrivalTime_array[i].substring(cutIndex + 1, monthIndex - 2));
+			//System.out.println("현재 시각 : " + currentTime);
+			//System.out.println("getmonth : " + getMonth);
+			//System.out.println("currentMonth : " + currentMonth );
+			//System.out.println("getday : " + getDay);
+			//System.out.println("currentDay : " + currentDay );
+			//System.out.println("-------------------------------------------");
+			
+			if(arrivalTime_array[i].substring(cutIndex + 1, monthIndex - 2).equals(currentTime) && getMonth.equals(currentMonth) && getDay.equals(currentDay)) {
+				bookingService.seatReset(seatVO);
+			}
+		}
+	}
+	
+	// 월말 좌석 초기화
+	@Scheduled(cron="0 0 0 28-30 * *")
+	public void seatResetLastday() {
 		List<BusVO> list = new ArrayList<>();
 		list = bookingService.getBus();
 		
@@ -472,8 +569,9 @@ public class BookingController {
 		
 		for(int i = 0; i < list.size(); i++) {
 			
-			int arrive_time = Integer.parseInt(list.get(i).getArrive_time());
-			int time = Integer.parseInt(list.get(i).getTime());
+			int arrive_time = list.get(i).getArrive_time();
+			int time = list.get(i).getTime();
+			
 			String bus_no = list.get(i).getBus_no();
 			
 			if((arrive_time / 10 % 10) + (time / 10 % 10) >= 6 ) time += 40;
@@ -481,19 +579,40 @@ public class BookingController {
 			
 			if(arrivalTime >= 2400) arrivalTime -= 2400;
 			
-			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime);
+			arrivalTime_array[i] = bus_no + "+" + String.valueOf(arrivalTime) 
+			+ "m:" + String.valueOf(list.get(i).getArrive_month()) + "d:" + String.valueOf(list.get(i).getArrive_day());
+			
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
 		Calendar cal = Calendar.getInstance();
-		String currentTime = sdf.format(cal.getTime());
+		int dayofMonth = cal.getActualMaximum(Calendar.DATE);
+		int resetMonth = 0;
+		int resetDay = 0;
 		
 		for(int i = 0; i < arrivalTime_array.length; i++) {
 			int cutIndex = arrivalTime_array[i].indexOf("+");
+			int monthIndex = arrivalTime_array[i].indexOf("m:") + 2;
+			int dayIndex = arrivalTime_array[i].indexOf("d:");
+		
 			String bus_no = arrivalTime_array[i].substring(0, cutIndex);
+			String getMonth = arrivalTime_array[i].substring(monthIndex, dayIndex);
+			String getDay = arrivalTime_array[i].substring(dayIndex + 2);
+			SeatVO seatVO = new SeatVO();
 			
-			if(arrivalTime_array[i].substring(cutIndex + 1).equals(currentTime)) {
-				bookingService.seatReset(bus_no);
+			resetDay = Integer.parseInt(getDay);
+			
+			resetMonth = Integer.parseInt(getMonth) + 1;
+			
+			if(resetMonth > 12 ) resetMonth = 1;
+			
+			seatVO.setBus_no(bus_no);
+			seatVO.setArrive_month(Integer.parseInt(getMonth));
+			seatVO.setArrive_day(Integer.parseInt(getDay));
+			seatVO.setResetMonth(resetMonth);
+			seatVO.setResetDay(resetDay);
+			
+			if(Integer.parseInt(getDay) > dayofMonth ) {
+				bookingService.seatReset(seatVO);
 			}
 		}
 	}

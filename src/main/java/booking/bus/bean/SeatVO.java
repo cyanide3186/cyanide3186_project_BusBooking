@@ -61,10 +61,5 @@ public class SeatVO {			//좌석정보 DTO - tabel seat와 대응
 	public void setResetDay(int resetDay) {
 		this.resetDay = resetDay;
 	}
-	
-
-	
-
-
 
 }

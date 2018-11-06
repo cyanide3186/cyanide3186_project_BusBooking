@@ -653,7 +653,7 @@ public class BookingController {
 	      if(!"0".equals(String.valueOf(seatVO.size()))) {   
 	         long upDay =  bookingService.maxDay(seatVO.get(0).getBus_no());
 	         for (int i = 0; i < seatVO.size(); i++) {
-	               long busTime = seatVO.get(i).getExpiration()%10000;            
+	               long busTime = seatVO.get(i).getExpiration()%10000;        
 	               long newDay = (upDay + 10000) / 10000 * 10000 + (busTime%10000);                           //변화되야할 일자 테이블내 최대일수+하루
 	               if(newDay > maxDay) {                                 //해당월 최대일자 초과시 한달이 증가                        //그 달에 최대치를 넘어갈경우 월을 증가시키고 일자를 초기화
 	                  newDay = (upDay / 1000000 * 1000000 + 1000000 + 10000)       //다음달 1일로 초기화(시,분리셋)

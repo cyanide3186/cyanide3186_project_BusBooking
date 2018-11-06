@@ -29,6 +29,8 @@ public interface BookingService {
 	
 	int seatModify(String ticket_no);  // 좌석 수정
 	
+	int seatCancle(String ticket_no);  // 좌석 예약취소
+	
 	List<TicketVO> bookingListCheck(String hp);	// 예매내역 목록 조회
 	
 	TicketVO bookingCheck(String ticket_no); // 예매내역 조회
@@ -37,17 +39,13 @@ public interface BookingService {
 
 	int payment(String ticket_no); // 티켓 결제
 	
-//<<<<<<< HEAD
 	void seatReset(SeatVO seatVO);
-//=======
-	void seatReset(String bus_no);
-	
+
 	void seatInsert(SeatVO seatVO);
 	
 	void seatDelete(long expiration);
 	
 	List<SeatVO> seatInfo(long expiration);
-//>>>>>>> 95d0a97a483d3a3249cbbfb9e998a576b2831298
 
 	List<BusVO> getBus();
 	

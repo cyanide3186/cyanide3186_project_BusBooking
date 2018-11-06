@@ -202,10 +202,6 @@ public class BookingController {
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		
-		System.out.println("날짜 : "+arrive_day);
-		StringUtils utils = new StringUtils();
-		
-		System.out.println(utils.remove(arrive_day, "-"));
 		int pg = 1;
 		String param_pg = request.getParameter("pg");
 		if (param_pg != null)
@@ -387,11 +383,12 @@ public class BookingController {
 	@RequestMapping(value = "/booking/bookingCancle.do")
 	public ModelAndView bookingCancle(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketDAO dao = new TicketDAO();
 
 		String ticket_no = request.getParameter("ticket_no");
-		int count = dao.bookingCancel(ticket_no);
-
+		int count = bookingService.bookingCancel(ticket_no);
+		
+		if(count > 0) bookingService.seatCancle(ticket_no); 
+			
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
 		modelAndView.addObject("main", "");
@@ -459,22 +456,20 @@ public class BookingController {
 	}
 
 	// 버스 예약기능 함수
+	@SuppressWarnings("static-access")
 	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
 
+		StringUtils utils = new StringUtils();
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer
-				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
-
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
 		String arrive_day = request.getParameter("arrive_day");
+		String arrive_time = request.getParameter("arrive_time");
 		
-		
-		// 예약번호 생성 기능
-		/*
-		 * 추가 예정 ticket_no = arrive_day + bus_no + seat_no;
-		 */
-		
+		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
+		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no + utils.leftPad(String.valueOf(seat_no), 2, "0");
 		
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);

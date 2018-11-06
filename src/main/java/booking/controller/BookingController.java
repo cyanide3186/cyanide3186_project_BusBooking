@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -200,7 +201,11 @@ public class BookingController {
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
-
+		
+		System.out.println("날짜 : "+arrive_day);
+		StringUtils utils = new StringUtils();
+		
+		System.out.println(utils.remove(arrive_day, "-"));
 		int pg = 1;
 		String param_pg = request.getParameter("pg");
 		if (param_pg != null)
@@ -465,11 +470,14 @@ public class BookingController {
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 
 		String arrive_day = request.getParameter("arrive_day");
-
+		
+		
 		// 예약번호 생성 기능
 		/*
 		 * 추가 예정 ticket_no = arrive_day + bus_no + seat_no;
 		 */
+		
+		
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);
 		ticketVO.setSeat_no(seat_no);
@@ -632,7 +640,7 @@ public class BookingController {
 		}
 	}
 //=======
-	   @Scheduled(fixedDelay = 60000)
+//	   @Scheduled(fixedDelay = 60000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
 	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)

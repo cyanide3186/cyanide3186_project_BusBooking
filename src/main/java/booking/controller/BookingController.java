@@ -493,7 +493,7 @@ public class BookingController {
 	@Scheduled(cron="0 * * * * *")
 	public void seatResetf() {
 		List<BusVO> list = new ArrayList<>();
-		list = bookingService.getBus();
+		list = bookingService.getBusList();
 		
 		arrivalTime_array = new String[list.size()];	// 버스번호와 시간 정보를 담을 배열
 		
@@ -585,7 +585,7 @@ public class BookingController {
 	@Scheduled(cron="0 0 0 28-30 * *")
 	public void seatResetLastday() {
 		List<BusVO> list = new ArrayList<>();
-		list = bookingService.getBus();
+		list = bookingService.getBusList();
 		
 		arrivalTime_array = new String[list.size()];
 		

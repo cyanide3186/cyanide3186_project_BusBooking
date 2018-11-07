@@ -28,13 +28,13 @@ public class BusDAO {
 		map.put("arrive_month", busVO.getArrive_month());
 		map.put("arrive_day", busVO.getArrive_day());
 		
-		System.out.println("start_tr : " + busVO.getStart_tr());
-		System.out.println("end_tr : " + busVO.getEnd_tr());
-		System.out.println("arrive_time : " + busVO.getArrive_time());
-		System.out.println("start_num : " + start_num);
-		System.out.println("end_num : " + end_num);
-		System.out.println("arrive_month : " + busVO.getArrive_month());
-		System.out.println("arrive_day : " + busVO.getArrive_day());
+		//System.out.println("start_tr : " + busVO.getStart_tr());
+		//System.out.println("end_tr : " + busVO.getEnd_tr());
+		//System.out.println("arrive_time : " + busVO.getArrive_time());
+		//System.out.println("start_num : " + start_num);
+		//System.out.println("end_num : " + end_num);
+		//System.out.println("arrive_month : " + busVO.getArrive_month());
+		//System.out.println("arrive_day : " + busVO.getArrive_day());
 		
 		return sqlSession.selectList("mybatis.bus-Mapper.busCheck", map);
 	}

@@ -26,8 +26,8 @@ public class SeatDAO {
 	}
 
 	// 버스 좌석 목록 조회
-	public List<SeatVO> getSeatList(String bus_no) {
-		return sqlSession.selectList("mybatis.seat-Mapper.getSeatList", bus_no);
+	public List<SeatVO> getSeatList(SeatVO seatVO) {
+		return sqlSession.selectList("mybatis.seat-Mapper.getSeatList", seatVO);
 	}
 
 	// 좌석 예약 상태로 변경

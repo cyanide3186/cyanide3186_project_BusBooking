@@ -214,14 +214,16 @@ public class BookingController {
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
+		System.out.println(arrive_day);
+		System.out.println(arrive_time);
 		busVO.setArrive_day(Integer.parseInt(arrive_day));
 		busVO.setArrive_month(Integer.parseInt(arrive_month));
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
 
-		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
 		int endPage = (int)(Math.ceil(pg/10.0))*10;
 		int startPage = endPage-9;
+		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
 		if (endPage > totalPage)
 			endPage = totalPage;
 		List<BusVO> list = bookingService.busCheck(busVO, start_num, end_num); // 배차조회 결과 목록

@@ -67,7 +67,7 @@
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
-								var date = year + "-" + month + "-" + day;
+								var date = year + month +  day;
 								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);

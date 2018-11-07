@@ -51,7 +51,6 @@
 
 			}
 			formObj.submit();
-		});
 	});
 
 

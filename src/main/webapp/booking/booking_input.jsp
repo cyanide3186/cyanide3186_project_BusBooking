@@ -24,14 +24,15 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
-
 </head>
 
 
 <script type="text/javascript">
+
+
 	$(document)
 			.ready(
-					function() {
+					function arrive_time() {
 						var formObj = $("form");//form태그를 객체 선언
 
 						//출발지 선택의 검색 기능 
@@ -59,6 +60,17 @@
 						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
 						$('button').on("click", function(e) {
 							e.preventDefault();
+							if(document.bus_input.start_tr.value == "") {
+								alert("출발지를 선택해주세요");
+							} else if(document.bus_input.end_tr.value == "") {
+								alert("도착지를 선택해주세요");
+							} else if(document.bus_input.arrivedate.value == "") {
+								alert("출발일자를 선택해주세요");
+							} else if(document.bus_input.arrive_time.value == "") {
+								alert("출발시각을 선택해주세요");
+							} else if(document.bus_input.adult.value == 0 && document.bus_input.teen.value == 0 && document.bus_input.kid.value == 0) {
+								alert("선택하신 티켓 매수가 0장입니다, 1장이상 선택해주세요.");
+							} else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
 							//alert(arrivedate);
@@ -80,6 +92,8 @@
 							var value = $("#arrivedate").attr("value");
 							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
+						}
+							
 						});
 
 					});
@@ -532,7 +546,6 @@
 					}
 
 				});
-
 	});
 </script>
 <style type="text/css">
@@ -790,13 +803,13 @@ input {
 								</div></td>
 						</tr>
 						<tr>
-							<td>가는 일시</td>
+							<td>출발 일자</td>
 							<td>
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" id="arrivedate">
+											placeholder="Date/Time" id="arrivedate" name="arrivedate">
 									</div>
 							</td>
 						</tr>
@@ -882,7 +895,7 @@ input {
 						<tr>
 
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" >조회</button>
+									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 

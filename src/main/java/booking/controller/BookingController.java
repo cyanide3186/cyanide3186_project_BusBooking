@@ -292,6 +292,17 @@ public class BookingController {
 		return modelAndView;
 	}
 
+		
+		modelAndView.addObject("seat_reservation", seat_reservation);
+		modelAndView.addObject("arrive_day", arrive_day);
+		modelAndView.addObject("seatList", seatList);
+		modelAndView.addObject("bus_vo", vo);
+		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		
+		return modelAndView;
+	}
+
 	// 버스 예약기능
 	@RequestMapping(value = "/booking/booking_input.do")
 	public ModelAndView booking_input(HttpServletRequest request) {

@@ -253,7 +253,7 @@ td, th {
 				var s_num=num%10;
 				alert(s_num);
 				$('.line4').children('img').eq(s_num).attr("src","../images/seat_disabled.png");
-				$('line4').find('img').eq(s_num).attr('src','../images/seat_disabled.png');
+				$('.line4').find('img').eq(s_num).attr('src','../images/seat_disabled.png');
 			}
 		}
 

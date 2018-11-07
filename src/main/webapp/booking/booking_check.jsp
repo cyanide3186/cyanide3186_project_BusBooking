@@ -139,7 +139,6 @@ h1 {
 input {
 	width: 25%;
 }
-
 #result_terminal td {
 	width: 30%;
 }

@@ -13,6 +13,7 @@ import info.terminal.bean.TerminalVO;
 
 @Repository
 public class BusDAO {
+
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
@@ -45,8 +46,16 @@ public class BusDAO {
 	}
 
 	// 버스 목록 수 조회
-	public int busListCount(BusVO busVO) {
-		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", busVO);
+	public int busListCount(BusVO busVO, int arrive_day, int arrive_month) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("start_tr", busVO.getStart_tr());
+		map.put("end_tr", busVO.getEnd_tr());
+		map.put("arrive_time", busVO.getArrive_time());
+		map.put("arrive_month", arrive_month);
+		map.put("arrive_day", arrive_day);
+		
+		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", map);
 	}
 
 	// 버스 정보 수정
@@ -66,15 +75,13 @@ public class BusDAO {
 	}
 
 	
-	
 	// 검색을 위한 전체 터미널 목록 리스트
 	public List<TerminalVO> terminalAllList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.terminalAllList");
 	}
 	
-	
 
-	public List<BusVO> getBus() {
+	public List<BusVO> getBusList() {
 		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
 
 	}

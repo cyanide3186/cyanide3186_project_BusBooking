@@ -27,10 +27,9 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function () {
-		
+	$(function() {
+
 	});
-	
 </script>
 <style type="text/css">
 p {
@@ -95,7 +94,7 @@ li {
 
 table {
 	margin-top: 40px;
-	border-radius: 20px;
+		border-radius: 20px;
 }
 
 h1 {
@@ -252,7 +251,7 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
-											<div><a class="move" href="../booking/booking_seatCheck.do?bus_no=${busVO.bus_no}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${busVO.bus_seats}석/총40석</a></div>
+											<div id="seat"><a href="../booking/booking_seatCheck.do?bus_no=${busVO.bus_no}&arrive_day=${arrive_day}">${busVO.bus_seats}석/총40석</a></div>
 										</td>
 								</tr>
 							</c:forEach>

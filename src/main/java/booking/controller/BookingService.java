@@ -19,11 +19,10 @@ public interface BookingService {
 
 	
 	// BusDAO
-	List<BusVO> busCheck(BusVO busVO, int start_num, int end_num); 	// 배차 조회
-	int busListCount(BusVO busVO); 									// 배차 조회 목록 수
-	List<BusVO> busList(); 											// 터미널 목록 조회
-	List<BusVO> getBus();											// seat, bus 테이블 조인 전체 조회
-	public BusVO getBusInfo(String bus_no);
+	List<BusVO> busCheck(BusVO busVO, int start_num, int end_num); 		// 배차 조회
+	int busListCount(BusVO busVO, int arrive_day, int arrive_month); 	// 배차 조회 목록 수
+	List<BusVO> busList(); 												// 터미널 목록 조회
+	List<BusVO> getBusList();											// seat, bus 테이블 조인 전체 조회
 	
 	// SeatDAO
 	SeatVO seatCheck(String ticket_no); 		// 좌석 조회

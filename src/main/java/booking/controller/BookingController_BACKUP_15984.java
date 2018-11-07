@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
+import booking.bus.dao.BusDAO;
 import booking.ticket.bean.TicketVO;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import info.terminal.bean.TerminalVO;
 
 @Controller
@@ -201,6 +203,8 @@ public class BookingController {
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
+		System.out.println(arrive_time);
+		System.out.println(arrive_day);
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
@@ -218,8 +222,13 @@ public class BookingController {
 		busVO.setArrive_day(Integer.parseInt(setArrive_day));
 		busVO.setArrive_month(Integer.parseInt(setArrive_month));
 		
+<<<<<<< HEAD
 		int busListCount = bookingService.busListCount(busVO, Integer.parseInt(setArrive_day), Integer.parseInt(setArrive_month)); // 배차조회 목록 수 
+		System.out.println(busListCount);
+=======
+		int busListCount = bookingService.busListCount(busVO, Integer.parseInt(arrive_day), Integer.parseInt(arrive_month)); // 배차조회 목록 수 
 
+>>>>>>> fdb1df88651db6dfe6810a3dbb9285ff2fc3dcf2
 		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
 		int endPage = (int)(Math.ceil(pg/10.0))*10;
 		int startPage = endPage-9;
@@ -257,8 +266,6 @@ public class BookingController {
 		SeatVO seatVO = new SeatVO();
 		
 		String bus_no = request.getParameter("bus_no");
-		System.out.println("bus_no"+bus_no);
-		BusVO vo = bookingService.getBusInfo(bus_no);
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
@@ -266,26 +273,10 @@ public class BookingController {
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
-		/*System.out.println(seatVO.getBus_no());
-		System.out.println(seatVO.getArrive_month());
-		System.out.println(seatVO.getArrive_day());*/
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 		
-		ArrayList<Integer> seat_reservation = new ArrayList<>();
-		for(int i=0 ;i<seatList.size();i++) {
-			
-			if(seatList.get(i).getTicket_no()!=null) {
-				System.out.println("seatList :"+seatList.get(i).getTicket_no());	
-				System.out.println("seatList :"+seatList.get(i).getBus_seat());	
-				seat_reservation.add(seatList.get(i).getBus_seat());
-				
-			}
-		}
-		
-		modelAndView.addObject("seat_reservation", seat_reservation);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
-		modelAndView.addObject("bus_vo", vo);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		

@@ -25,13 +25,15 @@
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
 
-</head>
-
-
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
+<script src="/Project_BusBooking/js/alertify.min.js"></script>
 <script type="text/javascript">
+
+
 	$(document)
 			.ready(
-					function() {
+					function arrive_time() {
 						var formObj = $("form");//form태그를 객체 선언
 
 						//출발지 선택의 검색 기능 
@@ -59,6 +61,17 @@
 						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
 						$('button').on("click", function(e) {
 							e.preventDefault();
+							if(document.bus_input.start_tr.value == "") {
+								alertify.alert("출발지를 선택해주세요");
+							} else if(document.bus_input.end_tr.value == "") {
+								alertify.alert("도착지를 선택해주세요");
+							} else if(document.bus_input.arrivedate.value == "") {
+								alertify.alert("출발일자를 선택해주세요");
+							} else if(document.bus_input.arrive_time.value == "") {
+								alertify.alert("출발시각을 선택해주세요");
+							} else if(document.bus_input.adult.value == 0 && document.bus_input.teen.value == 0 && document.bus_input.kid.value == 0) {
+								alertify.alert("선택하신 티켓 매수가 0장입니다, 1장이상 선택해주세요.");
+							} else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
 							//alert(arrivedate);
@@ -80,6 +93,8 @@
 							var value = $("#arrivedate").attr("value");
 							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
+						}
+							
 						});
 
 					});
@@ -532,7 +547,6 @@
 					}
 
 				});
-
 	});
 </script>
 <style type="text/css">
@@ -543,7 +557,7 @@ p {
 
 .start_bus {
 	display: none;
-	background-color: #01A9DB;
+	background-color: #368D9C;
 	width: 500px;
 	height: 500px;
 	position: fixed;
@@ -556,7 +570,7 @@ p {
 
 .end_bus {
 	display: none;
-	background-color: #01A9DB;
+	background-color: #368D9C;
 	width: 500px;
 	height: 500px;
 	position: fixed;
@@ -631,10 +645,10 @@ li {
 
 #booking_table {
 	margin-top: 120px;
-	border: 1px solid black;
-	border-radius: 20px;
+	border: 1px solid #00003F;
+	text-align: center;
+	border-radius:10px;
 }
-
 h1 {
 	border-bottom: 2px solid #01A9DB;
 	padding-bottom: 30px;
@@ -654,6 +668,14 @@ input {
 
 #result_terminal_end td {
 	width: 30%;
+}
+#infodiv {
+	margin-top: 30px;
+	margin-left: 210px;
+	width: 750px;
+	background-color: #D0EEFC;
+	border: 1px solid gray;
+	border-radius: 10px;
 }
 </style>
 </head>
@@ -754,20 +776,16 @@ input {
 
 		</div>
 
-
-
-
-
 		<div>
 			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table  align="center" id="booking_table">
-						<tr>
+					<table align="center" id="booking_table"  >
+						<tr >
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
+								style="width: 50px; height: 50px; ">
 								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
 								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
 							<td>출발지</td>
@@ -786,13 +804,13 @@ input {
 								</div></td>
 						</tr>
 						<tr>
-							<td>가는 일시</td>
+							<td>출발 일자</td>
 							<td>
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
 										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" id="arrivedate">
+											placeholder="Date/Time" id="arrivedate" name="arrivedate">
 									</div>
 							</td>
 						</tr>
@@ -878,7 +896,7 @@ input {
 						<tr>
 
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" >조회</button>
+									class="ui teal basic button" type="submit">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 
@@ -888,23 +906,27 @@ input {
 			</form>
 		</div>
 		<div>
-			<div class="ui text container"
-				style="text-align: left; margin: 2rem auto;">
-				<p>
-					1.당일 출발하는 차량은 출발시간 1시간 전까지 예매가 가능합니다.<br> <br> 2. 1회 최대
-					예매 매수는 10매입니다. 10매 이상 예매를 원하시는 경우에는 중복예매 가능합니다.<br> <br>
-					3. 예매한 승차권 발권 시에는 반드시 예약한 카드를 지참해야 하여, 해당 터미널 매표 창구에 예약된 사항이 있다고
-					말씀하시고, 카드를 제시하시면 승차권을 발권받으실 수 있습니다. 단, 부득이하게 예약한 카드를 소지하지 못한 경우,
-					예약한 카드 번호를 매표 창구에 제시하시면 승차권을 발급받을 수 있습니다. (발권 방법의 차이가 있는 터미널이 존재하며,
-					해당 터미널에 문의하시면 정확한 발권 방법의 확인이 가능합니다.)<br> <br> 4. <span
-						style="font-weight: bold;">시외우등형버스는 다음과 같은 할인조건에 따라서 요금할인이
-						적용되며, 중복적용되지 않습니다. (노선에 따라 상이할 수 있음)<br> <br> * 할인은
-						성인에게만 적용됩니다. (아동/중고생은 제외)<br> * 사전에 인터넷과 모바일 예매를 이용한 승객에게만
-						적용됩니다. (터미널 현장발권은 대상에서 제외됩니다. 단, 뒤좌석 예매는 예외)<br> * 요금할인이 적용되는
-						시외우등형버스는 결제시 할인율을 확인할 수 있습니다.
-					</span> <br>
-				</p>
-			</div>
+		<div id="infodiv">
+		<img src="../images/businfo.png" width="30" height="30" style="margin: 10px; height: 50;">
+		당일 출발하는 차량은 출발시간 1시간 전까지 예매가 가능합니다.</div>
+		
+		<div id="infodiv" style="height: 50;">
+		<img src="../images/businfo.png" width="30" height="30" style="margin: 10px;">
+		시외우등형버스는 다음과 같은 할인조건에 따라서 요금할인이 적용되며, 중복적용되지 않습니다.</div>
+		
+		<div id="infodiv" style="height: 500;">
+		<img src="../images/businfo.png" width="28" height="28" style="margin-left: 10px; margin-top: 5px;">
+		예매한 승차권 발권 시에는 반드시 예약한 카드를 지참해야 하여,해당 터미널 매표 창구에 예약된 사항이 있다고<br>&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;말씀하시고 카드를 제시하시면 승차권을 발권받으실 수 있습니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;단,예약한 카드를 소지하지 못한 경우 예약한 카드 번호를 매표 창구에 제시하시면 발급받을 수 있습니다.<br>&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;(발권 방법의 차이가 있는 터미널이 존재하며, 해당 터미널에 문의하시면 정확한 발권 방법의 확인이 가능합니다.)</div>
+		
+		<div id="infodiv" style="height: 50;">
+		<img alt="안내" src="../images/businfo.png" width="30" height="30" style="margin: 10px;">
+		당일 출발하는 차량은 출발시간 1시간 전까지 예매가 가능합니다.</div>
+		
+		
+		
 			<hr id="footline">
 		</div>
 

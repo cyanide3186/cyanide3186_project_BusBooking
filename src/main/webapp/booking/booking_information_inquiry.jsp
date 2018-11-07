@@ -523,7 +523,7 @@ p {
 
 .start_bus {
 	display: none;
-	background-color: #01A9DB;
+	background-color: #368D9C;
 	width: 500px;
 	height: 500px;
 	position: fixed;
@@ -536,7 +536,7 @@ p {
 
 .end_bus {
 	display: none;
-	background-color: #01A9DB;
+	background-color: #368D9C;
 	width: 500px;
 	height: 500px;
 	position: fixed;
@@ -585,6 +585,8 @@ header {
 
 #booking_table {
 	margin-top: 50px;
+	border: 1px solid #00003F;
+	border-radius: 10px;
 }
 
 h1 {
@@ -612,14 +614,19 @@ ul {
 	margin: 0 0;
 	list-style: none;
 }
-#info_content{
-	background-color: #FFD2D2;
-	border-bottom : 1px solid gray;
-	border-top : 1px solid gray;
-	border-left: 1px solid gray;
-	border-right: 1px solid gray;
-	border-radius: 10px 10px 10px 10px;
-	height: 20px;
+#logo {
+	margin-top: 50px;
+	margin-left: 150px;
+	font-size: 20px;
+	font-weight: 900;
+}
+#infodiv {
+	margin-left: 190px;
+	margin-top: 20px;
+	width: 770px;
+	background-color: #D0EEFC;
+	border: 1px solid gray;
+	border-radius: 10px;
 }
 </style>
 </head>
@@ -714,21 +721,16 @@ ul {
 			</div>
 
 		</div>
-
-
-
-
-
 		<div>
 			<form role="form" action="../booking/booking_bus.do" method="post"
 				name="bus_input">
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
-					<table border="1px solid" align="center" id="booking_table">
+					<table border="1px solid" align="center" id="booking_table"  style="text-align: center; ">
 						<tr>
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
+								style="width: 50px; height: 50px; ">
 								<h2 style="text-align: center; font-weight: bold;">운행정보조회</h2>
 								시외버스 및 일부 고속버스 운행정보 조회</td>
 							<td>출발지</td>
@@ -802,56 +804,31 @@ ul {
 				</div>
 			</form>
 		</div>
-		<div>
-			<div class="ui text container"
-				style="text-align: left; margin: 5rem auto;">
-				<div id="waring">
-
-				<div id="logo">
-					<p id="label">
-						<img src="../images/line.png" id="imglabel"> &nbsp;예매 변경 주의
-						사항(매수 변경)
-					</p>
-				</div>
-				<br>
-
-				<table cellpadding="10" id="infomation">
-					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> 운행정보 메뉴에서는 시외버스 및 일부 고속버스 운행정보 조회를 서비스 하고 있습니다.</td>
-					</tr>
-					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> 운행정보 조회기간은 해당 노선의 배차정보가 입력된 일자까지 가능합니다. 배차정보의 입력은
-								출발지 터미널에서 처리하고 있으며, 일반적으로 현재일 기준으로 1개월 이후의 배차정보가 입력되어 운영되고 있습니다.</td>
-					</tr>
-					<tr>
-						<td id="info_content"><img src="../images/check.png"
-							width="15px" height="15px"> “조회 가능한 내역이 없습니다.”라고 나오면 출발지 터미널로 문의하시기 바랍니다.</td>
-					</tr>
-				
-				</table>
-
-				</div>
-
-
-			</div>
-
-
-		</div>
-		<div class="ui text container"
-			style="text-align: left; margin: 5rem auto;">
-			<div class="ui link list">
-				<div class="active item">운행정보가 없는 노선의 경우 아래 사이트를 참조하세요.</div>
-				<a class="item" href="https//:www.busterminal.or.kr">www.busterminal.or.kr</a>
-			</div>
-
-
-		</div>
-
+				<div id="logo" >
+				<img src="../images/line.png" id="imglabel"> &nbsp;예매 변경 주의사항(매수 변경)</div>
+			
+		<div id="infodiv">
+		<img src="../images/businfo.png" width="28" height="28" style="margin: 10px; height: 50;">
+		운행정보 메뉴에서는 시외버스 및 일부 고속버스 운행정보 조회를 서비스 하고 있습니다.</div>
+		
+		<div id="infodiv" style="height: 50;">
+		<img src="../images/businfo.png" width="28" height="28" style="margin: 10px;">
+		운행정보 조회기간은 해당 노선의 배차정보가 입력된 일자까지 가능합니다.</div>
+	
+		<div id="infodiv">
+		<img src="../images/businfo.png" width="28" height="28" style="margin: 10px; height: 50;">
+		배차정보의 입력은 출발지 터미널에서 처리하고 있으며,현재 기준으로 1개월 이후의 배차정보가 입력되고있습니다.</div>
+	
+		<div id="infodiv" style="height: 50;">
+		<img alt="안내" src="../images/businfo.png" width="28" height="28" style="margin: 10px;">
+		“조회 가능한 내역이 없습니다.”라고 나오면 출발지 터미널로 문의하시기 바랍니다.</div>
+	
+	<div style="margin-left: 150px; 	margin-top: 30px; ">
+	<a style="font-size: 20px; color: black;" href="https//:www.busterminal.or.kr" >
+	운행정보가 없는 노선의 경우 아래 사이트를 참조하세요.<br>
+	▶ www.busterminal.or.kr</a></div>
 	</div>
-
-	</div>
+		
 
 </body>
 </html>

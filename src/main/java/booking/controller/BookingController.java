@@ -258,7 +258,6 @@ public class BookingController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		String bus_no = request.getParameter("bus_no");
-
 		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
 
 		modelAndView.addObject("seatList", seatList);

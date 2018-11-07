@@ -20,6 +20,7 @@ import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
 import booking.bus.dao.BusDAO;
 import booking.ticket.bean.TicketVO;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import info.terminal.bean.TerminalVO;
 
 @Controller
@@ -217,8 +218,8 @@ public class BookingController {
 		busVO.setArrive_day(Integer.parseInt(arrive_day));
 		busVO.setArrive_month(Integer.parseInt(arrive_month));
 		
-		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
-
+		int busListCount = bookingService.busListCount(busVO, Integer.parseInt(arrive_day), Integer.parseInt(arrive_month)); // 배차조회 목록 수 
+		System.out.println(busListCount);
 		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
 		int endPage = (int)(Math.ceil(pg/10.0))*10;
 		int startPage = endPage-9;

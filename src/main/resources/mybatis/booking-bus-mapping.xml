@@ -13,27 +13,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select * from (
 							select rownum rn, tt.* from
-                   									 (select distinct (select count(*) from seat where seat.bus_no = b.bus_no and ticket_no is null and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as bus_seats, b.*, s.arrive_month, s.arrive_day 
-	                      								 	from bus b, seat s 
-	                      							  where b.bus_no = s.bus_no
-	                        						  and start_tr = #{start_tr} and end_tr = #{end_tr}
-								                      and arrive_time < 2400 and arrive_time >= #{arrive_time}
-								                      and arrive_month = #{arrive_month}
-								                      and arrive_day = #{arrive_day}
-                    								 )
+							 (select distinct (select count(*) from seat where seat.bus_no = b.bus_no and ticket_no is null and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as bus_seats, b.*, s.arrive_month, s.arrive_day 
+  								 	from bus b, seat s 
+  							  where b.bus_no = s.bus_no
+    						  and start_tr = #{start_tr} and end_tr = #{end_tr}
+	                      and arrive_time < 2400 and arrive_time >= #{arrive_time}
+	                      and arrive_month = #{arrive_month}
+	                      and arrive_day = #{arrive_day}
+             		       )
                			  tt)
 			where rn >= #{start_num} and rn <= #{end_num}
 		]]>
 	</select>
 
 	<!-- 배차 조회 목록 수 -->
-	<select id="busListCount" parameterType="busVO" resultType="int">
+	<select id="busListCount" parameterType="java.util.Map" resultType="int">
 		<![CDATA[
-			select count(*) as buscount from bus 
-			where start_tr = #{start_tr}
-				and end_tr = #{end_tr}
-				and arrive_time < 2400 
-				and arrive_time >= #{arrive_time}
+		  select count(*) as listcount from (
+		  (select distinct (select count(*) from seat where s.bus_no = b.bus_no and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as count, b.*, s.arrive_month, s.arrive_day 
+		  from bus b, seat s 
+		  where b.bus_no = s.bus_no
+		  and start_tr = #{start_tr} and end_tr = #{end_tr}
+		  and arrive_time < 2400 and arrive_time >= #{arrive_time}
+		  and arrive_month = #{arrive_month}
+		  and arrive_day = #{arrive_day} )
+		  tt)
 		]]>
 	</select>
 

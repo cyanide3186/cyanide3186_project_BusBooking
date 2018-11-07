@@ -18,9 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
-import booking.bus.dao.BusDAO;
 import booking.ticket.bean.TicketVO;
-import ch.qos.logback.core.net.SyslogOutputStream;
 import info.terminal.bean.TerminalVO;
 
 @Controller
@@ -200,8 +198,9 @@ public class BookingController {
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
-		String arrive_day = utils.substringAfterLast(request.getParameter("arrive_day"), "-");
-		String arrive_month = utils.substringBetween(request.getParameter("arrive_day"), "-", "-");
+		String arrive_day = request.getParameter("arrive_day");
+		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
+		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
@@ -216,10 +215,10 @@ public class BookingController {
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
-		busVO.setArrive_day(Integer.parseInt(arrive_day));
-		busVO.setArrive_month(Integer.parseInt(arrive_month));
+		busVO.setArrive_day(Integer.parseInt(setArrive_day));
+		busVO.setArrive_month(Integer.parseInt(setArrive_month));
 		
-		int busListCount = bookingService.busListCount(busVO, Integer.parseInt(arrive_day), Integer.parseInt(arrive_month)); // 배차조회 목록 수 
+		int busListCount = bookingService.busListCount(busVO, Integer.parseInt(setArrive_day), Integer.parseInt(setArrive_month)); // 배차조회 목록 수 
 
 		int totalPage = (int)(Math.ceil(busListCount*1.0)/10);
 		int endPage = (int)(Math.ceil(pg/10.0))*10;

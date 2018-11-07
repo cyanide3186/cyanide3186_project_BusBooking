@@ -420,7 +420,7 @@ public class BookingController {
 	}
 
 	// 예약 수정 기능
-	@RequestMapping(value = "")
+	@RequestMapping(value = "/booking/bookingModify.do")
 	public ModelAndView bookingModify(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO vo = new TicketVO();

@@ -32,15 +32,6 @@ public class InfoPageController {
 	public String infoTrAndCompany() {
 		return "../info/terminal.do";
 	}
-	/* 구버전 매핑
-	public ModelAndView infoTrAndCompany(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("main","../info/terminal_company_info.jsp");
-		modelAndView.setViewName("../main/index.jsp");
-		
-		return modelAndView;
-	}
-	*/
 	//현금영수증 안내
 	@RequestMapping(value="/info/infoTax.do")
 	public ModelAndView infoTax(HttpServletRequest request) {
@@ -48,6 +39,15 @@ public class InfoPageController {
 		modelAndView.addObject("main","../info/tax_info.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;
+	}
+	
+	//서비스 준비중
+	@RequestMapping(value="/info/preparingService.do")
+	public ModelAndView preparingService(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("main", "../info/preparingService.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+		return modelAndView;		
 	}
 	
 	//이용 약관
@@ -74,4 +74,5 @@ public class InfoPageController {
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;
 	}
+	
 }

@@ -102,8 +102,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<BusVO> getBus() {
-		return busDAO.getBus();
+	public List<BusVO> getBusList() {
+		return busDAO.getBusList();
 	}
 
 	@Override

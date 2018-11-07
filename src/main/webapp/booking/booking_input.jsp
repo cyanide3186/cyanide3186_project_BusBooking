@@ -784,7 +784,7 @@ input {
 						<tr >
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
+								style="width: 50px; height: 50px; ">
 								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
 								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
 							<td>출발지</td>

@@ -252,18 +252,27 @@ public class BookingController {
 	}
 
 	// 예약하기 - 좌석 선택 화면
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/booking/booking_seatCheck.do")
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-
+		SeatVO seatVO = new SeatVO();
+		
 		String bus_no = request.getParameter("bus_no");
-
-		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
-
+		String arrive_day = request.getParameter("arrive_day");
+		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
+		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
+		seatVO.setBus_no(bus_no);
+		seatVO.setArrive_month(Integer.parseInt(setArrive_day));
+		seatVO.setArrive_day(Integer.parseInt(setArrive_month));
+		
+		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
+		
+		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
-
+		
 		return modelAndView;
 	}
 
@@ -411,7 +420,7 @@ public class BookingController {
 	}
 
 	// 예약 수정 기능
-	@RequestMapping(value = "")
+	@RequestMapping(value = "/booking/bookingModify.do")
 	public ModelAndView bookingModify(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO vo = new TicketVO();

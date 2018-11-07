@@ -228,6 +228,7 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
+										<button>
 											${busVO.seats}석/총40석
 										</button></td>
 								</tr>

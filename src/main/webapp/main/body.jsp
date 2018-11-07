@@ -75,29 +75,29 @@
 				<hr style="margin-top: 300px;" >
 				<p class="ticket">시외버스 예매 시스템으로 <br>안전하고 편리하게 여행하세요</p>
 			</a></li>
-			<li class="sq-item" style="background-color: #5a3782; margin-right: 10px;">
+			<li class="sq-item" style="background-color:#b865b9; margin-right: 10px;">
 				<a class="sq-item-anchor" href="../booking/booking_information_inquiry.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image4.png" width="110" height="110" style="margin: 65px; margin-top: 90px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 28px;">노선/운행정보</span>
 			</a></li>
-			<li class="sq-item" style="background-color: #e07117; ">
+			<li class="sq-item" style="background-color: #532982; ">
 				<a class="sq-item-anchor" href="../booking/booking_modifyForm.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image9.png" width="70" height="70" style="margin: 20px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 20px; ">
 				<br><br><br><br>예매조회/변경/취소</span>
 				<img class="sq-item-anchor-cover" src="../images/section_image10.png" width="75" height="75" style="margin: 150px;">
 			</a></li>
-			<li class="sq-item" style="background-color: #e07117; margin-right: 10px; ">
+			<li class="sq-item" style="background-color: #532982;  margin-right: 10px; ">
 				<a class="sq-item-anchor" href="../info/infoBusBooking.do""> 
 				<img class="sq-item-anchor-cover" src="../images/section_image15.png" width="100" height="100" style="margin-top: 80px; margin-left: 70px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 23px;">승차권 예매 안내</span>
 			</a></li>
-			<li class="sq-item" style="background-color:  #5a3782; margin-right: 10px; ">
+			<li class="sq-item" style="background-color: #b865b9;  margin-right: 10px; ">
 				<a class="sq-item-anchor" href="../qboard/qboardWriteForm.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image14.png" width="110" height="110" style="margin: 70px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 24px;">&nbsp;&nbsp;&nbsp;고객의 소리</span>
 			</a></li>
-			<li class="sq-item sq-item-long sq-item-float-right" style="background-color: #318c87; width: 27%; height: 35%;">
+			<li class="sq-item sq-item-long sq-item-float-right" style="background-color:#2c77af; width: 27%; height: 35%;">
 				<a class="sq-item-anchor" href="../board/boardList.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image3.png" width="50" height="50" style="margin: 30px; margin-left: 100px;"> 
 				<hr style="margin-top: 80px; margin-bottom: 30px;">
@@ -105,22 +105,22 @@
 				<p class="notification">환영합니다!<br><br>승차권 예매 및 터미널 관련<br><br>새소식을 전해드립니다.</p>
 				<hr style="margin-top: 110px; ">
 			</a></li>
-			<li class="sq-item" style="background-color:#e07117; width: 35%;">
+			<li class="sq-item" style="background-color:#532982;  width: 35%;">
 			<a class="sq-item-anchor" href="../info/terminal.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image2.png" width="120" height="120" style="margin: 90px; margin-left: 110px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;터미널 안내</span>
 			</a></li>
-			<li class="sq-item" style="background-color: #5a3782; width: 35%;">
+			<li class="sq-item" style="background-color: #b865b9;   width: 35%;">
 			<a class="sq-item-anchor" href="../info/company_info.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image1.png" width="120" height="120" style="margin: 90px; margin-left: 110px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;운수사 안내</span>
 			</a></li>
-			<li class="sq-item" style="background-color: #5a3782; width: 35%;">
+			<li class="sq-item" style="background-color: #b865b9;   width: 35%;">
 			<a class="sq-item-anchor" href="../info/infoModyAndCancle.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image8.png" width="120" height="120" style="margin: 90px; margin-left: 110px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 29px;">&nbsp;&nbsp;&nbsp;예매변경/취소 안내</span>
 			</a></li>
-			<li class="sq-item" style="background-color: #e07117; width: 35%;">
+			<li class="sq-item" style="background-color:#532982;   width: 35%;">
 			<a class="sq-item-anchor" href="../info/infoTax.do"> 
 				<img class="sq-item-anchor-cover" src="../images/section_image6.png" width="120" height="120" style="margin: 90px; margin-left: 120px;"> 
 				<span class="sq-item-anchor-title" style="font-size: 30px;">&nbsp;&nbsp;&nbsp;현금영수증 안내</span>

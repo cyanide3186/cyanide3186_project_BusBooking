@@ -30,8 +30,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public int busListCount(BusVO busVO) {
-		return busDAO.busListCount(busVO);
+	public int busListCount(BusVO busVO, int arrive_day, int arrive_month) {
+		return busDAO.busListCount(busVO, arrive_day, arrive_month);
 	}
 	
 	@Override

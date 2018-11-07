@@ -51,10 +51,6 @@ td{
 	border-radius: 0px 15px 15px 0px;
 }
 #info { margin-left: 180px;}
-.border{
-
-
-}
 </style>
 </head>
 <body>

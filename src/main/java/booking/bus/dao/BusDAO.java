@@ -45,8 +45,21 @@ public class BusDAO {
 	}
 
 	// 버스 목록 수 조회
-	public int busListCount(BusVO busVO) {
-		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", busVO);
+	public int busListCount(BusVO busVO, int arrive_day, int arrive_month) {
+		
+		System.out.println(busVO.getStart_tr());
+		System.out.println(busVO.getEnd_tr());
+		System.out.println(arrive_day);
+		System.out.println(arrive_month);
+		System.out.println(busVO.getArrive_time());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("start_tr", busVO.getStart_tr());
+		map.put("end_tr", busVO.getEnd_tr());
+		map.put("arrive_time", busVO.getArrive_time());
+		map.put("arrive_month", arrive_month);
+		map.put("arrive_day", arrive_day);
+		return sqlSession.selectOne("mybatis.bus-Mapper.busListCount", map);
 	}
 
 	// 버스 정보 수정

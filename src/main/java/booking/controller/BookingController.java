@@ -262,13 +262,12 @@ public class BookingController {
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
-		
 		seatVO.setBus_no(bus_no);
 		seatVO.setArrive_month(Integer.parseInt(setArrive_day));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_month));
 		
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
-
+		
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");

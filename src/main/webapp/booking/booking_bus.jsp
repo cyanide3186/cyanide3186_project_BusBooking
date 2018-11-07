@@ -251,7 +251,7 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
-											<div id="seat"><a href="../booking/booking_seatCheck.do?bus_no='${busVO.bus_no}'">${busVO.bus_seats}석/총40석</a></div>
+											<div id="seat"><a href="../booking/booking_seatCheck.do?bus_no='${busVO.bus_no}'&arrive_day='${arrive_day}'">${busVO.bus_seats}석/총40석</a></div>
 										</td>
 								</tr>
 							</c:forEach>

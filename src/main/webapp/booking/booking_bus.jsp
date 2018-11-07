@@ -236,7 +236,7 @@ button {
 								<th>출발시간</th>
 								<th>소요시간</th>
 								<th>요금</th>
-								<th>현재좌석/총좌석</th>
+								<th>빈좌석/총좌석</th>
 							</tr>
 						</thead>
 						<tbody>

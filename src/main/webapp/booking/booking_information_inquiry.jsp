@@ -730,7 +730,7 @@ ul {
 						<tr>
 							<td rowspan="8" style="background-color: #A9E2F3"><img
 								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; margin-left: 40%;">
+								style="width: 50px; height: 50px; ">
 								<h2 style="text-align: center; font-weight: bold;">운행정보조회</h2>
 								시외버스 및 일부 고속버스 운행정보 조회</td>
 							<td>출발지</td>

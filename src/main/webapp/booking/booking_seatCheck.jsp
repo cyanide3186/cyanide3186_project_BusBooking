@@ -234,20 +234,35 @@ td, th {
 }
 </style>
 <script type="text/javascript">
-	var SeatVO_List = new Array();
-	var SeatVO_ticket = new Array();
+	$(document).ready(function() {
+		var reserved_list = new Array();
 
-	
-	$(function() {
-		for (var i = 0; max = SeatVO_List.length; i++) {
-			alert(i);
+		<c:forEach items="${seat_reservation}" var="item1">
+
+		reserved_list.push("${item1}");
+
+		</c:forEach>
+
+
+
+		for (var i = 0; i < reserved_list.length; i++) {
+
+			alert(reserved_list[i]);
+			var num=reserved_list[i];
+			if(num/10==4){
+				var s_num=num%10;
+				alert(s_num);
+				$('.line4').children('img').eq(s_num).attr("src","../images/seat_disabled.png");
+				$('line4').find('img').eq(s_num).attr('src','../images/seat_disabled.png');
+			}
 		}
+
 	});
 </script>
 </head>
 <body>
-	
-	
+
+
 	<div class="wrapper">
 
 		<div>
@@ -354,142 +369,142 @@ td, th {
 								<div class="seat">
 									<img src="../images/bg_seat.gif">
 									<ul class="line1">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="1"><a href="#"> <img src="../images/seat_off.png">
 												<span>01</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="2"><a href="#"> <img src="../images/seat_off.png">
 												<span>02</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="3"><a href="#"> <img src="../images/seat_off.png">
 												<span>03</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="4"><a href="#"> <img src="../images/seat_off.png">
 												<span>04</span>
 										</a></li>
 									</ul>
 									<ul class="line2">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="5"><a href="#"> <img src="../images/seat_off.png">
 												<span>05</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="6"><a href="#"> <img src="../images/seat_off.png">
 												<span>06</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="7"><a href="#"> <img src="../images/seat_off.png">
 												<span>07</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="8"><a href="#"> <img src="../images/seat_off.png">
 												<span>08</span>
-										</a></li>
+										</a ></li>
 									</ul>
 									<ul class="line3">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="9"><a href="#"> <img src="../images/seat_off.png">
 												<span>09</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="10"><a href="#"> <img src="../images/seat_off.png">
 												<span>10</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="11"><a href="#"> <img src="../images/seat_off.png">
 												<span>11</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="12"><a href="#"> <img src="../images/seat_off.png">
 												<span>12</span>
 										</a></li>
 									</ul>
 									<ul class="line4">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="13"><a href="#"> <img src="../images/seat_off.png">
 												<span>13</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="14"><a href="#"> <img src="../images/seat_off.png">
 												<span>14</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="15"><a href="#"> <img src="../images/seat_off.png">
 												<span>15</span>
-										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										</a ></li>
+										<li class="16"><a href="#"> <img src="../images/seat_off.png">
 												<span>16</span>
 										</a></li>
 									</ul>
 									<ul class="line5">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="17"><a href="#"> <img src="../images/seat_off.png">
 												<span>17</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="18"><a href="#"> <img src="../images/seat_off.png">
 												<span>18</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="19"><a href="#"> <img src="../images/seat_off.png">
 												<span>19</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="20"><a href="#"> <img src="../images/seat_off.png">
 												<span>20</span>
 										</a></li>
 									</ul>
 									<ul class="line6">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="21"><a href="#"> <img src="../images/seat_off.png">
 												<span>21</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="22"><a href="#"> <img src="../images/seat_off.png">
 												<span>22</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="23"><a href="#"> <img src="../images/seat_off.png">
 												<span>23</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="24"><a href="#"> <img src="../images/seat_off.png">
 												<span>24</span>
 										</a></li>
 									</ul>
 									<ul class="line7">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="25"><a href="#"> <img src="../images/seat_off.png">
 												<span>25</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="26"><a href="#"> <img src="../images/seat_off.png">
 												<span>26</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="27"><a href="#"> <img src="../images/seat_off.png">
 												<span>27</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="28"><a href="#"> <img src="../images/seat_off.png">
 												<span>28</span>
 										</a></li>
 									</ul>
 									<ul class="line8">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="29"><a href="#"> <img src="../images/seat_off.png">
 												<span>29</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="30"><a href="#"> <img src="../images/seat_off.png">
 												<span>30</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="31"><a href="#"> <img src="../images/seat_off.png">
 												<span>31</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="32"><a href="#"> <img src="../images/seat_off.png">
 												<span>32</span>
 										</a></li>
 									</ul>
 									<ul class="line9">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="33"><a href="#"> <img src="../images/seat_off.png">
 												<span>33</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="34"><a href="#"> <img src="../images/seat_off.png">
 												<span>34</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="35"><a href="#"> <img src="../images/seat_off.png">
 												<span>35</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="36"><a href="#"> <img src="../images/seat_off.png">
 												<span>36</span>
 										</a></li>
 									</ul>
 									<ul class="line10">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="37"><a href="#"> <img src="../images/seat_off.png">
 												<span>37</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="38"><a href="#"> <img src="../images/seat_off.png">
 												<span>38</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="39"><a href="#"> <img src="../images/seat_off.png">
 												<span>39</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="40"><a href="#"> <img src="../images/seat_off.png">
 												<span>40</span>
 										</a></li>
 									</ul>
@@ -529,13 +544,7 @@ td, th {
 				</div>
 
 			</form>
-	<c:forEach items="${seatList}" var="SeatVO" varStatus="status">
-		<c:if test="${SeatVO.ticket_no ne ''}">
-		${SeatVO.ticket_no}
-		${SeatVO.bus_seat}
-		</c:if>
-	
-	</c:forEach>
+
 
 
 

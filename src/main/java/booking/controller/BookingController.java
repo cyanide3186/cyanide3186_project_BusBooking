@@ -272,11 +272,19 @@ public class BookingController {
 		System.out.println(seatVO.getArrive_month());
 		System.out.println(seatVO.getArrive_day());*/
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
-		System.out.println("seatList :"+ seatList.size());
+		
+		ArrayList<Integer> seat_reservation = new ArrayList<>();
 		for(int i=0 ;i<seatList.size();i++) {
 			
-			System.out.println("seatList :"+ seatList.get(i).getBus_seat());	
+			if(seatList.get(i).getTicket_no()!=null) {
+				System.out.println("seatList :"+seatList.get(i).getTicket_no());	
+				System.out.println("seatList :"+seatList.get(i).getBus_seat());	
+				seat_reservation.add(seatList.get(i).getBus_seat());
+				
+			}
 		}
+		
+		modelAndView.addObject("seat_reservation", seat_reservation);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("bus_vo", vo);

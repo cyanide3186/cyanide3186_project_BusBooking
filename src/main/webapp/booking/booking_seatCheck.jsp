@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +26,7 @@
 </head>
 
 
-<script type="text/javascript">
-	$(function() {
 
-	});
-</script>
 <style type="text/css">
 p {
 	padding: 3rem;
@@ -52,32 +49,39 @@ li {
 	list-style: none;
 }
 
-.level>li {
+.level li {
+	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
+	line-height: 50px;
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	vertical-align: middle;
 	background-color: #0489B1;
-	line-height: 1.2;
-	list-style: none;
-	line-height: 1.2;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 3px solid yellow;
+	border: 1px solid white;
 	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
+	border: 3px solid yellow;
 }
 
 table {
@@ -100,6 +104,28 @@ div#page_button button {
 	height: 100%;
 }
 
+td, th {
+	text-align: center;
+}
+
+.road .box {
+	float: left;
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: orange;
+}
+
+.road li {
+	float: left;
+	font-size: 2em;
+}
+
 #menu1 {
 	float: left;
 	width: 350px;
@@ -115,7 +141,7 @@ div#page_button button {
 }
 #menu3 {
 	margin-top: 670px;
-	clear:both;
+	clear: both;
 	width: 340px;
 }
 
@@ -135,7 +161,11 @@ div#page_button button {
 	width: 340px;
 }
 
-
+.level {
+	display: inline-block;
+	height: 100px;
+	vertical-align: middle;
+}
 
 .seat ul span {
 	position: relative;
@@ -148,57 +178,76 @@ div#page_button button {
 	left: 960px;
 	top: 650px;
 }
+
 .seat .line2 {
 	position: absolute;
 	left: 960px;
 	top: 720px;
 }
+
 .seat .line3 {
 	position: absolute;
 	left: 960px;
 	top: 790px;
 }
+
 .seat .line4 {
 	position: absolute;
 	left: 960px;
 	top: 860px;
 }
+
 .seat .line5 {
 	position: absolute;
 	left: 960px;
 	top: 930px;
 }
+
 .seat .line6 {
 	position: absolute;
 	left: 960px;
 	top: 1000px;
 }
+
 .seat .line7 {
 	position: absolute;
 	left: 960px;
 	top: 1070px;
 }
+
 .seat .line8 {
 	position: absolute;
 	left: 960px;
 	top: 1140px;
 }
+
 .seat .line9 {
 	position: absolute;
 	left: 960px;
 	top: 1210px;
 }
+
 .seat .line10 {
 	position: absolute;
 	left: 960px;
 	top: 1280px;
 }
-
-
 </style>
+<script type="text/javascript">
+	var SeatVO_List = new Array();
+	var SeatVO_ticket = new Array();
+
+	
+	$(function() {
+		for (var i = 0; max = SeatVO_List.length; i++) {
+			alert(i);
+		}
+	});
+</script>
 </head>
 <body>
-
+	
+	
 	<div class="wrapper">
 
 		<div>
@@ -208,7 +257,7 @@ div#page_button button {
 					<ul class="level">
 						<li>1.기초정보 입력</li>
 						<li>2.배차 조회</li>
-						<li id="mainli">3.매수 및 좌석 선택</li>
+						<li id="mainli">매수 및 좌석선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
@@ -228,8 +277,19 @@ div#page_button button {
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1px solid black">
 							<tr>
-								<td width="500px" height="100px">가는편</td>
-								<td width="500px">가는날짜</td>
+								<td width="500px" height="50px">
+									<ul class="road">
+										<li class=box>출발지</li>
+										<li>${bus_vo.start_tr}</li>
+										<li><img src="../images/point.png" height="30px"
+											width="100px"></li>
+										<li class=box>도착지</li>
+										<li>${bus_vo.end_tr}</li>
+									</ul>
+								</td>
+								<td width="500px"><ul>
+										<li>출발날짜</li>
+									</ul>${arrive_day}</td>
 							</tr>
 						</table>
 					</div>
@@ -435,29 +495,33 @@ div#page_button button {
 									</ul>
 								</div></li>
 							<li id="menu3">
-								<table border="1px" style="width: 400px;height: 500px;">
-								
+								<table border="1px" style="width: 400px; height: 500px;">
+
 									<tbody>
 										<tr>
 											<th colspan="2"><span>선택 매수 및 금액</span></th>
 										</tr>
 										<tr>
 											<th rowspan="3">가는편</th>
-											<td>어른 <span class="adult"></span>명</td>
+											<td>어른 <span class="adult"></span>명
+											</td>
 										</tr>
 										<tr>
 
-											<td>청소년 <span class="teen"></span>명</td>
+											<td>청소년 <span class="teen"></span>명
+											</td>
 										</tr>
 										<tr>
-											<td>어린이 <span class="kids"></span>명</td>
+											<td>어린이 <span class="kids"></span>명
+											</td>
 										</tr>
 										<tr>
 											<th>합계</th>
 											<td><span class="total"></span>명</td>
 										</tr>
 									</tbody>
-								</table></li>
+								</table>
+							</li>
 						</ul>
 
 					</div>
@@ -465,7 +529,13 @@ div#page_button button {
 				</div>
 
 			</form>
-
+	<c:forEach items="${seatList}" var="SeatVO" varStatus="status">
+		<c:if test="${SeatVO.ticket_no ne ''}">
+		${SeatVO.ticket_no}
+		${SeatVO.bus_seat}
+		</c:if>
+	
+	</c:forEach>
 
 
 

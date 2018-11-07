@@ -259,17 +259,27 @@ public class BookingController {
 		SeatVO seatVO = new SeatVO();
 		
 		String bus_no = request.getParameter("bus_no");
+		System.out.println("bus_no"+bus_no);
+		BusVO vo = bookingService.getBusInfo(bus_no);
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		seatVO.setBus_no(bus_no);
-		seatVO.setArrive_month(Integer.parseInt(setArrive_day));
-		seatVO.setArrive_day(Integer.parseInt(setArrive_month));
+		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
+		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
+		/*System.out.println(seatVO.getBus_no());
+		System.out.println(seatVO.getArrive_month());
+		System.out.println(seatVO.getArrive_day());*/
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
-		
+		System.out.println("seatList :"+ seatList.size());
+		for(int i=0 ;i<seatList.size();i++) {
+			
+			System.out.println("seatList :"+ seatList.get(i).getBus_seat());	
+		}
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
+		modelAndView.addObject("bus_vo", vo);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		

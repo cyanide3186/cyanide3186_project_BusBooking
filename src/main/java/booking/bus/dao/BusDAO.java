@@ -78,4 +78,8 @@ public class BusDAO {
 		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
 
 	}
+	//버스 하나 정보 검색 
+	public BusVO getBusInfo(String bus_no) {
+		return sqlSession.selectOne("mybatis.bus-Mapper.getBusInfo",bus_no);
+	}
 }

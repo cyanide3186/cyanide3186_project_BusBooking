@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[
 			select * from (
 							select rownum rn, tt.* from
-                   									 (select distinct (select count(*) from bus, seat where seat.bus_no = bus.bus_no and ticket_no is null and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as bus_seats, b.*, s.arrive_month, s.arrive_day 
+                   									 (select distinct (select count(*) from seat where seat.bus_no = b.bus_no and ticket_no is null and arrive_day = #{arrive_day} and arrive_month = #{arrive_month}) as bus_seats, b.*, s.arrive_month, s.arrive_day 
 	                      								 	from bus b, seat s 
 	                      							  where b.bus_no = s.bus_no
 	                        						  and start_tr = #{start_tr} and end_tr = #{end_tr}

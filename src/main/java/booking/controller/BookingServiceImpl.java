@@ -55,8 +55,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<SeatVO> getSeatList(String bus_no) {
-		return seatDAO.getSeatList(bus_no);
+	public List<SeatVO> getSeatList(SeatVO seatVO) {
+		return seatDAO.getSeatList(seatVO);
 	}
 	
 	@Override

@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              		       )
                			  tt)
 			where rn >= #{start_num} and rn <= #{end_num}
+			order by arrive_time asc
 		]]>
 	</select>
 

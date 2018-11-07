@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import booking.bus.bean.BusVO;
 import booking.bus.bean.SeatVO;
+import booking.bus.dao.BusDAO;
 import booking.ticket.bean.TicketVO;
 import info.terminal.bean.TerminalVO;
 
@@ -27,8 +28,10 @@ public class BookingController {
 
 	@Autowired
 	BookingService bookingService;
+	
 	String[] arrivalTime_array;
-
+	StringUtils utils = new StringUtils();
+	
 	@RequestMapping(value = "/booking/booking_modifyForm.do")
 	public ModelAndView booking_modifyForm(ModelAndView modelAndView) {
 
@@ -195,11 +198,11 @@ public class BookingController {
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
-		String arrive_day = request.getParameter("arrive_day");
+		String arrive_day = utils.substringAfterLast(request.getParameter("arrive_day"), "-");
+		String arrive_month = utils.substringBetween(request.getParameter("arrive_day"), "-", "-");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
-		
 		int pg = 1;
 		String param_pg = request.getParameter("pg");
 		if (param_pg != null)
@@ -212,6 +215,7 @@ public class BookingController {
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
 		busVO.setArrive_day(Integer.parseInt(arrive_day));
+		busVO.setArrive_month(Integer.parseInt(arrive_month));
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
 
@@ -220,7 +224,6 @@ public class BookingController {
 		int startPage = endPage-9;
 		if (endPage > totalPage)
 			endPage = totalPage;
-
 		List<BusVO> list = bookingService.busCheck(busVO, start_num, end_num); // 배차조회 결과 목록
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
@@ -451,7 +454,6 @@ public class BookingController {
 	@SuppressWarnings("static-access")
 	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
 
-		StringUtils utils = new StringUtils();
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
@@ -623,7 +625,7 @@ public class BookingController {
 			}
 		}
 	}
-	   @Scheduled(fixedDelay = 1000)
+	   //@Scheduled(fixedDelay = 1000)
 	   public void seatReset() {
 	      Calendar now = Calendar.getInstance(); // 현재시간 구하기
 	      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)

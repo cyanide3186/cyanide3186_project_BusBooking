@@ -73,7 +73,7 @@
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
-								var date = year + month + day;
+								var date = year + "-" + month + "-" + day;
 								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);

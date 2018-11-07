@@ -27,7 +27,7 @@ public interface BookingService {
 	
 	// SeatDAO
 	SeatVO seatCheck(String ticket_no); 		// 좌석 조회
-	List<SeatVO> getSeatList(String bus_no); 	// 버스 좌석 목록 조회
+	List<SeatVO> getSeatList(SeatVO seatVO); 	// 버스 좌석 목록 조회
 	int seatModify(String ticket_no); 			// 좌석 수정
 	int seatCancle(String ticket_no);  			// 좌석 예약취소
 	void seatReset(SeatVO seatVO);				// 좌석 초기화

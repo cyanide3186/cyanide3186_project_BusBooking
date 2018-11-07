@@ -67,13 +67,13 @@
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
-								var date = year + month +  day;
+								var date = year + "-" + month + "-" +  day;
 								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
-								var date = year + month + day;
+								var date = year + "-" + month + "-" + day;
 								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
@@ -882,7 +882,7 @@ input {
 						<tr>
 
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="">조회</button>
+									class="ui teal basic button" type="submit" >조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 

@@ -18,8 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 버스 좌석 목록 조회 -->
-	<select id="getSeatList" parameterType="String" resultType="seatVO">
-		select * from seat where bus_no = #{bus_no}
+	<select id="getSeatList" parameterType="seatVO" resultType="seatVO">
+		select * from seat 
+		where bus_no = #{bus_no} 
+			and arrive_month = #{arrive_month} 
+			and arrive_day = #{arrive_day}
 	</select>
 	
 	<!-- 좌석 예약 상태로 변경 -->

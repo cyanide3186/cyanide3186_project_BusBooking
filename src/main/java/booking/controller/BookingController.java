@@ -189,6 +189,7 @@ public class BookingController {
 	}
 
 	// 버스 배차조회
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/booking/booking_bus.do")
 	public ModelAndView booking_bus(HttpServletRequest request, ModelAndView modelAndView) {
 
@@ -198,8 +199,9 @@ public class BookingController {
 		String start_tr = request.getParameter("start_tr");
 		String end_tr = request.getParameter("end_tr");
 		String arrive_time = request.getParameter("arrive_time");
-		String arrive_day = utils.substringAfterLast(request.getParameter("arrive_day"), "-");
-		String arrive_month = utils.substringBetween(request.getParameter("arrive_day"), "-", "-");
+		String arrive_day = request.getParameter("arrive_day");
+		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
+		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
@@ -214,8 +216,8 @@ public class BookingController {
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
-		busVO.setArrive_day(Integer.parseInt(arrive_day));
-		busVO.setArrive_month(Integer.parseInt(arrive_month));
+		busVO.setArrive_day(Integer.parseInt(setArrive_day));
+		busVO.setArrive_month(Integer.parseInt(setArrive_month));
 		
 		int busListCount = bookingService.busListCount(busVO); // 배차조회 목록 수 
 
@@ -251,18 +253,28 @@ public class BookingController {
 	}
 
 	// 예약하기 - 좌석 선택 화면
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/booking/booking_seatCheck.do")
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-
+		SeatVO seatVO = new SeatVO();
+		
 		String bus_no = request.getParameter("bus_no");
+		String arrive_day = request.getParameter("arrive_day");
+		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
+		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
+		
+		seatVO.setBus_no(bus_no);
+		seatVO.setArrive_month(Integer.parseInt(setArrive_day));
+		seatVO.setArrive_day(Integer.parseInt(setArrive_month));
+		
+		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 
-		List<SeatVO> seatList = bookingService.getSeatList(bus_no);
-
+		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
-
+		
 		return modelAndView;
 	}
 

@@ -228,7 +228,7 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
-											${busVO.bus_seats}석/총40석
+											${busVO.seats}석/총40석
 										</button></td>
 								</tr>
 							</c:forEach>

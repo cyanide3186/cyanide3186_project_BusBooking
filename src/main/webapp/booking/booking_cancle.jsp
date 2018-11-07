@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,52 +28,26 @@
 
 
 <script type="text/javascript">
-	
-
+$(document).ready(function(){
+		var count = '<c:out value ="${count}"/>';
+		
+		if(count==1){
+			$("#success").css('display', 'inline')
+		}else{
+			$("#fail").css('display', 'inline')
+		}
+});
 </script>
 <style type="text/css">
+#success{
+	display: none;
+}
+#fail{
+	display: none;
+}
 p {
 	padding: 3rem;
 	text-align: left;
-}
-
-.start_bus {
-	display: none;
-	background-color: #01A9DB;
-	width: 500px;
-	height: 500px;
-	position: fixed;
-	top: 20%;
-	left: 40%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid white;
-}
-
-.end_bus {
-	display: none;
-	background-color: #01A9DB;
-	width: 500px;
-	height: 500px;
-	position: fixed;
-	top: 20%;
-	left: 40%;
-	z-index: 2;
-	border-radius: 20px;
-	border: 5px solid white;
-}
-
-#glayLayer {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: black;
-	filter: alpha(opacity = 60);
-	opacity: 0.60;
-	z-index: 1;
 }
 
 header {
@@ -86,17 +61,7 @@ header {
 	vertical-align: middle;
 }
 
-#mainli {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
-	border: 3px solid yellow;
-	border-radius: 20px;
-	background-color: #0489B1;
-}
+
 
 #booking_table {
 	margin-top: 50px;
@@ -115,13 +80,7 @@ input {
 	width: 25%;
 }
 
-#result_terminal td {
-	width: 30%;
-}
 
-#result_terminal_end td {
-	width: 30%;
-}
 
 ul {
 	margin: 0 0;
@@ -145,6 +104,11 @@ table {
 	border-spacing: 20px;
 	border-color: grey;
 	display: table;
+	margin: auto;
+	
+}
+#ticket_contents>td{
+	vertical-align: middle;
 }
 </style>
 </head>
@@ -158,7 +122,7 @@ table {
 		<div>
 			<div class="column">
 				<header>
-					<h1>예매 조회/변경/취소</h1>
+					<h1>예매 취소</h1>
 
 					<hr>
 				</header>
@@ -171,35 +135,29 @@ table {
 
 
 		<div>
-			<form role="form" action="../booking/booking_check.do" method="post"
+			<form role="form" action="../booking/booking_cancle.do" method="post"
 				name="bus_input">
-				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
+				<input type="hidden" name="ticket_no" value="${ticket_no}">
+				<input type="hidden" id="count" name="count" value="${count}">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">티켓번호로 조회</div>
+						<div class="active item">예매 취소</div>
 
 					</div>
 					<table class="ui single line table">
 						<thead>
 							<tr>
-								<th>티켓 번호 입력</th>
-								
+								<td><img src="../images/Remove_ticket.png" width="200px" height="200px"></td>
+								<th id="success">예매가 취소 되었습니다 </th>
+								<th id="fail">예매 취소 실패 (다시 시도해주세요)</th>
 							</tr>
 						</thead>
 						<tbody>
 							
-							<tr>
-								<td><input type="text" name="ticket_no"></td>
-								
-							</tr>
-								<tr>
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="submit">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
-						</tr>
 							
 						</tbody>
 					</table>
+								
 					
 					
 

@@ -27,15 +27,11 @@
 
 
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						var formObj = $("form");//form태그를 객체 선언
+	$(document).ready(function() {
+		var formObj = $("form");//form태그를 객체 선언
 
 						//출발지 선택의 검색 기능 
-						$("#start_text")
-								.keyup(
-										function() {
+						$("#start_text").keyup(function() {
 											var k = $(this).val();
 											$("#result_terminal > tr").hide();
 											var temp = $("#result_terminal > tr > td:contains('"

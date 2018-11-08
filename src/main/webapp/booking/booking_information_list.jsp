@@ -60,7 +60,22 @@ li {
 .level li {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
+	float: left;
+	margin-right: 1rem;
+	line-height: 50px;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: yellow;
+	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	width: 120px;
+}
+
+#mainli {
+	list-style: none;
+	margin: 0 0;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
@@ -69,27 +84,22 @@ li {
 	padding: 1px 2px;
 	color: white;
 	background-color: #0489B1;
-}
-
-#mainli {
-	list-style: none;
-	margin: 0 0;
-	font-size: 1.5rem;
-	float: left;
-	margin-right: 1rem;
-	line-height: 50px;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
 	border: 3px solid yellow;
-	border-radius: 20px;
-	background-color: #0489B1;
 }
 
 table {
 	margin-top: 40px;
-	background-color:
+		border-radius: 20px;
 }
 
 h1 {
 	border-bottom: 2px solid #01A9DB;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 .road .box {
@@ -153,8 +163,12 @@ button {
 	border-radius: 20px;
 	padding: 0 0;
 	color: white;
-	background-color: orange;
+	background-color: #FFD2D2;
 	width: 120px;
+	color: black;
+}
+.ui.menu[class*="top attached"]:first-child {
+  margin-top:3em;
 }
 </style>
 </head>
@@ -165,7 +179,14 @@ button {
 		<div>
 			<div class="column">
 				<header>
-					<h1>노선 운행정보</h1>
+					<h1>승차권 예매</h1>
+					<ul class="level">
+						<li>1.기초정보 입력</li>
+						<li id="mainli">2.배차 조회</li>
+						<li>3.매수 및 좌석 선택</li>
+						<li>4.카드 정보 입력</li>
+					</ul>
+					<hr >
 				</header>
 			</div>
 
@@ -173,13 +194,16 @@ button {
 		<div>
 
 			<form action="../booking/booking_seatCheck.do" method="post"
-				name="bus_booking">
-				<input type="hidden" value="${start_tr}"> <input
-					type="hidden" value="${end_tr}"> <input type="hidden"
-					value="${adult}"> <input type="hidden" value="${teen}">
-				<input type="hidden" value="${kid}"> <input type="hidden"
-					value="${arrive_time}"> <input type="hidden"
-					value="${arrive_day}">
+				id="actionForm" role="form">
+				<input type="hidden" >
+				<input type="hidden" value="${start_tr}"> 
+				<input type="hidden" name="end_tr" value="${end_tr}"> 
+				<input type="hidden" name="adult"value="${adult}"> 
+				<input type="hidden" name="teen" value="${teen}">
+				<input type="hidden" name="kid" value="${kid}"> 
+				<input type="hidden" name="arrive_time" value="${arrive_time}">
+				<input type="hidden" name="arrive_day" value="${arrive_day}">
+				<input type="hidden" name="bus_no" value="">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">가는 편</div>
@@ -195,7 +219,7 @@ button {
 										<li><img src="../images/point.png" height="30px"
 											width="100px"></li>
 										<li class=box>도착지</li>
-										<li>${ end_tr}</li>
+										<li>${end_tr}</li>
 									</ul>
 								</td>
 								<td width="500px"><ul>
@@ -214,7 +238,7 @@ button {
 								<th>출발시간</th>
 								<th>소요시간</th>
 								<th>요금</th>
-								<th>현재좌석/총좌석</th>
+								<th>빈좌석/총좌석</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -228,9 +252,8 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
-										<button>
-											${busVO.seats}석/총40석
-										</button></td>
+											<div>${busVO.bus_seats}석/총40석</div>
+										</td>
 								</tr>
 							</c:forEach>
 
@@ -238,7 +261,6 @@ button {
 					</table>
 
 				</div>
-				<input type="hidden" name="is_bus_info" value="booking_infomation_list">
 			</form>
 
 
@@ -248,36 +270,36 @@ button {
 
 						<tr>
 							<td width="200px" align="center"><c:if
-									test="${startPage >endPage}">
+									test="${startPage > 3 }">
 									<button class="ui teal basic button"
-										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }'">이전시간</button>
+										onclick="location.href='../booking/booking_bus.do?pg=${startPage-1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">이전시간</button>
 								</c:if></td>
 							<td width="50%"><c:forEach var="i" begin="${startPage}"
-									end="${endPage-1}" step="1">
+									end="${endPage}" step="1">
 									<c:if test="${pg == i}">
 										[<a id="currentPaging"
-											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }">${i}</a>]
+											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${i}</a>]
 									</c:if>
 									<c:if test="${pg != i}">
 										[<a id="paging"
-											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }">${i}</a>]
+											href="../booking/booking_bus.do?pg=${i}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}">${i}</a>]
 									</c:if>
 								</c:forEach></td>
 							<td width="200px" align="center"><c:if
 									test="${endPage < totalPage}">
 									<button class="ui teal basic button"
-										onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&is_bus_info=${booking_infomation_list }'">다음시간</button>
-								</c:if></td>	
+										onclick="location.href='../booking/booking_bus.do?pg=${endPage + 1}&start_tr=${start_tr}&end_tr=${end_tr}&arrive_time=${arrive_time}&arrive_day=${arrive_day}&adult=${adult}&teen=${teen}&kid=${kid}'">다음시간</button>
+								</c:if></td>
 
 						</tr>
 					</table>
 
-
+					<hr id="footline">
 				</div>
 
 			</div>
 		</div>
-
+	
 	</div>
 </body>
 </html>

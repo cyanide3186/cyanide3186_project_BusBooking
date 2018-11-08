@@ -169,7 +169,7 @@ td, th {
 
 .seat ul span {
 	position: relative;
-	right: 45px;
+	right: 43px;
 	top: -10px;
 }
 
@@ -236,25 +236,93 @@ td, th {
 <script type="text/javascript">
 	$(document).ready(function() {
 		var reserved_list = new Array();
-
+			
 		<c:forEach items="${seat_reservation}" var="item1">
-
+		
 		reserved_list.push("${item1}");
-
+		
 		</c:forEach>
 
 
 
 		for (var i = 0; i < reserved_list.length; i++) {
-
-			alert(reserved_list[i]);
-			var num=reserved_list[i];
-			if(num/10==4){
-				var s_num=num%10;
-				alert(s_num);
-				$('.line4').children('img').eq(s_num).attr("src","../images/seat_disabled.png");
-				$('.line4').find('img').eq(s_num).attr('src','../images/seat_disabled.png');
+			var span = $('<span>____</span>');
+			var num1=reserved_list[i]/4.0;
+			/* 라인을 구함 */
+			var line=Math.ceil(num1);
+			/* 자리를 구함 */
+			var seat;
+			if(reserved_list[i]%4===0){
+				seat=reserved_list[i]%4+3;
+				
+			}else{
+				seat=reserved_list[i]%4-1;
 			}
+			switch (line) {
+			case 1:
+				$('.line1').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line1').find('span').eq(seat).remove();
+				$('.line1').find('img').eq(seat).after(span);
+				$('.line1').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 2:
+				$('.line2').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line2').find('span').eq(seat).remove();
+				$('.line2').find('img').eq(seat).after(span);
+				$('.line2').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 3:
+				$('.line3').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line3').find('span').eq(seat).remove();
+				$('.line3').find('img').eq(seat).after(span);
+				$('.line3').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 4:
+				$('.line4').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line4').find('span').eq(seat).remove();
+				$('.line4').find('img').eq(seat).after(span);
+				$('.line4').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 5:
+				$('.line5').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line5').find('span').eq(seat).remove();
+				$('.line5').find('img').eq(seat).after(span);
+				$('.line5').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 6:
+				$('.line6').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line6').find('span').eq(seat).remove();
+				$('.line6').find('img').eq(seat).after(span);
+				$('.line6').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 7:
+				$('.line7').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line7').find('span').eq(seat).remove();
+				$('.line7').find('img').eq(seat).after(span);
+				$('.line7').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 8:
+				$('.line8').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line8').find('span').eq(seat).remove();
+				$('.line8').find('img').eq(seat).after(span);
+				$('.line8').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 9:
+				$('.line9').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line9').find('span').eq(seat).remove();
+				$('.line9').find('img').eq(seat).after(span);
+				$('.line9').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 10:
+				$('.line10').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line10').find('span').eq(seat).remove();
+				$('.line10').find('img').eq(seat).after(span);
+				$('.line10').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+
+			}
+			
+			seat=0;
 		}
 
 	});

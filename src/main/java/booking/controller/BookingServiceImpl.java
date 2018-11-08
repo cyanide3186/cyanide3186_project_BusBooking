@@ -154,4 +154,9 @@ public class BookingServiceImpl implements BookingService {
 		return busDAO.getBusInfo(bus_no);
 	}
 
+	@Override
+	public int seatBooking(SeatVO seatVO) {
+		return seatDAO.seatBooking(seatVO);
+	}
+
 }

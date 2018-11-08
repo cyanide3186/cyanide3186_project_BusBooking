@@ -32,7 +32,7 @@
 			alertify.alert("유효기간을 입력해주세요");
 		} else if(document.bus_card.password.value == "") {
 			alertify.alert("카드 비밀번호를 입력해주세요");
-		} else if(document.bus_card.hp1.value == "" || document.bus_card.hp2.value == "") {
+		} else if(document.bus_card.hp2.value == "" || document.bus_card.hp3.value == "") {
 			alertify.alert("휴대폰 번호를 입력해주세요");
 		} else {
 			alertify.alert("예매가 완료되었습니다.");
@@ -144,15 +144,15 @@ h1 {
 								<td width="500px" height="50px">
 									<ul class="road">
 										<li class=box>출발지</li>
-										<li>${bus_vo.start_tr}</li>
+										<li>${start_tr}</li>
 										<li><img src="../images/point.png" height="30px"
 											width="100px"></li>
 										<li class=box>도착지</li>
-										<li>${bus_vo.end_tr}</li>
+										<li>${end_tr}</li>
 									</ul>
 								</td>
 								<td width="500px" align="center"><ul>
-										<li>${arrive_day}</li>
+										<li>${Seat_VO.arrive_day}</li>
 									</ul></td>
 							</tr>
 							<tr>
@@ -163,12 +163,24 @@ h1 {
 									</td>
 							</tr>
 							<tr>
-								<td width="500px" height="50px" align="center"><ul>
-									<li></li>
-									</ul></td>
-								<td width="500px" align="center"><ul>
-									<li></li>
-									</ul></td>
+								<td width="500px" height="50px" align="center">
+									<c:if test="${adult!=0}">
+										어른 ${adult}명&nbsp;
+									</c:if>
+									<c:if test="${teen!=0}">
+										청소년 ${teen}명&nbsp;
+									</c:if>
+									<c:if test="${kid!=0}">
+										어린이 ${kid}명&nbsp;
+									</c:if>
+								</td>	
+								<td width="500px" align="center">
+								<c:forEach var="Seat_VO" items="${list}">
+								<tr align="center">
+									<td>좌석 ${Seat_VO.bus_seat}</td>
+								</tr>
+								</c:forEach>
+								</td>	
 							</tr>
 						</table>
 							<br>
@@ -177,7 +189,7 @@ h1 {
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
 								<td width="500px" align="center">
-									</td>
+									${totalPay}원</td>
 							</tr>
 							</table>
 							<br>
@@ -248,7 +260,7 @@ h1 {
 								휴대폰 번호
 							</td>
 							<td width="700px" align="left" class="card2">
-									<select name="selectcard" style="width: 60px;">
+									<select name="selectcard" style="width: 60px;" name="hp1">
 									<option value="010" selected>010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -257,9 +269,9 @@ h1 {
 									<option value="019">019</option>
 								</select>
 								-
-								<input type="text" size="4" name="hp1" maxlength="4">
-								-
 								<input type="text" size="4" name="hp2" maxlength="4">
+								-
+								<input type="text" size="4" name="hp3" maxlength="4">
 							</td>
 						</tr>
 						<tr>

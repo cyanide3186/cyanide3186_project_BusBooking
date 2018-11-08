@@ -24,6 +24,22 @@
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
 <script src="/Project_BusBooking/js/alertify.min.js"></script>
+<script type="text/javascript">
+	function check() {
+		if(document.bus_card.card_1.value == ""||document.bus_card.card_2.value == ""||document.bus_card.card_3.value == ""||document.bus_card.card_4.value == "") {
+			alertify.alert("카드번호를 입력해주세요");
+		} else if(document.bus_card.month.value == ""||document.bus_card.year.value == "") {
+			alertify.alert("유효기간을 입력해주세요");
+		} else if(document.bus_card.password.value == "") {
+			alertify.alert("카드 비밀번호를 입력해주세요");
+		} else if(document.bus_card.hp1.value == "" || document.bus_card.hp2.value == "") {
+			alertify.alert("휴대폰 번호를 입력해주세요");
+		} else {
+			alertify.alert("예매가 완료되었습니다.");
+			document.bus_card.submit();
+		}
+	}
+</script>
 <style type="text/css">
 p {
 	font-weight: bolder;
@@ -116,7 +132,7 @@ h1 {
 
 		</div>
 		<div>
-			<form action="../booking/booking_result.do" method="post"
+			<form action="../booking/booking_bus.do" method="post"
 				name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
@@ -140,7 +156,7 @@ h1 {
 									</ul></td>
 							</tr>
 							<tr>
-								<td width="500px" height="50px" align="center">
+								<td width="500px" height="50px" align="center" class="card1"> 
 									출발 시간</td>
 								<td width="500px" align="center">
 									${arrive_time}
@@ -158,7 +174,7 @@ h1 {
 							<br>
 							<table border="1px solid black">
 								<tr>
-								<td width="500px" height="50px" align="center">
+								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
 								<td width="500px" align="center">
 									</td>
@@ -206,25 +222,25 @@ h1 {
 						<td width="300px" height="50px" align="center" class="card1">
 								카드번호</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="8"> -
-								<input type="text" size="8"> -
-								<input type="text" size="8"> -
-								<input type="text" size="8">
+								<input type="text" size="5" name="card_1" maxlength="4"> -
+								<input type="text" size="5" name="card_2" maxlength="4"> -
+								<input type="text" size="5" name="card_3" maxlength="4"> -
+								<input type="text" size="5" name="card_4" maxlength="4">
 							</td>
 						</tr>	
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
 								유효기간</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="4"> 월
-								<input type="text" size="4"> 년
+								<input type="text" size="3" name="month"  maxlength="2"> 월
+								<input type="text" size="3" name="year"  maxlength="2"> 년
 							</td>
 						</tr>
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
 								카드비밀번호</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="4">**
+								<input type="text" size="3" name="password" maxlength="2">**
 							</td>
 						</tr>
 						<tr>
@@ -241,14 +257,14 @@ h1 {
 									<option value="019">019</option>
 								</select>
 								-
-								<input type="text" size="4">
+								<input type="text" size="4" name="hp1" maxlength="4">
 								-
-								<input type="text" size="4">
+								<input type="text" size="4" name="hp2" maxlength="4">
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" width="1000px" height="50px" align="center">
-							<button class="ui teal basic button" type="button" onclick="">예매하기</button>
+							<button class="ui teal basic button" type="button" onclick="check()">예매하기</button>
 							<button class="ui teal basic button" type="reset">다시작성</button>
 							</td>
 						</tr>

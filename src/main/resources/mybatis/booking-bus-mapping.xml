@@ -82,4 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getBus_no_List" resultType="busVO">
 		select bus_no from bus
 	</select>
+	<select id="getBusInfo" resultType="busVO">
+		select * from bus where  bus_no= #{bus_no}
+	</select>
 </mapper>

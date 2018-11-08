@@ -23,7 +23,7 @@ public interface BookingService {
 	int busListCount(BusVO busVO, int arrive_day, int arrive_month); 	// 배차 조회 목록 수
 	List<BusVO> busList(); 												// 터미널 목록 조회
 	List<BusVO> getBusList();											// seat, bus 테이블 조인 전체 조회
-	
+	BusVO getBusInfo(String bus_no);									// 단일 버스 검색
 	// SeatDAO
 	int seatCreate(SeatVO seatVO);				// 좌석 일괄 생성 기능
 	SeatVO seatCheck(String ticket_no); 		// 좌석 조회

@@ -174,6 +174,18 @@ public class BookingController {
 
 		return modelAndView;
 	}
+	
+	// 버스 카드 결제 페이지 이동
+	@RequestMapping(value = "/booking/booking_card.do")
+	public ModelAndView booking_cardForm(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main", "../booking/booking_card.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+
+		return modelAndView;
+	}
 
 	// 버스 운행정보 조회 페이지 이동
 	@RequestMapping(value = "/booking/booking_information_inquiry.do")
@@ -255,9 +267,28 @@ public class BookingController {
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		SeatVO seatVO = new SeatVO();
-		String adult = request.getParameter("adult");
-		String teen = request.getParameter("teen");
-		String kid = request.getParameter("kid");
+		int teen;
+		int adult;
+		int kid;
+		if(request.getParameter("adult")==null) {
+			adult=0;
+		}else {
+			adult = Integer.parseInt(request.getParameter("adult"));
+			
+		}
+		if(request.getParameter("teen")==null) {
+			teen=0;
+		}else {
+			
+			teen =	Integer.parseInt(request.getParameter("teen")) ;
+		}
+		if(request.getParameter("kid")==null) {
+			kid=0;
+		}else {
+			
+			kid = Integer.parseInt(request.getParameter("kid"));
+		}
+		
 		String bus_no = request.getParameter("bus_no");
 		System.out.println("bus_no"+bus_no);
 		BusVO vo = bookingService.getBusInfo(bus_no);
@@ -268,9 +299,7 @@ public class BookingController {
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
-		/*System.out.println(seatVO.getBus_no());
-		System.out.println(seatVO.getArrive_month());
-		System.out.println(seatVO.getArrive_day());*/
+	
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 		
 		ArrayList<Integer> seat_reservation = new ArrayList<>();
@@ -504,7 +533,7 @@ public class BookingController {
 		ticketVO.setArrive_day(arrive_day);
 
 		int count = bookingService.booking(ticketVO);
-
+		
 		return count;
 	}
 

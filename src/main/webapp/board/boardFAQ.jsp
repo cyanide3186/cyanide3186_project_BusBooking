@@ -16,14 +16,16 @@
 			$("div#tab1").fadeIn();
 		});
 
+/* 		$("#tab1 > a").click(function() {
+			$(this).children("div").slideToggele();
+		}); */
+		
 		$("#tab1 > a:eq(0)").click(function() {
 			$("#tab1 > div:eq(0)").slideToggle();
-			//$(this).children("div#answer").slideToggele();
 		});
 			$("#tab1 > a:eq(1)").click(function() {
 			$("#tab1 > div:eq(1)").slideToggle();
 		});	
-			
 			$("#tab1 > a:eq(2)").click(function() {
 			$("#tab1 > div:eq(2)").slideToggle();
 		});
@@ -45,8 +47,6 @@
 			$("#tab1 > a:eq(8)").click(function() {
 			$("#tab1 > div:eq(8)").slideToggle();
 		});
-
-		//});
 	});
 	$(function() {
 		$("#logo2").click(function() {
@@ -147,6 +147,7 @@ table#menu {
 	font-weight: 700;
 	cursor: pointer;
 }
+
 #logo1:hover {background-color: #FAC87D; text-decoration: none;}
 #logo2:hover {background-color: #FAC87D; text-decoration: none;}
 #logo3:hover {background-color: #FAC87D; text-decoration: none;}

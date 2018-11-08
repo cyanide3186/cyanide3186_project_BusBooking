@@ -74,13 +74,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select DISTINCT name from terminal where name is not null
 	</select>
 
-
-	<select id="getBus" resultType="busVO">
+	<!-- 좌석 초기화를 위해 모든 버스의 좌석을 조회 -->
+	<select id="getBusList" resultType="busVO">
 		select * from bus, seat where bus.bus_no = seat.bus_no
 	</select>
 	
-	<select id="getBusInfo" resultType="busVO" parameterType="String">
-		select * from bus where bus_no = #{bus_no}
+	<select id="getBus_no_List" resultType="busVO">
+		select bus_no from bus
 	</select>
-	
 </mapper>

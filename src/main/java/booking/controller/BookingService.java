@@ -25,6 +25,7 @@ public interface BookingService {
 	List<BusVO> getBusList();											// seat, bus 테이블 조인 전체 조회
 	
 	// SeatDAO
+	int seatCreate(SeatVO seatVO);				// 좌석 일괄 생성 기능
 	SeatVO seatCheck(String ticket_no); 		// 좌석 조회
 	List<SeatVO> getSeatList(SeatVO seatVO); 	// 버스 좌석 목록 조회
 	int seatModify(String ticket_no); 			// 좌석 수정
@@ -33,6 +34,7 @@ public interface BookingService {
 	void seatInsert(SeatVO seatVO);
 	void seatDelete(long expiration);
 	List<SeatVO> seatInfo(long expiration);
+	List<SeatVO> test(String bus_no);
 	
 	
 	// ?
@@ -41,7 +43,7 @@ public interface BookingService {
 	public List<TerminalVO> terminalAllList();
 
 	long maxDay(String bus_no);
-	BusVO getBusInfo(String bus_no);
+	List<BusVO> getBus_noList();
 	
 	
 

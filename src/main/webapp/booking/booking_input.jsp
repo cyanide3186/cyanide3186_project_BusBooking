@@ -59,7 +59,7 @@
 										})
 
 						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
-						$('button').on("click", function(e) {
+						$("#okbutton").on("click", function(e) {
 							e.preventDefault();
 							if(document.bus_input.start_tr.value == "") {
 								alertify.alert("출발지를 선택해주세요");
@@ -106,7 +106,7 @@
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
 				//var startterminal=$('input:radio[name="chk_terminal"]').val();
-				alert(startterminal + "을 선택하셨습니다.");
+				alertify.alert(startterminal + "을(를) 선택하셨습니다.");
 				$("#start_tr").attr({
 					placeholder : startterminal,
 					value : startterminal,
@@ -119,7 +119,7 @@
 	/*도착터미널의 지역목록 선택후 기능  */
 	$(document).on("click", ".end_terminal", function() {
 		var endterminal = $('input:radio[name="chk_terminal"]:checked').val();
-		alert(endterminal + "을 선택하셨습니다.");
+		alertify.alert(endterminal + "을(를) 선택하셨습니다.");
 		$("#end_tr").attr({
 			placeholder : endterminal,
 			value : endterminal,
@@ -183,7 +183,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value + "을 출발지로 선택하셨습니다.");
+				alertify.alert(value + "을(를) 출발지로 선택하셨습니다.");
 				var start = value;
 				$("#start_tr").attr({
 					placeholder : start,
@@ -279,7 +279,7 @@
 								/* 지역선택에따른 jons 으로 터미널 목록 생성 */
 								var local = value;//드롭박스에서 선택한 값을 가져옴 
 								$("#result_terminal").empty();
-								alert(local);
+								alertify.alert(local);
 								//ajax실행 
 								$
 										.ajax({
@@ -290,7 +290,7 @@
 											},
 											dataType : "json",
 											success : function(data) {
-												alert("success");
+												alertify.alert("success");
 												$
 														.each(
 																data.items,
@@ -354,7 +354,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value + "을 도착지로 선택하셨습니다.");
+				alertify.alert(value + "을(를) 도착지로 선택하셨습니다.");
 				var end = value;
 				$("#end_tr").attr({
 					placeholder : end,
@@ -383,28 +383,28 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value);
+				alertify.alert("어른 " + value +"명 선택하셨습니다.");
 			}
 		});
 		$('#teen').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value);
+				alertify.alert("청소년 " + value +"명 선택하셨습니다.");
 			}
 		});
 		$('#kid').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value);
+				alertify.alert("어린이 " + value + +"명 선택하셨습니다.");
 			}
 		});
 		$('#arrive_time').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert("출발시간은" + value + "입니다");
+				alertify.alert("출발시간은 " + value.substring(0,2) +"시입니다");
 			}
 		});
 		/* 전체 터미널 목록 Json */
@@ -633,11 +633,10 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: white;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
+	color: yellow;
 	width: 120px;
 	border: 3px solid yellow;
 	
@@ -889,9 +888,8 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit">조회</button>
+							<td colspan="2" align="right">
+							<button class="ui teal basic button" type="submit" id="okbutton">조회</button>
 								<button class="ui teal basic button" type="reset">취소</button></td>
 						</tr>
 

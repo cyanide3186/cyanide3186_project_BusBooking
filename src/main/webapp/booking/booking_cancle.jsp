@@ -23,7 +23,6 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
-
 </head>
 
 

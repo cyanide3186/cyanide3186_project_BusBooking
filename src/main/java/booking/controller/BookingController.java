@@ -174,6 +174,18 @@ public class BookingController {
 
 		return modelAndView;
 	}
+	
+	// 버스 카드 결제 페이지 이동
+	@RequestMapping(value = "/booking/booking_card.do")
+	public ModelAndView booking_cardForm(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main", "../booking/booking_card.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+
+		return modelAndView;
+	}
 
 	// 버스 운행정보 조회 페이지 이동
 	@RequestMapping(value = "/booking/booking_information_inquiry.do")

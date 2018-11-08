@@ -28,7 +28,13 @@
 
 <script type="text/javascript">
 	$(function() {
-
+		var actionform = $("#actionForm");
+		$("#seat a").on("click",function(e){
+			e.preventDefault();
+			
+			actionform.find("input[name='bus_no']").val($(this).attr("href"));
+			actionform.submit();
+		});
 	});
 </script>
 <style type="text/css">
@@ -195,14 +201,16 @@ button {
 		<div>
 
 			<form action="../booking/booking_seatCheck.do" method="post"
-				name="bus_booking">
+				id="actionForm" role="form">
 				<input type="hidden" >
-				<input type="hidden" value="${start_tr}"> <input
-					type="hidden" value="${end_tr}"> <input type="hidden"
-					value="${adult}"> <input type="hidden" value="${teen}">
-				<input type="hidden" value="${kid}"> <input type="hidden"
-					value="${arrive_time}"> <input type="hidden"
-					value="${arrive_day}">
+				<input type="hidden" value="${start_tr}"> 
+				<input type="hidden" name="end_tr" value="${end_tr}"> 
+				<input type="hidden" name="adult"value="${adult}"> 
+				<input type="hidden" name="kid" value="${teen}">
+				<input type="hidden" name="kid" value="${kid}"> 
+				<input type="hidden" name="arrive_time" value="${arrive_time}">
+				<input type="hidden" name="arrive_day" value="${arrive_day}">
+				<input type="hidden" name="bus_no" value="">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">가는 편</div>
@@ -218,7 +226,7 @@ button {
 										<li><img src="../images/point.png" height="30px"
 											width="100px"></li>
 										<li class=box>도착지</li>
-										<li>${end_tr}</li>
+										<li>${end_tr} + ${adult}</li>
 									</ul>
 								</td>
 								<td width="500px"><ul>
@@ -251,7 +259,7 @@ button {
 									<td>${busVO.time}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
-											<div id="seat"><a href="../booking/booking_seatCheck.do?bus_no=${busVO.bus_no}&arrive_day=${arrive_day}">${busVO.bus_seats}석/총40석</a></div>
+											<div id="seat"><a href="${busVO.bus_no}">${busVO.bus_seats}석/총40석</a></div>
 										</td>
 								</tr>
 							</c:forEach>

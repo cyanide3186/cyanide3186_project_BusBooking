@@ -326,9 +326,14 @@ td, th {
 		
 		
 		var adult = '<c:out value="${adult}"/>';
-		alert(adult);
+		var teen = '<c:out value="${teen}"/>';
+		var kid = '<c:out value="${kid}"/>';
+		var total = adult+teen+kid;
+		$('#adult').find('option').eq(adult).attr('selected','selected');
 		
 		$('#adult').find('option').eq(adult).attr('selected','selected');
+		$('#teen').find('option').eq(teen).attr('selected','selected');
+		$('#kid').find('option').eq(kid).attr('selected','selected');
 		
 		$('#adult').dropdown({
 			direction : 'down',

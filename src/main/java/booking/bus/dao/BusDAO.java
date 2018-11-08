@@ -82,7 +82,10 @@ public class BusDAO {
 	
 
 	public List<BusVO> getBusList() {
-		return sqlSession.selectList("mybatis.bus-Mapper.getBus");
-
+		return sqlSession.selectList("mybatis.bus-Mapper.getBusList");
+	}
+	
+	public List<BusVO> getBus_noList(){
+		return sqlSession.selectList("mybatis.bus-Mapper.getBus_no_List");
 	}
 }

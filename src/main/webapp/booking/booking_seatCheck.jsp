@@ -610,7 +610,6 @@ td, th {
 			/* 	$('#menu2').find('a').val($(this).attr("href")); */
 		});
 		
-		var tag;
 		var actionform = $("#actionForm");
 		$('#submit').on("click",function(e){
 			e.preventDefault();
@@ -618,12 +617,13 @@ td, th {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
+		
 
-			for(var i = 0 ; i <  count ; i++){
-
+			for(var i = 0 ; i <  40 ; i++){
+				var tag;
 			  tag = "<input type='hidden' value="+seat[i]+"  name='seat[ " + i + " ] ' />";
 					
-			  actionform.appendChild(tag);
+			  actionform.append(tag);
 
 			}
 			//예약한 총 금액

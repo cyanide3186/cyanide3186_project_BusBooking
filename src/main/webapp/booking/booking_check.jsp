@@ -71,7 +71,7 @@
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
-								var date = year + month + day;
+								var date = year + "-" + month + "-" + day;
 								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
@@ -631,27 +631,15 @@ table {
 </style>
 </head>
 <body>
-
-
-
-
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
 					<h1>예매 조회/변경/취소</h1>
-
 					<hr>
 				</header>
 			</div>
-
 		</div>
-
-
-
-
-
 		<div>
 			<form role="form" action="../booking/bookingCheck.do" method="post"
 				name="bus_input">
@@ -659,34 +647,26 @@ table {
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">휴대폰번호로 찾기</div>
-
 					</div>
 					<table class="ui single line table">
 						<thead>
 							<tr>
 								<th>휴대폰 번호 입력</th>
-								
 							</tr>
 						</thead>
 						<tbody>
-							
 							<tr>
 								<td><input type="text" name="ticket_no"></td>
-								
 							</tr>
 								<tr>
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="submit">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
+							<td colspan="2" align="right">
+								<button	class="ui teal basic button" type="submit" id="submit">조회</button>
+								<button class="ui teal basic button" type="reset">취소</button>
+							</td>
 						</tr>
-							
 						</tbody>
 					</table>
-					
-					
-
 				</div>
-
 			</form>
 			<div class="column" align="center">
 				<table cellpadding="10" id="infomation">
@@ -713,9 +693,7 @@ table {
 					<tr>
 						<td id="info_content">당일 이후 탑승 예정인 구매 내역은 모두 조회 가능합니다.</td>
 					</tr>
-
 				</table>
-
 			</div>
 
 		</div>

@@ -205,7 +205,7 @@ button {
 				<input type="hidden" value="${start_tr}"> 
 				<input type="hidden" name="end_tr" value="${end_tr}"> 
 				<input type="hidden" name="adult"value="${adult}"> 
-				<input type="hidden" name="kid" value="${teen}">
+				<input type="hidden" name="teen" value="${teen}">
 				<input type="hidden" name="kid" value="${kid}"> 
 				<input type="hidden" name="arrive_time" value="${arrive_time}">
 				<input type="hidden" name="arrive_day" value="${arrive_day}">

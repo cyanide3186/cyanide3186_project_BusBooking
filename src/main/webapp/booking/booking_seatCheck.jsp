@@ -617,6 +617,15 @@ td, th {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
+			var tag;
+
+			for(var i = 0 ; i <  count ; i++){
+
+			  tag = "<input type='hidden' value="+seat[i]+"  name='seat[ " + i + " ] ' />";
+					
+			  actionform.appendChild(tag);
+
+			}
 			//예약한 총 금액
 			actionform.find("input[name='total_payment']").val(total_payment);
 			//예약한 총좌석
@@ -625,15 +634,7 @@ td, th {
 			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
 			actionform.submit();
 		});
-		var tag;
-
-		for(var i = 0 ; i <  count ; i++){
-
-		  tag = "<input type='hidden' value="+seat[i]+"  name='data[ " + i + " ] ' />";
-
-		  document.form.appendChild(tag);
-
-		}
+		
 	});
 </script>
 </head>
@@ -641,7 +642,7 @@ td, th {
 
 
 	<div class="wrapper">
-		<form role="form"  method="post" id="actionForm" action="#">
+		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
 			<input type="hidden" name="bus_no" value="${bus_no}">
 			<input type="hidden" name="seat_no" value="">
 			<input type="hidden" name="total_payment" value="">

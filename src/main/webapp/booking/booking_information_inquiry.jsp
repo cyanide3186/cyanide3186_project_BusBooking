@@ -24,7 +24,9 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
+<script src="/Project_BusBooking/js/alertify.min.js"></script>
 </head>
 
 
@@ -91,7 +93,7 @@
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
 				//var startterminal=$('input:radio[name="chk_terminal"]').val();
-				alert(startterminal + "을 선택하셨습니다.");
+				alertify.alert(startterminal + "을 선택하셨습니다.");
 				$("#start_tr").attr({
 					placeholder : startterminal,
 					value : startterminal,
@@ -104,7 +106,7 @@
 	/*도착터미널의 지역목록 선택후 기능  */
 	$(document).on("click", ".end_terminal", function() {
 		var endterminal = $('input:radio[name="chk_terminal"]:checked').val();
-		alert(endterminal + "을 선택하셨습니다.");
+		alertify.alert(endterminal + "을 선택하셨습니다.");
 		$("#end_tr").attr({
 			placeholder : endterminal,
 			value : endterminal,

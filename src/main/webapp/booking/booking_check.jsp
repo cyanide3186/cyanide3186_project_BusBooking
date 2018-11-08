@@ -22,7 +22,9 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
+<script src="/Project_BusBooking/js/alertify.min.js"></script>
 </head>
 
 
@@ -41,7 +43,7 @@
 				
 			}else if(operation ==='cancle'){
 				if(confirm("정말 취소하시겠습니까 ?") == true){
-			        alert("취소되었습니다");
+					alertify.alert("취소되었습니다");
 			    }
 			    else{
 			        return ;

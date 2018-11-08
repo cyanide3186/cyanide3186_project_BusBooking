@@ -64,4 +64,12 @@ public class SeatDAO {
 	public int seatUpdate(SeatVO seatVO) {
 		return sqlSession.update("mybatis.seat-Mapper.seatUpdate", seatVO);
 	}
+	
+	public int seatCreate(SeatVO seatVO) {
+		return sqlSession.insert("mybatis.seat-Mapper.seatCreate", seatVO);
+	}
+	
+	public List<SeatVO> test(String bus_no) {
+		return sqlSession.selectList("mybatis.seat-Mapper.test", bus_no);
+	}
 }

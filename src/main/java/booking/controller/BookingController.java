@@ -65,7 +65,7 @@ public class BookingController {
 			}
 			json.put("items", items);
 		}
-		System.out.println(json);
+		//System.out.println(json);
 		modelAndView.addObject("json", json);
 		modelAndView.setViewName("../booking/booking_inputJson_end.jsp");
 		return modelAndView;
@@ -95,7 +95,7 @@ public class BookingController {
 			}
 			json.put("items", items);
 		}
-		System.out.println(json);
+		//System.out.println(json);
 		modelAndView.addObject("json", json);
 		modelAndView.setViewName("../booking/booking_input_regionJson.jsp");
 		return modelAndView;
@@ -127,7 +127,7 @@ public class BookingController {
 			}
 			json.put("items", items);
 		}
-		System.out.println(json);
+		//System.out.println(json);
 		modelAndView.addObject("json", json);
 		modelAndView.setViewName("../booking/booking_input_TerminalJson.jsp");
 		return modelAndView;
@@ -157,7 +157,7 @@ public class BookingController {
 			}
 			json.put("items", items);
 		}
-		System.out.println(json);
+		//System.out.println(json);
 		modelAndView.addObject("json", json);
 		modelAndView.setViewName("../booking/booking_input_TerminalSearchJson.jsp");
 		return modelAndView;
@@ -290,7 +290,7 @@ public class BookingController {
 		}
 		
 		String bus_no = request.getParameter("bus_no");
-		System.out.println("bus_no : "+bus_no);
+		//System.out.println("bus_no : "+bus_no);
 		BusVO vo = bookingService.getBusInfo(bus_no);
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
@@ -306,8 +306,8 @@ public class BookingController {
 		for(int i=0 ;i<seatList.size();i++) {
 			
 			if(seatList.get(i).getTicket_no()!=null) {
-				System.out.println("seatList :"+seatList.get(i).getTicket_no());	
-				System.out.println("seatList :"+seatList.get(i).getBus_seat());	
+				//System.out.println("seatList :"+seatList.get(i).getTicket_no());	
+				//System.out.println("seatList :"+seatList.get(i).getBus_seat());	
 				seat_reservation.add(seatList.get(i).getBus_seat());
 				
 			}

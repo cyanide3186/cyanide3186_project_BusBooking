@@ -255,7 +255,9 @@ public class BookingController {
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		SeatVO seatVO = new SeatVO();
-		
+		String adult = request.getParameter("adult");
+		String teen = request.getParameter("teen");
+		String kid = request.getParameter("kid");
 		String bus_no = request.getParameter("bus_no");
 		System.out.println("bus_no"+bus_no);
 		BusVO vo = bookingService.getBusInfo(bus_no);
@@ -281,7 +283,9 @@ public class BookingController {
 				
 			}
 		}
-		
+		modelAndView.addObject("adult", adult);
+		modelAndView.addObject("teen", teen);
+		modelAndView.addObject("kid", kid);
 		modelAndView.addObject("seat_reservation", seat_reservation);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);

@@ -67,7 +67,6 @@
 			</div>
 			<div class="ui inverted section divider"></div>
 			<div class="ui horizontal inverted small divided link list">
-				<a class="item" href="../info/preparingService.do">서비스준비중 테스트</a> 
 				<a class="item" href="../info/termsNconditions.do">이용약관</a> 
 				<a class="item" href="../info/personal_info.do">개인정보 처리방침</a> 
 				<a class="item" href="../info/email_collection.do">이메일 무단수집 거부</a><br>

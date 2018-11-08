@@ -550,6 +550,13 @@
 	});
 </script>
 <style type="text/css">
+#okbutton,#resetbutton {
+	border-radius: 10px;
+	background-color: #0489B1;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
 p {
 	padding: 3rem;
 	text-align: left;
@@ -776,43 +783,46 @@ input {
 				<input type="hidden" value="" name="arrive_day" id="real_arrivedate">
 				<div class="column">
 					<table align="center" id="booking_table"  >
-						<tr >
-							<td rowspan="8" style="background-color: #A9E2F3"><img
-								alt="" src="/Project_BusBooking/assets/logo.png"
-								style="width: 50px; height: 50px; ">
-								<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
+						<tr>
+							<td rowspan="8" style="background-color: #A9E2F3; 
+							border-right: 1px solid #082658; padding: 8px;">
+							<img  src="/Project_BusBooking/assets/logo.png"
+							style="width: 50px; height: 50px; ">
+							<h2 style="text-align: center; font-weight: bold;">승차권 예매</h2>
 								예매 시스템으로 안전하고 편리하게 여행하세요.</td>
-							<td>출발지</td>
-							<td>
+							<td style="padding: 8px; font-weight: 900;">출발지</td>
+							<td style="padding: 8px; ">
 								<div class="ui input">
 									<input type="text" placeholder="출발지선택" id="start_tr"
-										name="start_tr">
+										name="start_tr" >
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td>도착지</td>
-							<td><div class="ui input">
+							<td style="padding: 8px; font-weight: 900;">도착지</td>
+							<td style="padding: 8px;"><div class="ui input">
 									<input type="text" placeholder="도착지선택" id="end_tr"
-										name="end_tr">
+										name="end_tr" >
 								</div></td>
 						</tr>
 						<tr>
-							<td>출발 일자</td>
-							<td>
+							<td style="padding: 8px; font-weight: 900;">출발 일자</td>
+							<td style="padding: 8px;">
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
-											placeholder="Date/Time" id="arrivedate" name="arrivedate">
+										<i class="calendar icon"></i> 
+										<input type="text" placeholder="Date/Time" id="arrivedate" 
+										name="arrivedate"  >
 									</div>
 							</td>
 						</tr>
 						<tr>
-							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
-									<option value="">출발시각</option>
+							<td style="padding: 8px; font-weight: 900;">출발 시각</td>
+							<td style="padding: 8px; ">
+							<select name="arrive_time" class="ui dropdown"
+								id="arrive_time" >
+									<option value="" >출발시각</option>
 									<option value="0000">00:00</option>
 									<option value="0100">01:00</option>
 									<option value="0200">02:00</option>
@@ -840,8 +850,9 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-							<td>어른</td>
-							<td><select name="adult" class="ui dropdown" id="adult">
+							<td style="padding: 8px; font-weight: 900;" >어른</td>
+							<td style="padding: 8px;">
+							<select name="adult" class="ui dropdown" id="adult" style="border: 1px solid #bfc3c5;">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -856,8 +867,9 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-							<td>청소년</td>
-							<td><select name="teen" class="ui dropdown" id="teen">
+							<td style="padding: 8px; font-weight: 900;">청소년</td>
+							<td style="padding: 8px;">
+							<select name="teen" class="ui dropdown" id="teen" style="border: 1px solid #bfc3c5;">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -872,8 +884,9 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-							<td>어린이</td>
-							<td><select name="kid" class="ui dropdown" id="kid">
+							<td style="padding: 8px; font-weight: 900;">어린이</td>
+							<td style="padding: 8px;">
+							<select name="kid" class="ui dropdown" id="kid" style="border: 1px solid #bfc3c5;">
 									<option value="0">0</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -888,9 +901,9 @@ input {
 							</select></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="right">
-							<button class="ui teal basic button" type="submit" id="okbutton">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
+							<td colspan="2" align="right" style="padding: 7px;">
+							<button type="submit" id="okbutton">조회</button>
+								<button type="reset" id="resetbutton">취소</button></td>
 						</tr>
 
 					</table>

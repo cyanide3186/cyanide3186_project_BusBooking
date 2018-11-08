@@ -751,12 +751,7 @@ input {
 
 			</table>
 		</div>
-
-
 	</div>
-
-
-
 	<div class="wrapper">
 
 		<div>

@@ -163,13 +163,25 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 버스 예약화면
+	// 버스 예약 - 기초정보 입력화면
 	@RequestMapping(value = "/booking/booking_inputForm.do")
 	public ModelAndView booking_inputForm(HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.addObject("main", "../booking/booking_input.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+
+		return modelAndView;
+	}
+	
+	// 버스 카드 결제 페이지 이동
+	@RequestMapping(value = "/booking/booking_card.do")
+	public ModelAndView booking_cardForm(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main", "../booking/booking_card.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
@@ -255,9 +267,28 @@ public class BookingController {
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		SeatVO seatVO = new SeatVO();
-		String adult = request.getParameter("adult");
-		String teen = request.getParameter("teen");
-		String kid = request.getParameter("kid");
+		int teen;
+		int adult;
+		int kid;
+		if(request.getParameter("adult")==null) {
+			adult=0;
+		}else {
+			adult = Integer.parseInt(request.getParameter("adult"));
+			
+		}
+		if(request.getParameter("teen")==null) {
+			teen=0;
+		}else {
+			
+			teen =	Integer.parseInt(request.getParameter("teen")) ;
+		}
+		if(request.getParameter("kid")==null) {
+			kid=0;
+		}else {
+			
+			kid = Integer.parseInt(request.getParameter("kid"));
+		}
+		
 		String bus_no = request.getParameter("bus_no");
 		System.out.println("bus_no"+bus_no);
 		BusVO vo = bookingService.getBusInfo(bus_no);
@@ -268,9 +299,7 @@ public class BookingController {
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
-		/*System.out.println(seatVO.getBus_no());
-		System.out.println(seatVO.getArrive_month());
-		System.out.println(seatVO.getArrive_day());*/
+	
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 		
 		ArrayList<Integer> seat_reservation = new ArrayList<>();
@@ -299,14 +328,14 @@ public class BookingController {
 
 
 	// 버스 예약기능
-	@RequestMapping(value = "/booking/booking_input.do")
+	@RequestMapping(value = "/booking/booking_insert.do")
 	public ModelAndView booking_input(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
-
+		int hp = Integer.parseInt(request.getParameter("hp1")+(request.getParameter("hp2")));
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
@@ -321,7 +350,7 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-
+				ticketVO.setHp(hp);
 				adultResult += bookingFunction(request, ticketVO);
 			}
 
@@ -337,7 +366,8 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-
+				ticketVO.setHp(hp);
+				
 				teenResult += bookingFunction(request, ticketVO);
 			}
 
@@ -353,7 +383,7 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-				;
+				ticketVO.setHp(hp);
 
 				kidResult += bookingFunction(request, ticketVO);
 			}
@@ -363,7 +393,7 @@ public class BookingController {
 		modelAndView.addObject("adultResult", adultResult);
 		modelAndView.addObject("teenResult", teenResult);
 		modelAndView.addObject("kidResult", kidResult);
-		modelAndView.addObject("main", "../booking/booking_result.do");
+		modelAndView.addObject("main", "../main/index.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
@@ -504,18 +534,19 @@ public class BookingController {
 		ticketVO.setArrive_day(arrive_day);
 
 		int count = bookingService.booking(ticketVO);
-
+		
 		return count;
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
 	@Scheduled(cron="0 * * * * *")
-	public void seatResetf() {
+	public void seatReset() {
 		List<BusVO> list = new ArrayList<>();
 		list = bookingService.getBusList();
 		
 		arrivalTime_array = new String[list.size()];	// 버스번호와 시간 정보를 담을 배열
 		
+		// arrivalTime_array 배열에 버스번호+도착예상시간m:출발월d:출발일 의 모양으로 정보를 담는다
 		for(int i = 0; i < list.size(); i++) {
 			
 			int arrive_time = list.get(i).getArrive_time();
@@ -658,37 +689,79 @@ public class BookingController {
 		}
 	}
 	
-   //@Scheduled(fixedDelay = 1000)
-   public void seatReset() {
-      Calendar now = Calendar.getInstance(); // 현재시간 구하기
-      long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
-            + (now.get(11) * 100) + now.get(12));             // 현재 년월일시분
+	// 좌석테이블 정보가 없는 버스의 좌석을 생성(insert)
+	/*
+	 	생성하기 전에 cmd창에서
+	 	sqlplus "/as sysdbd"
+	 	select * from v$resource_limit where resource_name='processes';
+	 	alter system set processes=500 scope=spfile;
+	 	shutdown immediate;
+	 	startup
+	 	을 한 줄씩 차례로 입력한 후에 진행해야된다. 
+	 */
+//	@RequestMapping(value="/booking/seatCreate.do")
+//	public void seatCreat() {
+//		int arrive_month = 11;
+//		int arrive_day;
+//		
+//		List<BusVO> bus_noList = new ArrayList<>();
+//		bus_noList = bookingService.getBus_noList();
+//		
+//		for(int i = 0; i < bus_noList.size(); i++) {
+//			String bus_no = bus_noList.get(i).getBus_no();
+//			List<SeatVO> seatList = new ArrayList<>();
+//			seatList = bookingService.test(bus_no);
+//			
+//			if(seatList.size() == 0) {
+//				for(int j = 1; j <= 31; j++) {
+//					arrive_day = j;
+//					for(int k = 1; k <= 40; k++) {
+//						SeatVO seatVO = new SeatVO();
+//						seatVO.setBus_no(bus_no);
+//						seatVO.setBus_seat(k);
+//						seatVO.setArrive_month(arrive_month);
+//						seatVO.setArrive_day(arrive_day);
+//						bookingService.seatCreate(seatVO);
+//						//System.out.println(bus_no + "번 버스 " + j + "일자 좌석 생성");
+//					}
+//				}
+//			}
+//		}
+//	}
+	/*
+	@Scheduled(fixedDelay = 1000)
+	public void seatReset() {
+		Calendar now = Calendar.getInstance(); // 현재시간 구하기
+		long expiration = ((now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000) + (now.get(5) * 10000)
+				+ (now.get(11) * 100) + now.get(12)); // 현재 년월일시분
 //	      now.set((now.get(1) * 10000), ((now.get(2) + 1) * 100), now.get(5));    // 달력일정을 현재년월일로 설정
-      long maxDay = (now.get(1) * 100000000L) + ((now.get(2) + 1) * 1000000  + (now.getActualMaximum(Calendar.DAY_OF_MONTH)*10000+2359));            // 설정된 달력의 해당 달 최대일자
+		long maxDay = (now.get(1) * 100000000L)
+				+ ((now.get(2) + 1) * 1000000 + (now.getActualMaximum(Calendar.DAY_OF_MONTH) * 10000 + 2359)); // 설정된 달력의 해당 달 최대일자
 //	      long limitDay = now.getActualMaximum(Calendar.DAY_OF_MONTH) * 10000;   // 그 달의 최대일크기(28일 28만,30일 30만)
-      long limitMonth = (now.get(1) * 100000000L) + 12312359L;            // 그 해의 최대 맥스치 12월31일23시59분
-      List<SeatVO> seatVO = new ArrayList<SeatVO>();
-      seatVO = bookingService.seatInfo(expiration);                     // 유효기간 만료 좌석 정보                              // db내 유효기간최대일 추출                              //
-      if(!"0".equals(String.valueOf(seatVO.size()))) {   
-         long upDay =  bookingService.maxDay(seatVO.get(0).getBus_no());
-         for (int i = 0; i < seatVO.size(); i++) {
-               long busTime = seatVO.get(i).getExpiration()%10000;        
-               long newDay = (upDay + 10000) / 10000 * 10000 + (busTime%10000);                           //변화되야할 일자 테이블내 최대일수+하루
-               if(newDay > maxDay) {                                 //해당월 최대일자 초과시 한달이 증가                        //그 달에 최대치를 넘어갈경우 월을 증가시키고 일자를 초기화
-                  newDay = (upDay / 1000000 * 1000000 + 1000000 + 10000)       //다음달 1일로 초기화(시,분리셋)
-                     + (busTime%10000);                               //시,분 추가
-               } 
-               if(newDay > limitMonth) {                              //해당년도 최대월 초과시 일년이 증가
-                  newDay = (upDay / 1000000 * 1000000 + 90010000)            //내년 1일로 초기화(시,분리셋)
-                     + (busTime%10000);                              //시,분 추가
-               }   
-               seatVO.get(i).setBus_no(seatVO.get(i).getBus_no());   
-               seatVO.get(i).setBus_seat(seatVO.get(i).getBus_seat());
-               seatVO.get(i).setTicket_no("");
-               seatVO.get(i).setExpiration(newDay);
-               bookingService.seatInsert(seatVO.get(i));
-            }
-         }
-         bookingService.seatDelete(expiration);                           // 유효기간 만료 좌석 삭제   
-      }
+		long limitMonth = (now.get(1) * 100000000L) + 12312359L; // 그 해의 최대 맥스치 12월31일23시59분
+		List<SeatVO> seatVO = new ArrayList<SeatVO>();
+		seatVO = bookingService.seatInfo(expiration); // 유효기간 만료 좌석 정보 // db내 유효기간최대일 추출 //
+		if (!"0".equals(String.valueOf(seatVO.size()))) {
+			long upDay = bookingService.maxDay(seatVO.get(0).getBus_no());
+			for (int i = 0; i < seatVO.size(); i++) {
+				long busTime = seatVO.get(i).getExpiration() % 10000;
+				long newDay = (upDay + 10000) / 10000 * 10000 + (busTime % 10000); // 변화되야할 일자 테이블내 최대일수+하루
+				if (newDay > maxDay) { // 해당월 최대일자 초과시 한달이 증가 //그 달에 최대치를 넘어갈경우 월을 증가시키고 일자를 초기화
+					newDay = (upDay / 1000000 * 1000000 + 1000000 + 10000) // 다음달 1일로 초기화(시,분리셋)
+							+ (busTime % 10000); // 시,분 추가
+				}
+				if (newDay > limitMonth) { // 해당년도 최대월 초과시 일년이 증가
+					newDay = (upDay / 1000000 * 1000000 + 90010000) // 내년 1일로 초기화(시,분리셋)
+							+ (busTime % 10000); // 시,분 추가
+				}
+				seatVO.get(i).setBus_no(seatVO.get(i).getBus_no());
+				seatVO.get(i).setBus_seat(seatVO.get(i).getBus_seat());
+				seatVO.get(i).setTicket_no("");
+				seatVO.get(i).setExpiration(newDay);
+				bookingService.seatInsert(seatVO.get(i));
+			}
+		}
+		bookingService.seatDelete(expiration); // 유효기간 만료 좌석 삭제
+	}
+	*/
 }

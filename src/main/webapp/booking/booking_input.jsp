@@ -70,7 +70,7 @@
 							} else if(document.bus_input.arrive_time.value == "") {
 								alertify.alert("출발시각을 선택해주세요");
 							} else if(document.bus_input.adult.value == 0 && document.bus_input.teen.value == 0 && document.bus_input.kid.value == 0) {
-								alertify.alert("선택하신 티켓 매수가 0장입니다, 1장이상 선택해주세요.");
+								alertify.alert("선택하신 티켓 매수가 0장 입니다, 1장 이상 선택해주세요.");
 							} else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();

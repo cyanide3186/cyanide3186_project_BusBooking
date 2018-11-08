@@ -15,6 +15,7 @@ import info.terminal.bean.TerminalVO;
 
 @Service
 public class BookingServiceImpl implements BookingService {
+
 	@Autowired
 	private BusDAO busDAO;
 
@@ -80,7 +81,6 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	public List<BusVO> busList() {
-		
 		return busDAO.busList();
 	}
 
@@ -91,13 +91,11 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<TerminalVO> regionList() {
-	
 		return busDAO.regionList();
 	}
 
 	@Override
 	public List<TerminalVO> terminalList(String region) {
-		
 		return busDAO.terminalList(region);
 	}
 
@@ -128,13 +126,27 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<TerminalVO> terminalAllList() {
-		
 		return busDAO.terminalAllList();
 	}
 
 	@Override
 	public int seatCancle(String ticket_no) {
 		return seatDAO.seatCancle(ticket_no);
+	}
+
+	@Override
+	public List<BusVO> getBus_noList() {
+		return busDAO.getBus_noList();
+	}
+
+	@Override
+	public int seatCreate(SeatVO seatVO) {
+		return seatDAO.seatCreate(seatVO);
+	}
+
+	@Override
+	public List<SeatVO> test(String bus_no) {
+		return seatDAO.test(bus_no);
 	}
 
 	@Override

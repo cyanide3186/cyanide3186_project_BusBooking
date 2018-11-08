@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +26,7 @@
 </head>
 
 
-<script type="text/javascript">
-	$(function() {
 
-	});
-</script>
 <style type="text/css">
 p {
 	padding: 3rem;
@@ -52,32 +49,39 @@ li {
 	list-style: none;
 }
 
-.level>li {
+.level li {
+	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
+	line-height: 50px;
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	vertical-align: middle;
 	background-color: #0489B1;
-	line-height: 1.2;
-	list-style: none;
-	line-height: 1.2;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
 }
 
 #mainli {
 	list-style: none;
 	margin: 0 0;
-	font-size: 1.5rem;
 	float: left;
 	margin-right: 1rem;
 	line-height: 50px;
-	border: 3px solid yellow;
+	border: 1px solid white;
 	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
 	background-color: #0489B1;
+	font-size: 1rem;
+	padding: 0 0;
+	color: white;
+	width: 120px;
+	border: 3px solid yellow;
 }
 
 table {
@@ -100,6 +104,28 @@ div#page_button button {
 	height: 100%;
 }
 
+td, th {
+	text-align: center;
+}
+
+.road .box {
+	float: left;
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: orange;
+}
+
+.road li {
+	float: left;
+	font-size: 2em;
+}
+
 #menu1 {
 	float: left;
 	width: 350px;
@@ -115,7 +141,7 @@ div#page_button button {
 }
 #menu3 {
 	margin-top: 670px;
-	clear:both;
+	clear: both;
 	width: 340px;
 }
 
@@ -135,11 +161,15 @@ div#page_button button {
 	width: 340px;
 }
 
-
+.level {
+	display: inline-block;
+	height: 100px;
+	vertical-align: middle;
+}
 
 .seat ul span {
 	position: relative;
-	right: 45px;
+	right: 43px;
 	top: -10px;
 }
 
@@ -148,56 +178,193 @@ div#page_button button {
 	left: 960px;
 	top: 650px;
 }
+
 .seat .line2 {
 	position: absolute;
 	left: 960px;
 	top: 720px;
 }
+
 .seat .line3 {
 	position: absolute;
 	left: 960px;
 	top: 790px;
 }
+
 .seat .line4 {
 	position: absolute;
 	left: 960px;
 	top: 860px;
 }
+
 .seat .line5 {
 	position: absolute;
 	left: 960px;
 	top: 930px;
 }
+
 .seat .line6 {
 	position: absolute;
 	left: 960px;
 	top: 1000px;
 }
+
 .seat .line7 {
 	position: absolute;
 	left: 960px;
 	top: 1070px;
 }
+
 .seat .line8 {
 	position: absolute;
 	left: 960px;
 	top: 1140px;
 }
+
 .seat .line9 {
 	position: absolute;
 	left: 960px;
 	top: 1210px;
 }
+
 .seat .line10 {
 	position: absolute;
 	left: 960px;
 	top: 1280px;
 }
-
-
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var reserved_list = new Array();
+			
+		<c:forEach items="${seat_reservation}" var="item1">
+		
+		reserved_list.push("${item1}");
+		
+		</c:forEach>
+		
+		
+		for (var i = 0; i < reserved_list.length; i++) {
+			var span = $('<span>____</span>');
+			var num1=reserved_list[i]/4.0;
+			/* 라인을 구함 */
+			var line=Math.ceil(num1);
+			/* 자리를 구함 */
+			var seat;
+			if(reserved_list[i]%4===0){
+				seat=reserved_list[i]%4+3;
+				
+			}else{
+				seat=reserved_list[i]%4-1;
+			}
+			switch (line) {
+			case 1:
+				$('.line1').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line1').find('span').eq(seat).remove();
+				$('.line1').find('img').eq(seat).after(span);
+				$('.line1').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 2:
+				$('.line2').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line2').find('span').eq(seat).remove();
+				$('.line2').find('img').eq(seat).after(span);
+				$('.line2').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 3:
+				$('.line3').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line3').find('span').eq(seat).remove();
+				$('.line3').find('img').eq(seat).after(span);
+				$('.line3').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 4:
+				$('.line4').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line4').find('span').eq(seat).remove();
+				$('.line4').find('img').eq(seat).after(span);
+				$('.line4').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 5:
+				$('.line5').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line5').find('span').eq(seat).remove();
+				$('.line5').find('img').eq(seat).after(span);
+				$('.line5').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 6:
+				$('.line6').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line6').find('span').eq(seat).remove();
+				$('.line6').find('img').eq(seat).after(span);
+				$('.line6').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 7:
+				$('.line7').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line7').find('span').eq(seat).remove();
+				$('.line7').find('img').eq(seat).after(span);
+				$('.line7').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 8:
+				$('.line8').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line8').find('span').eq(seat).remove();
+				$('.line8').find('img').eq(seat).after(span);
+				$('.line8').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 9:
+				$('.line9').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line9').find('span').eq(seat).remove();
+				$('.line9').find('img').eq(seat).after(span);
+				$('.line9').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+			case 10:
+				$('.line10').find('img').eq(seat).attr('src','../images/seat_disabled.png');
+				$('.line10').find('span').eq(seat).remove();
+				$('.line10').find('img').eq(seat).after(span);
+				$('.line10').find('a').eq(seat).css({ 'pointer-events': 'none' });
+				break;
+
+			}
+			
+			seat=0;
+		}
+		
+		
+		var adult = '<c:out value="${adult}"/>';
+		alert(adult);
+		
+		$('#adult').find('option').eq(adult).attr('selected','selected');
+		
+		$('#adult').dropdown({
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value);
+			}
+		});
+		$('#teen').dropdown({
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value);
+			}
+		});
+		$('#kid').dropdown({
+			direction : 'down',
+			duration : 700,
+			onChange : function(value, text, $choice) {
+				alert(value);
+			}
+			
+		});
+		
+		$(".seat a").on("click" ,function(e){
+			e.preventDefault();
+			
+			alert($(this).attr("href"));
+			/* 	$('#menu2').find('a').val($(this).attr("href")); */
+		});
+		
+	});
+</script>
 </head>
 <body>
+
 
 	<div class="wrapper">
 
@@ -208,7 +375,7 @@ div#page_button button {
 					<ul class="level">
 						<li>1.기초정보 입력</li>
 						<li>2.배차 조회</li>
-						<li id="mainli">3.매수 및 좌석 선택</li>
+						<li id="mainli">매수 및 좌석선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
@@ -228,8 +395,19 @@ div#page_button button {
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1px solid black">
 							<tr>
-								<td width="500px" height="100px">가는편</td>
-								<td width="500px">가는날짜</td>
+								<td width="500px" height="50px">
+									<ul class="road">
+										<li class=box>출발지</li>
+										<li>${bus_vo.start_tr}</li>
+										<li><img src="../images/point.png" height="30px"
+											width="100px"></li>
+										<li class=box>도착지</li>
+										<li>${bus_vo.end_tr}</li>
+									</ul>
+								</td>
+								<td width="500px"><ul>
+										<li>출발날짜</li>
+									</ul>${arrive_day}</td>
 							</tr>
 						</table>
 					</div>
@@ -294,170 +472,174 @@ div#page_button button {
 								<div class="seat">
 									<img src="../images/bg_seat.gif">
 									<ul class="line1">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="1"><a href="1"> <img src="../images/seat_off.png">
 												<span>01</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="2"><a href="3"> <img src="../images/seat_off.png">
 												<span>02</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="3"><a href="3"> <img src="../images/seat_off.png">
 												<span>03</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="4"><a href="4"> <img src="../images/seat_off.png">
 												<span>04</span>
 										</a></li>
 									</ul>
 									<ul class="line2">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="5"><a href="5"> <img src="../images/seat_off.png">
 												<span>05</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="6"><a href="6"> <img src="../images/seat_off.png">
 												<span>06</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="7"><a href="7"> <img src="../images/seat_off.png">
 												<span>07</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="8"><a href="8"> <img src="../images/seat_off.png">
 												<span>08</span>
-										</a></li>
+										</a ></li>
 									</ul>
 									<ul class="line3">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="9"><a href="9"> <img src="../images/seat_off.png">
 												<span>09</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="10"><a href="10"> <img src="../images/seat_off.png">
 												<span>10</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="11"><a href="11"> <img src="../images/seat_off.png">
 												<span>11</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="12"><a href="12"> <img src="../images/seat_off.png">
 												<span>12</span>
 										</a></li>
 									</ul>
 									<ul class="line4">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="13"><a href="13"> <img src="../images/seat_off.png">
 												<span>13</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="14"><a href="14"> <img src="../images/seat_off.png">
 												<span>14</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="15"><a href="15"> <img src="../images/seat_off.png">
 												<span>15</span>
-										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										</a ></li>
+										<li class="16"><a href="16"> <img src="../images/seat_off.png">
 												<span>16</span>
 										</a></li>
 									</ul>
 									<ul class="line5">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="17"><a href="17"> <img src="../images/seat_off.png">
 												<span>17</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="18"><a href="18"> <img src="../images/seat_off.png">
 												<span>18</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="19"><a href="19"> <img src="../images/seat_off.png">
 												<span>19</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="20"><a href="20"> <img src="../images/seat_off.png">
 												<span>20</span>
 										</a></li>
 									</ul>
 									<ul class="line6">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="21"><a href="21"> <img src="../images/seat_off.png">
 												<span>21</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="22"><a href="22"> <img src="../images/seat_off.png">
 												<span>22</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="23"><a href="23"> <img src="../images/seat_off.png">
 												<span>23</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="24"><a href="24"> <img src="../images/seat_off.png">
 												<span>24</span>
 										</a></li>
 									</ul>
 									<ul class="line7">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="25"><a href="25"> <img src="../images/seat_off.png">
 												<span>25</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="26"><a href="26"> <img src="../images/seat_off.png">
 												<span>26</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="27"><a href="27"> <img src="../images/seat_off.png">
 												<span>27</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="28"><a href="28"> <img src="../images/seat_off.png">
 												<span>28</span>
 										</a></li>
 									</ul>
 									<ul class="line8">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="29"><a href="29"> <img src="../images/seat_off.png">
 												<span>29</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="30"><a href="30"> <img src="../images/seat_off.png">
 												<span>30</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="31"><a href="31"> <img src="../images/seat_off.png">
 												<span>31</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="32"><a href="32"> <img src="../images/seat_off.png">
 												<span>32</span>
 										</a></li>
 									</ul>
 									<ul class="line9">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="33"><a href="33"> <img src="../images/seat_off.png">
 												<span>33</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="34"><a href="34"> <img src="../images/seat_off.png">
 												<span>34</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="35"><a href="35"> <img src="../images/seat_off.png">
 												<span>35</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="36"><a href="36"> <img src="../images/seat_off.png">
 												<span>36</span>
 										</a></li>
 									</ul>
 									<ul class="line10">
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="37"><a href="37"> <img src="../images/seat_off.png">
 												<span>37</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="38"><a href="38"> <img src="../images/seat_off.png">
 												<span>38</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="39"><a href="39"> <img src="../images/seat_off.png">
 												<span>39</span>
 										</a></li>
-										<li><a href="#"> <img src="../images/seat_off.png">
+										<li class="40"><a href="40"> <img src="../images/seat_off.png">
 												<span>40</span>
 										</a></li>
 									</ul>
 								</div></li>
 							<li id="menu3">
-								<table border="1px" style="width: 400px;height: 500px;">
-								
+								<table border="1px" style="width: 400px; height: 500px;">
+
 									<tbody>
 										<tr>
 											<th colspan="2"><span>선택 매수 및 금액</span></th>
 										</tr>
 										<tr>
 											<th rowspan="3">가는편</th>
-											<td>어른 <span class="adult"></span>명</td>
+											<td>어른 <span class="adult"></span>명
+											</td>
 										</tr>
 										<tr>
 
-											<td>청소년 <span class="teen"></span>명</td>
+											<td>청소년 <span class="teen"></span>명
+											</td>
 										</tr>
 										<tr>
-											<td>어린이 <span class="kids"></span>명</td>
+											<td>어린이 <span class="kids"></span>명
+											</td>
 										</tr>
 										<tr>
 											<th>합계</th>
 											<td><span class="total"></span>명</td>
 										</tr>
 									</tbody>
-								</table></li>
+								</table>
+							</li>
 						</ul>
 
 					</div>

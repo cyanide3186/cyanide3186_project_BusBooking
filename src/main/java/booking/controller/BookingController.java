@@ -255,8 +255,12 @@ public class BookingController {
 	public ModelAndView booking_seatCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		SeatVO seatVO = new SeatVO();
-		
+		String adult = request.getParameter("adult");
+		String teen = request.getParameter("teen");
+		String kid = request.getParameter("kid");
 		String bus_no = request.getParameter("bus_no");
+		System.out.println("bus_no"+bus_no);
+		BusVO vo = bookingService.getBusInfo(bus_no);
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
@@ -264,15 +268,35 @@ public class BookingController {
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
+		/*System.out.println(seatVO.getBus_no());
+		System.out.println(seatVO.getArrive_month());
+		System.out.println(seatVO.getArrive_day());*/
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 		
+		ArrayList<Integer> seat_reservation = new ArrayList<>();
+		for(int i=0 ;i<seatList.size();i++) {
+			
+			if(seatList.get(i).getTicket_no()!=null) {
+				System.out.println("seatList :"+seatList.get(i).getTicket_no());	
+				System.out.println("seatList :"+seatList.get(i).getBus_seat());	
+				seat_reservation.add(seatList.get(i).getBus_seat());
+				
+			}
+		}
+		modelAndView.addObject("adult", adult);
+		modelAndView.addObject("teen", teen);
+		modelAndView.addObject("kid", kid);
+		modelAndView.addObject("seat_reservation", seat_reservation);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("seatList", seatList);
+		modelAndView.addObject("bus_vo", vo);
 		modelAndView.addObject("main", "../booking/booking_seatCheck.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		
 		return modelAndView;
 	}
+
+
 
 	// 버스 예약기능
 	@RequestMapping(value = "/booking/booking_input.do")

@@ -518,11 +518,17 @@
 	});
 </script>
 <style type="text/css">
+#okbutton,#resetbutton {
+	border-radius: 10px;
+	background-color: #0489B1;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
 p {
 	padding: 3rem;
 	text-align: left;
 }
-
 .start_bus {
 	display: none;
 	background-color: #368D9C;
@@ -730,41 +736,44 @@ ul {
 				<div class="column">
 					<table border="1px solid" align="center" id="booking_table"  style="text-align: center; ">
 						<tr>
-							<td rowspan="8" style="background-color: #A9E2F3"><img
-								alt="" src="/Project_BusBooking/assets/logo.png"
+							<td rowspan="8" style="background-color: #A9E2F3; padding: 7px;">
+							<img
+								src="/Project_BusBooking/assets/logo.png"
 								style="width: 50px; height: 50px; ">
 								<h2 style="text-align: center; font-weight: bold;">운행정보조회</h2>
 								시외버스 및 일부 고속버스 운행정보 조회</td>
-							<td>출발지</td>
-							<td>
+							<td style="font-weight: 900; padding: 7px;">출발지</td>
+							<td style="padding: 7px;">
 								<div class="ui input">
 									<input type="text" placeholder="출발지선택" id="start_tr"
-										name="start_tr">
+										name="start_tr" >
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td>도착지</td>
-							<td><div class="ui input">
+							<td style="font-weight: 900; padding: 7px;">도착지</td>
+							<td style="padding: 7px;"><div class="ui input">
 									<input type="text" placeholder="도착지선택" id="end_tr"
-										name="end_tr">
+										name="end_tr" >
 								</div></td>
 						</tr>
 						<tr>
-							<td>가는 일시</td>
-							<td>
+							<td style="font-weight: 900; padding: 7px;">가는 일시</td>
+							<td style="padding: 7px;">
 
 								<div class="ui calendar" id="example1">
 									<div class="ui input left icon">
-										<i class="calendar icon"></i> <input type="text"
+										<i class="calendar icon"></i> 
+										<input type="text" 
 											placeholder="Date/Time" id="arrivedate">
 									</div>
 							</td>
 						</tr>
 						<tr>
-							<td>출발 시각</td>
-							<td><select name="arrive_time" class="ui dropdown"
-								id="arrive_time">
+							<td style="font-weight: 900; padding: 7px;">출발 시각</td>
+							<td style="padding: 7px;">
+							<select name="arrive_time" class="ui dropdown"
+								id="arrive_time" >
 									<option value="">출발시각</option>
 									<option value="0000">00:00</option>
 									<option value="0100">01:00</option>
@@ -796,9 +805,9 @@ ul {
 						<tr>
 							<input type="hidden" name="is_bus_info"
 								value="booking_infomation_list">
-							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
+							<td colspan="2" align="right" style="padding: 7px;">
+							<button type="submit" id="okbutton">조회</button>
+							<button  type="reset" id="resetbutton">취소</button></td>
 						</tr>
 
 					</table>

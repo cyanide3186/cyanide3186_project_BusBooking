@@ -79,7 +79,7 @@ li {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
+	color: yellow;
 	width: 120px;
 	border: 3px solid yellow;
 }
@@ -672,7 +672,7 @@ td, th {
 		</div>
 		<div>
 
-			<form action="../booking/booking_bus.do" method="post"
+			<form action="../booking/booking_card.do" method="post"
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">

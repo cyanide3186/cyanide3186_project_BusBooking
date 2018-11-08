@@ -24,7 +24,9 @@ public interface BookingService {
 	List<BusVO> busList(); 												// 터미널 목록 조회
 	List<BusVO> getBusList();											// seat, bus 테이블 조인 전체 조회
 	BusVO getBusInfo(String bus_no);									// 단일 버스 검색
+	
 	// SeatDAO
+	int seatBooking(SeatVO seatVO);				// 좌석 예약
 	int seatCreate(SeatVO seatVO);				// 좌석 일괄 생성 기능
 	SeatVO seatCheck(String ticket_no); 		// 좌석 조회
 	List<SeatVO> getSeatList(SeatVO seatVO); 	// 버스 좌석 목록 조회

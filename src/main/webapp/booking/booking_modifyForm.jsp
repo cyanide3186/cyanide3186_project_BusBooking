@@ -31,6 +31,13 @@
 
 </script>
 <style type="text/css">
+#submit,#resetbutton {
+	border-radius: 10px;
+	background-color: #0489B1;
+	color: white;
+	width: 80px;
+	height: 40px;
+}
 p {
 	padding: 3rem;
 	text-align: left;
@@ -127,7 +134,6 @@ ul {
 	margin: 0 0;
 	list-style: none;
 }
-
 #info_content {
 	background-color: #FFD2D2;
 	border-bottom: 1px solid gray;
@@ -136,7 +142,7 @@ ul {
 	border-right: 1px solid gray;
 	border-radius: 10px 10px 10px 10px;
 	height: 20px;
-	width: 500px;
+	width: 700px;
 }
 
 table {
@@ -145,6 +151,9 @@ table {
 	border-spacing: 20px;
 	border-color: grey;
 	display: table;
+}
+span {
+	text-decoration: underline;
 }
 </style>
 </head>
@@ -165,11 +174,6 @@ table {
 			</div>
 
 		</div>
-
-
-
-
-
 		<div>
 			<form role="form" action="../booking/booking_check.do" method="post"
 				name="bus_input">
@@ -179,7 +183,7 @@ table {
 						<div class="active item">티켓번호로 조회</div>
 
 					</div>
-					<table class="ui single line table">
+					<table class="ui single line table" >
 						<thead>
 							<tr>
 								<th>티켓 번호 입력</th>
@@ -189,47 +193,58 @@ table {
 						<tbody>
 							
 							<tr>
-								<td><input type="text" name="ticket_no"></td>
+								<td><input type="text" name="ticket_no" style="border-radius: 5px;"></td>
 								
 							</tr>
 								<tr>
 							<td colspan="2" align="right"><button
-									class="ui teal basic button" type="submit" id="submit">조회</button>
-								<button class="ui teal basic button" type="reset">취소</button></td>
+									 type="submit" id="submit">조회</button>
+								<button  type="reset" id="resetbutton">취소</button></td>
 						</tr>
 							
 						</tbody>
 					</table>
-					
-					
-
 				</div>
-
 			</form>
 			<div class="column" align="center">
-				<table cellpadding="10" id="infomation">
+				<table cellpadding="10" id="infomation" style="margin-top: 30px;">
 					<tr>
-						<td rowspan="9"><img src="../images/caution.jpg"></td>
-						<td id="info_content">예매한 승차권 발권 시에는 반드시 예매한 카드를 지참하셔야 하며, 해당
-							터미널 매표 창구에 예약된 사항이 있다고 말씀하시고 카드를 제시하시면 승차권을 발권받으실 수 있습니다. (발권방법의
-							차이가 있는 터미널이 존재하며, 해당 터미널에 문의하시면 정확한 발권방법의 확인이 가능합니다.)</td>
+						<td rowspan="9">
+						<img src="../images/caution.jpg" 
+						style="border: 1px solid #e0b6ba; border-radius: 10px;"></td>
+						<td id="info_content">
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;예매한 승차권 발권 시에는 반드시 예매한 카드를 지참하셔야 하며, 해당 터미널 매표 창구에<br>
+						&nbsp;예약된 사항이 있다고 말씀하시고 카드를 제시하시면 승차권을 발권받으실 수 있습니다.<br>
+						&nbsp;<span>(발권방법의 차이가 있는 터미널이 존재하며 해당 터미널에 문의하시면 정확한 발권방법의 확인이 가능합니다.)</span></td>
 					</tr>
 					<tr>
-						<td id="info_content">출발시간이 지난 후에는 승차권을 발권받을 수 없습니다. 출발 당일
-							터미널 혼잡에 대비하여 출발시간보다 여유있게 터미널에 도착하셔서 발권 받으시기 바랍니다.</td>
+						<td id="info_content">
+						
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;출발시간이 지난 후에는 승차권을 발권받을 수 없습니다.<br>
+						 &nbsp;출발 당일 터미널 혼잡에 대비하여 출발시간보다 여유있게 터미널에 도착하셔서 발권 받으시기 바랍니다.</td>
 					</tr>
 					<tr>
-						<td id="info_content">출발일시 및 매수, 좌석번호 등을 다시 한번 확인해 주시기 바랍니다.</td>
+						<td id="info_content">
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;출발일시 및 매수, 좌석번호 등을 다시 한번 확인해 주시기 바랍니다.</td>
 					</tr>
 					<tr>
-						<td id="info_content">취소 및 부도위약금의 안내를 다시 한 번 확인해서 불이익을 받지 않도록
-							유의해주시기 바랍니다.</td>
+						<td id="info_content">
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;취소 및 부도위약금의 안내를 다시 한 번 확인해서 불이익을 받지 않도록
+						&nbsp;유의해주시기 바랍니다.</td>
 					</tr>
 					<tr>
-						<td id="info_content">과거 예매 내역은 1주일 이내만 조회 가능합니다.</td>
+						<td id="info_content">
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;과거 예매 내역은 1주일 이내만 조회 가능합니다.</td>
 					</tr>
 					<tr>
-						<td id="info_content">당일 이후 탑승 예정인 구매 내역은 모두 조회 가능합니다.</td>
+						<td id="info_content">
+						<img src="../images/check2.png" width="18px" height="18px">
+						&nbsp;당일 이후 탑승 예정인 구매 내역은 모두 조회 가능합니다.</td>
 					</tr>
 
 				</table>

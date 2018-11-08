@@ -174,6 +174,18 @@ public class BookingController {
 
 		return modelAndView;
 	}
+	
+	// 버스 카드 결제 페이지 이동
+	@RequestMapping(value = "/booking/booking_card.do")
+	public ModelAndView booking_cardForm(HttpServletRequest request) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main", "../booking/booking_card.jsp");
+		modelAndView.setViewName("../main/index.jsp");
+
+		return modelAndView;
+	}
 
 	// 버스 운행정보 조회 페이지 이동
 	@RequestMapping(value = "/booking/booking_information_inquiry.do")
@@ -313,17 +325,15 @@ public class BookingController {
 		return modelAndView;
 	}
 
-
-
 	// 버스 예약기능
-	@RequestMapping(value = "/booking/booking_input.do")
+	@RequestMapping(value = "/booking/booking_insert.do")
 	public ModelAndView booking_input(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
-
+		int hp = Integer.parseInt(request.getParameter("hp1")+(request.getParameter("hp2")+(request.getParameter("hp3"))));
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
@@ -338,7 +348,7 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-
+				ticketVO.setHp(hp);
 				adultResult += bookingFunction(request, ticketVO);
 			}
 
@@ -354,7 +364,8 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-
+				ticketVO.setHp(hp);
+				
 				teenResult += bookingFunction(request, ticketVO);
 			}
 
@@ -370,7 +381,7 @@ public class BookingController {
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
-				;
+				ticketVO.setHp(hp);
 
 				kidResult += bookingFunction(request, ticketVO);
 			}
@@ -380,13 +391,62 @@ public class BookingController {
 		modelAndView.addObject("adultResult", adultResult);
 		modelAndView.addObject("teenResult", teenResult);
 		modelAndView.addObject("kidResult", kidResult);
-		modelAndView.addObject("main", "../booking/booking_result.do");
+		modelAndView.addObject("main", "../main/index.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
 	}
 
+	// 버스 예약기능 함수
+	@SuppressWarnings("static-access")
+	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
+
+		String ticket_no = null;
+		String bus_no = request.getParameter("bus_no");
+		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
+		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
+		
+		String arrive_day = request.getParameter("arrive_day");
+		String arrive_time = request.getParameter("arrive_time");
+		
+		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
+		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
+		
+		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
+		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no + utils.leftPad(String.valueOf(seat_no), 2, "0");
+		
+		ticketVO.setTicket_no(ticket_no);
+		ticketVO.setBus_no(bus_no);
+		ticketVO.setSeat_no(seat_no);
+		ticketVO.setHp(hp);
+		ticketVO.setArrive_day(arrive_day);
+
+		int count = bookingService.booking(ticketVO);
+		if(count > 0) {
+			SeatVO seatVO = new SeatVO();
+			seatVO.setBus_no(bus_no);
+			seatVO.setBus_seat(seat_no);
+			seatVO.setTicket_no(ticket_no);
+			seatVO.setArrive_month(Integer.parseInt(setArrive_month));
+			seatVO.setArrive_day(Integer.parseInt(setArrive_day));
+			
+			bookingService.seatBooking(seatVO);
+		}
+		return count;
+	}
+	
+	// 예약하기 - 결과 화면
+	@RequestMapping(value = "/booking/booking_result.do")
+	public ModelAndView booking_result(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("main", "");
+		modelAndView.setViewName("../main/index.jsp");
+
+		return modelAndView;
+	}	
+		
 	// 예약 조회 기능
 	@RequestMapping(value = "/booking/bookingCheck.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
@@ -486,43 +546,6 @@ public class BookingController {
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
-	}
-
-	// 예약하기 - 결과 화면
-	@RequestMapping(value = "/booking/booking_result.do")
-	public ModelAndView booking_result(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.addObject("main", "");
-		modelAndView.setViewName("../main/index.jsp");
-
-		return modelAndView;
-	}
-
-	// 버스 예약기능 함수
-	@SuppressWarnings("static-access")
-	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
-
-		String ticket_no = null;
-		String bus_no = request.getParameter("bus_no");
-		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		int hp = Integer.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
-		
-		String arrive_day = request.getParameter("arrive_day");
-		String arrive_time = request.getParameter("arrive_time");
-		
-		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
-		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no + utils.leftPad(String.valueOf(seat_no), 2, "0");
-		
-		ticketVO.setTicket_no(ticket_no);
-		ticketVO.setBus_no(bus_no);
-		ticketVO.setSeat_no(seat_no);
-		ticketVO.setHp(hp);
-		ticketVO.setArrive_day(arrive_day);
-
-		int count = bookingService.booking(ticketVO);
-		
-		return count;
 	}
 
 	// 버스 도착 예상시간에 좌석 초기화
@@ -684,37 +707,37 @@ public class BookingController {
 	 	alter system set processes=500 scope=spfile;
 	 	shutdown immediate;
 	 	startup
-	 	을 한 줄씩 차례로 입력해준다. 
+	 	을 한 줄씩 차례로 입력한 후에 진행해야된다. 
 	 */
-	@RequestMapping(value="/booking/seatCreate.do")
-	public void seatCreat() {
-		int arrive_month = 11;
-		int arrive_day;
-		
-		List<BusVO> bus_noList = new ArrayList<>();
-		bus_noList = bookingService.getBus_noList();
-		
-		for(int i = 0; i < bus_noList.size(); i++) {
-			String bus_no = bus_noList.get(i).getBus_no();
-			List<SeatVO> seatList = new ArrayList<>();
-			seatList = bookingService.test(bus_no);
-			
-			if(seatList.size() == 0) {
-				for(int j = 1; j <= 31; j++) {
-					arrive_day = j;
-					for(int k = 1; k <= 40; k++) {
-						SeatVO seatVO = new SeatVO();
-						seatVO.setBus_no(bus_no);
-						seatVO.setBus_seat(k);
-						seatVO.setArrive_month(arrive_month);
-						seatVO.setArrive_day(arrive_day);
-						bookingService.seatCreate(seatVO);
-						//System.out.println(bus_no + "번 버스 " + j + "일자 좌석 생성");
-					}
-				}
-			}
-		}
-	}
+//	@RequestMapping(value="/booking/seatCreate.do")
+//	public void seatCreat() {
+//		int arrive_month = 11;
+//		int arrive_day;
+//		
+//		List<BusVO> bus_noList = new ArrayList<>();
+//		bus_noList = bookingService.getBus_noList();
+//		
+//		for(int i = 0; i < bus_noList.size(); i++) {
+//			String bus_no = bus_noList.get(i).getBus_no();
+//			List<SeatVO> seatList = new ArrayList<>();
+//			seatList = bookingService.test(bus_no);
+//			
+//			if(seatList.size() == 0) {
+//				for(int j = 1; j <= 31; j++) {
+//					arrive_day = j;
+//					for(int k = 1; k <= 40; k++) {
+//						SeatVO seatVO = new SeatVO();
+//						seatVO.setBus_no(bus_no);
+//						seatVO.setBus_seat(k);
+//						seatVO.setArrive_month(arrive_month);
+//						seatVO.setArrive_day(arrive_day);
+//						bookingService.seatCreate(seatVO);
+//						//System.out.println(bus_no + "번 버스 " + j + "일자 좌석 생성");
+//					}
+//				}
+//			}
+//		}
+//	}
 	/*
 	@Scheduled(fixedDelay = 1000)
 	public void seatReset() {

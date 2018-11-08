@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>승차권 예매</title>
-
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css"
@@ -22,10 +21,6 @@
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
-
-</head>
-
-
 
 <style type="text/css">
 p {
@@ -325,7 +320,7 @@ td, th {
 			seat=0;
 		}
 		
-		/* 어린 청소년 어린이  */
+		/* 어른 청소년 어린이  */
 		var adult = ${adult};
 		var teen = ${teen};
 		var kid = ${kid};
@@ -566,10 +561,7 @@ td, th {
 </script>
 </head>
 <body>
-
-
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
@@ -583,19 +575,16 @@ td, th {
 					<hr>
 				</header>
 			</div>
-
 		</div>
 		<div>
-
 			<form action="../booking/booking_card.do" method="post"
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">가는편</div>
-
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
-						<table border="1px solid black">
+						<table border="1">
 							<tr>
 								<td width="500px" height="50px">
 									<ul class="road">
@@ -815,8 +804,7 @@ td, th {
 									</ul>
 								</div></li>
 							<li id="menu3">
-								<table border="1px" style="width: 400px; height: 500px;">
-
+								<table border="1" style="width: 400px; height: 500px;">
 									<tbody>
 										<tr>
 											<th colspan="2"><span>선택 매수 및 금액</span></th>
@@ -827,7 +815,6 @@ td, th {
 											</td>
 										</tr>
 										<tr>
-
 											<td>청소년 <span class="teen"></span>
 											</td>
 										</tr>
@@ -846,20 +833,10 @@ td, th {
 								</table>
 							</li>
 						</ul>
-
 					</div>
-
 				</div>
-
 			</form>
-
-
-
-
 		</div>
 	</div>
-
-	</div>
-
 </body>
 </html>

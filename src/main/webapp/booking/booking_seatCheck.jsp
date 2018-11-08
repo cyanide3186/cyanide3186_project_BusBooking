@@ -235,6 +235,7 @@ td, th {
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var seat = [];
 		var count=0;
 		var reserved_list = new Array();
 			
@@ -326,13 +327,14 @@ td, th {
 		}
 		
 		/* 어린 청소년 어린이  */
-		var adult = ${adult};
-		var teen = ${teen};
-		var kid = ${kid};
-		var total = ${adult}+${teen}+${kid};
-		var adult_payment ='<c:out value="${bus_vo.payment}"/>'
-		var teen_payment = '<c:out value="${bus_vo.payment}"/>'*0.7;
-		var kid_payment =  '<c:out value="${bus_vo.payment}"/>'*0.5;
+		var adult = parseInt('<c:out value="${adult}"/>');
+		var teen = parseInt('<c:out value="${teen}"/>');
+		var kid = parseInt('<c:out value="${kid}"/>');
+		
+		var total = adult+teen+kid;
+		var adult_payment = parseInt('<c:out value="${bus_vo.payment}"/>')
+		var teen_payment =  parseInt('<c:out value="${bus_vo.payment}"/>')*0.7;
+		var kid_payment =   parseInt('<c:out value="${bus_vo.payment}"/>')*0.5;
 		 var total_payment = (adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 		$('#adult').find('option').eq(adult).attr({
 			'selected':'selected'
@@ -355,42 +357,71 @@ td, th {
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
+				var value = parseInt(value);
 				if(adult<=value){
 					adult=adult+value-adult;
+				}else if (value==0) {
+					adult=0;
 				}else{
 					adult=adult+adult-value;
 				}
 				total=adult+teen+kid;
 				alert("변경된 어른수 : "+adult);
 				alert("변경된 총인원수 : "+total);
+				$('.adult').text(adult+"명"+adult_payment*adult+"원");
+				$('.teen').text(teen+"명"+teen_payment*teen+"원");
+				$('.kid').text(kid+"명"+kid_payment*kid+"원");
+				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
+				$('.total').text(total_payment+"원"); 
+				
 			}
 		});
 		$('#teen').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
+				var value = parseInt(value);
 				if(teen<=value){
 					teen=teen+value-teen;
+				}else if (value==0) {
+					teen=0;
 				}else{
 					teen=teen+adult-teen;
 				}
 				total=adult+teen+kid;
 				alert("변경된 청소년수 : "+teen);
 				alert("변경된 총인원수 : "+total);
+				$('.adult').text(adult+"명"+adult_payment*adult+"원");
+				$('.teen').text(teen+"명"+teen_payment*teen+"원");
+				$('.kid').text(kid+"명"+kid_payment*kid+"원");
+				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
+				$('.total').text(total_payment+"원"); 
+				
 			}
 		});
 		$('#kid').dropdown({
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
+				var value = parseInt(value);
+				alert(value);
 				if(kid<=value){
 					kid=kid+value-kid;
-				}else{
+				}else if (value==0) {
+					kid=0;
+				}
+				else{
 					kid=kid+adult-kid;
 				}
 				total=adult+teen+kid;
 				alert("변경된 아동수 : "+kid);
 				alert("변경된 총인원수 : "+total);
+				$('.adult').text(adult+"명"+adult_payment*adult+"원");
+				$('.teen').text(teen+"명"+teen_payment*teen+"원");
+				$('.kid').text(kid+"명"+kid_payment*kid+"원");
+				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
+				$('.total').text(total_payment+"원"); 
+				
 			}
 			
 		});
@@ -400,7 +431,8 @@ td, th {
 			
 			alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
 			var seat_num=$(this).attr("href");
-			
+				parseInt(seat_num);
+				alert("선택한좌석"+ seat_num);
 			var line_num=seat_num/4.0;
 			/* 라인을 구함 */
 			var line=Math.ceil(line_num);
@@ -412,10 +444,13 @@ td, th {
 			}else{
 				seat=seat_num%4-1;
 			}
+
+			alert("선택한 좌석개수  : "+count +"할수있는 총 좌석"+total);
 			switch (line) {
 			case 1:
 				if($('.line1').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line1').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -424,13 +459,14 @@ td, th {
 				}else{
 					$('.line1').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
-					alert("선택한 좌석개수  : "+count);
+					seat[seat_num-1]=seat_num;
 				}
 				
 				break;
 			case 2:
 				if($('.line2').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -439,6 +475,7 @@ td, th {
 				}else{
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				
@@ -446,6 +483,7 @@ td, th {
 			case 3:
 				if($('.line3').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line3').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -454,12 +492,14 @@ td, th {
 				}else{
 					$('.line3').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 4:
 				if($('.line4').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line4').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -468,12 +508,14 @@ td, th {
 				}else{
 					$('.line4').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 5:
 				if($('.line5').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line5').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -482,12 +524,14 @@ td, th {
 				}else{
 					$('.line5').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 6:
 				if($('.line6').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line6').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -496,12 +540,14 @@ td, th {
 				}else{
 					$('.line6').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 7:
 				if($('.line7').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line7').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -510,12 +556,14 @@ td, th {
 				}else{
 					$('.line7').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
+					seat[seat_num-1]=seat_num;
 					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 8:
 				if($('.line8').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line8').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -524,12 +572,13 @@ td, th {
 				}else{
 					$('.line8').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
-					alert("선택한 좌석개수  : "+count);
+					seat[seat_num-1]=seat_num;
 				}
 				break;
 			case 9:
 				if($('.line9').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line9').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -538,12 +587,13 @@ td, th {
 				}else{
 					$('.line9').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
-					alert("선택한 좌석개수  : "+count);
+					seat[seat_num-1]=seat_num;
 				}
 				break;
 			case 10:
 				if($('.line10').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line10').find('img').eq(seat).attr('src','../images/seat_off.png');
+					delete seat[seat_num-1];
 					count--;
 					break;
 				}else if (total<=count) {
@@ -552,16 +602,38 @@ td, th {
 				}else{
 					$('.line10').find('img').eq(seat).attr('src','../images/seat_on.png');
 					count++;
-					alert("선택한 좌석개수  : "+count);
+					seat[seat_num-1]=seat_num;
 				}
 				break;
-
+		
 			}
-			
-			seat=0;
 			/* 	$('#menu2').find('a').val($(this).attr("href")); */
 		});
 		
+		var actionform = $("#actionForm");
+		$('#submit').on("click",function(e){
+			e.preventDefault();
+			if (total<count) {
+				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
+				return false;
+			}
+			//예약한 총 금액
+			actionform.find("input[name='total_payment']").val(total_payment);
+			//예약한 총좌석
+			actionform.find("input[name='total_seat']").val(count);
+			actionform.find("input[name='seat_no']").val(seat);
+			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
+			actionform.submit();
+		});
+		var tag;
+
+		for(var i = 0 ; i <  count ; i++){
+
+		  tag = "<input type='hidden' value="+seat[i]+"  name='data[ " + i + " ] ' />";
+
+		  document.form.appendChild(tag);
+
+		}
 	});
 </script>
 </head>
@@ -569,7 +641,20 @@ td, th {
 
 
 	<div class="wrapper">
-
+		<form role="form"  method="post" id="actionForm" action="#">
+			<input type="hidden" name="bus_no" value="${bus_no}">
+			<input type="hidden" name="seat_no" value="">
+			<input type="hidden" name="total_payment" value="">
+			<input type="hidden" name="total_seat" value="">
+			
+			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
+			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
+			<input type="hidden" name="adult"value="${adult}"> 
+			<input type="hidden" name="teen" value="${teen}">
+			<input type="hidden" name="kid" value="${kid}">
+			<input type="hidden" name="arrive_time" value="${arrive_time}">
+			<input type="hidden" name="arrive_day" value="${arrive_day}">
+		</form>
 		<div>
 			<div class="column">
 				<header>
@@ -840,7 +925,7 @@ td, th {
 											<td><span class="total"></span></td>
 										</tr>
 										<tr>
-											<th colspan="2"><button type="button">다음</button></th>
+											<th colspan="2"><button type="button" id="submit">다음</button></th>
 										</tr>
 									</tbody>
 								</table>

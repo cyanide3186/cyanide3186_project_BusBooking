@@ -25,15 +25,24 @@
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
 <script src="/Project_BusBooking/js/alertify.min.js"></script>
 <script type="text/javascript">
+	var num = /[0-9]/;
 	function check() {
 		if(document.bus_card.card_1.value == ""||document.bus_card.card_2.value == ""||document.bus_card.card_3.value == ""||document.bus_card.card_4.value == "") {
 			alertify.alert("카드번호를 입력해주세요");
+		} else if(!num.test(document.bus_card.card_1.value)||!num.test(document.bus_card.card_2.value)||!num.test(document.bus_card.card_3.value)||!num.test(document.bus_card.card_4.value)){
+			alertify.alert("카드번호는 숫자로 입력해주세요");
 		} else if(document.bus_card.month.value == ""||document.bus_card.year.value == "") {
 			alertify.alert("유효기간을 입력해주세요");
+		} else if(!num.test(document.bus_card.month.value)||!num.test(document.bus_card.year.value)){
+			alertify.alert("유효기간은 숫자로 입력해주세요");
 		} else if(document.bus_card.password.value == "") {
 			alertify.alert("카드 비밀번호를 입력해주세요");
+		} else if(!num.test(document.bus_card.password.value)){
+			alertify.alert("카드 비밀번호는 숫자로 입력해주세요");
 		} else if(document.bus_card.hp2.value == "" || document.bus_card.hp3.value == "") {
 			alertify.alert("휴대폰 번호를 입력해주세요");
+		} else if(!num.test(document.bus_card.hp2.value)||!num.test(document.bus_card.hp3.value)){
+			alertify.alert("휴대폰 번호는 숫자로 입력해주세요");
 		} else {
 			alertify.alert("예매가 완료되었습니다.");
 			document.bus_card.submit();

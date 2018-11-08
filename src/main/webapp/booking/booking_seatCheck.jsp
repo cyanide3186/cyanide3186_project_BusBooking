@@ -610,17 +610,19 @@ td, th {
 			/* 	$('#menu2').find('a').val($(this).attr("href")); */
 		});
 		
+		var tag;
 		var actionform = $("#actionForm");
 		$('#submit').on("click",function(e){
 			e.preventDefault();
+			alert("테스트1");
 			if (total<count) {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
-		
+			alert("테스트2");
 
-			for(var i = 0 ; i <  40 ; i++){
-				var tag;
+			for(var i = 0 ; i < 40; i++){
+			  var tag;	
 			  tag = "<input type='hidden' value="+seat[i]+"  name='seat[ " + i + " ] ' />";
 					
 			  actionform.append(tag);

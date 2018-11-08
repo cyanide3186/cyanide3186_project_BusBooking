@@ -667,7 +667,7 @@ public class BookingController {
 	 	alter system set processes=500 scope=spfile;
 	 	shutdown immediate;
 	 	startup
-	 	을 한 줄씩 차례로 입력해준다. 
+	 	을 한 줄씩 차례로 입력한 후에 진행해야된다. 
 	 */
 	@RequestMapping(value="/booking/seatCreate.do")
 	public void seatCreat() {

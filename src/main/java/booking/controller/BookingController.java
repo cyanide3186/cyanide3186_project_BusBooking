@@ -335,7 +335,7 @@ public class BookingController {
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
-		int hp = Integer.parseInt(request.getParameter("hp1")+(request.getParameter("hp2")));
+		int hp = Integer.parseInt(request.getParameter("hp1")+(request.getParameter("hp2")+(request.getParameter("hp3"))));
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;

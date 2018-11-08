@@ -226,7 +226,7 @@ button {
 										<li><img src="../images/point.png" height="30px"
 											width="100px"></li>
 										<li class=box>도착지</li>
-										<li>${end_tr} + ${adult}</li>
+										<li>${end_tr}</li>
 									</ul>
 								</td>
 								<td width="500px"><ul>

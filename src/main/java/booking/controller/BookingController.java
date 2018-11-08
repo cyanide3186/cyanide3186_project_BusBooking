@@ -287,9 +287,7 @@ public class BookingController {
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
 		
-		/*System.out.println(seatVO.getBus_no());
-		System.out.println(seatVO.getArrive_month());
-		System.out.println(seatVO.getArrive_day());*/
+	
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 		
 		ArrayList<Integer> seat_reservation = new ArrayList<>();
@@ -523,7 +521,7 @@ public class BookingController {
 		ticketVO.setArrive_day(arrive_day);
 
 		int count = bookingService.booking(ticketVO);
-
+		
 		return count;
 	}
 

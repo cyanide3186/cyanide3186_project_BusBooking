@@ -290,7 +290,7 @@ public class BookingController {
 		}
 		
 		String bus_no = request.getParameter("bus_no");
-		System.out.println("bus_no"+bus_no);
+		System.out.println("bus_no : "+bus_no);
 		BusVO vo = bookingService.getBusInfo(bus_no);
 		String arrive_day = request.getParameter("arrive_day");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");

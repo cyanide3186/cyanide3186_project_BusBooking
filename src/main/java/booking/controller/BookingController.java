@@ -2,6 +2,7 @@ package booking.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -180,12 +181,11 @@ public class BookingController {
 	public ModelAndView booking_cardForm(HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView();
-		String[]seat= request.getParameterValues("seat");
-		for(int i =0 ; i<seat.length; i++) {
-			if(seat[i]!=null) {
-				System.out.println(seat[i]);
-			}
-		}
+		String seat[] = request.getParameterValues("seat");
+		  List<String> seatList = Arrays.asList(seat);
+		  for (String i : seatList) {
+		        System.out.println(i);
+		    }
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("main", "../booking/booking_card.jsp");
 		modelAndView.setViewName("../main/index.jsp");

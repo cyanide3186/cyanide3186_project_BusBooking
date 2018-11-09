@@ -432,35 +432,11 @@ display: none;
 		//자리 선택시 
 		$(".seat a").on("click" ,function(e){
 			e.preventDefault();
-			var arr = new Array(); //Object를 배열로 저장할 Array
-		       var obj = new Object(); //key, value형태로 저장할 Object
-		        
-		       obj.user_nm = "관리자";
-		       obj.user_password = "1111";
-		       arr.push(obj);
-		        
-		       obj = new Object();
-		       obj.user_nm = "직원";
-		       obj.user_password = "2222";
-		       arr.push(obj);
-		 
-		        $.ajax({
-		            url: "../booking/booking_card.do",
-		            type: "POST",
-		            data: JSON.stringify(arr), //Array를 JSON string형태로 변환
-		            dataType: "json",
-		            contentType: "application/json",
-		            success: function(data) {
-		            	alert(JSON.stringify(arr));
-		            },
-		            error:function(data){
-		            }
-		        });
+			
 
 			alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
 			var seat_num=$(this).attr("href");
 				parseInt(seat_num);
-				alert("선택한좌석"+ seat_num);
 			var line_num=seat_num/4.0;
 			/* 라인을 구함 */
 			var line=Math.ceil(line_num);
@@ -536,7 +512,6 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 5:
@@ -569,7 +544,6 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 7:
@@ -638,7 +612,6 @@ display: none;
 				break;
 		
 			}
-			/* 	$('#menu2').find('a').val($(this).attr("href")); */
 		});
 		
 		var tag;

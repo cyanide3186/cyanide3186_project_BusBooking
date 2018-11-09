@@ -74,24 +74,20 @@
 							} else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
-							//alert(arrivedate);
 							if (arrivedate.indexOf(" ", 1) == 1) {
 								var day = "0" + arrivedate.substring(0, 1);
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
 								var date = year + "-" + month + "-" +  day;
-								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
 								var date = year + "-" + month + "-" + day;
-								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
 							var value = $("#arrivedate").attr("value");
-							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
 						}
 							

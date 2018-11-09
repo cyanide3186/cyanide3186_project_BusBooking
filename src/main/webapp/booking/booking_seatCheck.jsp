@@ -22,10 +22,6 @@
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
-<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
-<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
-<script src="/Project_BusBooking/js/alertify.min.js"></script>
-
 
 </head>
 
@@ -374,8 +370,8 @@ display: none;
 					adult=adult+adult-value;
 				}
 				total=adult+teen+kid;
-				alertify.alert("변경된 어른수 : "+adult);
-				alertify.alert("변경된 총인원수 : "+total);
+				alert("변경된 어른수 : "+adult);
+				alert("변경된 총인원수 : "+total);
 				$('.adult').text(adult+"명"+adult_payment*adult+"원");
 				$('.teen').text(teen+"명"+teen_payment*teen+"원");
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
@@ -397,8 +393,8 @@ display: none;
 					teen=teen+adult-teen;
 				}
 				total=adult+teen+kid;
-				alertify.alert("변경된 청소년수 : "+teen);
-				alertify.alert("변경된 총인원수 : "+total);
+				alert("변경된 청소년수 : "+teen);
+				alert("변경된 총인원수 : "+total);
 				$('.adult').text(adult+"명"+adult_payment*adult+"원");
 				$('.teen').text(teen+"명"+teen_payment*teen+"원");
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
@@ -412,7 +408,7 @@ display: none;
 			duration : 700,
 			onChange : function(value, text, $choice) {
 				var value = parseInt(value);
-				alertify.alert(value);
+				alert(value);
 				if(kid<=value){
 					kid=kid+value-kid;
 				}else if (value==0) {
@@ -422,8 +418,8 @@ display: none;
 					kid=kid+adult-kid;
 				}
 				total=adult+teen+kid;
-				alertify.alert("변경된 아동수 : "+kid);
-				alertify.alert("변경된 총인원수 : "+total);
+				alert("변경된 아동수 : "+kid);
+				alert("변경된 총인원수 : "+total);
 				$('.adult').text(adult+"명"+adult_payment*adult+"원");
 				$('.teen').text(teen+"명"+teen_payment*teen+"원");
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
@@ -455,16 +451,16 @@ display: none;
 		            dataType: "json",
 		            contentType: "application/json",
 		            success: function(data) {
-		            	alertify.alert(JSON.stringify(arr));
+		            	alert(JSON.stringify(arr));
 		            },
 		            error:function(data){
 		            }
 		        });
 
-		        alertify.alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
+			alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
 			var seat_num=$(this).attr("href");
 				parseInt(seat_num);
-				alertify.alert("선택한좌석"+ seat_num);
+				alert("선택한좌석"+ seat_num);
 			var line_num=seat_num/4.0;
 			/* 라인을 구함 */
 			var line=Math.ceil(line_num);
@@ -540,7 +536,7 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alertify.alert("선택한 좌석개수  : "+count);
+					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 5:
@@ -573,7 +569,7 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alertify.alert("선택한 좌석개수  : "+count);
+					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 7:
@@ -649,12 +645,12 @@ display: none;
 		var actionform = $("#actionForm");
 		$('#submit').on("click",function(e){
 			e.preventDefault();
-			alertify.alert("테스트1");
+			alert("테스트1");
 			if (total<count) {
-				alertify.alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
+				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
-			alertify.alert("테스트2");
+			alert("테스트2");
 			
 			for(var i = 0 ; i < 40; i++){
 			  var tag;	
@@ -668,7 +664,7 @@ display: none;
 			//예약한 총좌석
 			actionform.find("input[name='total_seat']").val(count);
 			actionform.find("input[name='seat_no']").val(seat);
-			alertify.alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
+			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
 			actionform.submit();
 		});
 		
@@ -676,7 +672,6 @@ display: none;
 	
 
 	});
-	
 </script>
 </head>
 <body>

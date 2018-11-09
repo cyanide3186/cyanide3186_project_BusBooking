@@ -35,6 +35,7 @@
 			actionform.find("input[name='bus_no']").val($(this).attr("href"));
 			actionform.submit();
 		});
+	
 	});
 </script>
 <style type="text/css">
@@ -88,11 +89,10 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: white;
+	color: yellow;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
 	width: 120px;
 	border: 3px solid yellow;
 }
@@ -118,7 +118,7 @@ h1 {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	background-color: orange;
+	background-color: #FAAC58;
 }
 
 td, th {

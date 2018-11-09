@@ -201,14 +201,17 @@ public class BookingController {
 			}
 		}
 		
-		String arrive_time1 = arrive_time.substring(0,2);
+		
+		String arrive_time1;
 		String arrive_time2;
 		if(arrive_time.length()==3) {
-			arrive_time2 = arrive_time.substring(2,3);
+			arrive_time1 = arrive_time.substring(0,1);
+			arrive_time2 = arrive_time.substring(1,3);
 		} else  {
+			arrive_time1 = arrive_time.substring(0,2);
 			arrive_time2 = arrive_time.substring(2,4);
 		}
-		
+		 
 		
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("start_tr", start_tr);  

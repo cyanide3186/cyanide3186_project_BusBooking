@@ -180,7 +180,14 @@ public class BookingController {
 	public ModelAndView booking_cardForm(HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView();
-
+		
+		for(int i = 0; i < 40; i++) {
+			String seat = request.getParameter("seat[ " + i + " ] ");
+			if(!seat.equals("seat[0]")) {
+				System.out.println(seat);
+			}
+		}
+		
 		modelAndView.addObject("main", "../booking/booking_card.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 

@@ -622,7 +622,6 @@ td, th {
 			for(var i = 0 ; i < 40; i++){
 			  var tag;	
 			  tag = "<input type='hidden' value="+seat[i]+"  name='seat[ " + i + " ] ' />";
-					
 			  actionform.append(tag);
 
 			}

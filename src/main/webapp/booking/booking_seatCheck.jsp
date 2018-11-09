@@ -672,6 +672,7 @@ display: none;
 	
 
 	});
+	
 </script>
 </head>
 <body>

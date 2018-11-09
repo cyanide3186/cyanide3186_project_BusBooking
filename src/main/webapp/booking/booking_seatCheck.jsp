@@ -377,7 +377,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='adult']").val(adult);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#teen').dropdown({
@@ -400,7 +401,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='teen']").val(teen);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#kid').dropdown({
@@ -425,7 +427,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='kid']").val(kid);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 			
 		});
@@ -477,7 +480,7 @@ display: none;
 				}else{
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
 					$('input[name=seat]').eq(seat_num-1).prop('checked', true);
-
+				
 					count++;
 				}
 				
@@ -624,7 +627,10 @@ display: none;
 			}
 			$('#seat:checked').each(function() { 
 		        alert($(this).val());
-		        
+		        var check ="<input type='checkbox' name ='seat'>";
+		        check.attr("value", $(this).val());
+		        alert($(this).val()+"ddd");
+		        $('#actionForm').append(check);
 		   	});
 
 			//예약한 총 금액
@@ -632,7 +638,7 @@ display: none;
 			//예약한 총좌석
 			actionform.find("input[name='total_seat']").val(count);
 			actionform.find("input[name='seat_no']").val(seat);
-			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
+			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment);
 			actionform.submit();
 		});
 		
@@ -646,20 +652,21 @@ display: none;
 
 
 	<div class="wrapper">
+		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
 		<div id="hidden_seat">
 			<c:forEach begin="1" end="40" step="1" var="i">
 				<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
 			</c:forEach>
 		</div>
-		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
 			<input type="hidden" name="bus_no" value="${bus_no}">
 			<input type="hidden" name="seat_no" value="">
 			<input type="hidden" name="total_payment" value="">
 			<input type="hidden" name="total_seat" value="">
 			
+			<input type="hidden" name="total_payment" value=""> 
 			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
 			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
-			<input type="hidden" name="adult"value="${adult}"> 
+			<input type="hidden" name="adult" value="${adult}"> 
 			<input type="hidden" name="teen" value="${teen}">
 			<input type="hidden" name="kid" value="${kid}">
 			<input type="hidden" name="arrive_time" value="${arrive_time}">

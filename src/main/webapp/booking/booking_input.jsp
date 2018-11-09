@@ -764,7 +764,7 @@ input {
 					<ul class="level">
 						<li id="mainli">1.기초정보 입력</li>
 						<li>2.배차 조회</li>
-						<li>3.매수 및 좌석선택</li>
+						<li>3.매수및좌석선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>

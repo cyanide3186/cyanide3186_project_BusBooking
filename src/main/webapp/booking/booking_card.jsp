@@ -200,11 +200,9 @@ h1 {
 									</c:if>
 								</td>	
 								<td width="500px" align="center" class="card3">
-								<c:forEach var="String" items="${list}">
-								<tr align="center">
-									<td>좌석 ${seat}</td>
-								</tr>
-								</c:forEach>
+									<c:forEach var="String" items="${seat}">
+									좌석 ${String}
+									</c:forEach>
 								</td>	
 							</tr>
 						</table>
@@ -214,7 +212,7 @@ h1 {
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
 								<td width="500px" align="center" class="card3">
-									${totalPay}원</td>
+									${total_payment}원</td>
 							</tr>
 							</table>
 							<br>

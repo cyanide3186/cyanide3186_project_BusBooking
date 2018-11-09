@@ -355,7 +355,10 @@ td, th {
 		$('.teen').text(teen+"명"+teen_payment*teen+"원");
 		$('.kid').text(kid+"명"+kid_payment*kid+"원");
 		$('.total').text(total_payment+"원"); 
-		
+		$('#actionForm').find("input[name='adult']").attr('value',adult);
+		$('#actionForm').find("input[name='teen']").attr('value',teen);
+		$('#actionForm').find("input[name='kid']").attr('value',kid);
+		$('#actionForm').find("input[name='total_payment']").attr('value',total_payment);
 		//드롭다운기준
 		$('#adult').dropdown({
 			direction : 'down',
@@ -624,21 +627,11 @@ td, th {
 			if (total<count) {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
+			}else if (total>count) {
+				alert("선택한 좌석 개수가 부족합니다.");
+				return false;
+				
 			}
-			/* $('#seat:checked').each(function() { 
-		        alert($(this).val());
-		        var seat_chk=$(this).val();
-		        var check ="<input type='checkbox' name ='seat'>";
-		        alert(seat_chk);
-		        check.val;(seat_chk);
-		        alert($(this).val()+"ddd");
-		        $('#actionForm').append(check);
-		        
-		   	});  */
-															    
-		
-
-
 			//예약한 총 금액
 			actionform.find("input[name='total_payment']").attr('value',total_payment);
 			//예약한 총좌석
@@ -646,17 +639,13 @@ td, th {
 			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment);
 			actionform.submit();
 		});
-		
-		
-	
 
 	});
 </script>
 </head>
 <body>
 
-		
-
+	
 	<div class="wrapper">
 		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
 			<div id="hidden_seat">
@@ -665,19 +654,16 @@ td, th {
 			</c:forEach>
 			</div> 
 			<input type="hidden" name="bus_no" value="${bus_no}">
-			<input type="hidden" name="seat_no" value="">
-			<input type="hidden" name="total_payment" value="">
 			<input type="hidden" name="total_seat" value="">
-			
 			<input type="hidden" name="total_payment" value=""> 
 			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
 			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
 			<input type="hidden" name="adult" value="${adult}"> 
 			<input type="hidden" name="teen" value="${teen}">
 			<input type="hidden" name="kid" value="${kid}">
-			<input type="hidden" name="arrive_time" value="${arrive_time}">
+			<input type="hidden" name="arrive_time" value="${bus_vo.arrive_time}">
 			<input type="hidden" name="arrive_day" value="${arrive_day}">
-		</form>
+		</form>         
 		<div>
 			<div class="column">
 				<header>

@@ -188,8 +188,16 @@ public class BookingController {
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
+		String total_payment = request.getParameter("total_payment");
 		ModelAndView modelAndView = new ModelAndView();
-		String seat[] = request.getParameterValues("seat");
+		String seatarr[] = request.getParameterValues("seat");
+		ArrayList<String> seat= new ArrayList<>();
+		for(int i =0 ; i<seatarr.length; i++) {
+			if(seatarr[i]!=null) {
+				seat.add(seatarr[i].toString());
+				System.out.println(seatarr[i]);
+			}
+		}
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);
@@ -200,6 +208,7 @@ public class BookingController {
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);
 		modelAndView.addObject("seat", seat);
+		modelAndView.addObject("total_payment", total_payment);
 		modelAndView.addObject("main", "../booking/booking_card.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 		return modelAndView;
@@ -317,7 +326,7 @@ public class BookingController {
 		seatVO.setBus_no(bus_no);
 		seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 		seatVO.setArrive_day(Integer.parseInt(setArrive_day));
-
+		
 		List<SeatVO> seatList = bookingService.getSeatList(seatVO);
 
 		ArrayList<Integer> seat_reservation = new ArrayList<>();
@@ -330,6 +339,7 @@ public class BookingController {
 
 			}
 		}
+		
 		modelAndView.addObject("adult", adult);
 		modelAndView.addObject("teen", teen);
 		modelAndView.addObject("kid", kid);

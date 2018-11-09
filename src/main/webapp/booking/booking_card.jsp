@@ -60,8 +60,8 @@
 	}
 </script>
 <style type="text/css">
-.font {
-	color : red;	
+p {
+	font-size: 1.5rem;
 }
 
 header {
@@ -184,10 +184,10 @@ h1 {
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1">
 							<tr>
-								<td width="500px" height="50px" align="center" class="card3" style="color: red">
+								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
 										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>
-								<td width="500px" height="50px" align="center" class="card3" style="color: red">
+								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
 										<a class="box" style="color: white">도착지</a>${end_tr}
 									</td>
 							</tr>
@@ -301,7 +301,7 @@ h1 {
 						<br>
 						<br>
 						<p>
-						예매조회정보 입력<br> 
+						예매조회 정보 입력<br> 
 						아래는 예매 사항을 조회하기 위한 정보 입력입니다.
 						</p>
 						<table border="1">

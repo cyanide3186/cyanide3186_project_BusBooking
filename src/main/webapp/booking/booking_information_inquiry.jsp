@@ -63,24 +63,20 @@
 							e.preventDefault();
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
-							//alert(arrivedate);
 							if (arrivedate.indexOf(" ", 1) == 1) {
 								var day = "0" + arrivedate.substring(0, 1);
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
 								var date = year + "-" + month + "-" + day;
-								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
 								var date = year + month + day;
-								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
 							var value = $("#arrivedate").attr("value");
-							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
 						});
 
@@ -92,7 +88,6 @@
 			function() {
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
-				//var startterminal=$('input:radio[name="chk_terminal"]').val();
 				alertify.alert(startterminal + "을 선택하셨습니다.");
 				$("#start_tr").attr({
 					placeholder : startterminal,
@@ -170,7 +165,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value + "을 출발지로 선택하셨습니다.");
+				alertify.alert(value + "을 출발지로 선택하셨습니다.");
 				var start = value;
 				$("#start_tr").attr({
 					placeholder : start,
@@ -266,7 +261,7 @@
 								/* 지역선택에따른 jons 으로 터미널 목록 생성 */
 								var local = value;//드롭박스에서 선택한 값을 가져옴 
 								$("#result_terminal").empty();
-								alert(local);
+								alertify.alert(local);
 								//ajax실행 
 								$
 										.ajax({
@@ -277,7 +272,7 @@
 											},
 											dataType : "json",
 											success : function(data) {
-												alert("success");
+												alertify.alert("success");
 												$
 														.each(
 																data.items,
@@ -341,7 +336,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert(value + "을 도착지로 선택하셨습니다.");
+				alertify.alert(value + "을 도착지로 선택하셨습니다.");
 				var end = value;
 				$("#end_tr").attr({
 					placeholder : end,
@@ -371,7 +366,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alert("출발시간은" + value + "입니다");
+				alertify.alert("출발시간은" + value + "입니다");
 			}
 		});
 		/* 전체 터미널 목록 Json */

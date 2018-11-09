@@ -188,6 +188,7 @@ public class BookingController {
 		String adult = request.getParameter("adult");
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
+		System.out.println(adult);
 		ModelAndView modelAndView = new ModelAndView();
 		String seat[] = request.getParameterValues("seat");
 		modelAndView.addObject("seat", seat);

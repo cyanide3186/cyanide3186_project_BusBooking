@@ -39,19 +39,23 @@
 			alertify.alert("카드 비밀번호를 입력해주세요");
 		} else if(!num.test(document.bus_card.password.value)){
 			alertify.alert("카드 비밀번호는 숫자로 입력해주세요");
+		} else if(document.bus_card.no.value == "") {
+			alertify.alert("주민번호 앞 6자리를 입력해주세요");
+		} else if(!num.test(document.bus_card.no.value)){
+			alertify.alert("주민번호 앞 6자리는 숫자로 입력해주세요");
 		} else if(document.bus_card.hp2.value == "" || document.bus_card.hp3.value == "") {
 			alertify.alert("휴대폰 번호를 입력해주세요");
 		} else if(!num.test(document.bus_card.hp2.value)||!num.test(document.bus_card.hp3.value)){
 			alertify.alert("휴대폰 번호는 숫자로 입력해주세요");
 		} else {
-			alertify.alert("예매가 완료되었습니다.");
+			alertify.alert("예매가 완료되었습니다 초기 페이지로 이동합니다.");
 			document.bus_card.submit();
 		}
 	}
 </script>
 <style type="text/css">
 p {
-	font-weight: bolder;
+
 	font-size: 1.5rem;
 	text-align: left;
 }
@@ -164,7 +168,12 @@ h1 {
 				name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">배차정보</div>
+						<div class="active item">
+						
+						<p>
+						배차정보
+						<p>
+						</div>
 					</div>	
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1">
@@ -200,11 +209,13 @@ h1 {
 									</c:if>
 								</td>	
 								<td width="500px" align="center" class="card3">
-								<c:forEach var="String" items="${list}">
 								<tr align="center">
-									<td>좌석 ${seat}</td>
+									<td>
+									<c:forEach var="String" items="${list}">
+									좌석 ${seat}&nbsp;
+									</c:forEach>
+									</td>
 								</tr>
-								</c:forEach>
 								</td>	
 							</tr>
 						</table>
@@ -282,6 +293,21 @@ h1 {
 						</tr>
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
+								주민번호 앞 6자리</td>
+							<td width="700px" align="left" class="card2">
+								<input type="text" size="5" name="no" maxlength="6">
+							</td>
+						</tr>
+						</table>
+						<br>
+						<br>
+						<p>
+						예매조회정보 입력<br> 
+						아래는 예매 사항을 조회하기 위한 정보 입력입니다.
+						</p>
+						<table border="1">
+							<tr>
+							<td width="300px" height="50px" align="center" class="card1">
 								휴대폰 번호
 							</td>
 							<td width="700px" align="left" class="card2">
@@ -298,16 +324,16 @@ h1 {
 								-
 								<input type="text" size="4" name="hp3" maxlength="4">
 							</td>
-						</tr>
+						</tr>	
 						<tr>
 							<td colspan="2" width="1000px" height="50px" align="center" class="card3">
 							<button class="ui teal basic button" type="button" onclick="check()" style="font-weight: bold">예매하기</button>
 							<button class="ui teal basic button" type="reset" style="font-weight: bold">다시작성</button>
 							</td>
-						</tr>
+						</tr>					
 						</table>
-						</div>
-			</div>
+					</div>
+				</div>
 			</form>
 		</div>	
 	</div>	

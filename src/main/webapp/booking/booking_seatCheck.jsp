@@ -364,11 +364,11 @@ display: none;
 			onChange : function(value, text, $choice) {
 				var value = parseInt(value);
 				if(adult<=value){
-					adult=adult+value-adult;
+					adult=adult+(value-adult);
 				}else if (value==0) {
 					adult=0;
 				}else{
-					adult=adult+adult-value;
+					adult=adult-(adult-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 어른수 : "+adult);
@@ -378,7 +378,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='adult']").val(adult);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#teen').dropdown({
@@ -387,11 +388,11 @@ display: none;
 			onChange : function(value, text, $choice) {
 				var value = parseInt(value);
 				if(teen<=value){
-					teen=teen+value-teen;
+					teen=teen+(value-teen);
 				}else if (value==0) {
 					teen=0;
 				}else{
-					teen=teen+adult-teen;
+					teen=teen-(teen-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 청소년수 : "+teen);
@@ -401,7 +402,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='teen']").val(teen);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#kid').dropdown({
@@ -411,12 +413,12 @@ display: none;
 				var value = parseInt(value);
 				alert(value);
 				if(kid<=value){
-					kid=kid+value-kid;
+					kid=kid+(value-kid);
 				}else if (value==0) {
 					kid=0;
 				}
 				else{
-					kid=kid+adult-kid;
+					kid=kid-(kid-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 아동수 : "+kid);
@@ -426,42 +428,19 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='kid']").val(kid);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 			
 		});
 		//자리 선택시 
 		$(".seat a").on("click" ,function(e){
 			e.preventDefault();
-			var arr = new Array(); //Object를 배열로 저장할 Array
-		       var obj = new Object(); //key, value형태로 저장할 Object
-		        
-		       obj.user_nm = "관리자";
-		       obj.user_password = "1111";
-		       arr.push(obj);
-		        
-		       obj = new Object();
-		       obj.user_nm = "직원";
-		       obj.user_password = "2222";
-		       arr.push(obj);
-		 
-		        $.ajax({
-		            url: "../booking/booking_card.do",
-		            type: "POST",
-		            data: JSON.stringify(arr), //Array를 JSON string형태로 변환
-		            dataType: "json",
-		            contentType: "application/json",
-		            success: function(data) {
-		            	alert(JSON.stringify(arr));
-		            },
-		            error:function(data){
-		            }
-		        });
+			
 
 			alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
 			var seat_num=$(this).attr("href");
 				parseInt(seat_num);
-				alert("선택한좌석"+ seat_num);
 			var line_num=seat_num/4.0;
 			/* 라인을 구함 */
 			var line=Math.ceil(line_num);
@@ -502,7 +481,7 @@ display: none;
 				}else{
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
-
+				
 					count++;
 				}
 				
@@ -537,7 +516,6 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 5:
@@ -570,7 +548,6 @@ display: none;
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
 
 					count++;
-					alert("선택한 좌석개수  : "+count);
 				}
 				break;
 			case 7:
@@ -639,33 +616,30 @@ display: none;
 				break;
 		
 			}
-			/* 	$('#menu2').find('a').val($(this).attr("href")); */
 		});
 		
 		var tag;
 		var actionform = $("#actionForm");
 		$('#submit').on("click",function(e){
 			e.preventDefault();
-			alert("테스트1");
 			if (total<count) {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
-			alert("테스트2");
-			
-			for(var i = 0 ; i < 40; i++){
-			  var tag;	
-			  tag = "<input type='hidden' value="+seat[i]+"  name='seat[ " + i + " ] ' />";
-					
-			  actionform.append(tag);
+			/* $('#seat:checked').each(function() { 
+		        alert($(this).val());
+		        var check ="<input type='checkbox' name ='seat'>";
+		        check.attr("value", $(this).val());
+		        alert($(this).val()+"ddd");
+		        $('#actionForm').append(check);
+		   	}); */
 
-			}
 			//예약한 총 금액
 			actionform.find("input[name='total_payment']").val(total_payment);
 			//예약한 총좌석
 			actionform.find("input[name='total_seat']").val(count);
 			actionform.find("input[name='seat_no']").val(seat);
-			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
+			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment);
 			actionform.submit();
 		});
 		
@@ -678,18 +652,20 @@ display: none;
 <body>
 	<div class="wrapper">
 		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
+			<div id="hidden_seat">
+			<c:forEach begin="1" end="40" step="1" var="i">
+				<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
+			</c:forEach>
+			</div>
 			<input type="hidden" name="bus_no" value="${bus_no}">
 			<input type="hidden" name="seat_no" value="">
 			<input type="hidden" name="total_payment" value="">
 			<input type="hidden" name="total_seat" value="">
-			<div id="hidden_seat">
-			<c:forEach begin="1" end="40" step="1" var="i">
-			<input type="checkbox" name="seat" value='${i}'>${i}
-			</c:forEach>
-			</div>
+			
+			<input type="hidden" name="total_payment" value=""> 
 			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
 			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
-			<input type="hidden" name="adult"value="${adult}"> 
+			<input type="hidden" name="adult" value="${adult}"> 
 			<input type="hidden" name="teen" value="${teen}">
 			<input type="hidden" name="kid" value="${kid}">
 			<input type="hidden" name="arrive_time" value="${arrive_time}">

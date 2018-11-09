@@ -167,7 +167,7 @@ h1 {
 						<div class="active item">배차정보</div>
 					</div>	
 					<div class="ui bottom attached active tab segment" align="center">
-						<table border="1px solid black">
+						<table border="1">
 							<tr>
 								<td width="500px" height="50px" align="center" class="card3">
 									<ul class="road">
@@ -209,7 +209,7 @@ h1 {
 							</tr>
 						</table>
 							<br>
-							<table border="1px solid black">
+							<table border="1">
 								<tr>
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
@@ -222,7 +222,7 @@ h1 {
 						<p>
 						카드 정보 입력
 						</p>
-						<table border="1px solid black">
+						<table border="1">
 						<tr>
 							<td width="300px" height="50px" align="center" class="card1">
 								카드구분</td>

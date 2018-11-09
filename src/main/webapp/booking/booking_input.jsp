@@ -637,7 +637,7 @@ li {
 	padding: 0 0;
 	color: yellow;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 	
 }
 

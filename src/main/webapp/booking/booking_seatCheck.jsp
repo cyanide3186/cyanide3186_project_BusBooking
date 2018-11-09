@@ -18,6 +18,11 @@
 	href="/Project_BusBooking/semantic/semantic.css">
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/alertify.core.css" />
+<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
+<script src="/Project_BusBooking/js/alertify.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
@@ -79,9 +84,9 @@ li {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: yellow;
+	color: white;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 }
 
 table {
@@ -232,438 +237,697 @@ td, th {
 	left: 960px;
 	top: 1280px;
 }
-#hidden_seat{
- display: none; 
-	}
+
+#hidden_seat {
+	display: none;
+}
 </style>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var seat = new Array();
-		var count=0;
-		var reserved_list = new Array();
-			
-		<c:forEach items="${seat_reservation}" var="item1">
-		
-		reserved_list.push("${item1}");
-		
-		</c:forEach>
-		
-		
-		for (var i = 0; i < reserved_list.length; i++) {
-			var span = $('<span>____</span>');
-			var num1=reserved_list[i]/4.0;
-			/* 라인을 구함 */
-			var line=Math.ceil(num1);
-			/* 자리를 구함 */
-			var seat;
-			if(reserved_list[i]%4===0){
-				seat=reserved_list[i]%4+3;
-				
-			}else{
-				seat=reserved_list[i]%4-1;
-			}
-			switch (line) {
-			case 1:
-				$('.line1').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line1').find('span').eq(seat).remove();
-				$('.line1').find('img').eq(seat).after(span);
-				$('.line1').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 2:
-				$('.line2').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line2').find('span').eq(seat).remove();
-				$('.line2').find('img').eq(seat).after(span);
-				$('.line2').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 3:
-				$('.line3').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line3').find('span').eq(seat).remove();
-				$('.line3').find('img').eq(seat).after(span);
-				$('.line3').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 4:
-				$('.line4').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line4').find('span').eq(seat).remove();
-				$('.line4').find('img').eq(seat).after(span);
-				$('.line4').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 5:
-				$('.line5').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line5').find('span').eq(seat).remove();
-				$('.line5').find('img').eq(seat).after(span);
-				$('.line5').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 6:
-				$('.line6').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line6').find('span').eq(seat).remove();
-				$('.line6').find('img').eq(seat).after(span);
-				$('.line6').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 7:
-				$('.line7').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line7').find('span').eq(seat).remove();
-				$('.line7').find('img').eq(seat).after(span);
-				$('.line7').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 8:
-				$('.line8').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line8').find('span').eq(seat).remove();
-				$('.line8').find('img').eq(seat).after(span);
-				$('.line8').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 9:
-				$('.line9').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line9').find('span').eq(seat).remove();
-				$('.line9').find('img').eq(seat).after(span);
-				$('.line9').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
-			case 10:
-				$('.line10').find('img').eq(seat).attr('src','../images/seat_disabled.png');
-				$('.line10').find('span').eq(seat).remove();
-				$('.line10').find('img').eq(seat).after(span);
-				$('.line10').find('a').eq(seat).css({ 'pointer-events': 'none' });
-				break;
+	$(document)
+			.ready(
+					function() {
+						var seat = new Array();
+						var count = 0;
+						var reserved_list = new Array();
 
-			}
-			
-			seat=0;
-		}
-		
-		/* 어린 청소년 어린이  */
-		var adult = parseInt('<c:out value="${adult}"/>');
-		var teen = parseInt('<c:out value="${teen}"/>');
-		var kid = parseInt('<c:out value="${kid}"/>');
-		
-		var total = adult+teen+kid;
-		var adult_payment = parseInt('<c:out value="${bus_vo.payment}"/>')
-		var teen_payment =  parseInt('<c:out value="${bus_vo.payment}"/>')*0.7;
-		var kid_payment =   parseInt('<c:out value="${bus_vo.payment}"/>')*0.5;
-		 var total_payment = (adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
-		$('#adult').find('option').eq(adult).attr({
-			'selected':'selected'
-		});
-		$('#teen').find('option').eq(teen).attr({
-			'selected':'selected'
-		});
-		$('#kid').find('option').eq(kid).attr({
-			'selected':'selected'
-		});
-		
-	
-		$('.adult').text(adult+"명"+adult_payment*adult+"원");
-		$('.teen').text(teen+"명"+teen_payment*teen+"원");
-		$('.kid').text(kid+"명"+kid_payment*kid+"원");
-		$('.total').text(total_payment+"원"); 
-		$('#actionForm').find("input[name='adult']").attr('value',adult);
-		$('#actionForm').find("input[name='teen']").attr('value',teen);
-		$('#actionForm').find("input[name='kid']").attr('value',kid);
-		$('#actionForm').find("input[name='total_payment']").attr('value',total_payment);
-		//드롭다운기준
-		$('#adult').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				var value = parseInt(value);
-				if(adult<=value){
-					adult=adult+(value-adult);
-				}else if (value==0) {
-					adult=0;
-				}else{
-					adult=adult-(adult-value);
-				}
-				total=adult+teen+kid;
-				alert("변경된 어른수 : "+adult);
-				alert("변경된 총인원수 : "+total);
-				$('.adult').text(adult+"명"+adult_payment*adult+"원");
-				$('.teen').text(teen+"명"+teen_payment*teen+"원");
-				$('.kid').text(kid+"명"+kid_payment*kid+"원");
-				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
-				$('.total').text(total_payment+"원"); 
-				actionform.find("input[name='adult']").attr('value',adult);
-				actionform.find("input[name='total_payment']").attr('value',total_payment);
-			}
-		});
-		$('#teen').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				var value = parseInt(value);
-				if(teen<=value){
-					teen=teen+(value-teen);
-				}else if (value==0) {
-					teen=0;
-				}else{
-					teen=teen-(teen-value);
-				}
-				total=adult+teen+kid;
-				alert("변경된 청소년수 : "+teen);
-				alert("변경된 총인원수 : "+total);
-				$('.adult').text(adult+"명"+adult_payment*adult+"원");
-				$('.teen').text(teen+"명"+teen_payment*teen+"원");
-				$('.kid').text(kid+"명"+kid_payment*kid+"원");
-				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
-				$('.total').text(total_payment+"원"); 
-				actionform.find("input[name='teen']").attr('value',teen);
-				actionform.find("input[name='total_payment']").attr('value',total_payment);
-			}
-		});
-		$('#kid').dropdown({
-			direction : 'down',
-			duration : 700,
-			onChange : function(value, text, $choice) {
-				var value = parseInt(value);
-				alert(value);
-				if(kid<=value){
-					kid=kid+(value-kid);
-				}else if (value==0) {
-					kid=0;
-				}
-				else{
-					kid=kid-(kid-value);
-				}
-				total=adult+teen+kid;
-				alert("변경된 아동수 : "+kid);
-				alert("변경된 총인원수 : "+total);
-				$('.adult').text(adult+"명"+adult_payment*adult+"원");
-				$('.teen').text(teen+"명"+teen_payment*teen+"원");
-				$('.kid').text(kid+"명"+kid_payment*kid+"원");
-				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
-				$('.total').text(total_payment+"원"); 
-				actionform.find("input[name='kid']").attr('value',kid);
-				actionform.find("input[name='total_payment']").attr('value',total_payment);
-			}
-			
-		});
-		//자리 선택시 
-		$(".seat a").on("click" ,function(e){
-			e.preventDefault();
-			
+						<c:forEach items="${seat_reservation}" var="item1">
 
-			alert($(this).attr("href")+"번 자리를 선택하셨습니다.");
-			var seat_num=$(this).attr("href");
-				parseInt(seat_num);
-			var line_num=seat_num/4.0;
-			/* 라인을 구함 */
-			var line=Math.ceil(line_num);
-			/* 자리를 구함 */
-			var seat;
-			if(seat_num%4===0){
-				seat=seat_num%4+3;
-				
-			}else{
-				seat=seat_num%4-1;
-			}
+						reserved_list.push("${item1}");
 
-			switch (line) {
-			case 1:
-				if($('.line1').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line1').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+						</c:forEach>
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line1').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
-					count++;
-				}
-				
-				break;
-			case 2:
-				if($('.line2').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line2').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
-				
-					count++;
-				}
-				
-				break;
-			case 3:
-				if($('.line3').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line3').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+						for (var i = 0; i < reserved_list.length; i++) {
+							var span = $('<span>____</span>');
+							var num1 = reserved_list[i] / 4.0;
+							/* 라인을 구함 */
+							var line = Math.ceil(num1);
+							/* 자리를 구함 */
+							var seat;
+							if (reserved_list[i] % 4 === 0) {
+								seat = reserved_list[i] % 4 + 3;
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line3').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+							} else {
+								seat = reserved_list[i] % 4 - 1;
+							}
+							switch (line) {
+							case 1:
+								$('.line1').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line1').find('span').eq(seat).remove();
+								$('.line1').find('img').eq(seat).after(span);
+								$('.line1').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 2:
+								$('.line2').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line2').find('span').eq(seat).remove();
+								$('.line2').find('img').eq(seat).after(span);
+								$('.line2').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 3:
+								$('.line3').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line3').find('span').eq(seat).remove();
+								$('.line3').find('img').eq(seat).after(span);
+								$('.line3').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 4:
+								$('.line4').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line4').find('span').eq(seat).remove();
+								$('.line4').find('img').eq(seat).after(span);
+								$('.line4').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 5:
+								$('.line5').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line5').find('span').eq(seat).remove();
+								$('.line5').find('img').eq(seat).after(span);
+								$('.line5').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 6:
+								$('.line6').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line6').find('span').eq(seat).remove();
+								$('.line6').find('img').eq(seat).after(span);
+								$('.line6').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 7:
+								$('.line7').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line7').find('span').eq(seat).remove();
+								$('.line7').find('img').eq(seat).after(span);
+								$('.line7').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 8:
+								$('.line8').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line8').find('span').eq(seat).remove();
+								$('.line8').find('img').eq(seat).after(span);
+								$('.line8').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 9:
+								$('.line9').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line9').find('span').eq(seat).remove();
+								$('.line9').find('img').eq(seat).after(span);
+								$('.line9').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
+							case 10:
+								$('.line10').find('img').eq(seat).attr('src',
+										'../images/seat_disabled.png');
+								$('.line10').find('span').eq(seat).remove();
+								$('.line10').find('img').eq(seat).after(span);
+								$('.line10').find('a').eq(seat).css({
+									'pointer-events' : 'none'
+								});
+								break;
 
-					count++;
-				}
-				break;
-			case 4:
-				if($('.line4').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line4').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+							}
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line4').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+							seat = 0;
+						}
 
-					count++;
-				}
-				break;
-			case 5:
-				if($('.line5').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line5').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+						/* 어린 청소년 어린이  */
+						var adult = parseInt('<c:out value="${adult}"/>');
+						var teen = parseInt('<c:out value="${teen}"/>');
+						var kid = parseInt('<c:out value="${kid}"/>');
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line5').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+						var total = adult + teen + kid;
+						var adult_payment = parseInt('<c:out value="${bus_vo.payment}"/>')
+						var teen_payment = parseInt('<c:out value="${bus_vo.payment}"/>') * 0.7;
+						var kid_payment = parseInt('<c:out value="${bus_vo.payment}"/>') * 0.5;
+						var total_payment = (adult * adult_payment)
+								+ (teen * teen_payment) + (kid * kid_payment);
+						$('#adult').find('option').eq(adult).attr({
+							'selected' : 'selected'
+						});
+						$('#teen').find('option').eq(teen).attr({
+							'selected' : 'selected'
+						});
+						$('#kid').find('option').eq(kid).attr({
+							'selected' : 'selected'
+						});
 
-					count++;
-				}
-				break;
-			case 6:
-				if($('.line6').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line6').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+						$('.adult').text(
+								adult + "명   " + adult_payment * adult + "원");
+						$('.teen').text(teen + "명   " + teen_payment * teen + "원");
+						$('.kid').text(kid + "명   " + kid_payment * kid + "원");
+						$('.total').text(total_payment + "원");
+						$('#actionForm').find("input[name='adult']").attr(
+								'value', adult);
+						$('#actionForm').find("input[name='teen']").attr(
+								'value', teen);
+						$('#actionForm').find("input[name='kid']").attr(
+								'value', kid);
+						$('#actionForm').find("input[name='total_payment']")
+								.attr('value', total_payment);
+						//드롭다운기준
+						$('#adult').dropdown(
+								{
+									direction : 'down',
+									duration : 700,
+									onChange : function(value, text, $choice) {
+										var value = parseInt(value);
+										if (adult <= value) {
+											adult = adult + (value - adult);
+										} else if (value == 0) {
+											adult = 0;
+										} else {
+											adult = adult - (adult - value);
+										}
+										total = adult + teen + kid;
+										alertify.alert("변경된 어른수 : " + adult);
+										alertify.alert("변경된 총인원수 : " + total);
+										$('.adult').text(
+												adult + "명   " + adult_payment
+														* adult + "원");
+										$('.teen').text(
+												teen + "명   " + teen_payment
+														* teen + "원");
+										$('.kid').text(
+												kid + "명   " + kid_payment * kid
+														+ "원");
+										total_payment = (adult * adult_payment)
+												+ (teen * teen_payment)
+												+ (kid * kid_payment);
+										$('.total').text(total_payment + "원");
+										actionform.find("input[name='adult']")
+												.attr('value', adult);
+										actionform.find(
+												"input[name='total_payment']")
+												.attr('value', total_payment);
+									}
+								});
+						$('#teen').dropdown(
+								{
+									direction : 'down',
+									duration : 700,
+									onChange : function(value, text, $choice) {
+										var value = parseInt(value);
+										if (teen <= value) {
+											teen = teen + (value - teen);
+										} else if (value == 0) {
+											teen = 0;
+										} else {
+											teen = teen - (teen - value);
+										}
+										total = adult + teen + kid;
+										alertify.alert("변경된 청소년수 : " + teen);
+										alertify.alert("변경된 총인원수 : " + total);
+										$('.adult').text(
+												adult + "명   " + adult_payment
+														* adult + "원");
+										$('.teen').text(
+												teen + "명   " + teen_payment
+														* teen + "원");
+										$('.kid').text(
+												kid + "명   " + kid_payment * kid
+														+ "원");
+										total_payment = (adult * adult_payment)
+												+ (teen * teen_payment)
+												+ (kid * kid_payment);
+										$('.total').text(total_payment + "원");
+										actionform.find("input[name='teen']")
+												.attr('value', teen);
+										actionform.find(
+												"input[name='total_payment']")
+												.attr('value', total_payment);
+									}
+								});
+						$('#kid').dropdown(
+								{
+									direction : 'down',
+									duration : 700,
+									onChange : function(value, text, $choice) {
+										var value = parseInt(value);
+										alertify.alert(value);
+										if (kid <= value) {
+											kid = kid + (value - kid);
+										} else if (value == 0) {
+											kid = 0;
+										} else {
+											kid = kid - (kid - value);
+										}
+										total = adult + teen + kid;
+										alertify.alert("변경된 아동수 : " + kid);
+										alertify.alert("변경된 총인원수 : " + total);
+										$('.adult').text(
+												adult + "명   " + adult_payment
+														* adult + "원");
+										$('.teen').text(
+												teen + "명   " + teen_payment
+														* teen + "원");
+										$('.kid').text(
+												kid + "명   " + kid_payment * kid
+														+ "원");
+										total_payment = (adult * adult_payment)
+												+ (teen * teen_payment)
+												+ (kid * kid_payment);
+										$('.total').text(total_payment + "원");
+										actionform.find("input[name='kid']")
+												.attr('value', kid);
+										actionform.find(
+												"input[name='total_payment']")
+												.attr('value', total_payment);
+									}
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line6').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+								});
+						//자리 선택시 
+						$(".seat a")
+								.on(
+										"click",
+										function(e) {
+											e.preventDefault();
 
-					count++;
-				}
-				break;
-			case 7:
-				if($('.line7').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line7').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+											alertify.alert($(this).attr("href")
+													+ "번 자리를 선택하셨습니다.");
+											var seat_num = $(this).attr("href");
+											parseInt(seat_num);
+											var line_num = seat_num / 4.0;
+											/* 라인을 구함 */
+											var line = Math.ceil(line_num);
+											/* 자리를 구함 */
+											var seat;
+											if (seat_num % 4 === 0) {
+												seat = seat_num % 4 + 3;
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line7').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+											} else {
+												seat = seat_num % 4 - 1;
+											}
 
-					count++;
-				}
-				break;
-			case 8:
-				if($('.line8').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line8').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+											switch (line) {
+											case 1:
+												if ($('.line1').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line1')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line8').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line1')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+													count++;
+												}
 
-					count++;
-				}
-				break;
-			case 9:
-				if($('.line9').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line9').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+												break;
+											case 2:
+												if ($('.line2').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line2')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line2')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line9').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+													count++;
+												}
 
-					count++;
-				}
-				break;
-			case 10:
-				if($('.line10').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
-					$('.line10').find('img').eq(seat).attr('src','../images/seat_off.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', false);
+												break;
+											case 3:
+												if ($('.line3').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line3')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
 
-					count--;
-					break;
-				}else if (total<=count) {
-					return false;
-				}else{
-					$('.line10').find('img').eq(seat).attr('src','../images/seat_on.png');
-					$('#hidden_seat input[name=seat]').eq(seat_num-1).prop('checked', true);
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line3')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
 
-					count++;
-				}
-				break;
-		
-			}
-		});
-		
-		var tag;
-		var actionform = $("#actionForm");
-		$('#submit').on("click",function(e){
-			e.preventDefault();
-			if (total<count) {
-				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
-				return false;
-			}else if (total>count) {
-				alert("선택한 좌석 개수가 부족합니다.");
-				return false;
-				
-			}
-			//예약한 총 금액
-			actionform.find("input[name='total_payment']").attr('value',total_payment);
-			//예약한 총좌석
-			actionform.find("input[name='total_seat']").attr('value',count);
-			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment);
-			actionform.submit();
-		});
+													count++;
+												}
+												break;
+											case 4:
+												if ($('.line4').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line4')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
 
-	});
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line4')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 5:
+												if ($('.line5').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line5')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line5')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 6:
+												if ($('.line6').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line6')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line6')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 7:
+												if ($('.line7').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line7')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line7')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 8:
+												if ($('.line8').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line8')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line8')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 9:
+												if ($('.line9').find('img').eq(
+														seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line9')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line9')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+											case 10:
+												if ($('.line10').find('img')
+														.eq(seat).prop('src') == 'http://localhost:8080/Project_BusBooking/images/seat_on.png') {
+													$('.line10')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_off.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	false);
+
+													count--;
+													break;
+												} else if (total <= count) {
+													return false;
+												} else {
+													$('.line10')
+															.find('img')
+															.eq(seat)
+															.attr('src',
+																	'../images/seat_on.png');
+													$(
+															'#hidden_seat input[name=seat]')
+															.eq(seat_num - 1)
+															.prop('checked',
+																	true);
+
+													count++;
+												}
+												break;
+
+											}
+										});
+
+						var tag;
+						var actionform = $("#actionForm");
+						$('#submit')
+								.on(
+										"click",
+										function(e) {
+											e.preventDefault();
+											if (total < count) {
+												alertify
+														.alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
+												return false;
+											} else if (total > count) {
+												alertify
+														.alert("선택한 좌석 개수가 부족합니다.");
+												return false;
+
+											}
+											//예약한 총 금액
+											actionform
+													.find(
+															"input[name='total_payment']")
+													.attr('value',
+															total_payment);
+											//예약한 총좌석
+											actionform.find(
+													"input[name='total_seat']")
+													.attr('value', count);
+											alertify.alert("예약한 총 좌석 개수 : "
+													+ count + " 총금액"
+													+ total_payment);
+											actionform.submit();
+										});
+
+					});
 </script>
 </head>
 <body>
 
-	
+
 	<div class="wrapper">
-		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
+		<form role="form" method="post" id="actionForm"
+			action="../booking/booking_card.do">
 			<div id="hidden_seat">
-			<c:forEach begin="1" end="40" step="1" var="i">
-				<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
+				<c:forEach begin="1" end="40" step="1" var="i">
+					<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
 			</c:forEach>
-			</div> 
-			<input type="hidden" name="bus_no" value="${bus_no}">
-			<input type="hidden" name="total_seat" value="">
-			<input type="hidden" name="total_payment" value=""> 
-			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
-			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
-			<input type="hidden" name="adult" value="${adult}"> 
-			<input type="hidden" name="teen" value="${teen}">
-			<input type="hidden" name="kid" value="${kid}">
-			<input type="hidden" name="arrive_time" value="${bus_vo.arrive_time}">
+			</div>
+			<input type="hidden" name="bus_no" value="${bus_no}"> <input
+				type="hidden" name="total_seat" value=""> <input
+				type="hidden" name="total_payment" value=""> <input
+				type="hidden" name="start_tr" value="${bus_vo.start_tr}"> <input
+				type="hidden" name="end_tr" value="${bus_vo.end_tr}"> <input
+				type="hidden" name="adult" value="${adult}"> <input
+				type="hidden" name="teen" value="${teen}"> <input
+				type="hidden" name="kid" value="${kid}"> <input
+				type="hidden" name="arrive_time" value="${bus_vo.arrive_time}">
 			<input type="hidden" name="arrive_day" value="${arrive_day}">
-		</form>         
+		</form>
 		<div>
 			<div class="column">
 				<header>
@@ -696,14 +960,15 @@ td, th {
 										<li class=box>출발지</li>
 										<li>${bus_vo.start_tr}</li>
 										<li><img src="../images/point.png" height="30px"
-											width="100px"></li>
+											width="40px"></li>
 										<li class=box>도착지</li>
 										<li>${bus_vo.end_tr}</li>
 									</ul>
 								</td>
-								<td width="500px"><ul>
-										<li>출발날짜</li>
-									</ul>${arrive_day}</td>
+								<td width="500px"  align="center"><ul>
+										<li style="font-size: 1.3em; font-weight: bold; margin-top:1em;">출발날짜</li>
+										<li>${arrive_day}</li>
+									</ul></td>
 							</tr>
 						</table>
 					</div>
@@ -768,143 +1033,143 @@ td, th {
 								<div class="seat">
 									<img src="../images/bg_seat.gif">
 									<ul class="line1">
-										<li class="1"><a href="1"> <img src="../images/seat_off.png">
-												<span>01</span>
+										<li class="1"><a href="1"> <img
+												src="../images/seat_off.png"> <span>01</span>
 										</a></li>
-										<li class="2"><a href="2"> <img src="../images/seat_off.png">
-												<span>02</span>
+										<li class="2"><a href="2"> <img
+												src="../images/seat_off.png"> <span>02</span>
 										</a></li>
-										<li class="3"><a href="3"> <img src="../images/seat_off.png">
-												<span>03</span>
+										<li class="3"><a href="3"> <img
+												src="../images/seat_off.png"> <span>03</span>
 										</a></li>
-										<li class="4"><a href="4"> <img src="../images/seat_off.png">
-												<span>04</span>
+										<li class="4"><a href="4"> <img
+												src="../images/seat_off.png"> <span>04</span>
 										</a></li>
 									</ul>
 									<ul class="line2">
-										<li class="5"><a href="5"> <img src="../images/seat_off.png">
-												<span>05</span>
+										<li class="5"><a href="5"> <img
+												src="../images/seat_off.png"> <span>05</span>
 										</a></li>
-										<li class="6"><a href="6"> <img src="../images/seat_off.png">
-												<span>06</span>
+										<li class="6"><a href="6"> <img
+												src="../images/seat_off.png"> <span>06</span>
 										</a></li>
-										<li class="7"><a href="7"> <img src="../images/seat_off.png">
-												<span>07</span>
+										<li class="7"><a href="7"> <img
+												src="../images/seat_off.png"> <span>07</span>
 										</a></li>
-										<li class="8"><a href="8"> <img src="../images/seat_off.png">
-												<span>08</span>
-										</a ></li>
+										<li class="8"><a href="8"> <img
+												src="../images/seat_off.png"> <span>08</span>
+										</a></li>
 									</ul>
 									<ul class="line3">
-										<li class="9"><a href="9"> <img src="../images/seat_off.png">
-												<span>09</span>
+										<li class="9"><a href="9"> <img
+												src="../images/seat_off.png"> <span>09</span>
 										</a></li>
-										<li class="10"><a href="10"> <img src="../images/seat_off.png">
-												<span>10</span>
+										<li class="10"><a href="10"> <img
+												src="../images/seat_off.png"> <span>10</span>
 										</a></li>
-										<li class="11"><a href="11"> <img src="../images/seat_off.png">
-												<span>11</span>
+										<li class="11"><a href="11"> <img
+												src="../images/seat_off.png"> <span>11</span>
 										</a></li>
-										<li class="12"><a href="12"> <img src="../images/seat_off.png">
-												<span>12</span>
+										<li class="12"><a href="12"> <img
+												src="../images/seat_off.png"> <span>12</span>
 										</a></li>
 									</ul>
 									<ul class="line4">
-										<li class="13"><a href="13"> <img src="../images/seat_off.png">
-												<span>13</span>
+										<li class="13"><a href="13"> <img
+												src="../images/seat_off.png"> <span>13</span>
 										</a></li>
-										<li class="14"><a href="14"> <img src="../images/seat_off.png">
-												<span>14</span>
+										<li class="14"><a href="14"> <img
+												src="../images/seat_off.png"> <span>14</span>
 										</a></li>
-										<li class="15"><a href="15"> <img src="../images/seat_off.png">
-												<span>15</span>
-										</a ></li>
-										<li class="16"><a href="16"> <img src="../images/seat_off.png">
-												<span>16</span>
+										<li class="15"><a href="15"> <img
+												src="../images/seat_off.png"> <span>15</span>
+										</a></li>
+										<li class="16"><a href="16"> <img
+												src="../images/seat_off.png"> <span>16</span>
 										</a></li>
 									</ul>
 									<ul class="line5">
-										<li class="17"><a href="17"> <img src="../images/seat_off.png">
-												<span>17</span>
+										<li class="17"><a href="17"> <img
+												src="../images/seat_off.png"> <span>17</span>
 										</a></li>
-										<li class="18"><a href="18"> <img src="../images/seat_off.png">
-												<span>18</span>
+										<li class="18"><a href="18"> <img
+												src="../images/seat_off.png"> <span>18</span>
 										</a></li>
-										<li class="19"><a href="19"> <img src="../images/seat_off.png">
-												<span>19</span>
+										<li class="19"><a href="19"> <img
+												src="../images/seat_off.png"> <span>19</span>
 										</a></li>
-										<li class="20"><a href="20"> <img src="../images/seat_off.png">
-												<span>20</span>
+										<li class="20"><a href="20"> <img
+												src="../images/seat_off.png"> <span>20</span>
 										</a></li>
 									</ul>
 									<ul class="line6">
-										<li class="21"><a href="21"> <img src="../images/seat_off.png">
-												<span>21</span>
+										<li class="21"><a href="21"> <img
+												src="../images/seat_off.png"> <span>21</span>
 										</a></li>
-										<li class="22"><a href="22"> <img src="../images/seat_off.png">
-												<span>22</span>
+										<li class="22"><a href="22"> <img
+												src="../images/seat_off.png"> <span>22</span>
 										</a></li>
-										<li class="23"><a href="23"> <img src="../images/seat_off.png">
-												<span>23</span>
+										<li class="23"><a href="23"> <img
+												src="../images/seat_off.png"> <span>23</span>
 										</a></li>
-										<li class="24"><a href="24"> <img src="../images/seat_off.png">
-												<span>24</span>
+										<li class="24"><a href="24"> <img
+												src="../images/seat_off.png"> <span>24</span>
 										</a></li>
 									</ul>
 									<ul class="line7">
-										<li class="25"><a href="25"> <img src="../images/seat_off.png">
-												<span>25</span>
+										<li class="25"><a href="25"> <img
+												src="../images/seat_off.png"> <span>25</span>
 										</a></li>
-										<li class="26"><a href="26"> <img src="../images/seat_off.png">
-												<span>26</span>
+										<li class="26"><a href="26"> <img
+												src="../images/seat_off.png"> <span>26</span>
 										</a></li>
-										<li class="27"><a href="27"> <img src="../images/seat_off.png">
-												<span>27</span>
+										<li class="27"><a href="27"> <img
+												src="../images/seat_off.png"> <span>27</span>
 										</a></li>
-										<li class="28"><a href="28"> <img src="../images/seat_off.png">
-												<span>28</span>
+										<li class="28"><a href="28"> <img
+												src="../images/seat_off.png"> <span>28</span>
 										</a></li>
 									</ul>
 									<ul class="line8">
-										<li class="29"><a href="29"> <img src="../images/seat_off.png">
-												<span>29</span>
+										<li class="29"><a href="29"> <img
+												src="../images/seat_off.png"> <span>29</span>
 										</a></li>
-										<li class="30"><a href="30"> <img src="../images/seat_off.png">
-												<span>30</span>
+										<li class="30"><a href="30"> <img
+												src="../images/seat_off.png"> <span>30</span>
 										</a></li>
-										<li class="31"><a href="31"> <img src="../images/seat_off.png">
-												<span>31</span>
+										<li class="31"><a href="31"> <img
+												src="../images/seat_off.png"> <span>31</span>
 										</a></li>
-										<li class="32"><a href="32"> <img src="../images/seat_off.png">
-												<span>32</span>
+										<li class="32"><a href="32"> <img
+												src="../images/seat_off.png"> <span>32</span>
 										</a></li>
 									</ul>
 									<ul class="line9">
-										<li class="33"><a href="33"> <img src="../images/seat_off.png">
-												<span>33</span>
+										<li class="33"><a href="33"> <img
+												src="../images/seat_off.png"> <span>33</span>
 										</a></li>
-										<li class="34"><a href="34"> <img src="../images/seat_off.png">
-												<span>34</span>
+										<li class="34"><a href="34"> <img
+												src="../images/seat_off.png"> <span>34</span>
 										</a></li>
-										<li class="35"><a href="35"> <img src="../images/seat_off.png">
-												<span>35</span>
+										<li class="35"><a href="35"> <img
+												src="../images/seat_off.png"> <span>35</span>
 										</a></li>
-										<li class="36"><a href="36"> <img src="../images/seat_off.png">
-												<span>36</span>
+										<li class="36"><a href="36"> <img
+												src="../images/seat_off.png"> <span>36</span>
 										</a></li>
 									</ul>
 									<ul class="line10">
-										<li class="37"><a href="37"> <img src="../images/seat_off.png">
-												<span>37</span>
+										<li class="37"><a href="37"> <img
+												src="../images/seat_off.png"> <span>37</span>
 										</a></li>
-										<li class="38"><a href="38"> <img src="../images/seat_off.png">
-												<span>38</span>
+										<li class="38"><a href="38"> <img
+												src="../images/seat_off.png"> <span>38</span>
 										</a></li>
-										<li class="39"><a href="39"> <img src="../images/seat_off.png">
-												<span>39</span>
+										<li class="39"><a href="39"> <img
+												src="../images/seat_off.png"> <span>39</span>
 										</a></li>
-										<li class="40"><a href="40"> <img src="../images/seat_off.png">
-												<span>40</span>
+										<li class="40"><a href="40"> <img
+												src="../images/seat_off.png"> <span>40</span>
 										</a></li>
 									</ul>
 								</div></li>
@@ -913,28 +1178,29 @@ td, th {
 
 									<tbody>
 										<tr>
-											<th colspan="2"><span>선택 매수 및 금액</span></th>
+											<th colspan="3"><span style="font-size: 1.5rem;font-weight: bold;">선택 매수 및 금액</span></th>
 										</tr>
 										<tr>
 											<th rowspan="3">가는편</th>
-											<td>어른 <span class="adult"></span>
-											</td>
+											<td>어른 </td>
+											<td style="font-size: 1.5rem;font-weight: bold;"><span class="adult"></span></td>
 										</tr>
 										<tr>
 
-											<td>청소년 <span class="teen"></span>
-											</td>
+											<td >청소년</td><td style="font-size: 1.5rem;font-weight: bold;"><span class="teen"></span></td>
 										</tr>
 										<tr>
-											<td>어린이 <span class="kid"></span>
-											</td>
+											<td>어린이 </td><td style="font-size:1.5rem;font-weight: bold;"><span class="kid"></span></td>
 										</tr>
 										<tr>
 											<th>합계</th>
-											<td><span class="total"></span></td>
+											<td colspan="2" style="font-size:1.5rem;font-weight: bold;"><span class="total"></span></td>
 										</tr>
 										<tr>
-											<th colspan="2"><button type="button" id="submit">다음</button></th>
+											<th colspan="3">
+												<div class="ui buttons">
+													<button class="ui blue basic button" id="submit">다음</button>
+												</div></th>
 										</tr>
 									</tbody>
 								</table>

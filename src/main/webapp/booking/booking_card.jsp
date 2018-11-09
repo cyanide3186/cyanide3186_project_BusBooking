@@ -60,10 +60,8 @@
 	}
 </script>
 <style type="text/css">
-p {
-
-	font-size: 1.5rem;
-	text-align: left;
+.font {
+	color : red;	
 }
 
 header {
@@ -100,7 +98,6 @@ li {
 }
 
 .box {
-	float: left;
 	list-style: none;
 	margin: 0 0;
 	font-size: 1.5rem;
@@ -149,6 +146,9 @@ h1 {
 	font-size: 1.3rem;
 	background-color: #E6E6E6;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -184,39 +184,35 @@ h1 {
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1">
 							<tr>
-								<td width="500px" height="50px" align="center" class="card3">
-									<ul class="road">
-										<li class=box>출발지</li>
-										<li>${start_tr}</li>										
-									</ul>
+								<td width="500px" height="50px" align="center" class="card3" style="color: red">
+										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>
-								<td width="500px" height="50px" align="center" class="card3"><ul>
-									<li class=box>도착지</li>
-									<li>${end_tr}</li>
-									</ul></td>
+								<td width="500px" height="50px" align="center" class="card3" style="color: red">
+										<a class="box" style="color: white">도착지</a>${end_tr}
+									</td>
 							</tr>
 							<tr>
 								<td width="500px" height="50px" align="center" class="card1"> 
 									출발 시간</td>
-								<td width="500px" align="center" class="card3">
-									${arrive_day} ${arrive_time}
+								<td width="500px" align="center" class="card3" style="color:red">
+									${arrive_day1} <a style="color: black">월</a> ${arrive_day2} <a style="color: black">일</a> ${arrive_time1} <a style="color: black">시</a> ${arrive_time2} <a style="color: black">분</a>
 									</td>
 							</tr>
 							<tr>
-								<td width="500px" height="50px" align="center" class="card3">
+								<td width="500px" height="50px" align="center" class="card3" style="color:red">
 									<c:if test="${adult!=0}">
-										어른 ${adult}명&nbsp;
+										<a style="color: black">어른</a> ${adult} <a style="color: black">명&nbsp;</a>
 									</c:if>
 									<c:if test="${teen!=0}">
-										청소년 ${teen}명&nbsp;
+										<a style="color: black">청소년</a> ${teen} <a style="color: black">명&nbsp;</a>
 									</c:if>
 									<c:if test="${kid!=0}">
-										어린이 ${kid}명&nbsp;
+										<a style="color: black">어린이</a> ${kid} <a style="color: black">명&nbsp;</a>
 									</c:if>
 								</td>	
-								<td width="500px" align="center" class="card3">
+								<td width="500px" align="center" class="card3" style="color:red">
 									<c:forEach var="String" items="${seat}">
-									좌석 ${String}&nbsp;
+										${String}<a style="color: black">번 좌석&nbsp;</a>
 									</c:forEach>
 
 								</td>	
@@ -227,8 +223,8 @@ h1 {
 								<tr>
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
-								<td width="500px" align="center" class="card3">
-									${total_payment}원</td>
+								<td width="500px" align="center" class="card3" style="color: red">
+									${total_payment}<a style="color: black">원</a></td>
 							</tr>
 							</table>
 							<br>

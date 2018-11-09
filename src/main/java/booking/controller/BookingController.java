@@ -198,11 +198,17 @@ public class BookingController {
 				System.out.println(seatarr[i]);
 			}
 		}
+		String arrive_time1 = arrive_time.substring(0,2);
+		String arrive_time2 = arrive_time.substring(2,4);
+		String arrive_day1 = arrive_day.substring(0, 2);
+		String arrive_day2 = arrive_day.substring(2, 4);
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);
-		modelAndView.addObject("arrive_day", arrive_day);  
-		modelAndView.addObject("arrive_time", arrive_time);
+		modelAndView.addObject("arrive_day1", arrive_day1);  
+		modelAndView.addObject("arrive_day2", arrive_day2);  
+		modelAndView.addObject("arrive_time1", arrive_time1);
+		modelAndView.addObject("arrive_time2", arrive_time2);
 		modelAndView.addObject("bus_no", bus_no);
 		modelAndView.addObject("adult", adult);  
 		modelAndView.addObject("teen", teen);

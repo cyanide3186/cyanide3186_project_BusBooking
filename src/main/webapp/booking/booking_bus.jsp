@@ -89,11 +89,10 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: white;
+	color: yellow;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
 	width: 120px;
 	border: 3px solid yellow;
 }

@@ -89,6 +89,19 @@ li {
 	width: 120px;
 }
 
+.box {
+	float: left;
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: #FAAC58;
+}
+
 h1 {
 	border-bottom: 2px solid #01A9DB;
 }
@@ -113,13 +126,19 @@ h1 {
 .card1 {
 	font-size: 1.5rem;
 	font-weight: bold;
+	background-color: #FAAC58;
 }
 
 .card2 {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	text-align: left;
+	background-color: #E6E6E6;
 }
 
+.card3 {
+	font-size: 1.3rem;
+	background-color: #E6E6E6;
+}
 </style>
 </head>
 <body>
@@ -141,7 +160,7 @@ h1 {
 
 		</div>
 		<div>
-			<form action="../booking/booking_bus.do" method="post"
+			<form action="../booking/booking_insert.do" method="post"
 				name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
@@ -150,29 +169,26 @@ h1 {
 					<div class="ui bottom attached active tab segment" align="center">
 						<table border="1">
 							<tr>
-								<td width="500px" height="50px">
+								<td width="500px" height="50px" align="center" class="card3">
 									<ul class="road">
 										<li class=box>출발지</li>
-										<li>${start_tr}</li>
-										<li><img src="../images/point.png" height="30px"
-											width="100px"></li>
-										<li class=box>도착지</li>
-										<li>${end_tr}</li>
+										<li>${start_tr}</li>										
 									</ul>
 								</td>
-								<td width="500px" align="center"><ul>
-										<li>${Seat_VO.arrive_day}</li>
+								<td width="500px" height="50px" align="center" class="card3"><ul>
+									<li class=box>도착지</li>
+									<li>${end_tr}</li>
 									</ul></td>
 							</tr>
 							<tr>
 								<td width="500px" height="50px" align="center" class="card1"> 
 									출발 시간</td>
-								<td width="500px" align="center">
-									${arrive_time}
+								<td width="500px" align="center" class="card3">
+									${arrive_day} ${arrive_time}
 									</td>
 							</tr>
 							<tr>
-								<td width="500px" height="50px" align="center">
+								<td width="500px" height="50px" align="center" class="card3">
 									<c:if test="${adult!=0}">
 										어른 ${adult}명&nbsp;
 									</c:if>
@@ -183,8 +199,8 @@ h1 {
 										어린이 ${kid}명&nbsp;
 									</c:if>
 								</td>	
-								<td width="500px" align="center">
-								<c:forEach var="Seat_VO" items="${list}">
+								<td width="500px" align="center" class="card3">
+								<c:forEach var="String" items="${list}">
 								<tr align="center">
 									<td>좌석 ${seat}</td>
 								</tr>
@@ -197,7 +213,7 @@ h1 {
 								<tr>
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
-								<td width="500px" align="center">
+								<td width="500px" align="center" class="card3">
 									${totalPay}원</td>
 							</tr>
 							</table>
@@ -253,15 +269,15 @@ h1 {
 						<td width="300px" height="50px" align="center" class="card1">
 								유효기간</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="3" name="month"  maxlength="2"> 월
-								<input type="text" size="3" name="year"  maxlength="2"> 년
+								<input type="text" size="2" name="month"  maxlength="2"> 월
+								<input type="text" size="2" name="year"  maxlength="2"> 년
 							</td>
 						</tr>
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
 								카드비밀번호</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="3" name="password" maxlength="2">**
+								<input type="text" size="2" name="password" maxlength="2">**
 							</td>
 						</tr>
 						<tr>
@@ -284,9 +300,9 @@ h1 {
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" width="1000px" height="50px" align="center">
-							<button class="ui teal basic button" type="button" onclick="check()">예매하기</button>
-							<button class="ui teal basic button" type="reset">다시작성</button>
+							<td colspan="2" width="1000px" height="50px" align="center" class="card3">
+							<button class="ui teal basic button" type="button" onclick="check()" style="font-weight: bold">예매하기</button>
+							<button class="ui teal basic button" type="reset" style="font-weight: bold">다시작성</button>
 							</td>
 						</tr>
 						</table>

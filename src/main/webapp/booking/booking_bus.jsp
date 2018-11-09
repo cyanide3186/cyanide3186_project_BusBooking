@@ -73,7 +73,7 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: yellow;
+	color: white;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
@@ -223,7 +223,7 @@ button {
 										<li class=box>출발지</li>
 										<li>${ start_tr}</li>
 										<li><img src="../images/point.png" height="30px"
-											width="100px"></li>
+											width="40px"></li>
 										<li class=box>도착지</li>
 										<li>${end_tr}</li>
 									</ul>

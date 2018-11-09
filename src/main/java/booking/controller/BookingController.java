@@ -22,7 +22,6 @@ import booking.ticket.bean.TicketVO;
 import info.terminal.bean.TerminalVO;
 
 @Controller
-
 public class BookingController {
 
 	@Autowired
@@ -456,24 +455,57 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 예약 조회 기능
-	@RequestMapping(value = "/booking/bookingCheck.do")
+	// 예약 목록 조회
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/booking/booking_check.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-
+		BusVO busVO = new BusVO();
+		String bus_no = null;
+		
 		String ticket_no = request.getParameter("ticket_no");
 
 		ticketVO = bookingService.bookingCheck(ticket_no);
-		seatVO = bookingService.seatCheck(ticket_no);
-
+		String hour = null;
+		String minute = null;
+		if(ticketVO != null) {
+			seatVO = bookingService.seatCheck(ticket_no);
+			bus_no = ticketVO.getBus_no();
+			busVO = bookingService.getBusInfo(bus_no);
+			String arrive_day = utils.substring(ticketVO.getArrive_day(), 0, 10);
+			ticketVO.setArrive_day(arrive_day);
+			hour = utils.substring(String.valueOf(busVO.getArrive_time()), 0, 2);
+			minute = utils.substring(String.valueOf(busVO.getArrive_time()), 2);
+		}
+		
+		modelAndView.addObject("arrive_time", hour + ":" + minute);
 		modelAndView.addObject("ticketVO", ticketVO);
+		modelAndView.addObject("busVO", busVO);
 		modelAndView.addObject("seatVO", seatVO);
-		modelAndView.addObject("main", "");
+		modelAndView.addObject("main", "../booking/booking_checkList.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
+		return modelAndView;
+	}
+	
+	// 예약 상세 조회
+	@RequestMapping(value = "/booking/bookingCheckDetail.do")
+	public ModelAndView bookingCheckDetail(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		TicketVO ticketVO = (TicketVO) request.getAttribute("ticketVO");
+		SeatVO seatVO = (SeatVO) request.getAttribute("seatVO");
+		BusVO busVO = (BusVO) request.getAttribute("busVO");
+
+		modelAndView.addObject("ticketVO", ticketVO);
+		modelAndView.addObject("busVO", busVO);
+		modelAndView.addObject("seatVO", seatVO);
+		modelAndView.addObject("main", "../booking/booking_checkDetail.jsp");
+		
+		modelAndView.setViewName("../main/index.jsp");
+		
 		return modelAndView;
 	}
 

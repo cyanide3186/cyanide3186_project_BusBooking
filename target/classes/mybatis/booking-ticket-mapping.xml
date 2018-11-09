@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 									, #{totalpay}
 									, 'n'
 									, sysdate
-									, #{arrive_day}
+									, To_Date(#{arrive_day}, 'yyyy-mm-dd')
 								  )
 	</insert>
 	

@@ -233,7 +233,8 @@ td, th {
 	top: 1280px;
 }
 #hidden_seat{
-	display: none;}
+display: none;
+	}
 </style>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -492,12 +493,15 @@ td, th {
 			case 2:
 				if($('.line2').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				
@@ -505,24 +509,32 @@ td, th {
 			case 3:
 				if($('.line3').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line3').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line3').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
 			case 4:
 				if($('.line4').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line4').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line4').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 					alert("선택한 좌석개수  : "+count);
 				}
@@ -530,24 +542,32 @@ td, th {
 			case 5:
 				if($('.line5').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line5').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line5').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
 			case 6:
 				if($('.line6').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line6').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line6').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 					alert("선택한 좌석개수  : "+count);
 				}
@@ -555,48 +575,64 @@ td, th {
 			case 7:
 				if($('.line7').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line7').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line7').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
 			case 8:
 				if($('.line8').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line8').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line8').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
 			case 9:
 				if($('.line9').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line9').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line9').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
 			case 10:
 				if($('.line10').find('img').eq(seat).prop('src')=='http://localhost:8080/Project_BusBooking/images/seat_on.png'){
 					$('.line10').find('img').eq(seat).attr('src','../images/seat_off.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', false);
+
 					count--;
 					break;
 				}else if (total<=count) {
 					return false;
 				}else{
 					$('.line10').find('img').eq(seat).attr('src','../images/seat_on.png');
+					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
+
 					count++;
 				}
 				break;
@@ -649,7 +685,7 @@ td, th {
 			<input type="hidden" name="total_seat" value="">
 			<div id="hidden_seat">
 			<c:forEach begin="1" end="40" step="1" var="i">
-			<input  type="checkbox" name="seat" value='${i}'>${i}
+			<input type="checkbox" name="seat" value='${i}'>${i}
 			</c:forEach>
 			</div>
 			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 

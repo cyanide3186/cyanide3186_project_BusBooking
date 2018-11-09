@@ -23,10 +23,6 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 
-</head>
-
-
-
 <style type="text/css">
 p {
 	padding: 3rem;
@@ -618,7 +614,6 @@ display: none;
 		var actionform = $("#actionForm");
 		$('#submit').on("click",function(e){
 			e.preventDefault();
-			alert("테스트1");
 			if (total<count) {
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
@@ -640,7 +635,6 @@ display: none;
 </script>
 </head>
 <body>
-
 
 	<div class="wrapper">
 		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
@@ -674,19 +668,16 @@ display: none;
 					<hr>
 				</header>
 			</div>
-
 		</div>
 		<div>
-
 			<form action="../booking/booking_card.do" method="post"
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">가는편</div>
-
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
-						<table border="1px solid black">
+						<table border="1">
 							<tr>
 								<td width="500px" height="50px">
 									<ul class="road">
@@ -906,7 +897,7 @@ display: none;
 									</ul>
 								</div></li>
 							<li id="menu3">
-								<table border="1px" style="width: 400px; height: 500px;">
+								<table border="1" style="width: 400px; height: 500px;">
 
 									<tbody>
 										<tr>
@@ -937,20 +928,10 @@ display: none;
 								</table>
 							</li>
 						</ul>
-
 					</div>
-
 				</div>
-
 			</form>
-
-
-
-
 		</div>
 	</div>
-
-	</div>
-
 </body>
 </html>

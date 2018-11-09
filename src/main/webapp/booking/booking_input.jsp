@@ -846,7 +846,7 @@ input {
 							<td style="padding: 8px;">
 							<select name="adult" class="ui dropdown" id="adult" style="border: 1px solid #bfc3c5;">
 									<option value="0">0</option>
-									<option value="1">1</option>
+									<option value="1" selected>1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>

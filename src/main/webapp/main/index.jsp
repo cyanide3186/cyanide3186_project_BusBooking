@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>버스 예매 시스템</title>
 <link rel="stylesheet" type="text/css"
 	href="../semantic/components/reset.css">
 <link rel="stylesheet" type="text/css"

@@ -2,9 +2,7 @@ package booking.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -722,40 +720,43 @@ public class BookingController {
 	}
 
 	// 좌석테이블 정보가 없는 버스의 좌석을 생성(insert)
-	/*
-	 * 생성하기 전에 cmd창에서 sqlplus "/as sysdbd" select * from v$resource_limit where
-	 * resource_name='processes'; alter system set processes=500 scope=spfile;
-	 * shutdown immediate; startup 을 한 줄씩 차례로 입력한 후에 진행해야된다.
-	 */
-//	@RequestMapping(value="/booking/seatCreate.do")
-//	public void seatCreat() {
-//		int arrive_month = 11;
-//		int arrive_day;
-//		
-//		List<BusVO> bus_noList = new ArrayList<>();
-//		bus_noList = bookingService.getBus_noList();
-//		
-//		for(int i = 0; i < bus_noList.size(); i++) {
-//			String bus_no = bus_noList.get(i).getBus_no();
-//			List<SeatVO> seatList = new ArrayList<>();
-//			seatList = bookingService.test(bus_no);
-//			
-//			if(seatList.size() == 0) {
-//				for(int j = 1; j <= 31; j++) {
-//					arrive_day = j;
-//					for(int k = 1; k <= 40; k++) {
-//						SeatVO seatVO = new SeatVO();
-//						seatVO.setBus_no(bus_no);
-//						seatVO.setBus_seat(k);
-//						seatVO.setArrive_month(arrive_month);
-//						seatVO.setArrive_day(arrive_day);
-//						bookingService.seatCreate(seatVO);
-//						//System.out.println(bus_no + "번 버스 " + j + "일자 좌석 생성");
-//					}
-//				}
-//			}
-//		}
-//	}
+	
+	// 생성하기 전에 cmd창에서 
+	// sqlplus "/as sysdba"
+	// select * from v$resource_limit where resource_name='processes'; 
+	// alter system set processes=500 scope=spfile;
+	// shutdown immediate; startup 
+	// 을 한 줄씩 차례로 입력한 후에 진행해야된다.
+	@RequestMapping(value="/booking/seatCreate.do")
+	public void seatCreat() {
+		int arrive_month = 11;
+		int arrive_day;
+		
+		List<BusVO> bus_noList = new ArrayList<>();
+		bus_noList = bookingService.getBus_noList();
+		
+		for(int i = 0; i < bus_noList.size(); i++) {
+			String bus_no = bus_noList.get(i).getBus_no();
+			List<SeatVO> seatList = new ArrayList<>();
+			seatList = bookingService.test(bus_no);
+			
+			if(seatList.size() == 0) {
+				for(int j = 1; j <= 31; j++) {
+					arrive_day = j;
+					for(int k = 1; k <= 40; k++) {
+						SeatVO seatVO = new SeatVO();
+						seatVO.setBus_no(bus_no);
+						seatVO.setBus_seat(k);
+						seatVO.setArrive_month(arrive_month);
+						seatVO.setArrive_day(arrive_day);
+						bookingService.seatCreate(seatVO);
+						//System.out.println(bus_no + "번 버스 " + j + "일자 좌석 생성");
+					}
+				}
+			}
+		}
+	}
+	
 	/*
 	 * @Scheduled(fixedDelay = 1000) public void seatReset() { Calendar now =
 	 * Calendar.getInstance(); // 현재시간 구하기 long expiration = ((now.get(1) *

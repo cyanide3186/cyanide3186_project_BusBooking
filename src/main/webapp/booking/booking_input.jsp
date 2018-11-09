@@ -281,18 +281,14 @@
 								$("#result_terminal").empty();
 								alertify.alert(local);
 								//ajax실행 
-								$
-										.ajax({
+								$.ajax({
 											url : "booking_input_TerminalJson.do",
 											type : "post",
 											data : {
 												"local" : local
 											},
 											dataType : "json",
-											success : function(data) {
-												alertify.alert("success");
-												$
-														.each(
+											success : function(data) {$.each(
 																data.items,
 																function(index,
 																		item) {

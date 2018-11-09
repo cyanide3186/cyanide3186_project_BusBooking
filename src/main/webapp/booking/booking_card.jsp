@@ -186,7 +186,7 @@ h1 {
 								<td width="500px" align="center">
 								<c:forEach var="Seat_VO" items="${list}">
 								<tr align="center">
-									<td>좌석 ${Seat_VO.bus_seat}</td>
+									<td>좌석 ${seat}</td>
 								</tr>
 								</c:forEach>
 								</td>	

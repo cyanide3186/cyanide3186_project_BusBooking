@@ -23,6 +23,10 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 
+</head>
+
+
+
 <style type="text/css">
 p {
 	padding: 3rem;
@@ -359,11 +363,11 @@ display: none;
 			onChange : function(value, text, $choice) {
 				var value = parseInt(value);
 				if(adult<=value){
-					adult=adult+value-adult;
+					adult=adult+(value-adult);
 				}else if (value==0) {
 					adult=0;
 				}else{
-					adult=adult+adult-value;
+					adult=adult-(adult-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 어른수 : "+adult);
@@ -373,7 +377,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='adult']").val(adult);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#teen').dropdown({
@@ -382,11 +387,11 @@ display: none;
 			onChange : function(value, text, $choice) {
 				var value = parseInt(value);
 				if(teen<=value){
-					teen=teen+value-teen;
+					teen=teen+(value-teen);
 				}else if (value==0) {
 					teen=0;
 				}else{
-					teen=teen+adult-teen;
+					teen=teen-(teen-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 청소년수 : "+teen);
@@ -396,7 +401,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='teen']").val(teen);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 		});
 		$('#kid').dropdown({
@@ -406,12 +412,12 @@ display: none;
 				var value = parseInt(value);
 				alert(value);
 				if(kid<=value){
-					kid=kid+value-kid;
+					kid=kid+(value-kid);
 				}else if (value==0) {
 					kid=0;
 				}
 				else{
-					kid=kid+adult-kid;
+					kid=kid-(kid-value);
 				}
 				total=adult+teen+kid;
 				alert("변경된 아동수 : "+kid);
@@ -421,7 +427,8 @@ display: none;
 				$('.kid').text(kid+"명"+kid_payment*kid+"원");
 				total_payment=(adult*adult_payment)+(teen*teen_payment)+(kid*kid_payment);
 				$('.total').text(total_payment+"원"); 
-				
+				actionform.find("input[name='kid']").val(kid);
+				actionform.find("input[name='total_payment']").val(total_payment);
 			}
 			
 		});
@@ -473,7 +480,7 @@ display: none;
 				}else{
 					$('.line2').find('img').eq(seat).attr('src','../images/seat_on.png');
 					$('#actionForm input[name=seat]').eq(seat_num-1).prop('checked', true);
-
+				
 					count++;
 				}
 				
@@ -618,13 +625,20 @@ display: none;
 				alert("선택할수 있는 좌석의 개수를 초과하였습니다.");
 				return false;
 			}
+			/* $('#seat:checked').each(function() { 
+		        alert($(this).val());
+		        var check ="<input type='checkbox' name ='seat'>";
+		        check.attr("value", $(this).val());
+		        alert($(this).val()+"ddd");
+		        $('#actionForm').append(check);
+		   	}); */
 
 			//예약한 총 금액
 			actionform.find("input[name='total_payment']").val(total_payment);
 			//예약한 총좌석
 			actionform.find("input[name='total_seat']").val(count);
 			actionform.find("input[name='seat_no']").val(seat);
-			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment+"예약한 좌석"+seat.toString());
+			alert("예약한 총 좌석 개수 : "+count +" 총금액"+total_payment);
 			actionform.submit();
 		});
 		
@@ -636,20 +650,23 @@ display: none;
 </head>
 <body>
 
+
 	<div class="wrapper">
 		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
+			<div id="hidden_seat">
+			<c:forEach begin="1" end="40" step="1" var="i">
+				<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
+			</c:forEach>
+			</div>
 			<input type="hidden" name="bus_no" value="${bus_no}">
 			<input type="hidden" name="seat_no" value="">
 			<input type="hidden" name="total_payment" value="">
 			<input type="hidden" name="total_seat" value="">
-			<div id="hidden_seat">
-			<c:forEach begin="1" end="40" step="1" var="i">
-			<input type="checkbox" name="seat" value='${i}'>${i}
-			</c:forEach>
-			</div>
+			
+			<input type="hidden" name="total_payment" value=""> 
 			<input type="hidden" name="start_tr" value="${bus_vo.start_tr}"> 
 			<input type="hidden" name="end_tr" value="${bus_vo.end_tr}"> 
-			<input type="hidden" name="adult"value="${adult}"> 
+			<input type="hidden" name="adult" value="${adult}"> 
 			<input type="hidden" name="teen" value="${teen}">
 			<input type="hidden" name="kid" value="${kid}">
 			<input type="hidden" name="arrive_time" value="${arrive_time}">
@@ -668,16 +685,19 @@ display: none;
 					<hr>
 				</header>
 			</div>
+
 		</div>
 		<div>
+
 			<form action="../booking/booking_card.do" method="post"
 				name="bus_input">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">가는편</div>
+
 					</div>
 					<div class="ui bottom attached active tab segment" align="center">
-						<table border="1">
+						<table border="1px solid black">
 							<tr>
 								<td width="500px" height="50px">
 									<ul class="road">
@@ -897,7 +917,7 @@ display: none;
 									</ul>
 								</div></li>
 							<li id="menu3">
-								<table border="1" style="width: 400px; height: 500px;">
+								<table border="1px" style="width: 400px; height: 500px;">
 
 									<tbody>
 										<tr>
@@ -928,10 +948,20 @@ display: none;
 								</table>
 							</li>
 						</ul>
+
 					</div>
+
 				</div>
+
 			</form>
+
+
+
+
 		</div>
 	</div>
+
+	</div>
+
 </body>
 </html>

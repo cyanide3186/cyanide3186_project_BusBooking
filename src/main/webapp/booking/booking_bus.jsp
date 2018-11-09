@@ -35,6 +35,7 @@
 			actionform.find("input[name='bus_no']").val($(this).attr("href"));
 			actionform.submit();
 		});
+	
 	});
 </script>
 <style type="text/css">

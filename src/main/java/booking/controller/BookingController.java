@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -182,9 +183,10 @@ public class BookingController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		String seat[] = request.getParameterValues("seat");
-		  List<String> seatList = Arrays.asList(seat);
-		  for (String i : seatList) {
+		
+		  for (String i : seat) {
 		        System.out.println(i);
+		        
 		    }
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("main", "../booking/booking_card.jsp");

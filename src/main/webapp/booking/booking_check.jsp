@@ -22,6 +22,9 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
+<link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
+<script src="/Project_BusBooking/js/alertify.min.js"></script>
 
 </head>
 
@@ -55,24 +58,20 @@
 							e.preventDefault();
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
-							//alert(arrivedate);
 							if (arrivedate.indexOf(" ", 1) == 1) {
 								var day = "0" + arrivedate.substring(0, 1);
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
 								var date = year + "-" + month + "-" + day;
-								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
 								var date = year + "-" + month + "-" + day;
-								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
 							var value = $("#arrivedate").attr("value");
-							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
 						});
 
@@ -84,8 +83,7 @@
 			function() {
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
-				//var startterminal=$('input:radio[name="chk_terminal"]').val();
-				alert(startterminal + "을 선택하셨습니다.");
+				alertify.alert(startterminal + "을 선택하셨습니다.");
 				$("#start_tr").attr({
 					placeholder : startterminal,
 					value : startterminal,

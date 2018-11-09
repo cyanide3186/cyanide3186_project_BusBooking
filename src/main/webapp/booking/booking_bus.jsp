@@ -118,7 +118,7 @@ h1 {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	background-color: orange;
+	background-color: #FAAC58;
 }
 
 td, th {

@@ -118,7 +118,7 @@ td, th {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	background-color: orange;
+	background-color: #FAAC58;
 }
 
 .road li {
@@ -238,6 +238,7 @@ display: none;
 </style>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		var seat = new Array();
 		var count=0;
@@ -675,8 +676,6 @@ display: none;
 </script>
 </head>
 <body>
-
-
 	<div class="wrapper">
 		<form role="form"  method="post" id="actionForm" action="../booking/booking_card.do">
 			<input type="hidden" name="bus_no" value="${bus_no}">

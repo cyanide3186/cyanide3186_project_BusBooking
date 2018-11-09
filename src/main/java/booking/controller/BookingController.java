@@ -189,6 +189,8 @@ public class BookingController {
 		String teen = request.getParameter("teen");
 		String kid = request.getParameter("kid");
 		String total_payment = request.getParameter("total_payment");
+		String arrive_day2 = utils.substringAfterLast(arrive_day, "-");
+		String arrive_day1 = utils.substringBetween(arrive_day, "-", "-");
 		ModelAndView modelAndView = new ModelAndView();
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
@@ -198,24 +200,16 @@ public class BookingController {
 				System.out.println(seatarr[i]);
 			}
 		}
-		String arrive_time1;
+		
+		String arrive_time1 = arrive_time.substring(0,2);
 		String arrive_time2;
 		if(arrive_time.length()==3) {
-			arrive_time1 = arrive_time.substring(0,1);
-			arrive_time2 = arrive_time.substring(1,3);
+			arrive_time2 = arrive_time.substring(2,3);
 		} else  {
-			arrive_time1 = arrive_time.substring(0,2);
 			arrive_time2 = arrive_time.substring(2,4);
 		}
-		String arrive_day1; 
-		String arrive_day2;
-		if(arrive_day.length()==3) {
-			arrive_day1= arrive_day.substring(0, 1);
-			arrive_day2 = arrive_day.substring(1,3);
-		} else {
-			arrive_day1= arrive_day.substring(0, 2);
-			arrive_day2 = arrive_day.substring(2,4);
-		}
+		
+		
 		modelAndView.addObject("seat", seat);
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);

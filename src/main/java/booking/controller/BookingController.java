@@ -24,6 +24,7 @@ import booking.ticket.bean.TicketVO;
 import info.terminal.bean.TerminalVO;
 
 @Controller
+
 public class BookingController {
 
 	@Autowired
@@ -200,8 +201,6 @@ public class BookingController {
 				System.out.println(seatarr[i]);
 			}
 		}
-		
-		
 		String arrive_time1;
 		String arrive_time2;
 		if(arrive_time.length()==3) {
@@ -211,9 +210,7 @@ public class BookingController {
 			arrive_time1 = arrive_time.substring(0,2);
 			arrive_time2 = arrive_time.substring(2,4);
 		}
-		 
-		
-		modelAndView.addObject("seat", seat);
+
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);
 		modelAndView.addObject("arrive_day1", arrive_day1);  
@@ -378,19 +375,18 @@ public class BookingController {
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
-		int hp = Integer
-				.parseInt(request.getParameter("hp1") + (request.getParameter("hp2") + (request.getParameter("hp3"))));
+		int hp = Integer.parseInt(request.getParameter("hp1") + (request.getParameter("hp2") + (request.getParameter("hp3"))));
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
 		int kidResult = 0;
 
 		if (adult > 0) {
-			for (int i = 0; adult <= i; i++) {
+			for (int i = 0; i <= adult; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 0;
-				int totalpay = Integer.parseInt(request.getParameter("totalpay"));
+				int totalpay = Integer.parseInt(request.getParameter("total_payment"));
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
@@ -400,7 +396,7 @@ public class BookingController {
 
 		}
 		if (kid > 0) {
-			for (int i = 0; kid <= i; i++) {
+			for (int i = 0; i <= kid; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 1;
@@ -417,7 +413,7 @@ public class BookingController {
 
 		}
 		if (teen > 0) {
-			for (int i = 0; teen <= i; i++) {
+			for (int i = 0; i <= teen; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 2;
@@ -450,11 +446,18 @@ public class BookingController {
 
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
-		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
-		System.out.println();
+		//int seat_no = Integer.parseInt(request.getParameter("seat_no"));
+		int seat_no = 0;
+		String seatarr[] = request.getParameterValues("seat");
+		ArrayList<String> seat= new ArrayList<>();
+		for(int i =0 ; i<seatarr.length; i++) {
+			if(seatarr[i]!=null) {
+				seat_no = Integer.parseInt(seatarr[i]);
+			}
+		}
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
-
+		
 		String arrive_day = request.getParameter("arrive_day");
 		String arrive_time = request.getParameter("arrive_time");
 
@@ -496,35 +499,20 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 예약 목록 조회
-	@SuppressWarnings("static-access")
-	@RequestMapping(value = "/booking/booking_check.do")
+	// 예약 조회 기능
+	@RequestMapping(value = "/booking/bookingCheck.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-		BusVO busVO = new BusVO();
-		String bus_no = null;
-		
+
 		String ticket_no = request.getParameter("ticket_no");
 		ticketVO = bookingService.bookingCheck(ticket_no);
-		String hour = null;
-		String minute = null;
-		if(ticketVO != null) {
-			seatVO = bookingService.seatCheck(ticket_no);
-			bus_no = ticketVO.getBus_no();
-			busVO = bookingService.getBusInfo(bus_no);
-			String arrive_day = utils.substring(ticketVO.getArrive_day(), 0, 10);
-			ticketVO.setArrive_day(arrive_day);
-			hour = utils.substring(String.valueOf(busVO.getArrive_time()), 0, 2);
-			minute = utils.substring(String.valueOf(busVO.getArrive_time()), 2);
-		}
-		
-		modelAndView.addObject("arrive_time", hour + ":" + minute);
+		seatVO = bookingService.seatCheck(ticket_no);
+
 		modelAndView.addObject("ticketVO", ticketVO);
-		modelAndView.addObject("busVO", busVO);
 		modelAndView.addObject("seatVO", seatVO);
-		modelAndView.addObject("main", "../booking/booking_checkList.jsp");
+		modelAndView.addObject("main", "");
 
 		modelAndView.setViewName("../main/index.jsp");
 

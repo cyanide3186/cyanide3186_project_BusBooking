@@ -635,7 +635,7 @@ li {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: yellow;
+	color: white;
 	width: 120px;
 	border: 3.6px solid #ffa500;;
 	

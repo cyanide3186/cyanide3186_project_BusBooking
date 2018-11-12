@@ -153,7 +153,6 @@ h1 {
 </head>
 <body>
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
@@ -175,7 +174,6 @@ h1 {
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">
-						
 						<p>
 						배차정보
 						<p>
@@ -185,6 +183,14 @@ h1 {
 						<table border="1">
 							<tr>
 								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
+										<input type="hidden" name="bus_no" value="${bus_no}">
+										<input type="hidden" name="adult" value="${adult}">
+										<input type="hidden" name="teen" value="${teen}">
+										<input type="hidden" name="kid" value="${kid}">
+										<input type="hidden" name="total_payment" value="${total_payment}">
+										<c:forEach items="${seat}" var="seat">
+											<input type="checkbox" name="seat" id="seat" value=seat>
+										</c:forEach>
 										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>
 								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
@@ -200,8 +206,8 @@ h1 {
 							</tr>
 							<tr>
 								<td width="500px" height="50px" align="center" class="card3" style="color:red">
-									<c:if test="${adult!=0}">
-										<a style="color: black">어른</a> ${adult} <a style="color: black">명&nbsp;</a>
+									<c:if test="${adult!=0}" >
+										<a style="color: black" >어른</a> ${adult} <a style="color: black">명&nbsp;</a>
 									</c:if>
 									<c:if test="${teen!=0}">
 										<a style="color: black">청소년</a> ${teen} <a style="color: black">명&nbsp;</a>
@@ -310,7 +316,7 @@ h1 {
 								휴대폰 번호
 							</td>
 							<td width="700px" align="left" class="card2">
-									<select name="selectcard" style="width: 60px;" name="hp1">
+									<select name="hp1" style="width: 60px;" >
 									<option value="010" selected>010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>

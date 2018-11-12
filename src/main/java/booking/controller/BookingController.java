@@ -200,8 +200,6 @@ public class BookingController {
 				System.out.println(seatarr[i]);
 			}
 		}
-		
-		
 		String arrive_time1;
 		String arrive_time2;
 		if(arrive_time.length()==3) {
@@ -211,9 +209,7 @@ public class BookingController {
 			arrive_time1 = arrive_time.substring(0,2);
 			arrive_time2 = arrive_time.substring(2,4);
 		}
-		 
-		
-		modelAndView.addObject("seat", seat);
+
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);
 		modelAndView.addObject("arrive_day1", arrive_day1);  
@@ -378,19 +374,18 @@ public class BookingController {
 		int adult = Integer.parseInt(request.getParameter("adult"));
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
-		int hp = Integer
-				.parseInt(request.getParameter("hp1") + (request.getParameter("hp2") + (request.getParameter("hp3"))));
+		int hp = Integer.parseInt(request.getParameter("hp1") + (request.getParameter("hp2") + (request.getParameter("hp3"))));
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
 		int kidResult = 0;
 
 		if (adult > 0) {
-			for (int i = 0; adult <= i; i++) {
+			for (int i = 0; i <= adult; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 0;
-				int totalpay = Integer.parseInt(request.getParameter("totalpay"));
+				int totalpay = Integer.parseInt(request.getParameter("total_payment"));
 
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
@@ -400,7 +395,7 @@ public class BookingController {
 
 		}
 		if (kid > 0) {
-			for (int i = 0; kid <= i; i++) {
+			for (int i = 0; i <= kid; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 1;
@@ -417,7 +412,7 @@ public class BookingController {
 
 		}
 		if (teen > 0) {
-			for (int i = 0; teen <= i; i++) {
+			for (int i = 0; i <= teen; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 2;
@@ -450,10 +445,18 @@ public class BookingController {
 
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
-		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
+		String seatarr[] = request.getParameterValues("seat");
+		ArrayList<String> seat= new ArrayList<>();
+		for(int i =0 ; i<seatarr.length; i++) {
+			if(seatarr[i]!=null) {
+				seat.add(seatarr[i].toString());
+				
+			}
+		}
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 
+		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
 		String arrive_day = request.getParameter("arrive_day");
 		String arrive_time = request.getParameter("arrive_time");
 

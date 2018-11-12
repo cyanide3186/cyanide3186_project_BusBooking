@@ -446,7 +446,7 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		String seatarr[] = request.getParameterValues("seat");
-		ArrayList<String> seat= new ArrayList<>();
+		ArrayList<String> seat = new ArrayList<>();
 		ArrayList<Integer> seat_Int= new ArrayList<>();
 		for(int i =0 ; i<seatarr.length; i++) {
 			if(seatarr[i]!=null) {

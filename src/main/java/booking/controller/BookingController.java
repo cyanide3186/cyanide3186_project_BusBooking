@@ -447,9 +447,10 @@ public class BookingController {
 		String bus_no = request.getParameter("bus_no");
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
+		ArrayList<Integer> seat_Int= new ArrayList<>();
 		for(int i =0 ; i<seatarr.length; i++) {
 			if(seatarr[i]!=null) {
-				int seat_no = Integer.parseInt(seatarr[i]);
+				seat_Int.add(Integer.parseInt(seatarr[i]));
 				
 			}
 		}
@@ -461,14 +462,16 @@ public class BookingController {
 
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
-
 		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
 		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no
-				+ utils.leftPad(String.valueOf(seat_no), 2, "0");
+				+ utils.leftPad(String.valueOf(seat_Int), 2, "0");
 
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);
-		ticketVO.setSeat_no(seat_no);
+		for( int i:  seat_Int ) {
+			
+			ticketVO.setSeat_no(i);
+		}
 		ticketVO.setHp(hp);
 		ticketVO.setArrive_day(arrive_day);
 
@@ -476,7 +479,11 @@ public class BookingController {
 		if (count > 0) {
 			SeatVO seatVO = new SeatVO();
 			seatVO.setBus_no(bus_no);
-			seatVO.setBus_seat(seat_no);
+			for( int i:  seat_Int ) {
+				
+				seatVO.setBus_seat(i);
+
+			}
 			seatVO.setTicket_no(ticket_no);
 			seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 			seatVO.setArrive_day(Integer.parseInt(setArrive_day));

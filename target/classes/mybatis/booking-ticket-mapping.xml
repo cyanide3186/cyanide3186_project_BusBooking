@@ -31,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 예약 내역 목록 조회 (핸드폰번호로 조회) -->
 	<select id="bookingListCheck" parameterType="String" resultType="ticketVO">
-		select * from ticket t, seat s	
-		where t.ticket_no = s.ticket_no	and t.hp = #{hp}
+		select * from ticket 	
+		where hp = #{hp}
 	</select>
 	
 	<!-- 예약 개별 조회 (예약번호로 조회)-->
 	<select id="bookingCheck" parameterType="String" resultType="ticketVO">
-		select * from ticket t, seat s 
- 		where t.ticket_no = s.ticket_no and t.ticket_no = #{ticket_no}
+		select * from ticket 
+ 		where ticket_no = #{ticket_no}
 	</select>
 	
 	<!-- 예약 수정 -->

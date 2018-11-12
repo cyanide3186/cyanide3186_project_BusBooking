@@ -130,10 +130,14 @@ h1 {
 				<input type="hidden" name="arrive_time" value="${busVO.arrive_time}">
 				<input type="hidden" name="time" value="${busVO.time}">
 				<input type="hidden" name="payment" value="${busVO.payment}">
+				
 				<input type="hidden" name="ticket_no" value="${ticketVO.ticket_no}">
 				<input type="hidden" name="hp" value="${ticketVO.hp}">
 				<input type="hidden" name="age_group" value="${ticketVO.age_group}">
 				<input type="hidden" name="payday" value="${ticketVO.payday}">
+				<input type="hidden" name="cancle_check" value="${ticketVO.cancle_check}">
+				
+				
 				<input type="hidden" name="bus_seat" value="${seatVO.bus_seat}">
 				<input type="hidden" name="arrive_month" value="${seatVO.arrive_month}">
 				<input type="hidden" name="arrive_day" value="${seatVO.arrive_day}">
@@ -160,6 +164,7 @@ h1 {
 										<span class="booking">예매</span>
 									</c:if>
 									<c:if test="${ticketVO.cancle_check == 'y'}">
+										<br>
 										<span class="cancle">취소</span>
 									</c:if>
 								</td>

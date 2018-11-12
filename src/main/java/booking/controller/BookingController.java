@@ -30,7 +30,8 @@ public class BookingController {
 
 	String[] arrivalTime_array;
 	StringUtils utils = new StringUtils();
-
+	String ticketNo;
+	
 	@RequestMapping(value = "/booking/booking_modifyForm.do")
 	public ModelAndView booking_modifyForm(ModelAndView modelAndView) {
 
@@ -394,7 +395,7 @@ public class BookingController {
 		
 		String[] seatArray = request.getParameterValues("seat"); 
 		
-		
+		String ticket_no = null;
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
@@ -410,7 +411,7 @@ public class BookingController {
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
-				adultResult += bookingFunction(request, ticketVO, seatArray);
+				ticket_no += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
@@ -427,7 +428,7 @@ public class BookingController {
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
 
-				teenResult += bookingFunction(request, ticketVO, seatArray);
+				ticket_no += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
@@ -444,7 +445,7 @@ public class BookingController {
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
 
-				kidResult += bookingFunction(request, ticketVO, seatArray);
+				ticket_no += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
@@ -452,8 +453,9 @@ public class BookingController {
 		modelAndView.addObject("adultResult", adultResult);
 		modelAndView.addObject("teenResult", teenResult);
 		modelAndView.addObject("kidResult", kidResult);
-		modelAndView.addObject("main", "../booking/booking_modifyForm.jsp");
-
+		modelAndView.addObject("ticket_no", ticket_no);
+		modelAndView.addObject("main", "../booking/booking_result.do");
+		ticketNo = ticket_no;
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
@@ -461,7 +463,7 @@ public class BookingController {
 
 	// 버스 예약기능 함수
 	@SuppressWarnings("static-access")
-	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO, String[] seatArray) {
+	public String bookingFunction(HttpServletRequest request, TicketVO ticketVO, String[] seatArray) {
 
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
@@ -496,7 +498,6 @@ public class BookingController {
 		ticketVO.setHp(hp);
 		ticketVO.setArrive_day(arrive_day);
 		int count = bookingService.booking(ticketVO);
-		System.out.println("count 502줄 : " + count);
 		if (count > 0) {
 			SeatVO seatVO = new SeatVO();
 			seatVO.setBus_no(bus_no);
@@ -509,15 +510,36 @@ public class BookingController {
 
 			bookingService.seatBooking(seatVO);
 		}
-		return count;
+		return ticket_no;
 	}
 
 	// 예약하기 - 결과 화면
 	@RequestMapping(value = "/booking/booking_result.do")
 	public ModelAndView booking_result(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.addObject("main", "");
+		TicketVO ticketVO = new TicketVO();
+		SeatVO seatVO = new SeatVO();
+		BusVO busVO = new BusVO();
+		String bus_no = null;
+		ticketNo = utils.substring(ticketNo, 4);
+		ticketVO = bookingService.bookingCheck(ticketNo);
+		String hour = null;
+		String minute = null;
+		if(ticketVO != null) {
+			seatVO = bookingService.seatCheck(ticketVO.getTicket_no());
+			bus_no = ticketVO.getBus_no();
+			busVO = bookingService.getBusInfo(bus_no);
+			String arrive_day = utils.substring(ticketVO.getArrive_day(), 0, 10);
+			ticketVO.setArrive_day(arrive_day);
+			hour = utils.substring(String.valueOf(busVO.getArrive_time()), 0, 2);
+			minute = utils.substring(String.valueOf(busVO.getArrive_time()), 2);
+		}
+			
+		modelAndView.addObject("arrive_time", hour + ":" + minute);
+		modelAndView.addObject("ticketVO", ticketVO);
+		modelAndView.addObject("busVO", busVO);
+		modelAndView.addObject("seatVO", seatVO);
+		modelAndView.addObject("main", "../booking/booking_result.jsp");
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;

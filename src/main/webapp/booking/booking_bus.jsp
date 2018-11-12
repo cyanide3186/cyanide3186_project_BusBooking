@@ -94,7 +94,7 @@ li {
 	font-size: 1rem;
 	padding: 0 0;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 }
 
 table {

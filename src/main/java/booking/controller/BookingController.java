@@ -177,6 +177,7 @@ public class BookingController {
 	}
 
 	// 버스 카드 결제 페이지 이동
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/booking/booking_card.do")
 	public ModelAndView booking_cardForm(HttpServletRequest request) {
 		String arrive_day = request.getParameter("arrive_day");
@@ -450,6 +451,7 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = Integer.parseInt(request.getParameter("seat_no"));
+		System.out.println();
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 
@@ -505,7 +507,6 @@ public class BookingController {
 		String bus_no = null;
 		
 		String ticket_no = request.getParameter("ticket_no");
-
 		ticketVO = bookingService.bookingCheck(ticket_no);
 		String hour = null;
 		String minute = null;
@@ -535,9 +536,6 @@ public class BookingController {
 	@RequestMapping(value = "/booking/bookingCheckDetail.do")
 	public ModelAndView bookingCheckDetail(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		TicketVO ticketVO = (TicketVO) request.getAttribute("ticketVO");
-		SeatVO seatVO = (SeatVO) request.getAttribute("seatVO");
-		BusVO busVO = (BusVO) request.getAttribute("busVO");
 
 		String bus_no = request.getParameter("bus_no");
 		String start_tr = request.getParameter("start_tr");
@@ -550,27 +548,34 @@ public class BookingController {
 		String hp = request.getParameter("hp");
 		String age_group = request.getParameter("age_group");
 		String payday = request.getParameter("payday");
+		String cancle_check = request.getParameter("cancle_check");
 		String bus_seat = request.getParameter("bus_seat");
 		String arrive_month = request.getParameter("arrive_month");
-		String arrive_day = request.getParameter("arrive_day");
+		String arrive_day = utils.leftPad(request.getParameter("arrive_day"), 2, "0");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		Calendar cal = Calendar.getInstance();
+		String year = sdf.format(cal.getTime());
 		
-		String hour = utils.substring(ticketVO.getPayday(), 0, 2);
-		String minute = utils.substring(ticketVO.getPayday(), 2);
+		String hour = utils.substring(arrive_time, 0, 2);
+		String minute = utils.substring(arrive_time, 2);
+		
+		payday = utils.substring(payday, 0, 10);
 		
 		modelAndView.addObject("bus_no", bus_no);
 		modelAndView.addObject("start_tr", start_tr);
 		modelAndView.addObject("end_tr", end_tr);
 		modelAndView.addObject("company", company);
-		modelAndView.addObject("arrive_time", arrive_time);
+		modelAndView.addObject("arrive_time", hour + ":" + minute);
 		modelAndView.addObject("time", time);
 		modelAndView.addObject("payment", payment);
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("hp", hp);
 		modelAndView.addObject("age_group", age_group);
 		modelAndView.addObject("payday", payday);
+		modelAndView.addObject("cancle_check", cancle_check);
 		modelAndView.addObject("bus_seat", bus_seat);
 		modelAndView.addObject("arrive_month", arrive_month);
-		modelAndView.addObject("arrive_day", arrive_day);
+		modelAndView.addObject("arrive_day", year + "-" +arrive_month + "-" + arrive_day);
 		
 		modelAndView.addObject("main", "../booking/booking_checkDetail.jsp");
 		
@@ -601,6 +606,7 @@ public class BookingController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		String ticket_no = request.getParameter("ticket_no");
+		System.out.println(ticket_no);
 		int count = bookingService.bookingCancel(ticket_no);
 
 		if (count > 0)
@@ -608,7 +614,7 @@ public class BookingController {
 
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
-		modelAndView.addObject("main", "");
+		modelAndView.addObject("main", "../booking/booking_check.do");
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;

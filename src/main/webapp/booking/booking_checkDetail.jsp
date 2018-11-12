@@ -18,6 +18,17 @@
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
 <script src="/Project_BusBooking/js/alertify.min.js"></script>
 <script type="text/javascript">
+	function cancle() {
+		var cancle = confirm("정말 취소하시겠습니까?");
+		
+		if(cancle) {
+			alert("예매가 취소되었습니다");
+			location.href="../booking/bookingCancle.do?ticket_no="+${ticket_no};
+		}
+		else {
+			alert("..");
+		}
+	}
 </script>
 <style type="text/css">
 p {
@@ -113,10 +124,10 @@ h1 {
 						<th width="25%">예약번호</th>
 						<td width="25%">${ticket_no}</td>
 						<th width="25%">상태</th>
-						<c:if test="${ticket_no == 'n'}">
+						<c:if test="${cancle_check == 'n'}">
 							<td>예매</td>
 						</c:if>
-						<c:if test="${ticket_no == 'y'}">
+						<c:if test="${cancle_check == 'y'}">
 							<td>취소</td>
 						</c:if>
 					</tr>
@@ -151,7 +162,7 @@ h1 {
 								청소년 1명
 							</c:if>
 						</td>
-						<th>좌석</th>
+						<th>좌석번호</th>
 						<td>${bus_seat }</td>
 					</tr>
 					<tr>
@@ -178,10 +189,10 @@ h1 {
 						<tr>
 							<td>
 								<c:if test="${cancle_check == 'n'}">
-									<p>예매<p>
+									<span>예매</span>
 								</c:if>
-								<c:if test="${cancle_check == 'n'}">
-									<p>취소<p>
+								<c:if test="${cancle_check == 'y'}">
+									<span>취소</span>
 								</c:if>
 							</td>
 							<td>
@@ -198,37 +209,35 @@ h1 {
 							<td>${bus_seat }</td>
 							<td>0원</td>
 							<td>
-								<c:if test="${age_group == 0 }">
-									${totalpay }
-								</c:if>
-								<c:if test="${age_group == 1 }">
-									${totalpay * 0.5}
-								</c:if>
-								<c:if test="${age_group == 2 }">
-									${totalpay * 0.7}
-								</c:if>
+								${payment}
 							</td>
 						</tr>
 						<tr>
 							<th>합계</th>
-							<th colspan="2">총 1매</th>
+							<th colspan="2">
+								<c:if test="${ticket_no != null }">
+									1매
+								</c:if>
+								<c:if test="${ticket_no == null }">
+									0매
+								</c:if>
+							</th>
 							<th>0원</th>
 							<th>
-								<c:if test="${age_group == 0 }">
-									${totalpay }
-								</c:if>
-								<c:if test="${age_group == 1 }">
-									${totalpay * 0.5}
-								</c:if>
-								<c:if test="${age_group == 2 }">
-									${totalpay * 0.7}
-								</c:if>
+								${payment }
 							</th>
 						</tr>
 					</tbody>
 				</table>
 			</form>
 		</div>
+		<br>
+		<div align="center">
+			<input type="button" value="이전" onclick="history.back()">&nbsp;&nbsp;
+			<input type="button" value="예매 취소" onclick="cancle()">&nbsp;&nbsp;
+			<input type="button" value="변경">
+		</div>
+		<br>
 		<div class="column" align="center">
 			<table id="infomation">
 				<tr>

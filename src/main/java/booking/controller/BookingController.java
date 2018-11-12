@@ -24,7 +24,6 @@ import booking.ticket.bean.TicketVO;
 import info.terminal.bean.TerminalVO;
 
 @Controller
-
 public class BookingController {
 
 	@Autowired
@@ -498,24 +497,88 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 예약 조회 기능
-	@RequestMapping(value = "/booking/bookingCheck.do")
+	// 예약 목록 조회
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/booking/booking_check.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-
+		BusVO busVO = new BusVO();
+		String bus_no = null;
+		
 		String ticket_no = request.getParameter("ticket_no");
 
 		ticketVO = bookingService.bookingCheck(ticket_no);
-		seatVO = bookingService.seatCheck(ticket_no);
-
+		String hour = null;
+		String minute = null;
+		if(ticketVO != null) {
+			seatVO = bookingService.seatCheck(ticket_no);
+			bus_no = ticketVO.getBus_no();
+			busVO = bookingService.getBusInfo(bus_no);
+			String arrive_day = utils.substring(ticketVO.getArrive_day(), 0, 10);
+			ticketVO.setArrive_day(arrive_day);
+			hour = utils.substring(String.valueOf(busVO.getArrive_time()), 0, 2);
+			minute = utils.substring(String.valueOf(busVO.getArrive_time()), 2);
+		}
+		
+		modelAndView.addObject("arrive_time", hour + ":" + minute);
 		modelAndView.addObject("ticketVO", ticketVO);
+		modelAndView.addObject("busVO", busVO);
 		modelAndView.addObject("seatVO", seatVO);
-		modelAndView.addObject("main", "");
+		modelAndView.addObject("main", "../booking/booking_checkList.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
+		return modelAndView;
+	}
+	
+	// 예약 상세 조회
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/booking/bookingCheckDetail.do")
+	public ModelAndView bookingCheckDetail(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		TicketVO ticketVO = (TicketVO) request.getAttribute("ticketVO");
+		SeatVO seatVO = (SeatVO) request.getAttribute("seatVO");
+		BusVO busVO = (BusVO) request.getAttribute("busVO");
+
+		String bus_no = request.getParameter("bus_no");
+		String start_tr = request.getParameter("start_tr");
+		String end_tr = request.getParameter("end_tr");
+		String company = request.getParameter("company");
+		String arrive_time = request.getParameter("arrive_time");
+		String time = request.getParameter("time");
+		String payment = request.getParameter("payment");
+		String ticket_no = request.getParameter("ticket_no");
+		String hp = request.getParameter("hp");
+		String age_group = request.getParameter("age_group");
+		String payday = request.getParameter("payday");
+		String bus_seat = request.getParameter("bus_seat");
+		String arrive_month = request.getParameter("arrive_month");
+		String arrive_day = request.getParameter("arrive_day");
+		
+		String hour = utils.substring(ticketVO.getPayday(), 0, 2);
+		String minute = utils.substring(ticketVO.getPayday(), 2);
+		
+		modelAndView.addObject("bus_no", bus_no);
+		modelAndView.addObject("start_tr", start_tr);
+		modelAndView.addObject("end_tr", end_tr);
+		modelAndView.addObject("company", company);
+		modelAndView.addObject("arrive_time", arrive_time);
+		modelAndView.addObject("time", time);
+		modelAndView.addObject("payment", payment);
+		modelAndView.addObject("ticket_no", ticket_no);
+		modelAndView.addObject("hp", hp);
+		modelAndView.addObject("age_group", age_group);
+		modelAndView.addObject("payday", payday);
+		modelAndView.addObject("bus_seat", bus_seat);
+		modelAndView.addObject("arrive_month", arrive_month);
+		modelAndView.addObject("arrive_day", arrive_day);
+		
+		modelAndView.addObject("main", "../booking/booking_checkDetail.jsp");
+		
+		modelAndView.setViewName("../main/index.jsp");
+		
 		return modelAndView;
 	}
 

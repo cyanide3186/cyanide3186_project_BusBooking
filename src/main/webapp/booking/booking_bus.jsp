@@ -256,7 +256,7 @@ button {
 									<td>${busVO.company}</td>
 									<td>${busVO.viewArrive_time}</td>
 									<td>${busVO.viewtime}</td>
-									<td>${busVO.payment}</td>
+									<td>${busVO.payment}원</td>
 									<td style="padding: 0 0;">
 											<div id="seat"><a href="${busVO.bus_no}">${busVO.bus_seats}석/총40석</a></div>
 										</td>

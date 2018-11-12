@@ -187,6 +187,8 @@ h1 {
 										<input type="hidden" name="adult" value="${adult}">
 										<input type="hidden" name="teen" value="${teen}">
 										<input type="hidden" name="kid" value="${kid}">
+										<input type="hidden" name="arrive_day" value="${arrive_day}">
+										<input type="hidden" name="arrive_time" value="${arrive_time}">
 										<input type="hidden" name="total_payment" value="${total_payment}">
 										<c:forEach items="${seat}" var="seat1">
 											<input type="checkbox" name="seat" id="seat" value=${ seat1} checked="checked">

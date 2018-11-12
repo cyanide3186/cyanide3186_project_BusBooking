@@ -917,7 +917,7 @@ td, th {
 					<input type="checkbox" name="seat" id="seat" value='${i}'>${i}
 			</c:forEach>
 			</div>
-			<input type="hidden" name="bus_no" value="${bus_no}"> <input
+			<input type="hidden" name="bus_no" value="${bus_vo.bus_no}"> <input
 				type="hidden" name="total_seat" value=""> <input
 				type="hidden" name="total_payment" value=""> <input
 				type="hidden" name="start_tr" value="${bus_vo.start_tr}"> <input

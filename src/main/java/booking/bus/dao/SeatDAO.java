@@ -32,6 +32,11 @@ public class SeatDAO {
 
 	// 좌석 예약 상태로 변경
 	public int seatBooking(SeatVO seatVO) {
+		System.out.println(seatVO.getBus_no());
+		System.out.println(seatVO.getBus_seat());
+		System.out.println(seatVO.getArrive_month());
+		System.out.println(seatVO.getArrive_day());
+		System.out.println(seatVO.getTicket_no());
 		return sqlSession.update("mybatis.seat-Mapper.seatBooking", seatVO);
 	}
 	

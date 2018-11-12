@@ -104,7 +104,7 @@ public class BookingController {
 	// 지역별 선택 드롭다운 목록 json
 	@RequestMapping(value = "/booking/booking_input_TerminalJson.do")
 	public ModelAndView booking_terminalJson(ModelAndView modelAndView, HttpServletRequest request) {
-		System.out.println(request.getParameter("local"));
+		//System.out.println(request.getParameter("local"));
 		String region = request.getParameter("local");
 		List<TerminalVO> list = bookingService.terminalList(region);
 		String rt = null;
@@ -196,7 +196,7 @@ public class BookingController {
 		for(int i =0 ; i<seatarr.length; i++) {
 			if(seatarr[i]!=null) {
 				seat.add(seatarr[i].toString());
-				System.out.println(seatarr[i]);
+				//System.out.println(seatarr[i]);
 			}
 		}
 		String arrive_time1;
@@ -208,13 +208,14 @@ public class BookingController {
 			arrive_time1 = arrive_time.substring(0,2);
 			arrive_time2 = arrive_time.substring(2,4);
 		}
-
 		modelAndView.addObject("start_tr", start_tr);  
 		modelAndView.addObject("end_tr", end_tr);
 		modelAndView.addObject("arrive_day1", arrive_day1);  
 		modelAndView.addObject("arrive_day2", arrive_day2);  
 		modelAndView.addObject("arrive_time1", arrive_time1);
 		modelAndView.addObject("arrive_time2", arrive_time2);
+		modelAndView.addObject("arrive_time", arrive_time);
+		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("bus_no", bus_no);
 		modelAndView.addObject("adult", adult);  
 		modelAndView.addObject("teen", teen);
@@ -390,13 +391,17 @@ public class BookingController {
 		int teen = Integer.parseInt(request.getParameter("teen"));
 		int kid = Integer.parseInt(request.getParameter("kid"));
 		int hp = Integer.parseInt(request.getParameter("hp1") + (request.getParameter("hp2") + (request.getParameter("hp3"))));
+		
+		String[] seatArray = request.getParameterValues("seat"); 
+		
+		
 		// 쿼리문 수행 후 예약 된 매수
 		int adultResult = 0;
 		int teenResult = 0;
 		int kidResult = 0;
 
 		if (adult > 0) {
-			for (int i = 0; i <= adult; i++) {
+			for (int i = 0; i < adult; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 0;
@@ -405,12 +410,12 @@ public class BookingController {
 				ticketVO.setAge_group(age_group);
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
-				adultResult += bookingFunction(request, ticketVO);
+				adultResult += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
 		if (kid > 0) {
-			for (int i = 0; i <= kid; i++) {
+			for (int i = 0; i < kid; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 1;
@@ -422,12 +427,12 @@ public class BookingController {
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
 
-				teenResult += bookingFunction(request, ticketVO);
+				teenResult += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
 		if (teen > 0) {
-			for (int i = 0; i <= teen; i++) {
+			for (int i = 0; i < teen; i++) {
 				TicketVO ticketVO = new TicketVO();
 
 				int age_group = 2;
@@ -439,7 +444,7 @@ public class BookingController {
 				ticketVO.setTotalpay(totalpay);
 				ticketVO.setHp(hp);
 
-				kidResult += bookingFunction(request, ticketVO);
+				kidResult += bookingFunction(request, ticketVO, seatArray);
 			}
 
 		}
@@ -447,7 +452,7 @@ public class BookingController {
 		modelAndView.addObject("adultResult", adultResult);
 		modelAndView.addObject("teenResult", teenResult);
 		modelAndView.addObject("kidResult", kidResult);
-		modelAndView.addObject("main", "../main/index.jsp");
+		modelAndView.addObject("main", "../booking/booking_check.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
@@ -456,7 +461,7 @@ public class BookingController {
 
 	// 버스 예약기능 함수
 	@SuppressWarnings("static-access")
-	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO) {
+	public int bookingFunction(HttpServletRequest request, TicketVO ticketVO, String[] seatArray) {
 
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
@@ -464,12 +469,6 @@ public class BookingController {
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
 		ArrayList<Integer> seat_Int= new ArrayList<>();
-		for(int i =0 ; i<seatarr.length; i++) {
-			if(seatarr[i]!=null) {
-				seat_Int.add(Integer.parseInt(seatarr[i]));
-				System.out.println("seat_Int 로받은 좌석 : "+Integer.parseInt(seatarr[i]));
-			}
-		}
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 		
@@ -479,27 +478,34 @@ public class BookingController {
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
+		int arrayCount = 0;
+		for(int i = arrayCount; i < seatArray.length; i++) {
+			//System.out.println("booking컨트롤러 483줄" + seatArray[i]);
+			seat_no = Integer.parseInt(seatArray[i]);
+			seatArray[i] = null;
+			arrayCount++;
+		}
 		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no
-				+ utils.leftPad(String.valueOf(seat_Int), 2, "0");
-
+				+ utils.leftPad(String.valueOf(seat_no), 2, "0");
+		//System.out.println("티켓번호 : " + ticket_no);
+		
+//		ticketVO.setBus_no(bus_no);
+//		for( int i:  seat_Int ) {
+//			
+//			ticketVO.setSeat_no(i);
+//		}
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);
-		for( int i:  seat_Int ) {
-			
-			ticketVO.setSeat_no(i);
-		}
 		ticketVO.setHp(hp);
 		ticketVO.setArrive_day(arrive_day);
-
 		int count = bookingService.booking(ticketVO);
+		System.out.println("count 502줄 : " + count);
 		if (count > 0) {
 			SeatVO seatVO = new SeatVO();
 			seatVO.setBus_no(bus_no);
-			for( int i:  seat_Int ) {
 				
-				seatVO.setBus_seat(i);
+			seatVO.setBus_seat(seat_no);
 
-			}
 			seatVO.setTicket_no(ticket_no);
 			seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 			seatVO.setArrive_day(Integer.parseInt(setArrive_day));
@@ -520,24 +526,88 @@ public class BookingController {
 		return modelAndView;
 	}
 
-	// 예약 조회 기능
-	@RequestMapping(value = "/booking/bookingCheck.do")
+	// 예약 목록 조회
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/booking/booking_check.do")
 	public ModelAndView bookingCheck(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		TicketVO ticketVO = new TicketVO();
 		SeatVO seatVO = new SeatVO();
-
+		BusVO busVO = new BusVO();
+		String bus_no = null;
+		
 		String ticket_no = request.getParameter("ticket_no");
-
 		ticketVO = bookingService.bookingCheck(ticket_no);
-		seatVO = bookingService.seatCheck(ticket_no);
+		String hour = null;
+		String minute = null;
+		if(ticketVO != null) {
+			seatVO = bookingService.seatCheck(ticket_no);
+			bus_no = ticketVO.getBus_no();
+			busVO = bookingService.getBusInfo(bus_no);
+			String arrive_day = utils.substring(ticketVO.getArrive_day(), 0, 10);
+			ticketVO.setArrive_day(arrive_day);
+			hour = utils.substring(String.valueOf(busVO.getArrive_time()), 0, 2);
+			minute = utils.substring(String.valueOf(busVO.getArrive_time()), 2);
+		}
+			
+			modelAndView.addObject("arrive_time", hour + ":" + minute);
+			modelAndView.addObject("ticketVO", ticketVO);
+			modelAndView.addObject("busVO", busVO);
+			modelAndView.addObject("seatVO", seatVO);
+			modelAndView.addObject("main", "../booking/booking_checkList.jsp");
 
-		modelAndView.addObject("ticketVO", ticketVO);
-		modelAndView.addObject("seatVO", seatVO);
-		modelAndView.addObject("main", "");
+			modelAndView.setViewName("../main/index.jsp");
+
+			return modelAndView;
+		}
+		
+	// 예약 상세 조회
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/booking/bookingCheckDetail.do")
+	public ModelAndView bookingCheckDetail(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		String bus_no = request.getParameter("bus_no");
+		String start_tr = request.getParameter("start_tr");
+		String end_tr = request.getParameter("end_tr");
+		String company = request.getParameter("company");
+		String arrive_time = request.getParameter("arrive_time");
+		String time = request.getParameter("time");
+		String payment = request.getParameter("payment");
+		String ticket_no = request.getParameter("ticket_no");
+		String hp = request.getParameter("hp");
+		String age_group = request.getParameter("age_group");
+		String payday = request.getParameter("payday");
+		String cancle_check = request.getParameter("cancle_check");
+		String bus_seat = request.getParameter("bus_seat");
+		String arrive_month = request.getParameter("arrive_month");
+		String arrive_day = request.getParameter("arrive_day");
+		
+		String hour = utils.substring(arrive_time, 0, 2);
+		String minute = utils.substring(arrive_time, 2);
+		
+		payday = utils.substring(payday, 0, 10);
+		
+		modelAndView.addObject("bus_no", bus_no);
+		modelAndView.addObject("start_tr", start_tr);
+		modelAndView.addObject("end_tr", end_tr);
+		modelAndView.addObject("company", company);
+		modelAndView.addObject("arrive_time", hour + ":" + minute);
+		modelAndView.addObject("time", time);
+		modelAndView.addObject("payment", payment);
+		modelAndView.addObject("ticket_no", ticket_no);
+		modelAndView.addObject("hp", hp);
+		modelAndView.addObject("age_group", age_group);
+		modelAndView.addObject("payday", payday);
+		modelAndView.addObject("cancle_check", cancle_check);
+		modelAndView.addObject("bus_seat", bus_seat);
+		modelAndView.addObject("arrive_month", arrive_month);
+		modelAndView.addObject("arrive_day", arrive_day);
+		
+		modelAndView.addObject("main", "../booking/booking_checkDetail.jsp");
 		
 		modelAndView.setViewName("../main/index.jsp");
-
+		
 		return modelAndView;
 	}
 

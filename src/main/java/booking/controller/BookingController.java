@@ -2,9 +2,7 @@
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -264,7 +262,8 @@ public class BookingController {
 
 		int end_num = pg * 10; // 배차 조회 항목 수
 		int start_num = end_num - 9; // 배차 조회 항목 수
-
+		
+		
 		busVO.setStart_tr(start_tr);
 		busVO.setEnd_tr(end_tr);
 		busVO.setArrive_time(Integer.parseInt(arrive_time));
@@ -279,7 +278,22 @@ public class BookingController {
 		int startPage = endPage - 9;
 		if (endPage > totalPage)
 			endPage = totalPage;
+		String viewArrive_time = null;
+		String viewTime = null;
 		List<BusVO> list = bookingService.busCheck(busVO, start_num, end_num); // 배차조회 결과 목록
+		for(int i = 0; i < list.size(); i++) {
+			viewArrive_time = utils.leftPad(String.valueOf(list.get(i).getArrive_time()), 4, "0");
+			viewTime = utils.leftPad(String.valueOf(list.get(i).getTime()), 4, "0");
+			
+			String viewArrive_time_hour = utils.substring(viewArrive_time, 0, 2);
+			String viewArrive_time_minute = utils.substring(viewArrive_time, 2);
+
+			String viewtime_hour = utils.substring(viewTime, 0, 2);
+			String viewtime_minute = utils.substring(viewTime, 2);
+			
+			list.get(i).setViewArrive_time(viewArrive_time_hour + ":" + viewArrive_time_minute);
+			list.get(i).setViewtime(viewtime_hour + ":" + viewtime_minute);
+		}
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("arrive_day", arrive_day);
 		modelAndView.addObject("arrive_time", arrive_time);
@@ -446,7 +460,6 @@ public class BookingController {
 
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
-		//int seat_no = Integer.parseInt(request.getParameter("seat_no"));
 		int seat_no = 0;
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
@@ -816,11 +829,14 @@ public class BookingController {
 	}
 
 	// 좌석테이블 정보가 없는 버스의 좌석을 생성(insert)
-	/*
-	 * 생성하기 전에 cmd창에서 sqlplus "/as sysdbd" select * from v$resource_limit where
-	 * resource_name='processes'; alter system set processes=500 scope=spfile;
-	 * shutdown immediate; startup 을 한 줄씩 차례로 입력한 후에 진행해야된다.
-	 */
+	//
+	//  생성하기 전에 cmd창에서 
+	//  sqlplus "/as sysdbd" 
+	//  select * from v$resource_limit where
+	//  resource_name='processes'; 
+	//  alter system set processes=500 scope=spfile;
+	//  shutdown immediate; startup 
+	//  을 한 줄씩 차례로 입력한 후에 진행해야된다.
 //	@RequestMapping(value="/booking/seatCreate.do")
 //	public void seatCreat() {
 //		int arrive_month = 11;

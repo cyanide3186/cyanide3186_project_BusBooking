@@ -188,8 +188,8 @@ h1 {
 										<input type="hidden" name="teen" value="${teen}">
 										<input type="hidden" name="kid" value="${kid}">
 										<input type="hidden" name="total_payment" value="${total_payment}">
-										<c:forEach items="${seat}" var="seat">
-											<input type="checkbox" name="seat" id="seat" value=seat>
+										<c:forEach items="${seat}" var="seat1">
+											<input type="checkbox" name="seat" id="seat" value=${ seat1} checked="checked">
 										</c:forEach>
 										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>

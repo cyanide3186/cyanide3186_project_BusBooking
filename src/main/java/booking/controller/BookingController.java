@@ -463,9 +463,11 @@ public class BookingController {
 		int seat_no = 0;
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
+		ArrayList<Integer> seat_Int= new ArrayList<>();
 		for(int i =0 ; i<seatarr.length; i++) {
 			if(seatarr[i]!=null) {
-				seat_no = Integer.parseInt(seatarr[i]);
+				seat_Int.add(Integer.parseInt(seatarr[i]));
+				System.out.println("seat_Int 로받은 좌석 : "+Integer.parseInt(seatarr[i]));
 			}
 		}
 		int hp = Integer
@@ -476,14 +478,16 @@ public class BookingController {
 
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
-
 		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
 		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no
-				+ utils.leftPad(String.valueOf(seat_no), 2, "0");
+				+ utils.leftPad(String.valueOf(seat_Int), 2, "0");
 
 		ticketVO.setTicket_no(ticket_no);
 		ticketVO.setBus_no(bus_no);
-		ticketVO.setSeat_no(seat_no);
+		for( int i:  seat_Int ) {
+			
+			ticketVO.setSeat_no(i);
+		}
 		ticketVO.setHp(hp);
 		ticketVO.setArrive_day(arrive_day);
 
@@ -491,7 +495,11 @@ public class BookingController {
 		if (count > 0) {
 			SeatVO seatVO = new SeatVO();
 			seatVO.setBus_no(bus_no);
-			seatVO.setBus_seat(seat_no);
+			for( int i:  seat_Int ) {
+				
+				seatVO.setBus_seat(i);
+
+			}
 			seatVO.setTicket_no(ticket_no);
 			seatVO.setArrive_month(Integer.parseInt(setArrive_month));
 			seatVO.setArrive_day(Integer.parseInt(setArrive_day));
@@ -520,68 +528,16 @@ public class BookingController {
 		SeatVO seatVO = new SeatVO();
 
 		String ticket_no = request.getParameter("ticket_no");
+
 		ticketVO = bookingService.bookingCheck(ticket_no);
 		seatVO = bookingService.seatCheck(ticket_no);
 
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
 		modelAndView.addObject("main", "");
-
-		modelAndView.setViewName("../main/index.jsp");
-
-		return modelAndView;
-	}
-	
-	// 예약 상세 조회
-	@SuppressWarnings("static-access")
-	@RequestMapping(value = "/booking/bookingCheckDetail.do")
-	public ModelAndView bookingCheckDetail(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		String bus_no = request.getParameter("bus_no");
-		String start_tr = request.getParameter("start_tr");
-		String end_tr = request.getParameter("end_tr");
-		String company = request.getParameter("company");
-		String arrive_time = request.getParameter("arrive_time");
-		String time = request.getParameter("time");
-		String payment = request.getParameter("payment");
-		String ticket_no = request.getParameter("ticket_no");
-		String hp = request.getParameter("hp");
-		String age_group = request.getParameter("age_group");
-		String payday = request.getParameter("payday");
-		String cancle_check = request.getParameter("cancle_check");
-		String bus_seat = request.getParameter("bus_seat");
-		String arrive_month = request.getParameter("arrive_month");
-		String arrive_day = utils.leftPad(request.getParameter("arrive_day"), 2, "0");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-		Calendar cal = Calendar.getInstance();
-		String year = sdf.format(cal.getTime());
-		
-		String hour = utils.substring(arrive_time, 0, 2);
-		String minute = utils.substring(arrive_time, 2);
-		
-		payday = utils.substring(payday, 0, 10);
-		
-		modelAndView.addObject("bus_no", bus_no);
-		modelAndView.addObject("start_tr", start_tr);
-		modelAndView.addObject("end_tr", end_tr);
-		modelAndView.addObject("company", company);
-		modelAndView.addObject("arrive_time", hour + ":" + minute);
-		modelAndView.addObject("time", time);
-		modelAndView.addObject("payment", payment);
-		modelAndView.addObject("ticket_no", ticket_no);
-		modelAndView.addObject("hp", hp);
-		modelAndView.addObject("age_group", age_group);
-		modelAndView.addObject("payday", payday);
-		modelAndView.addObject("cancle_check", cancle_check);
-		modelAndView.addObject("bus_seat", bus_seat);
-		modelAndView.addObject("arrive_month", arrive_month);
-		modelAndView.addObject("arrive_day", year + "-" +arrive_month + "-" + arrive_day);
-		
-		modelAndView.addObject("main", "../booking/booking_checkDetail.jsp");
 		
 		modelAndView.setViewName("../main/index.jsp");
-		
+
 		return modelAndView;
 	}
 
@@ -593,7 +549,7 @@ public class BookingController {
 
 		String ticket_no = request.getParameter("ticket_no");
 		ticketVO = bookingService.bookingCheck(ticket_no);
-
+		
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("main", "");
 		modelAndView.setViewName("../main/index.jsp");
@@ -607,15 +563,15 @@ public class BookingController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		String ticket_no = request.getParameter("ticket_no");
-		System.out.println(ticket_no);
 		int count = bookingService.bookingCancel(ticket_no);
 
 		if (count > 0)
 			bookingService.seatCancle(ticket_no);
+		
 
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);
-		modelAndView.addObject("main", "../booking/booking_check.do");
+		modelAndView.addObject("main", "");
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;

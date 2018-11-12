@@ -447,12 +447,7 @@ public class BookingController {
 		String bus_no = request.getParameter("bus_no");
 		String seatarr[] = request.getParameterValues("seat");
 		ArrayList<String> seat= new ArrayList<>();
-		for(int i =0 ; i<seatarr.length; i++) {
-			if(seatarr[i]!=null) {
-				int seat_no = Integer.parseInt(seatarr[i]);
-				
-			}
-		}
+		
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 		
@@ -463,26 +458,33 @@ public class BookingController {
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 
 		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)
-		ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no
-				+ utils.leftPad(String.valueOf(seat_no), 2, "0");
-
-		ticketVO.setTicket_no(ticket_no);
-		ticketVO.setBus_no(bus_no);
-		ticketVO.setSeat_no(seat_no);
-		ticketVO.setHp(hp);
-		ticketVO.setArrive_day(arrive_day);
+		
 
 		int count = bookingService.booking(ticketVO);
-		if (count > 0) {
-			SeatVO seatVO = new SeatVO();
-			seatVO.setBus_no(bus_no);
-			seatVO.setBus_seat(seat_no);
-			seatVO.setTicket_no(ticket_no);
-			seatVO.setArrive_month(Integer.parseInt(setArrive_month));
-			seatVO.setArrive_day(Integer.parseInt(setArrive_day));
+		for(int i =0 ; i<seatarr.length; i++) {
+			if(seatarr[i]!=null) {
+				int seat_no = Integer.parseInt(seatarr[i]);
+				ticket_no = utils.remove(arrive_day, "-") + arrive_time + bus_no
+						+ utils.leftPad(String.valueOf(seat_no), 2, "0");
 
-			bookingService.seatBooking(seatVO);
+				ticketVO.setTicket_no(ticket_no);
+				ticketVO.setBus_no(bus_no);
+				ticketVO.setSeat_no(seat_no);
+				ticketVO.setHp(hp);
+				ticketVO.setArrive_day(arrive_day);
+				if (count > 0) {
+					SeatVO seatVO = new SeatVO();
+					seatVO.setBus_no(bus_no);
+					seatVO.setBus_seat(seat_no);
+					seatVO.setTicket_no(ticket_no);
+					seatVO.setArrive_month(Integer.parseInt(setArrive_month));
+					seatVO.setArrive_day(Integer.parseInt(setArrive_day));
+
+					bookingService.seatBooking(seatVO);
+				}
+			}
 		}
+	
 		return count;
 	}
 

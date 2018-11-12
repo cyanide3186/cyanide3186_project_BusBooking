@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css?d">
+<link rel="stylesheet" type="text/css" href="../css/style.css?">
 <style type="text/css">
 .sq {
     color: white;

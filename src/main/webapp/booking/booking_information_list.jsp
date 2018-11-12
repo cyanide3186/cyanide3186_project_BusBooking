@@ -179,12 +179,10 @@ button {
 		<div>
 			<div class="column">
 				<header>
-					<h1>승차권 예매</h1>
+					<h1>운행 조회</h1>
 					<ul class="level">
 						<li>1.기초정보 입력</li>
 						<li id="mainli">2.배차 조회</li>
-						<li>3.매수 및 좌석 선택</li>
-						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr >
 				</header>

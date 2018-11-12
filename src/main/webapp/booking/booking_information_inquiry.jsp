@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/base.css">
 	
-<!-- <link rel="stylesheet" type="text/css"
-	href="/Project_BusBooking/semantic/semantic.css"> -->
+<!--<link rel="stylesheet" type="text/css"
+	href="/Project_BusBooking/semantic/semantic.css">  -->
 	
 <link rel="stylesheet" type="text/css"
 	href="/Project_BusBooking/css/calendar.min.css">
@@ -24,16 +24,16 @@
 	crossorigin="anonymous"></script>
 <script src="/Project_BusBooking/semantic/semantic.js"></script>
 <script src="/Project_BusBooking/js/calendar.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.core.css" />
 <link rel="stylesheet" type="text/css" href="/Project_BusBooking/css/alertify.default.css" id="toggleCSS" />
 <script src="/Project_BusBooking/js/alertify.min.js"></script>
-</head>
-
-
 <script type="text/javascript">
+
+
 	$(document)
 			.ready(
-					function() {
+					function arrive_time() {
 						var formObj = $("form");//form태그를 객체 선언
 
 						//출발지 선택의 검색 기능 
@@ -59,8 +59,17 @@
 										})
 
 						//조회 클릭시 날짜 형식을 재배열해서 보내는 jquery
-						$('button').on("click", function(e) {
+						$("#okbutton").on("click", function(e) {
 							e.preventDefault();
+							if(document.bus_input.start_tr.value == "") {
+								alertify.alert("출발지를 선택해주세요");
+							} else if(document.bus_input.end_tr.value == "") {
+								alertify.alert("도착지를 선택해주세요");
+							} else if(document.bus_input.arrivedate.value == "") {
+								alertify.alert("출발일자를 선택해주세요");
+							} else if(document.bus_input.arrive_time.value == "") {
+								alertify.alert("출발시각을 선택해주세요");
+							}  else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
 							if (arrivedate.indexOf(" ", 1) == 1) {
@@ -68,16 +77,18 @@
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
-								var date = year + "-" + month + "-" + day;
+								var date = year + "-" + month + "-" +  day;
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
-								var date = year + month + day;
+								var date = year + "-" + month + "-" + day;
 							}
 							$("#real_arrivedate").attr('value', date);
 							var value = $("#arrivedate").attr("value");
 							formObj.submit();
+						}
+							
 						});
 
 					});
@@ -88,7 +99,8 @@
 			function() {
 				var startterminal = $(
 						'input:radio[name="chk_terminal"]:checked').val();
-				alertify.alert(startterminal + "을 선택하셨습니다.");
+				//var startterminal=$('input:radio[name="chk_terminal"]').val();
+				alertify.alert(startterminal + "을(를) 선택하셨습니다.");
 				$("#start_tr").attr({
 					placeholder : startterminal,
 					value : startterminal,
@@ -101,7 +113,7 @@
 	/*도착터미널의 지역목록 선택후 기능  */
 	$(document).on("click", ".end_terminal", function() {
 		var endterminal = $('input:radio[name="chk_terminal"]:checked').val();
-		alertify.alert(endterminal + "을 선택하셨습니다.");
+		alertify.alert(endterminal + "을(를) 선택하셨습니다.");
 		$("#end_tr").attr({
 			placeholder : endterminal,
 			value : endterminal,
@@ -165,7 +177,7 @@
 			direction : 'down',
 			duration : 700,
 			onChange : function(value, text, $choice) {
-				alertify.alert(value + "을 출발지로 선택하셨습니다.");
+				alertify.alert(value + "을(를) 출발지로 선택하셨습니다.");
 				var start = value;
 				$("#start_tr").attr({
 					placeholder : start,
@@ -263,18 +275,14 @@
 								$("#result_terminal").empty();
 								alertify.alert(local);
 								//ajax실행 
-								$
-										.ajax({
+								$.ajax({
 											url : "booking_input_TerminalJson.do",
 											type : "post",
 											data : {
 												"local" : local
 											},
 											dataType : "json",
-											success : function(data) {
-												alertify.alert("success");
-												$
-														.each(
+											success : function(data) {$.each(
 																data.items,
 																function(index,
 																		item) {

@@ -171,8 +171,7 @@ h1 {
 
 		</div>
 		<div>
-			<form method="post" action="../main/index.jsp"
-				name="bus_card">
+			<form method="post" action="../booking/booking_insert.do" name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
 						<div class="active item">
@@ -193,7 +192,7 @@ h1 {
 										<input type="hidden" name="arrive_time" value="${arrive_time}">
 										<input type="hidden" name="total_payment" value="${total_payment}">
 										<c:forEach items="${seat}" var="seat">
-											<input type="hidden" name="seat" id="seat" value=seat>
+											<input type="hidden" name="seat" id="seat" value=${seat }>
 										</c:forEach>
 										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>

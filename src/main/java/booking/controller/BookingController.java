@@ -452,7 +452,7 @@ public class BookingController {
 		modelAndView.addObject("adultResult", adultResult);
 		modelAndView.addObject("teenResult", teenResult);
 		modelAndView.addObject("kidResult", kidResult);
-		modelAndView.addObject("main", "../booking/booking_check.jsp");
+		modelAndView.addObject("main", "../booking/booking_modifyForm.jsp");
 
 		modelAndView.setViewName("../main/index.jsp");
 
@@ -466,15 +466,12 @@ public class BookingController {
 		String ticket_no = null;
 		String bus_no = request.getParameter("bus_no");
 		int seat_no = 0;
-		String seatarr[] = request.getParameterValues("seat");
-		ArrayList<String> seat= new ArrayList<>();
-		ArrayList<Integer> seat_Int= new ArrayList<>();
 		int hp = Integer
 				.parseInt(request.getParameter("hp1") + request.getParameter("hp2") + request.getParameter("hp3"));
 		
 		String arrive_day = request.getParameter("arrive_day");
 		String arrive_time = request.getParameter("arrive_time");
-
+		
 		String setArrive_month = utils.substringBetween(arrive_day, "-", "-");
 		String setArrive_day = utils.substringAfterLast(arrive_day, "-");
 		// 예약번호 생성 (출발날짜 + 출발시간 + 버스번호 + 좌석번호)

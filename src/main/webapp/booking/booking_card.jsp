@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -39,21 +39,29 @@
 			alertify.alert("카드 비밀번호를 입력해주세요");
 		} else if(!num.test(document.bus_card.password.value)){
 			alertify.alert("카드 비밀번호는 숫자로 입력해주세요");
+		} else if(document.bus_card.no.value == "") {
+			alertify.alert("주민번호 앞 6자리를 입력해주세요");
+		} else if(!num.test(document.bus_card.no.value)){
+			alertify.alert("주민번호 앞 6자리는 숫자로 입력해주세요");
 		} else if(document.bus_card.hp2.value == "" || document.bus_card.hp3.value == "") {
 			alertify.alert("휴대폰 번호를 입력해주세요");
 		} else if(!num.test(document.bus_card.hp2.value)||!num.test(document.bus_card.hp3.value)){
 			alertify.alert("휴대폰 번호는 숫자로 입력해주세요");
 		} else {
-			alertify.alert("예매가 완료되었습니다.");
+			alertify.alert("예매가 완료되었습니다 초기 페이지로 이동합니다.");
 			document.bus_card.submit();
 		}
+	}
+	history.pushState(null, null, location.href);
+
+	window.onpopstate = function(event) {	
+
+	history.go(1);
 	}
 </script>
 <style type="text/css">
 p {
-	font-weight: bolder;
 	font-size: 1.5rem;
-	text-align: left;
 }
 
 header {
@@ -89,6 +97,18 @@ li {
 	width: 120px;
 }
 
+.box {
+	list-style: none;
+	margin: 0 0;
+	font-size: 1.5rem;
+	margin-right: 1rem;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 1px 2px;
+	color: white;
+	background-color: #FAAC58;
+}
+
 h1 {
 	border-bottom: 2px solid #01A9DB;
 }
@@ -105,26 +125,34 @@ h1 {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: yellow;
+	color: white;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 }
 
 .card1 {
 	font-size: 1.5rem;
 	font-weight: bold;
+	background-color: #FAAC58;
 }
 
 .card2 {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
 	text-align: left;
+	background-color: #E6E6E6;
 }
+
+.card3 {
+	font-size: 1.3rem;
+	background-color: #E6E6E6;
+}
+
+
 
 </style>
 </head>
 <body>
 	<div class="wrapper">
-
 		<div>
 			<div class="column">
 				<header>
@@ -141,64 +169,68 @@ h1 {
 
 		</div>
 		<div>
-			<form action="../booking/booking_bus.do" method="post"
+			<form action="../booking/booking_insert.do" method="post"
 				name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
-						<div class="active item">배차정보</div>
+						<div class="active item">
+						<p>
+						배차정보
+						<p>
+						</div>
 					</div>	
 					<div class="ui bottom attached active tab segment" align="center">
-						<table border="1px solid black">
+						<table border="1">
 							<tr>
-								<td width="500px" height="50px">
-									<ul class="road">
-										<li class=box>출발지</li>
-										<li>${start_tr}</li>
-										<li><img src="../images/point.png" height="30px"
-											width="100px"></li>
-										<li class=box>도착지</li>
-										<li>${end_tr}</li>
-									</ul>
+								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
+										<input type="hidden" name="bus_no" value="${bus_no}">
+										<input type="hidden" name="adult" value="${adult}">
+										<input type="hidden" name="teen" value="${teen}">
+										<input type="hidden" name="kid" value="${kid}">
+										<input type="hidden" name="total_payment" value="${total_payment}">
+										<c:forEach items="${seat}" var="seat1">
+											<input type="checkbox" name="seat" id="seat" value=${ seat1} checked="checked">
+										</c:forEach>
+										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>
-								<td width="500px" align="center"><ul>
-										<li>${Seat_VO.arrive_day}</li>
-									</ul></td>
+								<td width="500px" height="50px" align="center" class="card3" style="color: #082948; font-weight: bold">
+										<a class="box" style="color: white">도착지</a>${end_tr}
+									</td>
 							</tr>
 							<tr>
 								<td width="500px" height="50px" align="center" class="card1"> 
 									출발 시간</td>
-								<td width="500px" align="center">
-									${arrive_time}
+								<td width="500px" align="center" class="card3" style="color:red">
+									${arrive_day1} <a style="color: black">월</a> ${arrive_day2} <a style="color: black">일</a> ${arrive_time1} <a style="color: black">시</a> ${arrive_time2} <a style="color: black">분</a>
 									</td>
 							</tr>
 							<tr>
-								<td width="500px" height="50px" align="center">
-									<c:if test="${adult!=0}">
-										어른 ${adult}명&nbsp;
+								<td width="500px" height="50px" align="center" class="card3" style="color:red">
+									<c:if test="${adult!=0}" >
+										<a style="color: black" >어른</a> ${adult} <a style="color: black">명&nbsp;</a>
 									</c:if>
 									<c:if test="${teen!=0}">
-										청소년 ${teen}명&nbsp;
+										<a style="color: black">청소년</a> ${teen} <a style="color: black">명&nbsp;</a>
 									</c:if>
 									<c:if test="${kid!=0}">
-										어린이 ${kid}명&nbsp;
+										<a style="color: black">어린이</a> ${kid} <a style="color: black">명&nbsp;</a>
 									</c:if>
 								</td>	
-								<td width="500px" align="center">
-								<c:forEach var="Seat_VO" items="${list}">
-								<tr align="center">
-									<td>좌석 ${Seat_VO.bus_seat}</td>
-								</tr>
-								</c:forEach>
+								<td width="500px" align="center" class="card3" style="color:red">
+									<c:forEach var="String" items="${seat}">
+										${String}<a style="color: black">번 좌석&nbsp;</a>
+									</c:forEach>
+
 								</td>	
 							</tr>
 						</table>
 							<br>
-							<table border="1px solid black">
+							<table border="1">
 								<tr>
 								<td width="500px" height="50px" align="center" class="card1">
 									결제금액</td>
-								<td width="500px" align="center">
-									${totalPay}원</td>
+								<td width="500px" align="center" class="card3" style="color: red">
+									${total_payment}<a style="color: black">원</a></td>
 							</tr>
 							</table>
 							<br>
@@ -206,7 +238,7 @@ h1 {
 						<p>
 						카드 정보 입력
 						</p>
-						<table border="1px solid black">
+						<table border="1">
 						<tr>
 							<td width="300px" height="50px" align="center" class="card1">
 								카드구분</td>
@@ -253,23 +285,38 @@ h1 {
 						<td width="300px" height="50px" align="center" class="card1">
 								유효기간</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="3" name="month"  maxlength="2"> 월
-								<input type="text" size="3" name="year"  maxlength="2"> 년
+								<input type="text" size="2" name="month"  maxlength="2"> 월
+								<input type="text" size="2" name="year"  maxlength="2"> 년
 							</td>
 						</tr>
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
 								카드비밀번호</td>
 							<td width="700px" align="left" class="card2">
-								<input type="text" size="3" name="password" maxlength="2">**
+								<input type="text" size="2" name="password" maxlength="2">**
 							</td>
 						</tr>
 						<tr>
 						<td width="300px" height="50px" align="center" class="card1">
+								주민번호 앞 6자리</td>
+							<td width="700px" align="left" class="card2">
+								<input type="text" size="5" name="no" maxlength="6">
+							</td>
+						</tr>
+						</table>
+						<br>
+						<br>
+						<p>
+						예매조회 정보 입력<br> 
+						아래는 예매 사항을 조회하기 위한 정보 입력입니다.
+						</p>
+						<table border="1">
+							<tr>
+							<td width="300px" height="50px" align="center" class="card1">
 								휴대폰 번호
 							</td>
 							<td width="700px" align="left" class="card2">
-									<select name="selectcard" style="width: 60px;" name="hp1">
+									<select name="hp1" style="width: 60px;" >
 									<option value="010" selected>010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -282,16 +329,16 @@ h1 {
 								-
 								<input type="text" size="4" name="hp3" maxlength="4">
 							</td>
-						</tr>
+						</tr>	
 						<tr>
-							<td colspan="2" width="1000px" height="50px" align="center">
-							<button class="ui teal basic button" type="button" onclick="check()">예매하기</button>
-							<button class="ui teal basic button" type="reset">다시작성</button>
+							<td colspan="2" width="1000px" height="50px" align="center" class="card3">
+							<button class="ui teal basic button" type="button" onclick="check()" style="font-weight: bold">예매하기</button>
+							<button class="ui teal basic button" type="reset" style="font-weight: bold">다시작성</button>
 							</td>
-						</tr>
+						</tr>					
 						</table>
-						</div>
-			</div>
+					</div>
+				</div>
 			</form>
 		</div>	
 	</div>	

@@ -35,6 +35,7 @@
 			actionform.find("input[name='bus_no']").val($(this).attr("href"));
 			actionform.submit();
 		});
+	
 	});
 </script>
 <style type="text/css">
@@ -72,7 +73,7 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: yellow;
+	color: white;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
@@ -88,13 +89,12 @@ li {
 	border: 1px solid white;
 	border-radius: 20px;
 	padding: 1px 2px;
-	color: white;
+	color: yellow;
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 }
 
 table {
@@ -118,7 +118,7 @@ h1 {
 	border-radius: 20px;
 	padding: 1px 2px;
 	color: white;
-	background-color: orange;
+	background-color: #FAAC58;
 }
 
 td, th {
@@ -223,7 +223,7 @@ button {
 										<li class=box>출발지</li>
 										<li>${ start_tr}</li>
 										<li><img src="../images/point.png" height="30px"
-											width="100px"></li>
+											width="40px"></li>
 										<li class=box>도착지</li>
 										<li>${end_tr}</li>
 									</ul>
@@ -254,8 +254,8 @@ button {
 									<td>${busVO.start_tr}</td>
 									<td>${busVO.end_tr}</td>
 									<td>${busVO.company}</td>
-									<td>${busVO.arrive_time}</td>
-									<td>${busVO.time}</td>
+									<td>${busVO.viewArrive_time}</td>
+									<td>${busVO.viewtime}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
 											<div id="seat"><a href="${busVO.bus_no}">${busVO.bus_seats}석/총40석</a></div>

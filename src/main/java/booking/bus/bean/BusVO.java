@@ -14,7 +14,22 @@ public class BusVO { //버스정보 DTO - table bus와 대응
     private int arrive_day;		// 출발 일자
     private int arrive_month;	// 출발 월
 	
-    public String getBus_no() {
+    private String viewArrive_time;
+    private String viewtime;
+    
+    public String getViewArrive_time() {
+		return viewArrive_time;
+	}
+	public void setViewArrive_time(String viewArrive_time) {
+		this.viewArrive_time = viewArrive_time;
+	}
+	public String getViewtime() {
+		return viewtime;
+	}
+	public void setViewtime(String viewtime) {
+		this.viewtime = viewtime;
+	}
+	public String getBus_no() {
 		return bus_no;
 	}
 	public void setBus_no(String bus_no) {

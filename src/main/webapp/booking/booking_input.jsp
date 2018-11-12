@@ -74,24 +74,20 @@
 							} else {
 							var date = null;
 							var arrivedate = $("#arrivedate").val();
-							//alert(arrivedate);
 							if (arrivedate.indexOf(" ", 1) == 1) {
 								var day = "0" + arrivedate.substring(0, 1);
 								var month = arrivedate.substring(2, 4);
 								var year = arrivedate.substring(6, 11);
 
 								var date = year + "-" + month + "-" +  day;
-								//alert(date);
 							} else {
 								var day = arrivedate.substring(0, 2);
 								var month = arrivedate.substring(3, 5);
 								var year = arrivedate.substring(7, 12);
 								var date = year + "-" + month + "-" + day;
-								//alert(date);
 							}
 							$("#real_arrivedate").attr('value', date);
 							var value = $("#arrivedate").attr("value");
-							//alert(value+"값이 저장되었습니다.");
 							formObj.submit();
 						}
 							
@@ -281,18 +277,14 @@
 								$("#result_terminal").empty();
 								alertify.alert(local);
 								//ajax실행 
-								$
-										.ajax({
+								$.ajax({
 											url : "booking_input_TerminalJson.do",
 											type : "post",
 											data : {
 												"local" : local
 											},
 											dataType : "json",
-											success : function(data) {
-												alertify.alert("success");
-												$
-														.each(
+											success : function(data) {$.each(
 																data.items,
 																function(index,
 																		item) {
@@ -643,9 +635,9 @@ li {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: yellow;
+	color: white;
 	width: 120px;
-	border: 3px solid yellow;
+	border: 3.6px solid #ffa500;;
 	
 }
 
@@ -768,7 +760,7 @@ input {
 					<ul class="level">
 						<li id="mainli">1.기초정보 입력</li>
 						<li>2.배차 조회</li>
-						<li>3.매수 및 좌석선택</li>
+						<li>3.매수및좌석선택</li>
 						<li>4.카드 정보 입력</li>
 					</ul>
 					<hr>
@@ -854,7 +846,7 @@ input {
 							<td style="padding: 8px;">
 							<select name="adult" class="ui dropdown" id="adult" style="border: 1px solid #bfc3c5;">
 									<option value="0">0</option>
-									<option value="1">1</option>
+									<option value="1" selected>1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>

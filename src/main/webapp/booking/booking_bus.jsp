@@ -254,8 +254,8 @@ button {
 									<td>${busVO.start_tr}</td>
 									<td>${busVO.end_tr}</td>
 									<td>${busVO.company}</td>
-									<td>${busVO.arrive_time}</td>
-									<td>${busVO.time}</td>
+									<td>${busVO.viewArrive_time}</td>
+									<td>${busVO.viewtime}</td>
 									<td>${busVO.payment}</td>
 									<td style="padding: 0 0;">
 											<div id="seat"><a href="${busVO.bus_no}">${busVO.bus_seats}석/총40석</a></div>

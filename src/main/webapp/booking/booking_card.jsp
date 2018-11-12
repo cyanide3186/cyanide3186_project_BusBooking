@@ -48,10 +48,12 @@
 		} else if(!num.test(document.bus_card.hp2.value)||!num.test(document.bus_card.hp3.value)){
 			alertify.alert("휴대폰 번호는 숫자로 입력해주세요");
 		} else {
-			alertify.alert("예매가 완료되었습니다 초기 페이지로 이동합니다.");
+			alert("예매가 완료되었습니다 초기 페이지로 이동합니다.");
 			document.bus_card.submit();
+			return true;	
 		}
 	}
+
 	history.pushState(null, null, location.href);
 
 	window.onpopstate = function(event) {	
@@ -125,9 +127,9 @@ h1 {
 	background-color: #0489B1;
 	font-size: 1rem;
 	padding: 0 0;
-	color: white;
+	color: yellow;
 	width: 120px;
-	border: 3.6px solid #ffa500;;
+	border: 3px solid yellow;
 }
 
 .card1 {
@@ -169,7 +171,7 @@ h1 {
 
 		</div>
 		<div>
-			<form action="../booking/booking_insert.do" method="post"
+			<form method="post" action="../main/index.jsp"
 				name="bus_card">
 				<div class="column">
 					<div class="ui top attached tabular menu">
@@ -190,8 +192,8 @@ h1 {
 										<input type="hidden" name="arrive_day" value="${arrive_day}">
 										<input type="hidden" name="arrive_time" value="${arrive_time}">
 										<input type="hidden" name="total_payment" value="${total_payment}">
-										<c:forEach items="${seat}" var="seat1">
-											<input type="checkbox" name="seat" id="seat" value=${ seat1} checked="checked">
+										<c:forEach items="${seat}" var="seat">
+											<input type="hidden" name="seat" id="seat" value=seat>
 										</c:forEach>
 										<a class="box" style="color: white">출발지</a>${start_tr}								
 								</td>

@@ -451,7 +451,7 @@ public class BookingController {
 		for(int i =0 ; i<seatarr.length; i++) {
 			if(seatarr[i]!=null) {
 				seat_Int.add(Integer.parseInt(seatarr[i]));
-				
+				System.out.println("seat_Int 로받은 좌석 : "+Integer.parseInt(seatarr[i]));
 			}
 		}
 		int hp = Integer
@@ -519,7 +519,7 @@ public class BookingController {
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("seatVO", seatVO);
 		modelAndView.addObject("main", "");
-
+		
 		modelAndView.setViewName("../main/index.jsp");
 
 		return modelAndView;
@@ -533,7 +533,7 @@ public class BookingController {
 
 		String ticket_no = request.getParameter("ticket_no");
 		ticketVO = bookingService.bookingCheck(ticket_no);
-
+		
 		modelAndView.addObject("ticketVO", ticketVO);
 		modelAndView.addObject("main", "");
 		modelAndView.setViewName("../main/index.jsp");
@@ -551,6 +551,7 @@ public class BookingController {
 
 		if (count > 0)
 			bookingService.seatCancle(ticket_no);
+		
 
 		modelAndView.addObject("ticket_no", ticket_no);
 		modelAndView.addObject("count", count);

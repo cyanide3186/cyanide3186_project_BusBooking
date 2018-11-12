@@ -108,80 +108,58 @@ h1 {
 				<div class="active item">예매 내역</div>
 			</div>
 			<form action="" method="post">
-				<input type="hidden" name="busVO" value="${busVO}">
-				<input type="hidden" name="ticketVO" value="${ticketVO}">
-				<input type="hidden" name="seatVO" value="${seatVO}">
 				<table class="ui single line table" id="booking">
 					<tr>
 						<th width="25%">예약번호</th>
-						<td width="25%">${ticketVO.ticket_no}</td>
+						<td width="25%">${ticket_no}</td>
 						<th width="25%">상태</th>
-						<c:if test="${ticketVO.ticket_no == 'n'}">
+						<c:if test="${ticket_no == 'n'}">
 							<td>예매</td>
 						</c:if>
-						<c:if test="${ticketVO.ticket_no == 'y'}">
+						<c:if test="${ticket_no == 'y'}">
 							<td>취소</td>
 						</c:if>
 					</tr>
 					<tr>
 						<th>출발지</th>
-						<td>${busVO.start_tr }</td>
+						<td>${start_tr }</td>
 						<th>도착지</th>
-						<td width="25%">${busVO.end_tr }</td>
+						<td width="25%">${end_tr }</td>
 					</tr>
 					<tr>
 						<th>출발일</th>
-						<td>${seatVO.arrive_day}</td>
+						<td>${arrive_day}</td>
 						<th>출발시간</th>
-						<td>${busVO.arrive_time}</td>
+						<td>${arrive_time}</td>
 					</tr>
 					<tr>
 						<th>버스구분</th>
 						<td>일반</td>
 						<th>운수회사</th>
-						<td></td>
+						<td>${company }</td>
 					</tr>
 					<tr>
 						<th>매수</th>
 						<td>
-							<c:if test="${ticketVO.age_group == 0 }">
+							<c:if test="${age_group == 0 }">
 								어른 1명
 							</c:if>
-							<c:if test="${ticketVO.age_group == 1 }">
+							<c:if test="${age_group == 1 }">
 								어린이 1명
 							</c:if>
-							<c:if test="${ticketVO.age_group == 2 }">
+							<c:if test="${age_group == 2 }">
 								청소년 1명
 							</c:if>
 						</td>
 						<th>좌석</th>
-						<td>${seatVO.bus_seat }</td>
+						<td>${bus_seat }</td>
 					</tr>
 					<tr>
 						<th>결제일자</th>
-						<td></td>
+						<td>${payday }</td>
 						<th>결제금액</th>
-						<td></td>
+						<td>${payment }</td>
 					</tr>
-					<c:if test="${ticketVO.ticket_no != null}">
-						<tr>
-							<td>
-								<p>${ticketVO.ticket_no}<p>
-								<c:if test="${ticketVO.cancle_check == 'n'}">
-									<p>예매<p>
-								</c:if>
-								<c:if test="${ticketVO.cancle_check == 'n'}">
-									<p>취소<p>
-								</c:if>
-							</td>
-							<td>
-								<p>${ticketVO.arrive_day} &nbsp;${busVO.arrive_time}</p>
-							</td>
-							<td>
-								<input type="submit" value="선택">
-							</td>
-						</tr>
-					</c:if>
 				</table>
 				<div class="ui top attached tabular menu">
 					<div class="active item">승차권</div>
@@ -199,35 +177,35 @@ h1 {
 					<tbody>
 						<tr>
 							<td>
-								<c:if test="${ticketVO.cancle_check == 'n'}">
+								<c:if test="${cancle_check == 'n'}">
 									<p>예매<p>
 								</c:if>
-								<c:if test="${ticketVO.cancle_check == 'n'}">
+								<c:if test="${cancle_check == 'n'}">
 									<p>취소<p>
 								</c:if>
 							</td>
 							<td>
-								<c:if test="${ticketVO.age_group == 0 }">
+								<c:if test="${age_group == 0 }">
 									어른
 								</c:if>
-								<c:if test="${ticketVO.age_group == 1 }">
+								<c:if test="${age_group == 1 }">
 									어린이
 								</c:if>
-								<c:if test="${ticketVO.age_group == 2 }">
+								<c:if test="${age_group == 2 }">
 									청소년
 								</c:if>
 							</td>
-							<td>${seatVO.bus_seat }</td>
+							<td>${bus_seat }</td>
 							<td>0원</td>
 							<td>
-								<c:if test="${ticketVO.age_group == 0 }">
-									${ticektVO.totalpay }
+								<c:if test="${age_group == 0 }">
+									${totalpay }
 								</c:if>
-								<c:if test="${ticketVO.age_group == 1 }">
-									${ticektVO.totalpay * 0.5}
+								<c:if test="${age_group == 1 }">
+									${totalpay * 0.5}
 								</c:if>
-								<c:if test="${ticketVO.age_group == 2 }">
-									${ticektVO.totalpay * 0.7}
+								<c:if test="${age_group == 2 }">
+									${totalpay * 0.7}
 								</c:if>
 							</td>
 						</tr>
@@ -236,14 +214,14 @@ h1 {
 							<th colspan="2">총 1매</th>
 							<th>0원</th>
 							<th>
-								<c:if test="${ticketVO.age_group == 0 }">
-									${ticektVO.totalpay }
+								<c:if test="${age_group == 0 }">
+									${totalpay }
 								</c:if>
-								<c:if test="${ticketVO.age_group == 1 }">
-									${ticektVO.totalpay * 0.5}
+								<c:if test="${age_group == 1 }">
+									${totalpay * 0.5}
 								</c:if>
-								<c:if test="${ticketVO.age_group == 2 }">
-									${ticektVO.totalpay * 0.7}
+								<c:if test="${age_group == 2 }">
+									${totalpay * 0.7}
 								</c:if>
 							</th>
 						</tr>

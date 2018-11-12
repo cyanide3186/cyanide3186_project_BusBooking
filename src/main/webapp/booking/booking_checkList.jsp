@@ -123,9 +123,20 @@ h1 {
 				<div class="active item">예매 내역</div>
 			</div>
 			<form action="../booking/bookingCheckDetail.do" method="post">
-				<input type="hidden" name="busVO" value="${busVO}">
-				<input type="hidden" name="ticketVO" value="${ticketVO}">
-				<input type="hidden" name="seatVO" value="${seatVO}">
+				<input type="hidden" name="bus_no" value="${busVO.bus_no}">
+				<input type="hidden" name="start_tr" value="${busVO.start_tr}">
+				<input type="hidden" name="end_tr" value="${busVO.end_tr}">
+				<input type="hidden" name="company" value="${busVO.company}">
+				<input type="hidden" name="arrive_time" value="${busVO.arrive_time}">
+				<input type="hidden" name="time" value="${busVO.time}">
+				<input type="hidden" name="payment" value="${busVO.payment}">
+				<input type="hidden" name="ticket_no" value="${ticketVO.ticket_no}">
+				<input type="hidden" name="hp" value="${ticketVO.hp}">
+				<input type="hidden" name="age_group" value="${ticketVO.age_group}">
+				<input type="hidden" name="payday" value="${ticketVO.payday}">
+				<input type="hidden" name="bus_seat" value="${seatVO.bus_seat}">
+				<input type="hidden" name="arrive_month" value="${seatVO.arrive_month}">
+				<input type="hidden" name="arrive_day" value="${seatVO.arrive_day}">
 				<table class="ui single line table">
 					<thead>
 						<tr>
